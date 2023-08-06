@@ -1,0 +1,807 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+        <!-- Title -->
+{% block title %}برو بیا | هتل {{ hotel.faname }} {{ city.faname }}{% endblock %}
+{% block header %}{% endblock %}
+{% block content %}
+
+{% include 'include/list-header.html' %}
+        <!-- ========== MAIN CONTENT ========== -->
+        <main id="content">
+            <!-- Breadcrumb -->
+            <div class="border-bottom">
+                <div class="container">
+                    <nav class="py-3" aria-label="خرده نان">
+                        <ol class="breadcrumb breadcrumb-no-gutter mb-0 flex-nowrap flex-xl-wrap  overflow-xl-visble">
+                            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{% url 'hotel-list' city_slug=city.slug %}" class="hotel-link" >هتل های {{ city.faname }}</a></li>
+                            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="hotel-link">هتل {{ hotel.faname }}</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Breadcrumb -->
+            <div class="mb-8">
+                <!-- Images Carousel -->
+                <div class="js-slick-carousel u-slick u-slick__img-overlay" data-arrows-classes="d-none d-md-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="flaticon-back u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-md-4 ml-xl-8" data-arrow-right-classes="flaticon-next u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-md-4 mr-xl-8" data-infinite="true" data-slides-show="1" data-slides-scroll="1" data-center-mode="true" data-pagi-classes="d-md-none text-center u-slick__pagination mt-5 mb-0" data-center-padding="450px" data-responsive="[{
+                        &quot;breakpoint&quot;: 1480,
+                        &quot;settings&quot;: {
+                            &quot;centerPadding&quot;: &quot;300px&quot;
+                        }
+                    }, {
+                        &quot;breakpoint&quot;: 1199,
+                        &quot;settings&quot;: {
+                            &quot;centerPadding&quot;: &quot;200px&quot;
+                        }
+                    }, {
+                        &quot;breakpoint&quot;: 992,
+                        &quot;settings&quot;: {
+                            &quot;centerPadding&quot;: &quot;120px&quot;
+                        }
+                    }, {
+                        &quot;breakpoint&quot;: 554,
+                        &quot;settings&quot;: {
+                            &quot;centerPadding&quot;: &quot;20px&quot;
+                        }
+                    }]">
+                    <div class="js-slide bg-img-hero min-height-550" style="background-image: url({% static 'img/820x550/img4.jpg' %});"></div>
+                    <div class="js-slide bg-img-hero min-height-550" style="background-image: url({% static 'img/820x550/img5.jpg' %});"></div>
+                    <div class="js-slide bg-img-hero min-height-550" style="background-image: url({% static 'img/820x550/img6.jpg' %});"></div>
+                </div>
+                <!-- End Images Carousel -->
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-xl-9">
+                        <div class="d-block d-md-flex flex-center-between align-items-start mb-2">
+                            <div class="mb-3">
+                                <ul class="list-unstyled mb-2 d-md-flex flex-lg-wrap flex-xl-nowrap mb-2">
+                                    {% if hotel.special_offer %}
+                                    <li class="border border-brown bg-brown rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-md-2 mb-2 mb-md-0 mb-lg-2 mb-xl-0">
+                                            <span class="font-weight-normal text-white font-size-14">آفر ویژه</span>
+                                    </li>
+                                    {% endif %}
+
+                                </ul>
+                                <div class="d-block d-md-flex flex-horizontal-center mb-2 mb-md-0">
+                                    <h4 class="font-size-23 font-weight-bold mb-1">{{ hotel.faname }}</h4>
+                                    <div class="ml-3 font-size-10 text-warning letter-spacing-2">
+                                        <div class="lighter">
+                                            {% for _ in "x"|rjust:hotel.starts %}
+                                                <small class="fas fa-star"></small>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-block d-md-flex flex-horizontal-center font-size-14 text-gray-1">
+                                    <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ hotel.address }}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="stickyBlockStartPoint" class="mb-4 ">
+                            <div class="border rounded-pill js-sticky-block p-1 border-width-2  z-index-4 bg-white" data-parent="#stickyBlockStartPoint" data-offset-target="#logoAndNav" data-sticky-view="lg" data-start-point="#stickyBlockStartPoint" data-end-point="#stickyBlockEndPoint" data-offset-top="30" data-offset-bottom="30">
+                                <ul class="js-scroll-nav nav tab-nav-pill flex-nowrap tab-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-medium " href="#scroll-description">
+                                            <div class="d-flex flex-column  flex-md-row  position-relative text-dark align-items-center">
+                                                <span class="tabtext  font-weight-semi-bold">شرح</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-medium" href="#scroll-rooms">
+                                            <div class="d-flex flex-column flex-md-row  position-relative text-dark align-items-center">
+                                                <span class="tabtext font-weight-semi-bold">اتاق ها</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-medium" href="#scroll-amenities">
+                                            <div class="d-flex flex-column flex-md-row  position-relative text-dark align-items-center">
+                                                <span class="tabtext font-weight-semi-bold">امکانات رفاهی</span>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="border-bottom position-relative">
+                            <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
+                                شرح
+                            </h5>
+                            <p>{{ hotel.description}}.</p>
+
+                            <div class="collapse" id="collapseLinkExample">
+                                <p>&zwnj;{{ hotel.explanation }}.</p>
+                            </div>
+
+                            <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-warning" data-toggle="collapse" href="#collapseLinkExample" role="button" aria-expanded="false" aria-controls="collapseLinkExample">
+                                <span class="link-collapse__default font-size-14">بیشتر ببینید<i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
+                                <span class="link-collapse__active font-size-14">مشاهده کمتر<i class="flaticon-arrow font-size-10 ml-1"></i></span>
+                            </a>
+                        </div>
+                        <div class="border-bottom py-4">
+                            <h5 id="scroll-rooms" class="font-size-21 font-weight-bold text-dark mb-4">
+                                اتاق خود را انتخاب کنید
+                            </h5>
+                        {% for room in rooms %}
+                        <div class="card border-color-7 mb-5 overflow-hidden">
+                                <div class="product-item__outer w-100">
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-5 col-xl-3dot5">
+                                            <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">
+                                                <div class="product-item__header mt-2 mt-md-0">
+                                                    <div class="position-relative">
+
+                                                        <img class="img-fluid rounded-sm" src="{{ room.image.url }}" alt="{{ room.image.url }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">
+                                            <div class="w-100 position-relative m-4 m-md-0">
+                                                <a href="{% url 'hotel-booking' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="mb-2 d-inline-block hotel-link">
+                                                    <span class="font-weight-bold font-size-17 text-dark text-dark">{{ room.faname }}</span>
+                                                </a>
+                                                <div class="mt-1 pt-2">
+                                                    <div class="d-flex mb-1">
+                                                        <div class="ml-0">
+                                                            <ul class="list-unstyled mb-0">
+                                                                {% for f in room.facilities.all %}
+                                                                <li class="media mb-3 text-gray-1">
+                                                                    <small class="mr-2">
+                                                                        <small class="flaticon-{{ f.name }} font-size-17 text-warning"></small>
+                                                                    </small>
+                                                                    <div class="media-body font-size-1 ml-1">
+                                                                        {{ f.faname}}
+                                                                    </div>
+                                                                </li>
+                                                                {% endfor %}
+
+                                                            </ul>
+                                                        </div>
+                                                        <div class="ml-7">
+                                                            <ul class="list-unstyled mb-0">
+                                                                <li class="media mb-3 text-gray-1">
+                                                                    <small class="mr-2">
+                                                                        <small class="flaticon-plans font-size-17 text-warning"></small>
+                                                                    </small>
+                                                                    <div class="media-body font-size-1 ml-1">
+                                                                        15 متر مربع
+                                                                    </div>
+                                                                </li>
+                                                                <li class="media mb-3 text-gray-1">
+                                                                    <small class="mr-2">
+                                                                        <small class="flaticon-bed-1 font-size-17 text-warning"></small>
+                                                                    </small>
+                                                                    <div class="media-body font-size-1 ml-1">
+                                                                        {{ room.bed }} تخت
+                                                                    </div>
+                                                                </li>
+
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <a href="{% url 'hotel-booking' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="text-underline font-size-14 hotel-link">عکس و جزئیات اتاق</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-xl-3dot5 align-self-center py-4 py-xl-0 border-top border-xl-top-0">
+                                            <div class="flex-content-center border-xl-left py-xl-5 ml-4 ml-xl-0 justify-content-start justify-content-xl-center">
+                                                <div class="text-center my-xl-1">
+                                                    <div class="mb-2 pb-1">
+                                                        <span class="font-size-14">از </span>
+                                                        <span class="font-weight-bold font-size-22 ml-1">{{ room.price|intcomma }} تومان</span>
+
+
+                                                        <span class="font-size-14">/ شب</span>
+                                                    </div>
+                                                    <a href="{% url 'hotel-booking' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">اکنون ثبت کن</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+{#                            <div class="card border-color-7 mb-5 overflow-hidden">#}
+{#                                <div class="position-absolute top-0 right-0 mr-md-1 mt-md-1">#}
+{#                                    <div class="border border-brown bg-brown rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-2 mt-2">#}
+{#                                        <span class="font-weight-normal text-white font-size-14">بهترین پیشنهاد امروز</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="product-item__outer w-100">#}
+{#                                    <div class="row">#}
+{#                                        <div class="col-md-5 col-lg-5 col-xl-3dot5">#}
+{#                                            <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">#}
+{#                                                <div class="product-item__header mt-2 mt-md-0">#}
+{#                                                    <div class="position-relative">#}
+{#                                                        <img class="img-fluid rounded-sm" src="{% static 'img/200x154/img1.jpg' %}" alt="توضیحات تصویر">#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">#}
+{#                                            <div class="w-100 position-relative m-4 m-md-0">#}
+{#                                                <a href="hotel-booking.html" class="mb-2 d-inline-block">#}
+{#                                                    <span class="font-weight-bold font-size-17 text-dark text-dark">اتاق دو نفره دولوکس</span>#}
+{#                                                </a>#}
+{#                                                <div class="mt-1 pt-2">#}
+{#                                                    <div class="d-flex mb-1">#}
+{#                                                        <div class="ml-0">#}
+{#                                                            <ul class="list-unstyled mb-0">#}
+{#                                                                <li class="media mb-3 text-gray-1">#}
+{#                                                                    <small class="mr-2">#}
+{#                                                                        <small class="flaticon-wifi-signal font-size-17 text-warning"></small>#}
+{#                                                                    </small>#}
+{#                                                                    <div class="media-body font-size-1 ml-1">#}
+{#                                                                        وای فای رایگان#}
+{#                                                                    </div>#}
+{#                                                                </li>#}
+{#                                                                <li class="media mb-3 text-gray-1">#}
+{#                                                                    <small class="mr-2">#}
+{#                                                                        <small class="flaticon-plans font-size-17 text-warning"></small>#}
+{#                                                                    </small>#}
+{#                                                                    <div class="media-body font-size-1 ml-1">#}
+{#                                                                        15 متر مربع#}
+{#                                                                    </div>#}
+{#                                                                </li>#}
+{#                                                            </ul>#}
+{#                                                        </div>#}
+{#                                                        <div class="ml-7">#}
+{#                                                            <ul class="list-unstyled mb-0">#}
+{#                                                                <li class="media mb-3 text-gray-1">#}
+{#                                                                    <small class="mr-2">#}
+{#                                                                        <small class="flaticon-bed-1 font-size-17 text-warning"></small>#}
+{#                                                                    </small>#}
+{#                                                                    <div class="media-body font-size-1 ml-1">#}
+{#                                                                        2 تخت یک نفره#}
+{#                                                                    </div>#}
+{#                                                                </li>#}
+{#                                                                <li class="media mb-3 text-gray-1">#}
+{#                                                                    <small class="mr-2">#}
+{#                                                                        <small class="flaticon-bathtub font-size-17 text-warning"></small>#}
+{#                                                                    </small>#}
+{#                                                                    <div class="media-body font-size-1 ml-1">#}
+{#                                                                        دوش و وان حمام#}
+{#                                                                    </div>#}
+{#                                                                </li>#}
+{##}
+{#                                                            </ul>#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                    <a href="#" class="text-underline font-size-14">عکس و جزئیات اتاق</a>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col col-xl-3dot5 align-self-center py-4 py-xl-0 border-top border-xl-top-0">#}
+{#                                            <div class="flex-content-center border-xl-left py-xl-5 ml-4 ml-xl-0 justify-content-start justify-content-xl-center">#}
+{#                                                <div class="text-center my-xl-1">#}
+{#                                                    <div class="mb-2 pb-1">#}
+{#                                                        <span class="font-size-14">از </span>#}
+{#                                                        <span class="font-weight-bold font-size-22 ml-1">800000 تومان </span>#}
+{#                                                        <span class="font-size-14">/ شب</span>#}
+{#                                                    </div>#}
+{#                                                    <a href="hotel-booking.html" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">اکنون ثبت کن</a>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="card border-color-7 mb-5 overflow-hidden">#}
+{#                                <div class="position-absolute top-0 right-0 mr-md-1 mt-md-1">#}
+{#                                    <div class="border border-maroon bg-maroon rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-2 mt-2">#}
+{#                                        <span class="font-weight-normal text-white font-size-14">امروز 13% پس انداز کنید</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="product-item__outer w-100">#}
+{#                                    <div class="row">#}
+{#                                        <div class="col-md-5 col-lg-5 col-xl-3dot5">#}
+{#                                            <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">#}
+{#                                                <div class="product-item__header mt-2 mt-md-0">#}
+{#                                                    <div class="position-relative">#}
+{#                                                        <img class="img-fluid rounded-sm" src="{% static 'img/200x154/img2.jpg' %}" alt="توضیحات تصویر">#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">#}
+{#                                            <div class="w-100 position-relative m-4 m-md-0">#}
+{#                                                <a href="hotel-booking.html" class="mb-2 d-inline-block">#}
+{#                                                    <span class="font-weight-bold font-size-17 text-dark text-dark">اتاق دوقلو طلایی دولوکس</span>#}
+{#                                                </a>#}
+{#                                                <div class="mt-1 pt-2">#}
+{#                                                    <div class="d-flex mb-1">#}
+{#                                                        <div class="ml-0">#}
+{#                                                            <ul class="list-unstyled mb-0">#}
+{#                                                                <li class="media mb-3 text-gray-1">#}
+{#                                                                    <small class="mr-2">#}
+{#                                                                        <small class="flaticon-wifi-signal font-size-17 text-warning"></small>#}
+{#                                                                    </small>#}
+{#                                                                    <div class="media-body font-size-1 ml-1">#}
+{#                                                                        وای فای رایگان#}
+{#                                                                    </div>#}
+{#                                                                </li>#}
+{#                                                                <li class="media mb-3 text-gray-1">#}
+{#                                                                    <small class="mr-2">#}
+{#                                                                        <small class="flaticon-plans font-size-17 text-warning"></small>#}
+{#                                                                    </small>#}
+{#                                                                    <div class="media-body font-size-1 ml-1">#}
+{#                                                                        15 متر مربع#}
+{#                                                                    </div>#}
+{#                                                                </li>#}
+{#                                                            </ul>#}
+{#                                                        </div>#}
+{#                                                        <div class="ml-7">#}
+{#                                                            <ul class="list-unstyled mb-0">#}
+{#                                                                <li class="media mb-3 text-gray-1">#}
+{#                                                                    <small class="mr-2">#}
+{#                                                                        <small class="flaticon-bed-1 font-size-17 text-warning"></small>#}
+{#                                                                    </small>#}
+{#                                                                    <div class="media-body font-size-1 ml-1">#}
+{#                                                                        2 تخت یک نفره#}
+{#                                                                    </div>#}
+{#                                                                </li>#}
+{#                                                                <li class="media mb-3 text-gray-1">#}
+{#                                                                    <small class="mr-2">#}
+{#                                                                        <small class="flaticon-bathtub font-size-17 text-warning"></small>#}
+{#                                                                    </small>#}
+{#                                                                    <div class="media-body font-size-1 ml-1">#}
+{#                                                                        دوش و وان حمام#}
+{#                                                                    </div>#}
+{#                                                                </li>#}
+{##}
+{#                                                            </ul>#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                    <a href="#" class="text-underline font-size-14">عکس و جزئیات اتاق</a>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col col-xl-3dot5 align-self-center py-4 py-xl-0 border-top border-xl-top-0">#}
+{#                                            <div class="flex-content-center border-xl-left py-xl-5 ml-4 ml-xl-0 justify-content-start justify-content-xl-center">#}
+{#                                                <div class="text-center my-xl-1">#}
+{#                                                    <div class="mb-2 pb-1">#}
+{#                                                        <span class="font-size-14">از </span>#}
+{#                                                        <span class="font-weight-bold font-size-22 ml-1">48000 تومان </span>#}
+{#                                                        <span class="font-size-14">/ شب</span>#}
+{#                                                    </div>#}
+{#                                                    <a href="hotel-booking.html" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">اکنون ثبت کن</a>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+
+                            <h5 id="scroll-amenities" class="font-size-21 font-weight-bold text-dark mb-4">
+                                امکانات رفاهی
+                            </h5>
+
+
+                            <ul class="list-group list-group-borderless list-group-horizontal list-group-flush no-gutters row">
+                                {% for f in hotel.facilities.all %}
+                                    <li class="col-md-4 list-group-item">
+                                        <i class="flaticon-{{ f.name }} mr-3 text-warning font-size-24"></i>{{ f.faname }}
+                                    </li>
+                                {% endfor %}
+
+
+
+                                 </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 col-xl-3">
+
+
+                        <div class="mb-4">
+                            <form id="myForm" action="" method="GET" class="js-validate">
+                            <div id="stickyBlockStartPoint1">
+                                <div class="js-sticky-block border border-color-7 rounded mb-5 bg-white" data-parent="#stickyBlockStartPoint1" data-offset-target="#logoAndNav" data-sticky-view="lg" data-start-point="#stickyBlockStartPoint1" data-end-point="#stickyBlockEndPoint1" data-offset-top="30" data-offset-bottom="30">
+                                    <div class="border-bottom">
+                                        <div class="p-4">
+                                            <span class="font-size-14">از </span>
+                                            <span class="font-size-24 text-gray-6 font-weight-bold ml-1">{{  hotel.min_price|intcomma }} تومان </span>
+                                            <span class="font-size-14">/ شب</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-4">
+                                        <!-- Input -->
+                                        <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">ورود</span>
+                                        <div class="mb-4">
+                                            <div class="border-bottom border-width-2 border-color-1">
+                                                <div id="datepickerWrapperPick" class="u-datepicker input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="d-flex align-items-center mr-2 font-size-21">
+                                                          <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input id="enterInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1400-11-20" data-jdp>
+                                                </div>
+                                                <!-- End Datepicker -->
+                                            </div>
+                                        </div>
+                                        <!-- End Input -->
+                                        <!-- Input -->
+                                        <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">خروج</span>
+                                        <div class="mb-4">
+                                            <div class="border-bottom border-width-2 border-color-1">
+                                                <div id="datepickerWrapperPick" class="u-datepicker input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="d-flex align-items-center mr-2 font-size-21">
+                                                          <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input id="exitInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1400-11-20" data-jdp>
+                                                </div>
+                                                <!-- End Datepicker -->
+                                            </div>
+                                        </div>
+                                        <!-- End Input -->
+                                        <!-- Input -->
+                                        <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">میهمانان</span>
+                                        <div class="mb-4 position-relative">
+                                            <div class="border-bottom border-width-2 border-color-1">
+                                                <a id="basicDropdownClickInvoker" class="dropdown-nav-link dropdown-toggle flex-horizontal-center pt-3 pb-2" href="javascript:;" role="button" aria-controls="basicDropdownClick" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#basicDropdownClick" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                                                    <i class="flaticon-add-group d-flex align-items-center mr-3 font-size-20 text-warning font-weight-semi-bold"></i>
+                                                    <span class="text-black font-size-16 font-weight-semi-bold mr-auto" id="roomInfo">2 اتاق - 3 مهمان</span>
+                                                </a>
+                                                <div id="basicDropdownClick" class="dropdown-menu dropdown-unfold col m-0" aria-labelledby="basicDropdownClickInvoker">
+                                                    <div class="w-100 py-2 px-3 mb-3">
+                                                        <div class="js-quantity mx-3 row align-items-center justify-content-between">
+                                                            <span class="d-block font-size-16 text-secondary font-weight-medium">اتاق ها</span>
+                                                            <div class="d-flex">
+                                                                <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                    <small class="fas fa-minus btn-icon__inner"></small>
+                                                                </a>
+                                                                <input  id="roomInput" class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" type="text" value="1">
+                                                                <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                    <small class="fas fa-plus btn-icon__inner"></small>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-100 py-2 px-3 mb-3">
+                                                        <div class="js-quantity mx-3 row align-items-center justify-content-between">
+                                                            <span class="d-block font-size-16 text-secondary font-weight-medium">بزرگسالان</span>
+                                                            <div class="d-flex">
+                                                                <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                    <small class="fas fa-minus btn-icon__inner"></small>
+                                                                </a>
+                                                                <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="1">
+                                                                <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                    <small class="fas fa-plus btn-icon__inner"></small>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-100 py-2 px-3">
+                                                        <div class="js-quantity mx-3 row align-items-center justify-content-between">
+                                                            <span class="d-block font-size-16 text-secondary font-weight-medium">کودک</span>
+                                                            <div class="d-flex">
+                                                                <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                    <small class="fas fa-minus btn-icon__inner"></small>
+                                                                </a>
+                                                                <input id="childInput" class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="1">
+                                                                <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                    <small class="fas fa-plus btn-icon__inner"></small>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-100 text-right py-1 pr-5">
+                                                        <a class="text-warning font-weight-semi-bold font-size-16" href="#">انجام شده</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Input -->
+
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-warning height-60 w-100 mb-xl-0 mb-lg-1 transition-3d-hover"><i class="flaticon-magnifying-glass mr-2"></i>جستجو کردن</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></form>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="stickyBlockEndPoint1"></div>
+                <!-- Product Cards Ratings With carousel -->
+                <div class="product-card-block product-card-v3">
+                    <div class="space-1">
+                        <div class="w-md-80 w-lg-50 text-center mx-md-auto pb-4">
+                            <h2 class="section-title text-black font-size-30 font-weight-bold mb-0">هتل نزدیک</h2>
+                        </div>
+                        <div class="js-slick-carousel u-slick u-slick--equal-height u-slick--gutters-3" data-slides-show="4" data-slides-scroll="1" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic v1 u-slick__arrow-classic--v1 u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="fas fa-chevron-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left" data-arrow-right-classes="fas fa-chevron-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right" data-pagi-classes="d-lg-none text-center u-slick__pagination mt-4" data-responsive="[{
+                                &quot;breakpoint&quot;: 1025,
+                                &quot;settings&quot;: {
+                                    &quot;slidesToShow&quot;: 3
+                                }
+                            }, {
+                                &quot;breakpoint&quot;: 992,
+                                &quot;settings&quot;: {
+                                    &quot;slidesToShow&quot;: 2
+                                }
+                            }, {
+                                &quot;breakpoint&quot;: 768,
+                                &quot;settings&quot;: {
+                                    &quot;slidesToShow&quot;: 1
+                                }
+                            }, {
+                                &quot;breakpoint&quot;: 554,
+                                &quot;settings&quot;: {
+                                    &quot;slidesToShow&quot;: 1
+                                }
+                            }]">
+
+                            {% for h in hotels %}
+
+                                {% if hotel.name != h.name %}
+
+                                <div class="js-slide py-3">
+                                <div class="card transition-3d-hover shadow-hover-2 w-100 mt-2">
+                                    <div class="position-relative">
+                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5">
+                                            <img class="card-img-top" src="{% static 'img/300x230/'|add:h.name|add:'.jpeg' %}" alt="توضیحات تصویر">
+                                        </a>
+                                        <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                                            <button type="button" class="btn btn-sm btn-icon text-white rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن">
+                                                <span class="flaticon-heart-1 font-size-20"></span>
+                                            </button>
+                                        </div>
+                                       <div class="position-absolute bottom-0 left-0 right-0 rtl">
+                                            <div class="px-4 pb-3">
+                                                <a href="hotel-single-v1.html" class="d-block">
+                                                    <div class="d-flex align-items-center font-size-14 text-white">
+                                                        <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ h.address }}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body px-4 pt-2 pb-3">
+                                        <div class="mb-2">
+                                            <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
+                                                <div class="lighter">
+                                                     {% for _ in "x"|rjust:h.starts %}
+                                                         <small class="fas fa-star"></small>
+                                                     {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="hotel-single-v1.html" class="card-title font-size-17 font-weight-medium text-dark">{{h.faname}}</a>
+                                        <div class="mt-2 mb-3">
+                                            <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ h.starts }}ستاره </span>
+                                        </div>
+                                        <div class="mb-0">
+                                            <span class="mr-1 font-size-14 text-gray-1">از </span>
+                                            <span class="font-weight-bold">800000 تومان </span>
+                                            <span class="font-size-14 text-gray-1">/ شب</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                {% endif %}
+                            {% endfor %}
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Product Cards Ratings With carousel -->
+            </div>
+        </main>
+        <!-- ========== END MAIN CONTENT ========== -->
+{% endblock %}
+        <!-- ========== FOOTER ========== -->
+
+{% block footer %}
+        {% include 'include/hotel-footer.html' %}
+{% endblock %}
+{% block javascript %}
+        <!-- ========== End FOOTER ========== -->
+
+        <!-- Page Preloader -->
+        <!-- <div id="jsPreloader" class="page-preloader">
+            <div class="page-preloader__content-centered">
+                <div class="spinner-grow text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div> -->
+        <!-- End Page Preloader -->
+
+        <!-- Go to Top -->
+        <a class="js-go-to u-go-to-modern" href="#" data-position='{"bottom": 15, "right": 15 }' data-type="fixed" data-offset-top="400" data-compensation="#header" data-show-effect="slideInUp" data-hide-effect="slideOutDown">
+            <span class="flaticon-arrow u-go-to-modern__inner"></span>
+        </a>
+        <!-- End Go to Top -->
+
+        <!-- JS Global Compulsory -->
+        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
+        <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+
+        <!-- JS Implementing Plugins -->
+        <script src="{% static 'vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
+        <script src="{% static 'vendor/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'vendor/flatpickr/dist/flatpickr.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+        <script src="{% static 'vendor/slick-carousel/slick/slick.js' %}"></script>
+        <script src="{% static 'vendor/gmaps/gmaps.min.js' %}"></script>
+        <script src="{% static 'vendor/fancybox/jquery.fancybox.min.js' %}"></script>
+        <script src="{% static 'vendor/appear.js' %}"></script>
+
+
+        <!-- JS MyTravel -->
+        <script src="{% static 'js/hs.core.js' %}"></script>
+        <script src="{% static 'js/components/hs.header.js' %}"></script>
+        <script src="{% static 'js/components/hs.unfold.js' %}"></script>
+        <script src="{% static 'js/components/hs.validation.js' %}"></script>
+        <script src="{% static 'js/components/hs.show-animation.js' %}"></script>
+        <script src="{% static 'js/components/hs.range-datepicker.js' %}"></script>
+        <script src="{% static 'js/components/hs.selectpicker.js' %}"></script>
+        <script src="{% static 'js/components/hs.go-to.js' %}"></script>
+        <script src="{% static 'js/components/hs.slick-carousel.js' %}"></script>
+        <script src="{% static 'js/components/hs.quantity-counter.js' %}"></script>
+        <script src="{% static 'js/components/hs.g-map.js' %}"></script>
+        <script src="{% static 'js/components/hs.fancybox.js' %}"></script>
+        <script src="{% static 'js/components/hs.scroll-nav.js' %}"></script>
+        <script src="{% static 'js/components/hs.sticky-block.js' %}"></script>
+
+        <!-- JS Plugins Init. -->
+        <script>
+            $(window).on('load', function () {
+                const urlParams = new URLSearchParams(window.location.search);
+
+            // خواندن مقدار پارامترها از URL با استفاده از نام پارامترها
+            const enterValue = urlParams.get('enter');
+            const exitValue = urlParams.get('exit');
+            const roomValue = urlParams.get('room');
+            const passValue = urlParams.get('pass');
+            const [adults, children] = passValue.split(',');
+
+            // اختصاص مقادیر به فیلدهای مربوطه
+            document.getElementById('enterInput').value = enterValue;
+            document.getElementById('exitInput').value = exitValue;
+
+            // اینجا از یک آرایه از المان‌های با کلاس passInput استفاده می‌کنیم
+            const passInputs = document.getElementsByClassName('passInput');
+            for (const passInput of passInputs) {
+              passInput.value = adults;
+            }
+            document.getElementById('childInput').value = children;
+            document.getElementById('roomInput').value = roomValue;
+
+            const roomInfoSpan = document.getElementById('roomInfo');
+            roomInfoSpan.textContent = `${roomValue} اتاق - ${adults} بزرگسال، ${children} کودک`;
+                // initialization of HSMegaMenu component
+                $('.js-mega-menu').HSMegaMenu({
+                    event: 'hover',
+                    pageContainer: $('.container'),
+                    breakpoint: 1199.98,
+                    hideTimeOut: 0
+                });
+
+                // Page preloader
+                setTimeout(function() {
+                  $('#jsPreloader').fadeOut(500)
+                }, 800);
+            });
+
+            $(document).on('ready', function () {
+                // initialization of header
+                $.HSCore.components.HSHeader.init($('#header'));
+
+                // initialization of google map
+                function initMap() {
+                    $.HSCore.components.HSGMap.init('.js-g-map');
+                }
+
+                // initialization of unfold component
+                $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
+
+                // initialization of show animations
+                $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+                // initialization of popups
+                $.HSCore.components.HSFancyBox.init('.js-fancybox');
+
+                // initialization of datepicker
+                $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+                // initialization of select
+                $.HSCore.components.HSSelectPicker.init('.js-select');
+
+                // initialization of sticky blocks
+                $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+
+                // initialization of quantity counter
+                $.HSCore.components.HSQantityCounter.init('.js-quantity');
+
+                // initialization of slick carousel
+                $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+
+                // initialization of go to
+                $.HSCore.components.HSGoTo.init('.js-go-to');
+
+                // initialization of HSScrollNav component
+                $.HSCore.components.HSScrollNav.init($('.js-scroll-nav'), {
+                    duration: 700
+                });
+            });
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+
+                // Get the value entered by the user
+               {#var searchValue = document.getElementById('searchInput').value;#}
+                var enterValue = document.getElementById('enterInput').value;
+                var exitValue = document.getElementById('exitInput').value;
+                var passInputs = document.getElementsByClassName('passInput');
+                var passValues = [];
+
+                for (var i = 0; i < passInputs.length; i++) {
+                  passValues.push(passInputs[i].value);
+                }
+
+                var passValue = passValues.join(',');
+
+                var roomValue = document.getElementById('roomInput').value;
+
+                // Create the URL with the search value
+                const url = `?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&pass=${encodeURIComponent(passValue)}&room=${encodeURIComponent(roomValue)}`;
+
+                // Redirect the user to the new URL
+                window.location.href = url;
+
+
+            });
+        const hotelLinks = document.querySelectorAll('.hotel-link');
+
+    // اضافه کردن event listener به هر لینک
+    hotelLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // جلوگیری از اجرای عملکرد پیش‌فرض لینک
+
+            // اطلاعات مورد نیاز برای ارسال در URL
+            {#var searchValue = document.getElementById('searchInput').value;#}
+                var enterValue = document.getElementById('enterInput').value;
+                var exitValue = document.getElementById('exitInput').value;
+                var passInputs = document.getElementsByClassName('passInput');
+                var passValues = [];
+
+                for (var i = 0; i < passInputs.length; i++) {
+                  passValues.push(passInputs[i].value);
+                }
+
+                var passValue = passValues.join(',');
+
+                var roomValue = document.getElementById('roomInput').value;
+
+                // Create the URL with the search value
+                const url = `${link.getAttribute('href')}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&pass=${encodeURIComponent(passValue)}&room=${encodeURIComponent(roomValue)}`;
+
+                // Redirect the user to the new URL
+                window.location.href = url;
+
+        });
+    });
+        </script>
+
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCuY6I4hZQvxo5RqCH7kogGKzcrjetRKQI&amp;callback=initMap" async defer></script>
+
+{% endblock %}

@@ -1,0 +1,1219 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+        <!-- Title -->
+{% block title %}برو بیا | {{ city.faname }}{% endblock %}
+{% block header %}{% endblock %}
+{% block content %}
+
+{% include 'include/list-header.html' %}
+        <!-- ========== MAIN CONTENT ========== -->
+        <main id="content" role="main">
+            <div class="container pt-5 pt-xl-8">
+                <div class="row mb-5 mb-lg-8 mt-xl-1">
+                    <div class="col-lg-4 col-xl-3 order-lg-1 width-md-50">
+                        <div class="navbar-expand-lg navbar-expand-lg-collapse-block">
+                            <button class="btn d-lg-none mb-5 p-0 collapsed" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="ناوبری را تغییر دهید">
+                                <i class="far fa-caret-square-down text-warning font-size-20 card-btn-arrow ml-0"></i>
+                                <span class="text-warning ml-2">نوار کناری</span>
+                            </button>
+                            <div id="sidebar" class="collapse navbar-collapse">
+
+                                <div class="mb-6 w-100">
+                                <form id="myForm" action="" method="GET" class="js-validate">
+                                    <div class="pb-4 mb-2">
+                                        <div class="sidebar border border-color-1 rounded-xs">
+                                            <div class="p-4 mb-1">
+                                                <!-- Input -->
+                                                <span class="d-block text-gray-1  font-weight-normal mb-0 text-left">نام مقصد یا هتل</span>
+                                                <div class="mb-4">
+                                                    <div class="input-group border-bottom border-width-2 border-color-1">
+{#                                                        <i class="flaticon-pin-1 d-flex align-items-center mr-2 text-warning font-weight-semi-bold font-size-22"></i>#}
+                                                        <select id="searchInput"  class="js-select selectpicker dropdown-select tab-dropdown col-12 pl-0 flaticon-pin-1 d-flex align-items-center text-warning font-weight-semi-bold" title={{ city.faname }} data-style="" data-live-search="true" data-searchbox-classes="input-group-sm">
+                                                            {% for city in cities %}
+
+                                                                <option  class="border-bottom border-color-1" value="{{ city.slug }}" data-content="
+                                                                    <span  class='d-flex align-items-center'>
+                                                                        <span class='font-size-16'>{{ city.faname }}</span>
+                                                                    </span>">
+                                                            </option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- End Input -->
+                                                <!-- Input -->
+                                                <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">ورود</span>
+                                                <div class="mb-4">
+                                                    <div class="border-bottom border-width-2 border-color-1">
+                                                        <div id="datepickerWrapperPick" class="u-datepicker input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="d-flex align-items-center mr-2 font-size-21">
+                                                                  <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
+                                                                </span>
+                                                            </div>
+                                                                <input id="enterInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1400-11-20" data-jdp>
+                                                        </div>
+                                                        <!-- End Datepicker -->
+                                                    </div>
+                                                </div>
+                                                <!-- End Input -->
+                                                <!-- Input -->
+                                                <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">خروج</span>
+                                                <div class="mb-4">
+                                                    <div class="border-bottom border-width-2 border-color-1">
+                                                        <div id="datepickerWrapperPick" class="u-datepicker input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="d-flex align-items-center mr-2 font-size-21">
+                                                                  <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
+                                                                </span>
+                                                            </div>
+                                                                <input id="exitInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1400-11-20" data-jdp>
+                                                        </div>
+                                                        <!-- End Datepicker -->
+                                                    </div>
+                                                </div>
+                                                <!-- End Input -->
+
+                                                <!-- Input -->
+                                                <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">اتاق ها و مهمانان</span>
+                                                <div class="mb-4 position-relative">
+                                                    <div class="border-bottom border-width-2 border-color-1">
+                                                        <a id="basicDropdownClickInvoker" class="dropdown-nav-link dropdown-toggle flex-horizontal-center pt-3 pb-2" href="javascript:;" role="button" aria-controls="basicDropdownClick" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#basicDropdownClick" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                                                            <i class="flaticon-add-group d-flex align-items-center mr-3 font-size-20 text-warning font-weight-semi-bold"></i>
+                                                            <span class="text-black font-weight-medium font-size-15 mr-auto" id="roomInfo">2 اتاق - 3 مهمان</span>
+                                                        </a>
+                                                        <div id="basicDropdownClick" class="dropdown-menu dropdown-unfold col m-0" aria-labelledby="basicDropdownClickInvoker">
+                                                            <div class="w-100 py-2 px-3 mb-3">
+                                                                <div class="js-quantity mx-3 row align-items-center justify-content-between">
+                                                                    <span class="d-block font-size-16 text-secondary font-weight-medium">اتاق ها</span>
+                                                                    <div class="d-flex">
+                                                                        <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                            <small class="fas fa-minus btn-icon__inner"></small>
+                                                                        </a>
+                                                                        <input id="roomInput" class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" type="text" value="1">
+                                                                        <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                            <small class="fas fa-plus btn-icon__inner"></small>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="w-100 py-2 px-3 mb-3">
+                                                                <div class="js-quantity mx-3 row align-items-center justify-content-between">
+                                                                    <span class="d-block font-size-16 text-secondary font-weight-medium">بزرگسالان</span>
+                                                                    <div class="d-flex">
+                                                                        <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                            <small class="fas fa-minus btn-icon__inner"></small>
+                                                                        </a>
+                                                                        <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="1">
+                                                                        <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                            <small class="fas fa-plus btn-icon__inner"></small>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="w-100 py-2 px-3">
+                                                                <div class="js-quantity mx-3 row align-items-center justify-content-between">
+                                                                    <span class="d-block font-size-16 text-secondary font-weight-medium">کودک</span>
+                                                                    <div class="d-flex">
+                                                                        <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                            <small class="fas fa-minus btn-icon__inner"></small>
+                                                                        </a>
+                                                                        <input id="childInput" class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="1">
+                                                                        <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                            <small class="fas fa-plus btn-icon__inner"></small>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="w-100 text-right py-1 pr-5">
+                                                                <a class="text-primary font-weight-semi-bold font-size-16" href="#">انجام شده</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Input -->
+
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-warning height-60 w-100 font-weight-bold mb-xl-0 mb-lg-1 transition-3d-hover"><i class="flaticon-magnifying-glass mr-2 font-size-17"></i>جستجو کردن</button>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </form>
+                                    <div class="pb-4 mb-2">
+                                        <a href="#ontargetModal" class="d-block border rounded" data-modal-target="#ontargetModal" data-modal-effect="fadein">
+                                            <img src="{% static 'img/map-markers/map.jpg' %}" alt="" width="100%">
+                                        </a>
+                                        <!-- On Target Modal -->
+                                        <div id="ontargetModal" class="js-modal-window u-modal-window max-height-100vh width-100vw overflow-hidden" data-modal-type="ontarget" data-open-effect="zoomIn" data-close-effect="zoomOut" data-speed="500">
+                                            <div class="bg-white">
+                                                <div class="border-bottom py-xl-2">
+                                                    <div class="row d-block d-md-flex flex-horizontal-center mx-0">
+                                                        <div class="col-xl">
+                                                            <!-- Nav Links -->
+                                                            <ul class="row nav align-items-center py-xl-1 px-0 mb-3 mb-xl-0 border-bottom border-xl-bottom-0" role="tablist">
+                                                                <li class="col-6 col-md-3 col-lg-auto border-bottom border-xl-bottom-0 mx-0 col-xl-auto nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
+                                                                    <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-xl-auto" data-style="btn-sm py-2 px-3 px-xl-3 px-wd-4 font-size-16 text-dark d-flex align-items-center">
+                                                                        <option value="one" selected="">شهر</option>
+                                                                        <option value="two">دو</option>
+                                                                        <option value="three">سه</option>
+                                                                        <option value="four">چهار</option>
+                                                                    </select>
+                                                                </li>
+                                                                <li class="col-6 col-md-3 col-lg-auto border-bottom border-xl-bottom-0 mx-0 col-xl-auto nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                                                    <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-xl-auto" data-style="btn-sm py-2 px-3 px-xl-3 px-wd-4 font-size-16 text-dark d-flex align-items-center">
+                                                                        <option value="one" selected="">قیمت</option>
+                                                                        <option value="two">دو</option>
+                                                                        <option value="three">سه</option>
+                                                                        <option value="four">چهار</option>
+                                                                    </select>
+                                                                </li>
+                                                                <li class="col-6 col-md-3 col-lg-auto border-bottom border-xl-bottom-0 mx-0 col-xl-auto nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                                                    <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-xl-auto" data-style="btn-sm py-2 px-3 px-xl-3 px-wd-4 font-size-16 text-dark d-flex align-items-center">
+                                                                        <option value="one" selected="">ستاره ها</option>
+                                                                        <option value="two">دو</option>
+                                                                        <option value="three">سه</option>
+                                                                        <option value="four">چهار</option>
+                                                                    </select>
+                                                                </li>
+                                                                <li class="col-6 col-md-3 col-lg-auto border-bottom border-xl-bottom-0 mx-0 col-xl-auto nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                                                    <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-xl-auto" data-style="btn-sm py-2 px-3 px-xl-3 px-wd-4 font-size-16 text-dark d-flex align-items-center">
+                                                                        <option value="one" selected="">رتبه بندی مهمان</option>
+                                                                        <option value="two">دو</option>
+                                                                        <option value="three">سه</option>
+                                                                        <option value="four">چهار</option>
+                                                                    </select>
+                                                                </li>
+                                                                <li class="col-6 col-md-3 col-lg-auto border-bottom border-xl-bottom-0 mx-0 col-xl-auto nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                                                    <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-xl-auto" data-style="btn-sm py-2 px-3 px-xl-3 px-wd-4 font-size-16 text-dark d-flex align-items-center">
+                                                                        <option value="one" selected="">وعده های غذایی</option>
+                                                                        <option value="two">دو</option>
+                                                                        <option value="three">سه</option>
+                                                                        <option value="four">چهار</option>
+                                                                    </select>
+                                                                </li>
+                                                                <li class="col-6 col-md-3 col-lg-auto border-bottom border-xl-bottom-0 mx-0 col-xl-auto nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                                                    <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-xl-auto" data-style="btn-sm py-2 px-3 px-xl-3 px-wd-4 font-size-16 text-dark d-flex align-items-center">
+                                                                        <option value="one" selected="">امکانات</option>
+                                                                        <option value="two">دو</option>
+                                                                        <option value="three">سه</option>
+                                                                        <option value="four">چهار</option>
+                                                                    </select>
+                                                                </li>
+                                                                <li class="col-6 col-md-3 col-lg-auto border-bottom border-xl-bottom-0 mx-0 col-xl-auto nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                                                    <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-xl-auto" data-style="btn-sm py-2 px-3 px-xl-3 px-wd-4 font-size-16 text-dark d-flex align-items-center">
+                                                                        <option value="one" selected="">نوع ملک</option>
+                                                                        <option value="two">دو</option>
+                                                                        <option value="three">سه</option>
+                                                                        <option value="four">چهار</option>
+                                                                    </select>
+                                                                </li>
+                                                            </ul>
+                                                            <!-- End Nav Links -->
+                                                        </div>
+                                                        <div class="col-xl-auto">
+                                                            <div class="d-flex justify-content-center justify-content-xl-start">
+                                                                <button type="button" class="btn btn-wide btn-blue-1 font-weight-normal font-size-14 rounded-xs mb-3 mb-xl-0" aria-label="نزدیک" onclick="Custombox.modal.close();">
+                                                                    <span aria-hidden="true">بازگشت به لیست هتل</span>
+                                                                    <i class="fas fa-times font-size-15 ml-3"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="height-100vh-72">
+                                                    <div class="row no-gutters">
+                                                        <div class="col-lg-5 col-xl-4 col-wd-3gdot5 order-1 order-lg-0">
+                                                            <div class="pt-4 px-4 px-xl-5">
+                                                                <div class="mb-4">
+                                                                    <div class="mb-2 text-gray-1">
+                                                                        50 هتل از 3771 هتل نشان داده شده است
+                                                                    </div>
+                                                                    <select class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select option." data-error-class="u-has-error" data-success-class="u-has-success" data-style="form-control font-size-14 border-width-2 border-gray font-weight-normal">
+                                                                        <option value="One" selected="">توصیه شده</option>
+                                                                        <option value="Two">کم به زیاد</option>
+                                                                        <option value="Three">بالا به پایین</option>
+                                                                        <option value="Four">محبوب</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="js-scrollbar height-100vh-72">
+                                                                    <ul class="d-block list-unstyled">
+                                                                        <li class="card mb-4 overflow-hidden">
+                                                                            <div class="product-item__outer w-100">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="product-item__header">
+                                                                                            <div class="position-relative">
+                                                                                                <a href="#" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-150 card-img-top" src="{% static 'img/300x230/img58.jpg' %}"></a>
+                                                                                            </div>
+                                                                                            <div class="position-absolute top-0 left-0 pt-3 pl-4">
+                                                                                                <button type="button" class="btn btn-sm btn-icon text-white rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن">
+                                                                                                    <span class="flaticon-valentine-heart"></span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                           <div class="position-absolute bottom-0 left-0 right-0 rtl">
+                                                                                                <div class="px-4 pb-3">
+                                                                                                    <a href="#" class="d-block">
+                                                                                                        <div class="d-flex align-items-center font-size-14 text-white">
+                                                                                                            <i class="icon flaticon-pin-1 mr-2 font-size-20"></i>لندن
+                                                                                                        </div>
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-6 flex-horizontal-center">
+                                                                                        <div class="w-100 position-relative m-4 m-md-0">
+                                                                                            <div class="mb-1 pb-1">
+                                                                                                <span class="green-lighter ml-2">
+                                                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <a href="#">
+                                                                                                <span class="font-weight-bold font-size-17 text-dark d-flex mb-1">خلیج کازوی امپایر پرستیژ</span>
+                                                                                            </a>
+                                                                                            <div class="card-body p-0">
+                                                                                                <div class="my-2">
+                                                                                                    <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">4.6/5 </span>
+                                                                                                    <span class="font-size-14 text-gray-1 ml-2">(166 بررسی)</span>
+                                                                                                </div>
+                                                                                                <div class="mb-0">
+                                                                                                    <span class="mr-1 font-size-14 text-gray-1">از </span>
+                                                                                                    <span class="font-weight-bold">350 تومان </span>
+                                                                                                    <span class="font-size-14 text-gray-1">/ شب</span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-7 col-xl-8 col-wd-8gdot5">
+                                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15544.315136188916!2d80.28787859999998!3d13.09419335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7f6b00bf787831af!2sApollo%20City%20Centre%20Hospital%20Sowcarpet!5e0!3m2!1sen!2sin!4v1580992215999!5m2!1sen!2sin" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End On Target Modal -->
+                                    </div>
+
+                                    <div class="sidenav border border-color-8 rounded-xs">
+                                        <!-- Accordiaon -->
+                                        <div id="RatingAccordion" class="accordion rounded shadow-none border-bottom">
+                                            <div class="card-collapse" id="shopRatingHeadingOne">
+                                                <h3 class="mb-0">
+                                                    <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#shopRatingOne" aria-expanded="false" aria-controls="shopRatingOne">
+                                                        <span class="row align-items-center">
+                                                            <span class="col-9">
+                                                                <span class="font-weight-bold font-size-17 text-dark mb-3">رتبه بندی ستاره ای</span>
+                                                            </span>
+                                                            <span class="col-3 text-right">
+                                                                <span class="card-btn-arrow">
+                                                                    <span class="fas fa-chevron-down small"></span>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </button>
+                                                </h3>
+                                            </div>
+                                            <div id="shopRatingOne" class="collapse show" aria-labelledby="shopRatingHeadingOne" data-parent="#RatingAccordion">
+                                                <div class="card-body pt-0 mt-1 px-5">
+                                                    <!-- Checkboxes -->
+                                                    <div class="form-group font-size-14 text-lh-md text-secondary mb-3">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="brandAdidas">
+                                                            <label class="custom-control-label text-lh-inherit text-color-1" for="brandAdidas">
+                                                                <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning">
+                                                                    <div class="ml-1 letter-spacing-2">
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group font-size-14 text-lh-md text-secondary mb-3">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="brandNewBalance">
+                                                            <label class="custom-control-label text-lh-inherit text-color-1" for="brandNewBalance">
+                                                                <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning">
+                                                                    <div class=" ml-1 letter-spacing-2">
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group font-size-14 text-lh-md text-secondary mb-3">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="brandNike">
+                                                            <label class="custom-control-label text-lh-inherit text-color-1" for="brandNike">
+                                                                <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning">
+                                                                    <div class=" ml-1 letter-spacing-2">
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group font-size-14 text-lh-md text-secondary mb-3">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="brandFredPerry">
+                                                            <label class="custom-control-label text-lh-inherit text-color-1" for="brandFredPerry">
+                                                                <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning">
+                                                                    <div class=" ml-1 letter-spacing-2">
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="shopCartAccordion" class="accordion rounded shadow-none">
+                                            <div class="border-0">
+                                                <div class="card-collapse" id="shopCardHeadingOne">
+                                                    <h3 class="mb-0">
+                                                        <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#shopCardOne" aria-expanded="false" aria-controls="shopCardOne">
+                                                            <span class="row align-items-center">
+                                                                <span class="col-9">
+                                                                    <span class="d-block font-size-lg-15 font-size-17 font-weight-bold text-dark">محدوده قیمت (تومان)</span>
+                                                                </span>
+                                                                <span class="col-3 text-right">
+                                                                    <span class="card-btn-arrow">
+                                                                        <span class="fas fa-chevron-down small"></span>
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                        </button>
+                                                    </h3>
+                                                </div>
+                                                <div id="shopCardOne" class="collapse show" aria-labelledby="shopCardHeadingOne" data-parent="#shopCartAccordion">
+                                                    <div class="card-body pt-0 px-5">
+                                                        <div class="pb-3 mb-1 d-flex text-lh-1">
+                                                            <span id="rangeSliderExample3MinResult" class=""></span>
+                                                            <span>تومان</span>
+                                                            <span class="mx-0dot5"> - </span>
+                                                            <span id="rangeSliderExample3MaxResult" class=""></span>
+                                                            <span>تومان</span>
+                                                        </div>
+                                                        <input class="js-range-slider" type="text" data-extra-classes="u-range-slider height-35" data-type="double" data-grid="false" data-hide-from-to="true" data-min="0" data-max="3456" data-from="200" data-to="3456" data-prefix="$" data-result-min="#rangeSliderExample3MinResult" data-result-max="#rangeSliderExample3MaxResult">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="shopCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
+                                            <div class="border-0">
+                                                <div class="card-collapse" id="shopCategoryHeadingOne">
+                                                    <h3 class="mb-0">
+                                                        <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#shopCategoryOne" aria-expanded="false" aria-controls="shopCategoryOne">
+                                                            <span class="row align-items-center">
+                                                                <span class="col-9">
+                                                                    <span class="font-weight-bold font-size-17 text-dark mb-3">وعده های غذایی</span>
+                                                                </span>
+                                                                <span class="col-3 text-right">
+                                                                    <span class="card-btn-arrow">
+                                                                        <span class="fas fa-chevron-down small"></span>
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                        </button>
+                                                    </h3>
+                                                </div>
+                                                <div id="shopCategoryOne" class="collapse show" aria-labelledby="shopCategoryHeadingOne" data-parent="#shopCategoryAccordion">
+                                                    <div class="card-body pt-0 mt-1 px-5 pb-4">
+                                                        <!-- Checkboxes -->
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="1">
+                                                                <label class="custom-control-label" for="1">شامل صبحانه</label>
+                                                            </div>
+                                                            <span>749</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="2">
+                                                                <label class="custom-control-label" for="2">فراگیر - عمومی - کلی</label>
+                                                            </div>
+                                                            <span>630</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="3">
+                                                                <label class="custom-control-label" for="3">شامل صبحانه و شام</label>
+                                                            </div>
+                                                            <span>58</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="4">
+                                                                <label class="custom-control-label" for="4">امکانات آشپزخانه</label>
+                                                            </div>
+                                                            <span>29</span>
+                                                        </div>
+                                                        <!-- End Checkboxes -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="facilityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
+                                            <div class="border-0">
+                                                <div class="card-collapse" id="facilityCategoryHeadingOne">
+                                                    <h3 class="mb-0">
+                                                        <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#facilityCategoryOne" aria-expanded="false" aria-controls="facilityCategoryOne">
+                                                            <span class="row align-items-center">
+                                                                <span class="col-9">
+                                                                    <span class="font-weight-bold font-size-17 text-dark mb-3">امکانات</span>
+                                                                </span>
+                                                                <span class="col-3 text-right">
+                                                                    <span class="card-btn-arrow">
+                                                                        <span class="fas fa-chevron-down small"></span>
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                        </button>
+                                                    </h3>
+                                                </div>
+                                                <div id="facilityCategoryOne" class="collapse show" aria-labelledby="facilityCategoryHeadingOne" data-parent="#facilityCategoryAccordion">
+                                                    <div class="card-body pt-0 mt-1 px-5 pb-4">
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="Adidas">
+                                                                <label class="custom-control-label" for="Adidas">توقفگاه خودرو</label>
+                                                            </div>
+                                                            <span>749</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="NewBalance">
+                                                                <label class="custom-control-label" for="NewBalance">رستوران</label>
+                                                            </div>
+                                                            <span>630</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="Nike">
+                                                                <label class="custom-control-label" for="Nike">حیوانات خانگی دوستانه</label>
+                                                            </div>
+                                                            <span>58</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="FredPerry">
+                                                                <label class="custom-control-label" for="FredPerry">سرویس اتاق</label>
+                                                            </div>
+                                                            <span>29</span>
+                                                        </div>
+                                                        <!-- End Checkboxes -->
+
+                                                        <!-- View More - Collapse -->
+                                                        <div class="collapse" id="collapseBrand1">
+                                                            <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="brandGucci">
+                                                                    <label class="custom-control-label" for="brandGucci">گوچی</label>
+                                                                </div>
+                                                                <span>5</span>
+                                                            </div>
+                                                            <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-3">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="brandMango">
+                                                                    <label class="custom-control-label" for="brandMango">انبه</label>
+                                                                </div>
+                                                                <span>1</span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- End View More - Collapse -->
+
+                                                        <!-- Link -->
+                                                        <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseBrand1" role="button" aria-expanded="false" aria-controls="collapseBrand1">
+                                                            <span class="link-collapse__default font-size-14">نمایش همه 13 </span>
+                                                            <span class="link-collapse__active font-size-14">نمایش کمتر</span>
+                                                        </a>
+                                                        <!-- End Link -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="propertyCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
+                                            <div class="border-0">
+                                                <div class="card-collapse" id="propertyCategoryHeadingOne">
+                                                    <h3 class="mb-0">
+                                                        <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#propertyCategoryOne" aria-expanded="false" aria-controls="propertyCategoryOne">
+                                                            <span class="row align-items-center">
+                                                                <span class="col-9">
+                                                                    <span class="font-weight-bold font-size-17 text-dark mb-3">نوع ملک</span>
+                                                                </span>
+                                                                <span class="col-3 text-right">
+                                                                    <span class="card-btn-arrow">
+                                                                        <span class="fas fa-chevron-down small"></span>
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                        </button>
+                                                    </h3>
+                                                </div>
+                                                <div id="propertyCategoryOne" class="collapse show" aria-labelledby="propertyCategoryHeadingOne" data-parent="#propertyCategoryAccordion">
+                                                    <div class="card-body pt-0 mt-1 px-5 pb-4">
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="brandhotel">
+                                                                <label class="custom-control-label" for="brandhotel">هتل ها</label>
+                                                            </div>
+                                                            <span>749</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="brandapartmet">
+                                                                <label class="custom-control-label" for="brandapartmet">آپارتمان ها</label>
+                                                            </div>
+                                                            <span>630</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="brandbed">
+                                                                <label class="custom-control-label" for="brandbed">تخت و صبحانه</label>
+                                                            </div>
+                                                            <span>58</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="brandresorts">
+                                                                <label class="custom-control-label" for="brandresorts">استراحتگاه ها</label>
+                                                            </div>
+                                                            <span>29</span>
+                                                        </div>
+                                                        <!-- End Checkboxes -->
+
+                                                        <!-- View More - Collapse -->
+                                                        <div class="collapse" id="collapseBrand2">
+                                                            <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="Gucci">
+                                                                    <label class="custom-control-label" for="Gucci">گوچی</label>
+                                                                </div>
+                                                                <span>5</span>
+                                                            </div>
+                                                            <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-3">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="Mango">
+                                                                    <label class="custom-control-label" for="Mango">انبه</label>
+                                                                </div>
+                                                                <span>1</span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- End View More - Collapse -->
+
+                                                        <!-- Link -->
+                                                        <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseBrand2" role="button" aria-expanded="false" aria-controls="collapseBrand2">
+                                                            <span class="link-collapse__default font-size-14">نمایش همه 39 </span>
+                                                            <span class="link-collapse__active font-size-14">نمایش کمتر</span>
+                                                        </a>
+                                                        <!-- End Link -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="cityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
+                                            <div class="border-0">
+                                                <div class="card-collapse" id="cityCategoryHeadingOne">
+                                                    <h3 class="mb-0">
+                                                        <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#cityCategoryOne" aria-expanded="false" aria-controls="cityCategoryOne">
+                                                            <span class="row align-items-center">
+                                                                <span class="col-9">
+                                                                    <span class="font-weight-bold font-size-17 text-dark mb-3">شهر</span>
+                                                                </span>
+                                                                <span class="col-3 text-right">
+                                                                    <span class="card-btn-arrow">
+                                                                        <span class="fas fa-chevron-down small"></span>
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                        </button>
+                                                    </h3>
+                                                </div>
+                                                <div id="cityCategoryOne" class="collapse show" aria-labelledby="cityCategoryHeadingOne" data-parent="#cityCategoryAccordion">
+                                                    <div class="card-body pt-0 mt-1 px-5 pb-4">
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="brandamsterdam">
+                                                                <label class="custom-control-label" for="brandamsterdam">آمستردام</label>
+                                                            </div>
+                                                            <span>749</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="brandrotterdam">
+                                                                <label class="custom-control-label" for="brandrotterdam">روتردام</label>
+                                                            </div>
+                                                            <span>630</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="brandvalkenburg">
+                                                                <label class="custom-control-label" for="brandvalkenburg">والکنبورگ</label>
+                                                            </div>
+                                                            <span>58</span>
+                                                        </div>
+                                                        <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="brandeindhoven">
+                                                                <label class="custom-control-label" for="brandeindhoven">آیندهوون</label>
+                                                            </div>
+                                                            <span>29</span>
+                                                        </div>
+                                                        <!-- End Checkboxes -->
+
+                                                        <!-- View More - Collapse -->
+                                                        <div class="collapse" id="collapseBrand3">
+                                                            <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="gucci">
+                                                                    <label class="custom-control-label" for="gucci">گوچی</label>
+                                                                </div>
+                                                                <span>5</span>
+                                                            </div>
+                                                            <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-3">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="mango">
+                                                                    <label class="custom-control-label" for="mango">انبه</label>
+                                                                </div>
+                                                                <span>1</span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- End View More - Collapse -->
+
+                                                        <!-- Link -->
+                                                        <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseBrand3" role="button" aria-expanded="false" aria-controls="collapseBrand3">
+                                                            <span class="link-collapse__default font-size-14">نمایش همه 25 </span>
+                                                            <span class="link-collapse__active font-size-14">نمایش کمتر</span>
+                                                        </a>
+                                                        <!-- End Link -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Accordion -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-xl-9 order-md-1 order-lg-2 pb-5 pb-lg-0">
+                        <!-- Shop-control-bar Title -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="font-size-21 font-weight-bold mb-0 text-lh-1">{{ city.faname }}: {{ hotel_count }} هتل پیدا شد</h3>
+                            <ul class="nav tab-nav-shop flex-nowrap" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link font-size-22 p-0" id="pills-three-example1-tab" data-toggle="pill" href="#pills-three-example1" role="tab" aria-controls="pills-three-example1" aria-selected="true">
+                                        <div class="d-md-flex justify-content-md-center align-items-md-center">
+                                            <i class="fa fa-list"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link font-size-22 p-0 ml-2 active" id="pills-one-example1-tab" data-toggle="pill" href="#pills-one-example1" role="tab" aria-controls="pills-one-example1" aria-selected="false">
+                                        <div class="d-md-flex justify-content-md-center align-items-md-center">
+                                            <i class="fa fa-th"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End shop-control-bar Title -->
+
+                        <!-- Slick Tab carousel -->
+                        <div class="u-slick__tab">
+                            <!-- Nav Links -->
+                            <div class="mb-5">
+                                <ul class="nav flex-nowrap border border-radius-3 tab-nav align-items-center py-2 px-0" role="tablist">
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">توصیه شده
+                                        </a>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
+                                            <option value="one" selected="">قیمت</option>
+                                            <option value="two">دو</option>
+                                            <option value="three">سه</option>
+                                            <option value="four">چهار</option>
+                                        </select>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
+                                            <option value="one" selected="">ستاره ها</option>
+                                            <option value="two">دو</option>
+                                            <option value="three">سه</option>
+                                            <option value="four">چهار</option>
+                                        </select>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">رتبه بندی مهمان
+                                        </a>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">فاصله
+                                        </a>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">بالا بررسی شد
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav flex-nowrap border border-radius-3 tab-nav-mobile align-items-center py-2 px-0" role="tablist">
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">توصیه شده
+                                        </a>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
+                                            <option value="one" selected="">قیمت</option>
+                                            <option value="two">دو</option>
+                                            <option value="three">سه</option>
+                                            <option value="four">چهار</option>
+                                        </select>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
+                                            <option value="one" selected="">ستاره ها</option>
+                                            <option value="two">دو</option>
+                                            <option value="three">سه</option>
+                                            <option value="four">چهار</option>
+                                        </select>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Nav Links -->
+
+                            <!-- Tab Content -->
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade" id="pills-three-example1" role="tabpanel" aria-labelledby="pills-three-example1-tab" data-target-group="groups">
+                                    <ul class="d-block list-unstyled products-group prodcut-list-view">
+                                        <li class="card mb-5 overflow-hidden">
+                                            <div class="product-item__outer w-100">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xl-4">
+                                                        <div class="product-item__header">
+                                                            <div class="position-relative">
+                                                                <div class="js-slick-carousel u-slick u-slick--equal-height " data-slides-show="1" data-slides-scroll="1" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic v4 u-slick__arrow-classic--v4 u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="flaticon-back u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left" data-arrow-right-classes="flaticon-next u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right" data-pagi-classes="js-pagination text-center u-slick__pagination u-slick__pagination--white position-absolute right-0 bottom-0 left-0 mb-3 mb-0">
+                                                                    <div class="js-slide">
+                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img58.jpg' %}"></a>
+                                                                    </div>
+                                                                    <div class="js-slide">
+                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img59.jpg' %}"></a>
+                                                                    </div>
+                                                                    <div class="js-slide">
+                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img60.jpg' %}"></a>
+                                                                    </div>
+                                                                    <div class="js-slide">
+                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img61.jpg' %}"></a>
+                                                                    </div>
+                                                                    <div class="js-slide">
+                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img62.jpg' %}"></a>
+                                                                    </div>
+                                                                    <div class="js-slide">
+                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img63.jpg' %}"></a>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 col-xl-5 col-wd-4gdot5 flex-horizontal-center">
+                                                        <div class="w-100 position-relative m-4 m-md-0">
+                                                            <div class="mb-1 pb-1">
+                                                                <span class="badge badge-orange text-white rounded-xs font-size-13 py-1 p-xl-2">پیشنهاد زمان محدود</span>
+                                                                <span class="green-lighter ml-2">
+                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                    <small class="fas fa-star font-size-10"></small>
+                                                                </span>
+                                                            </div>
+
+                                                            <div class="position-absolute top-0 right-0 pr-md-3 d-none d-md-block">
+                                                                <button type="button" class="btn btn-sm btn-icon rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن">
+                                                                    <span class="flaticon-heart-1 font-size-20"></span>
+                                                                </button>
+                                                            </div>
+                                                            <a href="hotel-single-v1.html">
+                                                                <span class="font-weight-medium font-size-17 text-dark d-flex mb-1">خلیج کازوی امپایر پرستیژ</span>
+                                                            </a>
+                                                            <div class="card-body p-0">
+                                                                <a href="hotel-single-v1.html" class="d-block mb-3">
+                                                                    <div class="d-flex flex-wrap flex-xl-nowrap align-items-center font-size-14 text-gray-1">
+                                                                        <i class="icon flaticon-placeholder mr-2 font-size-20"></i>لندن، بریتانیا
+                                                                    <small class="px-1 font-size-15">- </small>
+                                                                        <span class="text-primary font-size-14">نمایش روی نقشه</span>
+                                                                    </div>
+                                                                </a>
+                                                                <ul class="list-unstyled mb-2 d-md-flex flex-lg-wrap flex-xl-nowrap">
+                                                                    <li class="border border-dark rounded-xs d-flex align-items-center text-lh-1 py-1 px-2 mr-md-2 mb-2 mb-md-0 mb-lg-2 mb-xl-0">
+                                                                        <span class="font-weight-normal font-size-14">صبحانه</span>
+                                                                    </li>
+                                                                    <li class="border border-dark rounded-xs d-flex align-items-center text-lh-1 py-1 px-2 mr-md-2 mb-2 mb-md-0 mb-lg-2 mb-xl-0 mb-md-0">
+                                                                        <span class="font-weight-normal font-size-14">لغو رایگان</span>
+                                                                    </li>
+                                                                    <li class="border border-dark rounded-xs d-flex align-items-center text-lh-1 py-1 px-2 mb-2 mb-md-0">
+                                                                        <span class="font-weight-normal font-size-14">در هتل پرداخت کنید</span>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="list-unstyled d-md-flex">
+                                                                    <li class="border border-green bg-green rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mb-2 mb-md-0">
+                                                                        <span class="font-weight-normal font-size-14 text-white">پایین ترین قیمت شامل</span>
+                                                                    </li>
+                                                                    <li class="border border-green rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 ml-md-n1 mb-2 mb-md-0">
+                                                                        <span class="font-weight-normal font-size-14 text-green">صبحانه رایگان</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col col-xl-3 col-wd-3gdot5 align-self-center py-4 py-xl-0 border-top border-xl-top-0">
+                                                        <div class="d-xl-flex flex-wrap border-xl-left ml-4 ml-xl-0 pr-xl-3 pr-wd-5 text-xl-right justify-content-xl-end">
+                                                            <div class="mb-xl-5 mb-wd-7">
+                                                                <div class="mb-0">
+                                                                    <div class="my-xl-1">
+                                                                        <div class="d-flex align-items-center justify-content-xl-end mb-2">
+                                                                            <span class="badge badge-primary rounded-xs font-size-14 p-2 mr-2 mb-0">4.6 / 5 </span>
+                                                                            <span class="font-size-17 font-weight-bold text-primary">بسیار خوب</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span class="font-size-14 text-gray-1">(1186 بررسی)</span>
+                                                                </div>
+                                                                <span class="font-size-14 pl-xl-2">"ارزش عالی" "موقعیت مکانی عالی"</span>
+                                                            </div>
+                                                            <div class="mb-0">
+                                                                <span class="mr-1 font-size-14 text-gray-1">از </span>
+                                                                <span class="font-weight-bold">350 تومان </span>
+                                                                <span class="font-size-14 text-gray-1">/ شب</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <div class="text-center text-md-left font-size-14 mb-3 text-lh-1">نمایش 1-15</div>
+                                    <nav aria-label="پیمایش صفحه">
+                                        <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
+                                            <li class="page-item">
+                                                <a class="page-link border-right rounded-0 text-gray-5" href="#" aria-label="قبلی">
+                                                    <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
+                                                    <span class="sr-only">قبلی</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link font-size-14" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link font-size-14 active" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link font-size-14" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link font-size-14" href="#">4</a></li>
+                                            <li class="page-item"><a class="page-link font-size-14" href="#">5</a></li>
+                                            <li class="page-item disabled"><a class="page-link font-size-14" href="#">...</a></li>
+                                            <li class="page-item"><a class="page-link font-size-14" href="#">66</a></li>
+                                            <li class="page-item"><a class="page-link font-size-14" href="#">67</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link border-left rounded-0 text-gray-5" href="#" aria-label="بعد">
+                                                    <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
+                                                    <span class="sr-only">بعد</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
+                                    <div class="row">
+                                        {% for hotel in hotels %}
+                                            <div class="col-md-6 col-lg-4 mb-3 mb-md-4 pb-1">
+                                            <div class="card transition-3d-hover shadow-hover-2 tab-card h-100">
+                                                <div class="position-relative">
+                                                    <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
+                                                        <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
+                                                    </a>
+
+                                                    <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                                                        <button type="button" class="btn btn-sm btn-icon text-white rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن">
+                                                            <span class="flaticon-valentine-heart"></span>
+                                                        </button>
+                                                    </div>
+                                                   <div class="position-absolute bottom-0 left-0 right-0 rtl">
+                                                        <div class="px-4 pb-3">
+                                                            <a  href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block hotel-link">
+                                                                <div class="d-flex align-items-center font-size-14 text-white">
+                                                                    <i class="icon flaticon-pin-1 mr-2 font-size-20"></i>{{ hotel.address }}
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body pl-3 pr-4 pt-2 pb-3">
+                                                    <div class="ml-1 mb-2">
+                                                        <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
+                                                            <div class="lighter">
+                                                                    {% for _ in "x"|rjust:hotel.starts %}
+                                                                        <small class="fas fa-star"></small>
+                                                                    {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a  href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">{{hotel.faname}}</a>
+
+
+
+
+                                                    <div class="mt-2 mb-3">
+                                                        {% if hotel.special_offer %}
+                                                        <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
+                                                   {% endif %}
+                                                        <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ hotel.starts }}ستاره </span>
+                                                    </div>
+
+                                                    <div class="mb-0">
+                                                        <span class="mr-1 font-size-14 text-gray-1">از </span>
+                                                        <span class="font-weight-bold">{{ hotel.min_price|intcomma }} تومان </span>
+                                                        <span class="font-size-14 text-gray-1">/ شب</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Tab Content -->
+                        </div>
+                        <!-- Slick Tab carousel -->
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- ========== END MAIN CONTENT ========== -->
+{% endblock %}
+{% block footer %}
+        {% include 'include/hotel-footer.html' %}
+{% endblock %}
+{% block javascript %}
+        <!-- Page Preloader -->
+        <!-- <div id="jsPreloader" class="page-preloader">
+            <div class="page-preloader__content-centered">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div> -->
+        <!-- End Page Preloader -->
+
+        <!-- Go to Top -->
+        <a class="js-go-to u-go-to-modern" href="#" data-position='{"bottom": 15, "right": 15 }' data-type="fixed" data-offset-top="400" data-compensation="#header" data-show-effect="slideInUp" data-hide-effect="slideOutDown">
+            <span class="flaticon-arrow u-go-to-modern__inner"></span>
+        </a>
+        <!-- End Go to Top -->
+
+
+        <!-- JS Global Compulsory -->
+        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
+        <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+
+        <!-- JS Implementing Plugins -->
+        <script src="{% static 'vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
+        <script src="{% static 'vendor/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'vendor/flatpickr/dist/flatpickr.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+        <script src="{% static 'vendor/slick-carousel/slick/slick.js' %}"></script>
+        <script src="{% static 'vendor/gmaps/gmaps.min.js' %}"></script>
+        <script src="{% static 'vendor/ion-rangeslider/js/ion.rangeSlider.min.js' %}"></script>
+        <script src="{% static 'vendor/custombox/dist/custombox.min.js' %}"></script>
+        <script src="{% static 'vendor/custombox/dist/custombox.legacy.min.js' %}"></script>
+        <script src="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
+        <!-- JS MyTravel -->
+        <script src="{% static 'js/hs.core.js' %}"></script>
+        <script src="{% static 'js/components/hs.header.js' %}"></script>
+        <script src="{% static 'js/components/hs.unfold.js' %}"></script>
+        <script src="{% static 'js/components/hs.validation.js' %}"></script>
+        <script src="{% static 'js/components/hs.show-animation.js' %}"></script>
+        <script src="{% static 'js/components/hs.range-datepicker.js' %}"></script>
+        <script src="{% static 'js/components/hs.selectpicker.js' %}"></script>
+        <script src="{% static 'js/components/hs.range-slider.js' %}"></script>
+        <script src="{% static 'js/components/hs.go-to.js' %}"></script>
+        <script src="{% static 'js/components/hs.slick-carousel.js' %}"></script>
+        <script src="{% static 'js/components/hs.quantity-counter.js' %}"></script>
+        <script src="{% static 'js/components/hs.g-map.js' %}"></script>
+        <script src="{% static 'js/components/hs.modal-window.js' %}"></script>
+        <script src="{% static 'js/components/hs.malihu-scrollbar.js' %}"></script>
+
+        <!-- JS Plugins Init. -->
+        <script>
+
+            $(window).on('load', function () {
+                const urlParams = new URLSearchParams(window.location.search);
+
+            // خواندن مقدار پارامترها از URL با استفاده از نام پارامترها
+            const enterValue = urlParams.get('enter');
+            const exitValue = urlParams.get('exit');
+            const roomValue = urlParams.get('room');
+            const passValue = urlParams.get('pass');
+            const [adults, children] = passValue.split(',');
+
+            // اختصاص مقادیر به فیلدهای مربوطه
+            document.getElementById('enterInput').value = enterValue;
+            document.getElementById('exitInput').value = exitValue;
+
+            // اینجا از یک آرایه از المان‌های با کلاس passInput استفاده می‌کنیم
+            const passInputs = document.getElementsByClassName('passInput');
+            for (const passInput of passInputs) {
+              passInput.value = adults;
+            }
+            document.getElementById('childInput').value = children;
+            document.getElementById('roomInput').value = roomValue;
+
+            const roomInfoSpan = document.getElementById('roomInfo');
+            roomInfoSpan.textContent = `${roomValue} اتاق - ${adults} بزرگسال، ${children} کودک`;
+
+
+                // initialization of HSMegaMenu component
+                $('.js-mega-menu').HSMegaMenu({
+                    event: 'hover',
+                    pageContainer: $('.container'),
+                    breakpoint: 1199.98,
+                    hideTimeOut: 0
+
+                });
+
+                // Page preloader
+                setTimeout(function() {
+                  $('#jsPreloader').fadeOut(500)
+                }, 800);
+            });
+
+            $(document).on('ready', function () {
+                // initialization of header
+                $.HSCore.components.HSHeader.init($('#header'));
+
+                // initialization of google map
+                function initMap() {
+                    $.HSCore.components.HSGMap.init('.js-g-map');
+                }
+
+                // initialization of unfold component
+                $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
+
+                // initialization of autonomous popups
+                $.HSCore.components.HSModalWindow.init('[data-modal-target]', '.js-modal-window', {
+                    autonomous: true
+                });
+
+                // initialization of show animations
+                $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+                // initialization of datepicker
+                $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+                // initialization of forms
+                $.HSCore.components.HSRangeSlider.init('.js-range-slider');
+
+                // initialization of select
+                $.HSCore.components.HSSelectPicker.init('.js-select');
+
+                // initialization of malihu scrollbar
+                $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
+
+                // initialization of quantity counter
+                $.HSCore.components.HSQantityCounter.init('.js-quantity');
+
+                // initialization of slick carousel
+                $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+
+                // initialization of go to
+                $.HSCore.components.HSGoTo.init('.js-go-to');
+
+            });
+
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+
+                // Get the value entered by the user
+               var searchValue = document.getElementById('searchInput').value;
+                var enterValue = document.getElementById('enterInput').value;
+                var exitValue = document.getElementById('exitInput').value;
+                var passInputs = document.getElementsByClassName('passInput');
+                var passValues = [];
+
+                for (var i = 0; i < passInputs.length; i++) {
+                  passValues.push(passInputs[i].value);
+                }
+
+                var passValue = passValues.join(',');
+
+                var roomValue = document.getElementById('roomInput').value;
+
+                // Create the URL with the search value
+                const url = `${encodeURIComponent(searchValue)}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&pass=${encodeURIComponent(passValue)}&room=${encodeURIComponent(roomValue)}`;
+
+                // Redirect the user to the new URL
+                window.location.href = url;
+
+
+            });
+        const hotelLinks = document.querySelectorAll('.hotel-link');
+
+    // اضافه کردن event listener به هر لینک
+    hotelLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // جلوگیری از اجرای عملکرد پیش‌فرض لینک
+
+            // اطلاعات مورد نیاز برای ارسال در URL
+            var searchValue = document.getElementById('searchInput').value;
+                var enterValue = document.getElementById('enterInput').value;
+                var exitValue = document.getElementById('exitInput').value;
+                var passInputs = document.getElementsByClassName('passInput');
+                var passValues = [];
+
+                for (var i = 0; i < passInputs.length; i++) {
+                  passValues.push(passInputs[i].value);
+                }
+
+                var passValue = passValues.join(',');
+
+                var roomValue = document.getElementById('roomInput').value;
+
+                // Create the URL with the search value
+                const url = `${link.getAttribute('href')}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&pass=${encodeURIComponent(passValue)}&room=${encodeURIComponent(roomValue)}`;
+
+                // Redirect the user to the new URL
+                window.location.href = url;
+
+        });
+    });
+
+        </script>
+ {% endblock %}

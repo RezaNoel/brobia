@@ -1,0 +1,182 @@
+{% load static %}
+<!-- ========== HEADER ========== -->
+        <header id="header" class="u-header u-header--dark-nav-links-xl u-header--show-hide-xl u-header--static-xl" data-header-fix-moment="500" data-header-fix-effect="slide">
+            <div class="u-header__section u-header__shadow-on-show-hide py-4 py-xl-0">
+                <!-- Topbar -->
+                <div class="container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-white">
+                    <div class="d-flex align-items-center">
+                        <ul class="list-inline u-header__topbar-nav-divider mb-0">
+                            <li class="list-inline-item mr-0"><a href="tel:(000)999-898-999" class="u-header__navbar-link">09200701700</a></li>
+                            <li class="list-inline-item mr-0"><a href="mailto:info@myhotel.com" class="u-header__navbar-link">info@borobia.com</a></li>
+                        </ul>
+                        <div class="ml-auto d-flex align-items-center">
+                            <ul class="list-inline mb-0 mr-2 pr-1">
+                                <li class="list-inline-item">
+                                    <a class="btn btn-sm btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="#" target="_blank">
+                                        <span class="fab btn-icon__inner"><img  src="{% static 'img/icons/eitaa.png' %}" alt="eitaa" style="font-size:16px"></span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-sm btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="#" target="_blank">
+                                        <span class="fab btn-icon__inner"><img  src="{% static 'img/icons/bale.png' %}" alt="bale" style="font-size:16px"></span>
+                                    </a>
+                                     <li class="list-inline-item">
+                                    <a class="btn btn-sm btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="#" target="_blank">
+                                        <span class="fab btn-icon__inner"><img src="{% static 'img/icons/w-rubika.png' %}" alt="rubika" style="font-size:16px"></span>
+                                    </a>
+                                </li>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-sm btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="#" target="_blank">
+                                        <span class="fab fa-whatsapp btn-icon__inner"></span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-sm btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="https://www.instagram.com/" target="_blank">
+                                        <span class="fab fa-instagram btn-icon__inner"></span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <div class="position-relative px-3 u-header__topbar-divider">
+                                <a href="{% url 'login' %}" class="d-flex align-items-center text-dark">
+                                    <i class="flaticon-user mr-2 ml-1"></i>
+                                    <span class="d-inline-block font-size-14 mr-1">وارد شوید یا ثبت نام کنید</span>
+                                </a>
+                            </div>
+{#                            <div class="position-relative pl-3 language-switcher dropdown-connector-xl u-header__topbar-divider">#}
+{#                                <a id="languageDropdownInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center ml-1 py-3" href="javascript:;" role="button" aria-controls="languageDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#languageDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">#}
+{#                                    <span class="d-inline-block">یورو</span>#}
+{#                                </a>#}
+{#                                <div id="languageDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right mt-0" aria-labelledby="languageDropdownInvoker">#}
+{#                                    <a class="dropdown-item" href="#">دلار </a>#}
+{#                                    <a class="dropdown-item active" href="#"> یورو </a>#}
+{#                                    <a class="dropdown-item" href="#"> تومان </a>#}
+{#                                </div>#}
+{#                            </div>#}
+                        </div>
+                    </div>
+                </div>
+                <!-- End Topbar -->
+                <div id="logoAndNav"  class="container-fluid py-1">
+                    <!-- Nav -->
+                    <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space" >
+                        <!-- Logo -->
+                        <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-white" href="{% url 'home' %}" aria-label="MyHotel">
+                            <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="My Icon">
+                            <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
+                        </a>
+                        <!-- End Logo -->
+                        <!-- End Handheld Logo -->
+
+
+
+                        <!-- Responsive Toggle Button -->
+                        <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--primary order-2 ml-3" aria-label="ناوبری را تغییر دهید" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+                            <span id="hamburgerTrigger" class="u-hamburger__box">
+                                <span class="u-hamburger__inner"></span>
+                            </span>
+                        </button>
+                        <!-- End Responsive Toggle Button -->
+
+                        <!-- Navigation -->
+                        <div id="navBar" class="navbar-collapse u-header__navbar-collapse collapse order-2 order-xl-0 pt-4 p-xl-0 position-relative">
+                            <ul class="navbar-nav u-header__navbar-nav">
+                                 <!-- Home -->
+{#                                <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
+                                    <a id="homeMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="/">صفحه اصلی</a>
+{#                                </li>#}
+                                <!-- End Home -->
+
+                                <!-- Hotel -->
+                                    <a id="hotelMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="/list" >رزرو هتل</a>
+                                <!-- End Hotel -->
+                                <!-- About -->
+                                    <a id="hotelMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="/about-us" >درباره ما</a>
+                                <!-- End About -->
+
+
+                            </ul>
+                        </div>
+                        <!-- End Navigation -->
+
+                        <!-- Shopping Cart -->
+                        <div class="pl-2 pl-md-4 ml-auto shopping-cart">
+                            <a id="shoppingCartDropdownInvoker" class="btn-text-secondary py-4 position-relative" href="javascript:;" role="button" aria-controls="shoppingCartDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#shoppingCartDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                                <span class="flaticon-shopping-basket font-size-25 text-primary-max-lg"></span>
+                            </a>
+
+                            <div id="shoppingCartDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right dropdown-menu-right-fix-wd-10 p-0 mt-0 w-max-sm-100 u-unfold--css-animation font-size-16" aria-labelledby="shoppingCartDropdownInvoker" style="width: 500px; animation-duration: 300ms; right: 0px;">
+                                <div class="card">
+                                    <!-- Header -->
+                                    <div class="card-header border-color-8 py-3 px-5">
+                                        <span class="font-weight-semi-bold">سبد خرید شما</span>
+                                    </div>
+                                    <!-- End Header -->
+
+                                    <!-- Body -->
+                                    <div class="card-body p-0">
+                                        <div class="px-2 px-md-3 py-2 py-md-1 border-bottom border-color-8">
+                                            <div class="media p-2 p-md-3">
+                                                <div class="u-avatar u-lg-avatar-md mr-2 mr-md-3">
+                                                    <img class="img-fluid rounded-pill" src="../../assets/img/80x80/img1.jpg" alt="توضیحات تصویر">
+                                                </div>
+                                                <div class="media-body position-relative pl-md-1">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
+                                                        <span class="d-block text-dark font-weight-bold">میدان تایمز مرکزی</span>
+                                                        <button type="button" class="close close-rounded position-md-absolute right-0 ml-2" aria-label="نزدیک">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                    <span class="d-block text-gray-1">قیمت  590000 تومان</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="px-2 px-md-3 py-2 py-md-1 border-bottom border-color-8">
+                                            <div class="media p-2 p-md-3">
+                                                <div class="u-avatar u-lg-avatar-md mr-2 mr-md-3">
+                                                    <img class="img-fluid rounded-pill" src="../../assets/img/80x80/img2.jpg" alt="توضیحات تصویر">
+                                                </div>
+                                                <div class="media-body position-relative pl-md-1">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
+                                                        <span class="d-block text-dark font-weight-bold">میدان تایمز مرکزی</span>
+                                                        <button type="button" class="close close-rounded position-md-absolute right-0 ml-2" aria-label="نزدیک">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                    <span class="d-block text-gray-1">قیمت  590000 تومان</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Body -->
+
+                                    <!-- Footer -->
+                                    <div class="card-footer border-0 p-3 px-md-5 py-md-4">
+                                        <div class="mb-4 pb-md-1">
+                                            <span class="d-block font-weight-semi-bold">مجموع فرعی: 180.000 تومان</span>
+                                        </div>
+                                        <div class="d-md-flex button-inline-group-md mb-1">
+                                            <a class="btn btn-block btn-md btn-gray-1 rounded-xs font-weight-bold transition-3d-hover" href="#">
+                                                مشاهده سبد خرید
+                                            </a>
+                                            <a class="btn btn-block btn-md btn-blue-1 rounded-xs font-weight-bold transition-3d-hover mt-md-0 ml-md-5" href="#">
+                                                چک کردن
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Footer -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Shopping Cart -->
+
+                        <!-- Button -->
+
+                        <!-- End Button -->
+                    </nav>
+                    <!-- End Nav -->
+                </div>
+            </div>
+        </header>
+        <!-- ========== END HEADER ========== -->
