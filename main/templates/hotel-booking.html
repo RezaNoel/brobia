@@ -36,12 +36,15 @@
                                     </li>
                                 </ul>
                             </div>
+
                             <div class="pt-4 pb-5 px-5">
                                 <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-4">
                                     اطلاعات سرگروه را وارد کنید
                                 </h5>
+ <form method="POST"  >
+                                {% csrf_token %}
                                 <!-- Contacts Form -->
-                                <form class="js-validate">
+
                                     <div class="row">
                                         <!-- Input -->
                                         <div class="col-sm-6 mb-4">
@@ -136,9 +139,12 @@
 
 
                                     </div>
-                                </form>
+
+     <a href="#"><button type="submit" class="btn btn-primary btn-wide rounded-sm transition-3d-hover font-size-16 font-weight-bold py-3">صفحه بعد</button></a>
+
+                            </form>
                                 <!-- End Contacts Form -->
-                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-4">
+                                <h5 id="group-members" class="font-size-21 font-weight-bold text-dark mb-4">
                                     اطلاعات اعضا گروه را وارد کنید
                                 </h5>
 
@@ -198,13 +204,14 @@
 
                                     </div>
                                 </form>
-                                <div class="col-sm-6 align-self-end">
-                                            <div class="text-right">
-                                                <button type="submit" class="btn btn-primary btn-wide rounded-sm transition-3d-hover font-size-16 font-weight-bold py-3">صفحه بعد</button>
-                                            </div>
-                                        </div>
+
+
+
                                 <!-- End Contacts Form -->
                             </div>
+
+
+
                         </div>
 
                     </div>
@@ -484,18 +491,30 @@
         console.log(adults, children);
 
         const mainForm = document.getElementById('mainForm');
-        mainForm.innerHTML = '';
-         for (let i = 0; i < adults; i++) {
+        const group_members = document.getElementById('group-members');
+        if (adults==1 && children==0){
 
-             const clonedForm = mainForm.cloneNode(true);
+            mainForm.innerHTML = '';
+            group_members.innerHTML = '';
+        }
+        if (adults==1 && children==1){
+        for (let i = 2; i < children; i++) {
+                const clonedForm = mainForm.cloneNode(true);
                 mainForm.parentNode.insertBefore(clonedForm, mainForm.nextSibling);
          }
-         if (children!=0){
-             console.log("in")
-         for (let i = 0; i < children; i++) {
+        }
+
+        else{
+         for (let i = 2; i < adults; i++) {
+             const clonedForm = mainForm.cloneNode(true);
+             mainForm.parentNode.insertBefore(clonedForm, mainForm.nextSibling);
+         }
+        for (let i = 0; i < children; i++) {
                 const clonedForm = mainForm.cloneNode(true);
                 mainForm.parentNode.insertBefore(clonedForm, mainForm.nextSibling);
          }}
+
+
          
         // نمایش تاریخ ها و اطلاعات دیگر در محل مناسب
         const dateRangeElement = document.getElementById('date-range');

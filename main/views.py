@@ -45,12 +45,19 @@ def single(request, city_slug, hotel_slug):
     return render(request, 'hotel-single.html', content)
 
 def booking(request,city_slug,hotel_slug,room_slug):
+    print(request.method)
+    if request.method == 'POST':
+        print (request.POST['firstName'])
+
     city = City.objects.get(slug=city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
     room = Room.objects.get(slug=room_slug)
     today_jalali = jalali_date.today()
     today_jalali_str = today_jalali.strftime("%Y-%m-%d")
+
+
+        #
 
     content = {"city": city,
                "hotel": hotel,
@@ -61,7 +68,9 @@ def booking(request,city_slug,hotel_slug,room_slug):
 
 
 def login(request):
-
     return render(request, 'login.html')
+
+def confirm(request):
+    return render(request, 'hotel-confirm.html')
 
 
