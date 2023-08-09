@@ -36,109 +36,166 @@
                                     </li>
                                 </ul>
                             </div>
+
                             <div class="pt-4 pb-5 px-5">
                                 <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-4">
                                     اطلاعات سرگروه را وارد کنید
                                 </h5>
+                            <form method="POST" >
+                                {% csrf_token %}
                                 <!-- Contacts Form -->
-                                <form class="js-validate">
-                                    <div class="row">
-                                        <!-- Input -->
-                                        <div class="col-sm-6 mb-4">
-                                            <div class="js-form-message">
-                                                <label class="form-label">
-                                                    * نام
-                                                </label>
-
-                                                <input type="text" class="form-control" name="firstName" placeholder="علی" aria-label="علی" required="" data-msg="لطفا نام خود را وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                        <!-- End Input -->
-
-                                        <!-- Input -->
-                                        <div class="col-sm-6 mb-4">
-                                            <div class="js-form-message">
-                                                <label class="form-label">
-                                                    * نام خانوادگی
-                                                </label>
-
-                                                <input type="text" class="form-control" name="lasstName" placeholder="توفان" aria-label="توفان" required="" data-msg="لطفا نام خانوادگی خود را وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                        <!-- End Input -->
-
-                                        <!-- Input -->
-                                        <div class="col-sm-6 mb-4">
-                                            <div class="js-form-message">
-                                                <label class="form-label">
-                                                    پست الکترونیک
-                                                </label>
-
-                                                <input type="email" class="form-control" name="email" placeholder="info@gmail.com" aria-label="info@gmail.com" data-msg="لطفا یک آدرس ایمیل معتبر وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                        <!-- End Input -->
-
-                                        <!-- Input -->
-                                        <div class="col-sm-6 mb-4">
-                                            <div class="js-form-message">
-                                                <label class="form-label">
-                                                    * تلفن
-                                                </label>
-
-                                                <input type="number" class="form-control" name="phone" placeholder="0912345678" aria-label="0912345678" required="" data-msg="لطفا یک شماره تلفن معتبر وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                        <!-- End Input -->
-
-                                        <div class="w-100"></div>
-
-                                        <!-- Input -->
-                                        <div class="col-sm-6 mb-4">
-                                            <div class="js-form-message">
-                                                <label class="form-label">
-                                                    * کد  ملی
-                                                </label>
-                                                <input type="number" class="form-control" name="nationalid" placeholder="0110011555" aria-label="0110011555" required="" data-msg="لطفا کد ملی خود را صحیح وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                        <!-- End Input -->
-
-                                        <!-- Input -->
-                                        <div class="col-sm-6 mb-4">
-                                            <div class="js-form-message">
-                                                <label class="form-label">
-                                                    * تاریخ تولد
-                                                </label>
-                                                <input class="form-control datepic" placeholder="1360-06-20" data-jdp required="" data-msg="لطفا تاریخ تولد خود را صحیح وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success" max="{{ today }}">
-                                            </div>
-                                        </div>
-                                        <!-- End Input -->
-
-                                        <div class="w-100"></div>
-
-                                        <div class="col">
-                                            <!-- Input -->
-                                            <div class="js-form-message mb-6">
-                                                <label class="form-label">
-                                                    نیازمندی های ویژه
-                                                </label>
-
-                                                <div class="input-group">
-                                                    <textarea class="form-control" rows="4" name="text" placeholder="" aria-label=""  data-msg="لطفا یک دلیل را وارد کنید" data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
-                                                </div>
-                                            </div>
-                                            <!-- End Input -->
-                                        </div>
-
-                                        <div class="w-100"></div>
-
-
-
+                                <div class="row">
+                                <div class="col-sm-6 mb-4">
+                                    <div class="js-form-message">
+                                {{ bookingForm.firsrname.label_tag }}
+                                {{ bookingForm.firsrname.errors }}
+                                {{ bookingForm.firsrname }}
                                     </div>
-                                </form>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <div class="js-form-message">
+                                {{ bookingForm.lastname.label_tag }}
+                                {{ bookingForm.lastname.errors }}
+                                {{ bookingForm.lastname }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <div class="js-form-message">
+                                {{ bookingForm.email.label_tag }}
+                                {{ bookingForm.email.errors }}
+                                {{ bookingForm.email }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <div class="js-form-message">
+                                {{ bookingForm.number.label_tag }}
+                                {{ bookingForm.number.errors }}
+                                {{ bookingForm.number }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <div class="js-form-message">
+                                {{ bookingForm.nid.label_tag }}
+                                {{ bookingForm.nid.errors }}
+                                {{ bookingForm.nid }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <div class="js-form-message">
+                                {{ bookingForm.birthdate.label_tag }}
+                                {{ bookingForm.birthdate.errors }}
+                                {{ bookingForm.birthdate }}
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col">
+                                    <div class="js-form-message mb-6">
+                                        {{ bookingForm.neeeds.label_tag }}
+                                        {{ bookingForm.neeeds.errors }}
+                                        {{ bookingForm.neeeds }}
+                                    </div>
+                                </div>
+
+{#                                    <div class="row">#}
+{#                                        <!-- Input -->#}
+{#                                        <div class="col-sm-6 mb-4">#}
+{#                                            <div class="js-form-message">#}
+{#                                                <label class="form-label">#}
+{#                                                    * نام#}
+{#                                                </label>#}
+{##}
+{#                                                <input type="text" class="form-control" name="firstName" placeholder="علی" aria-label="علی" required="" data-msg="لطفا نام خود را وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <!-- End Input -->#}
+{##}
+{#                                        <!-- Input -->#}
+{#                                        <div class="col-sm-6 mb-4">#}
+{#                                            <div class="js-form-message">#}
+{#                                                <label class="form-label">#}
+{#                                                    * نام خانوادگی#}
+{#                                                </label>#}
+{##}
+{#                                                <input type="text" class="form-control" name="lasstName" placeholder="توفان" aria-label="توفان" required="" data-msg="لطفا نام خانوادگی خود را وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <!-- End Input -->#}
+{##}
+{#                                        <!-- Input -->#}
+{#                                        <div class="col-sm-6 mb-4">#}
+{#                                            <div class="js-form-message">#}
+{#                                                <label class="form-label">#}
+{#                                                    پست الکترونیک#}
+{#                                                </label>#}
+{##}
+{#                                                <input type="email" class="form-control" name="email" placeholder="info@gmail.com" aria-label="info@gmail.com" data-msg="لطفا یک آدرس ایمیل معتبر وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <!-- End Input -->#}
+{##}
+{#                                        <!-- Input -->#}
+{#                                        <div class="col-sm-6 mb-4">#}
+{#                                            <div class="js-form-message">#}
+{#                                                <label class="form-label">#}
+{#                                                    * تلفن#}
+{#                                                </label>#}
+{##}
+{#                                                <input type="number" class="form-control" name="phone" placeholder="0912345678" aria-label="0912345678" required="" data-msg="لطفا یک شماره تلفن معتبر وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <!-- End Input -->#}
+{##}
+{#                                        <div class="w-100"></div>#}
+{##}
+{#                                        <!-- Input -->#}
+{#                                        <div class="col-sm-6 mb-4">#}
+{#                                            <div class="js-form-message">#}
+{#                                                <label class="form-label">#}
+{#                                                    * کد  ملی#}
+{#                                                </label>#}
+{#                                                <input type="number" class="form-control" name="nationalid" placeholder="0110011555" aria-label="0110011555" required="" data-msg="لطفا کد ملی خود را صحیح وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success">#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <!-- End Input -->#}
+{##}
+{#                                        <!-- Input -->#}
+{#                                        <div class="col-sm-6 mb-4">#}
+{#                                            <div class="js-form-message">#}
+{#                                                <label class="form-label">#}
+{#                                                    * تاریخ تولد#}
+{#                                                </label>#}
+{#                                                <input class="form-control datepic" placeholder="1360-06-20" data-jdp required="" data-msg="لطفا تاریخ تولد خود را صحیح وارد کنید." data-error-class="u-has-error" data-success-class="u-has-success" max="{{ today }}">#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <!-- End Input -->#}
+{##}
+{#                                        <div class="w-100"></div>#}
+{##}
+{#                                        <div class="col">#}
+{#                                            <!-- Input -->#}
+{#                                            <div class="js-form-message mb-6">#}
+{#                                                <label class="form-label">#}
+{#                                                    نیازمندی های ویژه#}
+{#                                                </label>#}
+{##}
+{#                                                <div class="input-group">#}
+{#                                                    <textarea class="form-control" rows="4" name="text" placeholder="" aria-label=""  data-msg="لطفا یک دلیل را وارد کنید" data-error-class="u-has-error" data-success-class="u-has-success"></textarea>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <!-- End Input -->#}
+{#                                        </div>#}
+{##}
+{#                                        <div class="w-100"></div>#}
+{##}
+{##}
+{##}
+{#                                    </div>#}
+
+                            <button type="submit" class="btn btn-primary btn-wide rounded-sm transition-3d-hover font-size-16 font-weight-bold py-3">صفحه بعد</button>
+
+                            </form>
                                 <!-- End Contacts Form -->
-                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-4">
+                                <h5 id="group-members" class="font-size-21 font-weight-bold text-dark mb-4">
                                     اطلاعات اعضا گروه را وارد کنید
                                 </h5>
 
@@ -198,13 +255,14 @@
 
                                     </div>
                                 </form>
-                                <div class="col-sm-6 align-self-end">
-                                            <div class="text-right">
-                                                <button type="submit" class="btn btn-primary btn-wide rounded-sm transition-3d-hover font-size-16 font-weight-bold py-3">صفحه بعد</button>
-                                            </div>
-                                        </div>
+
+
+
                                 <!-- End Contacts Form -->
                             </div>
+
+
+
                         </div>
 
                     </div>
@@ -484,18 +542,30 @@
         console.log(adults, children);
 
         const mainForm = document.getElementById('mainForm');
-        mainForm.innerHTML = '';
-         for (let i = 0; i < adults; i++) {
+        const group_members = document.getElementById('group-members');
+        if (adults==1 && children==0){
 
-             const clonedForm = mainForm.cloneNode(true);
+            mainForm.innerHTML = '';
+            group_members.innerHTML = '';
+        }
+        if (adults==1 && children==1){
+        for (let i = 2; i < children; i++) {
+                const clonedForm = mainForm.cloneNode(true);
                 mainForm.parentNode.insertBefore(clonedForm, mainForm.nextSibling);
          }
-         if (children!=0){
-             console.log("in")
-         for (let i = 0; i < children; i++) {
+        }
+
+        else{
+         for (let i = 2; i < adults; i++) {
+             const clonedForm = mainForm.cloneNode(true);
+             mainForm.parentNode.insertBefore(clonedForm, mainForm.nextSibling);
+         }
+        for (let i = 0; i < children; i++) {
                 const clonedForm = mainForm.cloneNode(true);
                 mainForm.parentNode.insertBefore(clonedForm, mainForm.nextSibling);
          }}
+
+
          
         // نمایش تاریخ ها و اطلاعات دیگر در محل مناسب
         const dateRangeElement = document.getElementById('date-range');

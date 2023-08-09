@@ -36,6 +36,7 @@ urlpatterns = [
     path('<slug:city_slug>', views.list,name='hotel-list'),
     path('<slug:city_slug>/<slug:hotel_slug>', views.single,name='hotel-single'),
     path('<slug:city_slug>/<slug:hotel_slug>/<slug:room_slug>', views.booking,name='hotel-booking'),
+    path('confirm/', views.confirm,name='hotel-confirm'),
     # path('home',index),
     # path('', include(router.urls)),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))

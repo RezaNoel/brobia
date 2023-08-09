@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import City,Hotel,Room
 from jdatetime import date as jalali_date
 from django.db.models import Min
-
-
+from django.urls import reverse
+from .forms import BookingForm
 
 def home(request):
     cities = City.objects.all()
@@ -45,6 +45,16 @@ def single(request, city_slug, hotel_slug):
     return render(request, 'hotel-single.html', content)
 
 def booking(request,city_slug,hotel_slug,room_slug):
+
+
+    print(request.method)
+    if request.method == 'POST':
+        bookingForm = BookingForm(request.POST)
+        if bookingForm.is_valid():
+            print(bookingForm.cleaned_data)
+            return redirect(reverse('hotel-confirm'))
+    else:
+        bookingForm = BookingForm()
     city = City.objects.get(slug=city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
@@ -52,16 +62,22 @@ def booking(request,city_slug,hotel_slug,room_slug):
     today_jalali = jalali_date.today()
     today_jalali_str = today_jalali.strftime("%Y-%m-%d")
 
+
+        #
+
     content = {"city": city,
                "hotel": hotel,
                "hotels":hotels,
                "room":room,
-               'today': today_jalali_str,}
+               'today': today_jalali_str,
+               'bookingForm': bookingForm}
     return render(request, 'hotel-booking.html',content)
 
 
 def login(request):
-
     return render(request, 'login.html')
+
+def confirm(request):
+    return render(request, 'hotel-confirm.html')
 
 

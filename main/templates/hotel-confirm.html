@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+        <!-- Title -->
+{% block title %}برو بیا | چه برو بیا ایه{% endblock %}
+{% block header %}{% endblock %}
+{% block content %}
+
+{% include 'include/list-header.html' %}
+        <!-- ========== MAIN CONTENT ========== -->
+        <main id="content" class="bg-gray space-2">
+           <div class="mb-5 shadow-soft bg-white rounded-sm">
+                            <div class="py-6 px-5 border-bottom">
+                                <div class="flex-horizontal-center">
+                                    <div class="height-50 width-50 flex-shrink-0 flex-content-center bg-primary rounded-circle">
+                                        <i class="flaticon-tick text-white font-size-24"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h3 class="font-size-18 font-weight-bold text-dark mb-0 text-lh-sm">
+                                            متشکرم. سفارش رزرو شما اکنون تایید شده است.
+                                        </h3>
+                                        <p class="mb-0">پس از تایید اطلاعات جهت دریافت واچر هتل پرداخت را انجام دهید.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-4 pb-5 px-5 border-bottom">
+                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
+                                    اطلاعات مسافران
+                                </h5>
+                                <!-- Fact List -->
+                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">
+
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">نام سرگروه</span>
+                                        <span class="text-secondary text-right">حسن معجونی</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">شماره تماس سرگروه</span>
+                                        <span class="text-secondary text-right">09122221111</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تعداد بزرگسال </span>
+                                        <span class="text-secondary text-right">2</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تعداد خردسال </span>
+                                        <span class="text-secondary text-right">2</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium"> نیازمندی های ویژه</span>
+                                        <span class="text-secondary text-right">ویلچر</span>
+                                    </li>
+
+
+                                </ul>
+                                <!-- End Fact List -->
+                            </div>
+               <div class="pt-4 pb-5 px-5 border-bottom">
+                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
+                                    اطلاعات رزرو
+                                </h5>
+                                <!-- Fact List -->
+                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">شماره رزرو </span>
+                                        <span class="text-secondary text-right">5784-BD245</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">نام هتل </span>
+                                        <span class="text-secondary text-right">گرند</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">نام اتاق </span>
+                                        <span class="text-secondary text-right">سه تخته</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">مبلغ کل پرداختی </span>
+                                        <span class="text-secondary text-right">5,400,000</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تاریخ ورود </span>
+                                        <span class="text-secondary text-right">1402/05/23</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تاریخ خروج </span>
+                                        <span class="text-secondary text-right">1402/05/20</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">آدرس هتل </span>
+                                        <span class="text-secondary text-right">مشهد - امام رضا 12</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">توضیحات هتل </span>
+                                        <span class="text-secondary text-right">این یک توضیحات است</span>
+                                    </li>
+                                </ul>
+                                <!-- End Fact List -->
+                            </div>
+                            <div class="pt-4 pb-5 px-5 border-bottom">
+
+                                <a href="bank" class="text-underline text-primary"><button type="submit" class="btn btn-green btn-wide rounded-sm transition-3d-hover font-size-16 font-weight-bold py-3">پرداخت</button></a>
+                            </div>
+
+                        </div>
+        </main>
+        <!-- ========== END MAIN CONTENT ========== -->
+{% endblock %}
+{% block footer %}
+    {% include 'include/hotel-footer.html' %}
+{% endblock %}
+{% block javascript %}
+        <!-- Page Preloader -->
+        <!-- <div id="jsPreloader" class="page-preloader">
+            <div class="page-preloader__content-centered">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div> -->
+        <!-- End Page Preloader -->
+
+        <!-- Go to Top -->
+        <a class="js-go-to u-go-to-modern" href="#" data-position='{"bottom": 15, "right": 15 }' data-type="fixed" data-offset-top="400" data-compensation="#header" data-show-effect="slideInUp" data-hide-effect="slideOutDown">
+            <span class="flaticon-arrow u-go-to-modern__inner"></span>
+        </a>
+        <!-- End Go to Top -->
+
+        <!-- JS Global Compulsory -->
+        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
+        <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+
+        <!-- JS Implementing Plugins -->
+        <script src="{% static 'vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
+        <script src="{% static 'vendor/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'vendor/flatpickr/dist/flatpickr.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+        <script src="{% static 'vendor/slick-carousel/slick/slick.js' %}"></script>
+        <script src="{% static 'vendor/gmaps/gmaps.min.js' %}"></script>
+        <script src="{% static 'vendor/fancybox/jquery.fancybox.min.js' %}"></script>
+        <script src="{% static 'vendor/appear.js' %}"></script>
+
+
+        <!-- JS MyTravel -->
+        <script src="{% static 'js/hs.core.js' %}"></script>
+        <script src="{% static 'js/components/hs.header.js' %}"></script>
+        <script src="{% static 'js/components/hs.unfold.js' %}"></script>
+        <script src="{% static 'js/components/hs.validation.js' %}"></script>
+        <script src="{% static 'js/components/hs.show-animation.js' %}"></script>
+        <script src="{% static 'js/components/hs.range-datepicker.js' %}"></script>
+        <script src="{% static 'js/components/hs.selectpicker.js' %}"></script>
+        <script src="{% static 'js/components/hs.go-to.js' %}"></script>
+        <script src="{% static 'js/components/hs.slick-carousel.js' %}"></script>
+        <script src="{% static 'js/components/hs.quantity-counter.js' %}"></script>
+        <script src="{% static 'js/components/hs.g-map.js' %}"></script>
+        <script src="{% static 'js/components/hs.fancybox.js' %}"></script>
+        <script src="{% static 'js/components/hs.scroll-nav.js' %}"></script>
+        <script src="{% static 'js/components/hs.sticky-block.js' %}"></script>
+        <script src="{% static 'js/components/hs.focus-state.js' %}"></script>
+
+        <!-- JS Plugins Init. -->
+        <script>
+            $(window).on('load', function () {
+
+                // initialization of HSMegaMenu component
+                $('.js-mega-menu').HSMegaMenu({
+                    event: 'hover',
+                    pageContainer: $('.container'),
+                    breakpoint: 1199.98,
+                    hideTimeOut: 0
+                });
+
+                // Page preloader
+                setTimeout(function() {
+                  $('#jsPreloader').fadeOut(500)
+                }, 800);
+            });
+
+            $(document).on('ready', function () {
+                // initialization of header
+                $.HSCore.components.HSHeader.init($('#header'));
+
+                // initialization of google map
+                function initMap() {
+                    $.HSCore.components.HSGMap.init('.js-g-map');
+                }
+
+                // initialization of unfold component
+                $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
+
+                // initialization of form validation
+                $.HSCore.components.HSValidation.init('.js-validate', {
+                    rules: {
+                        confirmPassword: {
+                            equalTo: '#signupPassword'
+                        }
+                    }
+                });
+
+                // initialization of show animations
+                $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+                // initialization of forms
+                $.HSCore.components.HSFocusState.init();
+
+                // initialization of show animations
+                $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+                // initialization of popups
+                $.HSCore.components.HSFancyBox.init('.js-fancybox');
+
+                // initialization of datepicker
+                $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+                // initialization of select
+                $.HSCore.components.HSSelectPicker.init('.js-select');
+
+                // initialization of sticky blocks
+                $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+
+                // initialization of quantity counter
+                $.HSCore.components.HSQantityCounter.init('.js-quantity');
+
+                // initialization of slick carousel
+                $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+
+                // initialization of form validation
+                $.HSCore.components.HSValidation.init('.js-validate');
+
+                // initialization of go to
+                $.HSCore.components.HSGoTo.init('.js-go-to');
+
+                // initialization of HSScrollNav component
+                $.HSCore.components.HSScrollNav.init($('.js-scroll-nav'), {
+                    duration: 700
+                });
+            });
+
+
+        </script>
+
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCuY6I4hZQvxo5RqCH7kogGKzcrjetRKQI&amp;callback=initMap" async defer></script>
+ {% endblock %}

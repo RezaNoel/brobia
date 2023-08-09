@@ -21,12 +21,17 @@ class City(models.Model):
     def save(self,*args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
-
+    class Meta:
+        verbose_name = ("شهر")
+        verbose_name_plural = ("شهر ها")
 class Facility(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام اصلی')
     faname = models.CharField(max_length=75,default="",verbose_name='نام فارسی')
     def __str__(self):
         return self.faname
+    class Meta:
+        verbose_name = ("اماکانات")
+        verbose_name_plural = ("امکانات")
 class Hotel(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام اصلی')
     faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
@@ -51,7 +56,9 @@ class Hotel(models.Model):
     def min_price(self):
         # کمترین قیمت اتاق‌ها را برای هتل محاسبه کنید و برگردانید
         return Room.objects.filter(hotel=self).aggregate(min_price=Min('price'))['min_price']
-
+    class Meta:
+        verbose_name = ("هتل")
+        verbose_name_plural = ("هتل ها")
 class Room(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام')
     faname = models.CharField(default="",max_length=75,verbose_name='نام نمایشی')
@@ -70,7 +77,9 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
-
+    class Meta:
+        verbose_name = ("اتاق")
+        verbose_name_plural = ("اتاق ها")
 class Request(models.Model):
     room = models.ForeignKey(Room, blank=True,on_delete=models.CASCADE, verbose_name='اتاق')
     enter = models.CharField(max_length=20,verbose_name='ورود')
@@ -78,4 +87,8 @@ class Request(models.Model):
     room_count = models.IntegerField(verbose_name='تعداد اتاق')
     passenger_count = models.IntegerField(verbose_name='تعداد مسافر')
     confirm = models.BooleanField(default=False, verbose_name='کانفرم')
+
+    class Meta:
+        verbose_name = ("درخواست")
+        verbose_name_plural = ("درخواست ها")
 
