@@ -146,7 +146,7 @@
                                         </div>
                                         <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">
                                             <div class="w-100 position-relative m-4 m-md-0">
-                                                <a href="{% url 'hotel-booking' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="mb-2 d-inline-block hotel-link">
+                                                <a href="{% url 'hotel-confirm' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="mb-2 d-inline-block hotel-link">
                                                     <span class="font-weight-bold font-size-17 text-dark text-dark">{{ room.faname }}</span>
                                                 </a>
                                                 <div class="mt-1 pt-2">
@@ -189,7 +189,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <a href="{% url 'hotel-booking' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="text-underline font-size-14 hotel-link">عکس و جزئیات اتاق</a>
+                                                    <a href="{% url 'hotel-confirm' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="text-underline font-size-14 hotel-link">عکس و جزئیات اتاق</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -199,11 +199,9 @@
                                                     <div class="mb-2 pb-1">
                                                         <span class="font-size-14">از </span>
                                                         <span class="font-weight-bold font-size-22 ml-1">{{ room.price|intcomma }} تومان</span>
-
-
                                                         <span class="font-size-14">/ شب</span>
                                                     </div>
-                                                    <a href="{% url 'hotel-booking' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">اکنون ثبت کن</a>
+                                                    <a href="{% url 'hotel-confirm' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">اکنون ثبت کن</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -478,7 +476,7 @@
                                                                 <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                     <small class="fas fa-minus btn-icon__inner"></small>
                                                                 </a>
-                                                                <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="1">
+                                                                <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center " id="passInput" type="text" value="1">
                                                                 <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                     <small class="fas fa-plus btn-icon__inner"></small>
                                                                 </a>
@@ -492,7 +490,7 @@
                                                                 <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                     <small class="fas fa-minus btn-icon__inner"></small>
                                                                 </a>
-                                                                <input id="childInput" class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="1">
+                                                                <input id="childInput" class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center " type="text" value="1">
                                                                 <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                     <small class="fas fa-plus btn-icon__inner"></small>
                                                                 </a>
@@ -672,23 +670,17 @@
             const enterValue = urlParams.get('enter');
             const exitValue = urlParams.get('exit');
             const roomValue = urlParams.get('room');
-            const passValue = urlParams.get('pass');
-            const [adults, children] = passValue.split(',');
-
+            const passValue = urlParams.get('passengers');
+            const childValue = urlParams.get('children');
             // اختصاص مقادیر به فیلدهای مربوطه
             document.getElementById('enterInput').value = enterValue;
             document.getElementById('exitInput').value = exitValue;
-
-            // اینجا از یک آرایه از المان‌های با کلاس passInput استفاده می‌کنیم
-            const passInputs = document.getElementsByClassName('passInput');
-            for (const passInput of passInputs) {
-              passInput.value = adults;
-            }
-            document.getElementById('childInput').value = children;
+            document.getElementById('passInput').value = passValue;
+            document.getElementById('childInput').value = childValue;
             document.getElementById('roomInput').value = roomValue;
 
             const roomInfoSpan = document.getElementById('roomInfo');
-            roomInfoSpan.textContent = `${roomValue} اتاق - ${adults} بزرگسال، ${children} کودک`;
+            roomInfoSpan.textContent = `${roomValue} اتاق - ${passValue} بزرگسال، ${childValue} کودک`;
                 // initialization of HSMegaMenu component
                 $('.js-mega-menu').HSMegaMenu({
                     event: 'hover',
@@ -751,19 +743,12 @@
                {#var searchValue = document.getElementById('searchInput').value;#}
                 var enterValue = document.getElementById('enterInput').value;
                 var exitValue = document.getElementById('exitInput').value;
-                var passInputs = document.getElementsByClassName('passInput');
-                var passValues = [];
-
-                for (var i = 0; i < passInputs.length; i++) {
-                  passValues.push(passInputs[i].value);
-                }
-
-                var passValue = passValues.join(',');
-
+                var passValue = document.getElementById('passInput').value;
+                var childValue = document.getElementById('childInput').value;
                 var roomValue = document.getElementById('roomInput').value;
 
                 // Create the URL with the search value
-                const url = `?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&pass=${encodeURIComponent(passValue)}&room=${encodeURIComponent(roomValue)}`;
+                const url = `?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
                 // Redirect the user to the new URL
                 window.location.href = url;
@@ -779,21 +764,14 @@
 
             // اطلاعات مورد نیاز برای ارسال در URL
             {#var searchValue = document.getElementById('searchInput').value;#}
-                var enterValue = document.getElementById('enterInput').value;
+               var enterValue = document.getElementById('enterInput').value;
                 var exitValue = document.getElementById('exitInput').value;
-                var passInputs = document.getElementsByClassName('passInput');
-                var passValues = [];
-
-                for (var i = 0; i < passInputs.length; i++) {
-                  passValues.push(passInputs[i].value);
-                }
-
-                var passValue = passValues.join(',');
-
+                var passValue = document.getElementById('passInput').value;
+                var childValue = document.getElementById('childInput').value;
                 var roomValue = document.getElementById('roomInput').value;
 
                 // Create the URL with the search value
-                const url = `${link.getAttribute('href')}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&pass=${encodeURIComponent(passValue)}&room=${encodeURIComponent(roomValue)}`;
+                const url = `${link.getAttribute('href')}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
                 // Redirect the user to the new URL
                 window.location.href = url;

@@ -110,7 +110,7 @@
                                                             <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                 <small class="fas fa-minus btn-icon__inner"></small>
                                                             </a>
-                                                            <input  class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="2">
+                                                            <input  class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center " id="passInput" type="text" value="2">
                                                             <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                 <small class="fas fa-plus btn-icon__inner"></small>
                                                             </a>
@@ -124,7 +124,7 @@
                                                             <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                 <small class="fas fa-minus btn-icon__inner"></small>
                                                             </a>
-                                                            <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="0">
+                                                            <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center " id="childInput" type="text" value="0">
                                                             <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                 <small class="fas fa-plus btn-icon__inner"></small>
                                                             </a>
@@ -603,19 +603,12 @@
         var searchValue = document.getElementById('searchInput').value;
         var enterValue = document.getElementById('enterInput').value;
         var exitValue = document.getElementById('exitInput').value;
-        var passInputs = document.getElementsByClassName('passInput');
-        var passValues = [];
-
-        for (var i = 0; i < passInputs.length; i++) {
-          passValues.push(passInputs[i].value);
-        }
-
-        var passValue = passValues.join(',');
-
+        var passValue = document.getElementById('passInput').value;
+        var childValue = document.getElementById('childInput').value;
         var roomValue = document.getElementById('roomInput').value;
 
         // Create the URL with the search value
-        const url = `${encodeURIComponent(searchValue)}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&pass=${encodeURIComponent(passValue)}&room=${encodeURIComponent(roomValue)}`;
+        const url = `${encodeURIComponent(searchValue)}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
         // Redirect the user to the new URL
         window.location.href = url;

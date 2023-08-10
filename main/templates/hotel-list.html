@@ -107,7 +107,7 @@
                                                                         <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                             <small class="fas fa-minus btn-icon__inner"></small>
                                                                         </a>
-                                                                        <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="1">
+                                                                        <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" id="passInput" type="text" value="1">
                                                                         <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                             <small class="fas fa-plus btn-icon__inner"></small>
                                                                         </a>
@@ -121,7 +121,7 @@
                                                                         <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                             <small class="fas fa-minus btn-icon__inner"></small>
                                                                         </a>
-                                                                        <input id="childInput" class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center passInput" type="text" value="1">
+                                                                        <input id="childInput" class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center " type="text" value="1">
                                                                         <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                             <small class="fas fa-plus btn-icon__inner"></small>
                                                                         </a>
@@ -1081,23 +1081,18 @@
             const enterValue = urlParams.get('enter');
             const exitValue = urlParams.get('exit');
             const roomValue = urlParams.get('room');
-            const passValue = urlParams.get('pass');
-            const [adults, children] = passValue.split(',');
+            const passValue = urlParams.get('passengers');
+            const childValue = urlParams.get('children');
 
             // اختصاص مقادیر به فیلدهای مربوطه
             document.getElementById('enterInput').value = enterValue;
             document.getElementById('exitInput').value = exitValue;
-
-            // اینجا از یک آرایه از المان‌های با کلاس passInput استفاده می‌کنیم
-            const passInputs = document.getElementsByClassName('passInput');
-            for (const passInput of passInputs) {
-              passInput.value = adults;
-            }
-            document.getElementById('childInput').value = children;
+            document.getElementById('passInput').value = passValue;
+            document.getElementById('childInput').value = childValue;
             document.getElementById('roomInput').value = roomValue;
 
             const roomInfoSpan = document.getElementById('roomInfo');
-            roomInfoSpan.textContent = `${roomValue} اتاق - ${adults} بزرگسال، ${children} کودک`;
+            roomInfoSpan.textContent = `${roomValue} اتاق - ${passValue} بزرگسال، ${childValue} کودک`;
 
 
                 // initialization of HSMegaMenu component
@@ -1162,22 +1157,15 @@
                 event.preventDefault(); // Prevent the form from submitting normally
 
                 // Get the value entered by the user
-               var searchValue = document.getElementById('searchInput').value;
+                var searchValue = document.getElementById('searchInput').value;
                 var enterValue = document.getElementById('enterInput').value;
                 var exitValue = document.getElementById('exitInput').value;
-                var passInputs = document.getElementsByClassName('passInput');
-                var passValues = [];
-
-                for (var i = 0; i < passInputs.length; i++) {
-                  passValues.push(passInputs[i].value);
-                }
-
-                var passValue = passValues.join(',');
-
+                var passValue = document.getElementById('passInput').value;
+                var childValue = document.getElementById('childInput').value;
                 var roomValue = document.getElementById('roomInput').value;
 
                 // Create the URL with the search value
-                const url = `${encodeURIComponent(searchValue)}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&pass=${encodeURIComponent(passValue)}&room=${encodeURIComponent(roomValue)}`;
+                const url = `${encodeURIComponent(searchValue)}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
                 // Redirect the user to the new URL
                 window.location.href = url;
@@ -1193,21 +1181,14 @@
 
             // اطلاعات مورد نیاز برای ارسال در URL
             var searchValue = document.getElementById('searchInput').value;
-                var enterValue = document.getElementById('enterInput').value;
-                var exitValue = document.getElementById('exitInput').value;
-                var passInputs = document.getElementsByClassName('passInput');
-                var passValues = [];
-
-                for (var i = 0; i < passInputs.length; i++) {
-                  passValues.push(passInputs[i].value);
-                }
-
-                var passValue = passValues.join(',');
-
-                var roomValue = document.getElementById('roomInput').value;
+            var enterValue = document.getElementById('enterInput').value;
+            var exitValue = document.getElementById('exitInput').value;
+            var passValue = document.getElementById('passInput').value;
+            var childValue = document.getElementById('childInput').value;
+            var roomValue = document.getElementById('roomInput').value;
 
                 // Create the URL with the search value
-                const url = `${link.getAttribute('href')}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&pass=${encodeURIComponent(passValue)}&room=${encodeURIComponent(roomValue)}`;
+                const url = `${link.getAttribute('href')}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
                 // Redirect the user to the new URL
                 window.location.href = url;

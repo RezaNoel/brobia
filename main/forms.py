@@ -15,9 +15,9 @@ class BookingForm(forms.Form):
     )
     neeeds = forms.CharField(required=False, label='نیازمندی های ویژه',widget=forms.Textarea(attrs={'class':'form-control','placeholder':'ویلچر ...'}))
 
-    # class BookingModelForm(forms.ModelForm):
-    #     class Meta:
-    #         model = Request
-    #         fields =['']
-    #
-    #
+class BookingModelForm(forms.ModelForm):
+    class Meta:
+        model = Request
+        fields =['room', 'room_count', 'enter','exit','passenger_count']
+
+

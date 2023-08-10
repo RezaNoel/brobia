@@ -3,7 +3,7 @@ from .models import City,Hotel,Room
 from jdatetime import date as jalali_date
 from django.db.models import Min
 from django.urls import reverse
-from .forms import BookingForm
+from .forms import BookingForm,BookingModelForm
 from datetime import datetime, timedelta
 import time
 
@@ -34,6 +34,7 @@ def list(request, city_slug):
     return render(request, 'hotel-list.html', content)
 
 def single(request, city_slug, hotel_slug):
+
     city = City.objects.get(slug=city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
@@ -79,7 +80,20 @@ def booking(request,city_slug,hotel_slug,room_slug):
 def login(request):
     return render(request, 'login.html')
 
-def confirm(request):
+def confirm(request,room_slug,city_slug,hotel_slug):
+    city = City.objects.get(slug=city_slug)
+    hotels = Hotel.objects.filter(city=city.id)
+    hotel = Hotel.objects.get(slug=hotel_slug)
+    rooms = Room.objects.get(slug=room_slug)
+    room = rooms.faname
+    room_count = request.GET.get('room')
+    enter = request.GET.get('enter')
+    exit = request.GET.get('exit')
+    passengers = request.GET.get('passengers')
+    children = request.GET.get('children')
+    passengers_count = int(passengers)+int(children)
+    print(room_count,enter,exit,passengers_count)
+
     start_time = datetime.now()
     countdown_duration = timedelta(minutes=1)
     end_time = start_time + countdown_duration
