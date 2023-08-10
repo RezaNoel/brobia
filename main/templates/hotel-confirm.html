@@ -10,55 +10,60 @@
 {% include 'include/list-header.html' %}
         <!-- ========== MAIN CONTENT ========== -->
         <main id="content" class="bg-gray space-2">
+        <div style="background-color: #ffcc00; padding: 20px;">
+    <h4 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
+      مدت زمان انتظار <span id="countdown">00:10</span>
+    </h4>
+  </div>
            <div class="mb-5 shadow-soft bg-white rounded-sm">
                             <div class="py-6 px-5 border-bottom">
                                 <div class="flex-horizontal-center">
                                     <div class="height-50 width-50 flex-shrink-0 flex-content-center bg-primary rounded-circle">
-                                        <i class="flaticon-tick text-white font-size-24"></i>
+                                        <i class="flaticon-tickets text-white font-size-24"></i>
                                     </div>
                                     <div class="ml-3">
                                         <h3 class="font-size-18 font-weight-bold text-dark mb-0 text-lh-sm">
-                                            متشکرم. سفارش رزرو شما اکنون تایید شده است.
+                                            با تشکر. درخواست رزرو شما برای هتل ارسال گردید.
                                         </h3>
-                                        <p class="mb-0">پس از تایید اطلاعات جهت دریافت واچر هتل پرداخت را انجام دهید.</p>
+                                        <p class="mb-0">پس از تایید درخواست ، به صفحه تکمیل اطلاعات مسافران منتقل می شوید.</p>
                                     </div>
                                 </div>
                             </div>
+{#                            <div class="pt-4 pb-5 px-5 border-bottom">#}
+{#                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">#}
+{#                                    اطلاعات مسافران#}
+{#                                </h5>#}
+{#                                <!-- Fact List -->#}
+{#                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">#}
+{##}
+{##}
+{#                                    <li class="d-flex justify-content-between py-2">#}
+{#                                        <span class="font-weight-medium">نام سرگروه</span>#}
+{#                                        <span class="text-secondary text-right">حسن معجونی</span>#}
+{#                                    </li>#}
+{##}
+{#                                    <li class="d-flex justify-content-between py-2">#}
+{#                                        <span class="font-weight-medium">شماره تماس سرگروه</span>#}
+{#                                        <span class="text-secondary text-right">09122221111</span>#}
+{#                                    </li>#}
+{#                                    <li class="d-flex justify-content-between py-2">#}
+{#                                        <span class="font-weight-medium">تعداد بزرگسال </span>#}
+{#                                        <span class="text-secondary text-right">2</span>#}
+{#                                    </li>#}
+{#                                    <li class="d-flex justify-content-between py-2">#}
+{#                                        <span class="font-weight-medium">تعداد خردسال </span>#}
+{#                                        <span class="text-secondary text-right">2</span>#}
+{#                                    </li>#}
+{#                                    <li class="d-flex justify-content-between py-2">#}
+{#                                        <span class="font-weight-medium"> نیازمندی های ویژه</span>#}
+{#                                        <span class="text-secondary text-right">ویلچر</span>#}
+{#                                    </li>#}
+{##}
+{##}
+{#                                </ul>#}
+{#                                <!-- End Fact List -->#}
+{#                            </div>#}
                             <div class="pt-4 pb-5 px-5 border-bottom">
-                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
-                                    اطلاعات مسافران
-                                </h5>
-                                <!-- Fact List -->
-                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">
-
-
-                                    <li class="d-flex justify-content-between py-2">
-                                        <span class="font-weight-medium">نام سرگروه</span>
-                                        <span class="text-secondary text-right">حسن معجونی</span>
-                                    </li>
-
-                                    <li class="d-flex justify-content-between py-2">
-                                        <span class="font-weight-medium">شماره تماس سرگروه</span>
-                                        <span class="text-secondary text-right">09122221111</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between py-2">
-                                        <span class="font-weight-medium">تعداد بزرگسال </span>
-                                        <span class="text-secondary text-right">2</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between py-2">
-                                        <span class="font-weight-medium">تعداد خردسال </span>
-                                        <span class="text-secondary text-right">2</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between py-2">
-                                        <span class="font-weight-medium"> نیازمندی های ویژه</span>
-                                        <span class="text-secondary text-right">ویلچر</span>
-                                    </li>
-
-
-                                </ul>
-                                <!-- End Fact List -->
-                            </div>
-               <div class="pt-4 pb-5 px-5 border-bottom">
                                 <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
                                     اطلاعات رزرو
                                 </h5>
@@ -106,10 +111,10 @@
                                 </ul>
                                 <!-- End Fact List -->
                             </div>
-                            <div class="pt-4 pb-5 px-5 border-bottom">
 
-                                <a href="bank" class="text-underline text-primary"><button type="submit" class="btn btn-green btn-wide rounded-sm transition-3d-hover font-size-16 font-weight-bold py-3">پرداخت</button></a>
-                            </div>
+
+
+
 
                         </div>
         </main>
@@ -119,6 +124,55 @@
     {% include 'include/hotel-footer.html' %}
 {% endblock %}
 {% block javascript %}
+     <script>
+    var savedEndTime = localStorage.getItem('end_time');
+var endDateTime;
+
+if (savedEndTime) {
+  endDateTime = new Date(savedEndTime);
+} else {
+  endDateTime = new Date('{{ end_time|date:"c" }}');
+  localStorage.setItem('end_time', endDateTime);
+}
+
+var isRequestButtonAdded = false; // تنها یکبار اضافه شود
+
+function updateCountdown() {
+  var now = new Date();
+  var timeLeft = endDateTime - now;
+
+  var countdownElement = document.getElementById('countdown');
+
+  if (timeLeft <= 0) {
+    countdownElement.textContent = 'منقضی شده!  مجدد درخواست کنید';
+    countdownElement.style.color = 'red'; // تغییر رنگ به قرمز
+
+    if (!isRequestButtonAdded) {
+  // اضافه کردن تگ <a> برای درخواست مجدد
+  var returnLink = document.createElement('a');
+  returnLink.href = '/';
+  returnLink.textContent = 'درخواست مجدد';
+  returnLink.className = 'btn btn-primary mt-2';
+  countdownElement.parentElement.appendChild(returnLink);
+
+  isRequestButtonAdded = true; // تگ اضافه شد
+
+  // حذف اطلاعات از حافظه مرورگر
+  localStorage.removeItem('end_time');
+}
+  } else {
+    var minutes = Math.floor(timeLeft / 60000);
+    var seconds = Math.floor((timeLeft % 60000) / 1000);
+
+    countdownElement.textContent = minutes + ':' + seconds.toString().padStart(2, '0');
+    countdownElement.style.color = ''; // بازگردانی رنگ به حالت اصلی
+  }
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+  </script>
         <!-- Page Preloader -->
         <!-- <div id="jsPreloader" class="page-preloader">
             <div class="page-preloader__content-centered">

@@ -4,6 +4,8 @@ from jdatetime import date as jalali_date
 from django.db.models import Min
 from django.urls import reverse
 from .forms import BookingForm
+from datetime import datetime, timedelta
+import time
 
 def home(request):
     cities = City.objects.all()
@@ -78,6 +80,13 @@ def login(request):
     return render(request, 'login.html')
 
 def confirm(request):
-    return render(request, 'hotel-confirm.html')
+    start_time = datetime.now()
+    countdown_duration = timedelta(minutes=1)
+    end_time = start_time + countdown_duration
+
+    context = {
+        'end_time': end_time,
+    }
+    return render(request, 'hotel-confirm.html', context)
 
 

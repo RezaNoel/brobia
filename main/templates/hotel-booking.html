@@ -20,13 +20,14 @@
                                         <div class="flex-content-center mb-3 width-40 height-40 bg-primary border-width-2 border border-primary text-white mx-auto rounded-circle">
                                             1
                                         </div>
-                                        <div class="text-primary">اطلاعات مسافران</div>
+                                        <div class="text-primary">تایید رزرو</div>
                                     </li>
                                     <li class="list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
                                         <div class="flex-content-center mb-3 width-40 height-40 border  border-width-2 border-gray mx-auto rounded-circle">
                                             2
                                         </div>
-                                        <div class="text-gray-1">تایید رزرو</div>
+                                        <div class="text-gray-1">اطلاعات مسافران</div>
+
                                     </li>
                                     <li class="list-group-item text-center flex-shrink-0 flex-md-shrink-1">
                                         <div class="flex-content-center mb-3 width-40 height-40 border  border-width-2 border-gray mx-auto rounded-circle">
@@ -94,6 +95,7 @@
                                         {{ bookingForm.neeeds.errors }}
                                         {{ bookingForm.neeeds }}
                                     </div>
+                                </div>
                                 </div>
 
 {#                                    <div class="row">#}
@@ -300,7 +302,7 @@
                                                     <span class="font-weight-medium" >تاریخ<br>
 {#                                                        <span class="text-gray-1 font-weight-normal">1 x اتاق استراحت </span>#}
                                                     </span>
-                                                    <span class="text-secondary"id="date-range"></span>
+                                                    <span class="text-secondary" id="date-range"></span>
                                                 </li>
                                                 <li class="d-flex justify-content-between py-2">
                                                     <span class="font-weight-medium">اقامت </span>
@@ -454,8 +456,25 @@
         <script src="{% static 'js/components/hs.sticky-block.js' %}"></script>
         <script src="{% static 'js/components/hs.focus-state.js' %}"></script>
 
+{##}
+{#        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@5.4.3/css/mdb.min.css" />#}
+{#        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>#}
+{#        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mdbootstrap@5.4.3/js/mdb.min.js"></script>#}
+{#        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mdbootstrap@5.4.3/js/mdb.min.js"></script>#}
+
         <!-- JS Plugins Init. -->
         <script>
+        $(function () {
+        $(".datepicker-jalali").pickadate({
+            format: 'yyyy/mm/dd',
+            selectMonths: true,
+            selectYears: 100,
+            clear: 'پاک کردن',
+            close: 'بستن',
+            today: 'امروز',
+            closeOnSelect: true
+        });
+    });
             $(window).on('load', function () {
 
                 // initialization of HSMegaMenu component
