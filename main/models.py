@@ -3,7 +3,8 @@ from django.utils.text import slugify
 from slugify import slugify as slugify_fa
 from django.urls import reverse
 from django.db.models import Min
-
+import random
+import string
 # Create your models here.
 import os
 def room_image_path_154(instance, filename):
@@ -81,6 +82,7 @@ class Room(models.Model):
         verbose_name = ("اتاق")
         verbose_name_plural = ("اتاق ها")
 class Request(models.Model):
+    reserve_code = models.CharField(max_length=10, default='xxxxxxxxxx')
     room = models.ForeignKey(Room, blank=True,on_delete=models.CASCADE, verbose_name='اتاق')
     enter = models.CharField(max_length=20,verbose_name='ورود')
     exit = models.CharField(max_length=20,verbose_name='خروج')
@@ -92,3 +94,6 @@ class Request(models.Model):
         verbose_name = ("درخواست")
         verbose_name_plural = ("درخواست ها")
 
+    def reserve_code_save(self):
+        code = generate_random_string(10)
+        return Room.objects.filter(hotel=self).aggregate(min_price=Min('price'))['min_price']

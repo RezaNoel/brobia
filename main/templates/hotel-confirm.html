@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <h3 class="font-size-18 font-weight-bold text-dark mb-0 text-lh-sm">
-                                            با تشکر. درخواست رزرو شما برای هتل ارسال گردید.
+                                            با تشکر. درخواست رزرو شما برای هتل {{ hotel.faname }} ارسال گردید.
                                         </h3>
                                         <p class="mb-0">پس از تایید درخواست ، به صفحه تکمیل اطلاعات مسافران منتقل می شوید.</p>
                                     </div>
@@ -76,12 +76,12 @@
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">نام هتل </span>
-                                        <span class="text-secondary text-right">گرند</span>
+                                        <span class="text-secondary text-right">{{ hotel.faname }}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">نام اتاق </span>
-                                        <span class="text-secondary text-right">سه تخته</span>
+                                        <span class="text-secondary text-right">{{ room }}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
@@ -91,22 +91,22 @@
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">تاریخ ورود </span>
-                                        <span class="text-secondary text-right">1402/05/23</span>
+                                        <span class="text-secondary text-right">{{ enter}}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">تاریخ خروج </span>
-                                        <span class="text-secondary text-right">1402/05/20</span>
+                                        <span class="text-secondary text-right">{{ exit}}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">آدرس هتل </span>
-                                        <span class="text-secondary text-right">مشهد - امام رضا 12</span>
+                                        <span class="text-secondary text-right">{{ hotel.address}}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">توضیحات هتل </span>
-                                        <span class="text-secondary text-right">این یک توضیحات است</span>
+                                        <span class="text-secondary text-right">{{ hotel.explanation}}</span>
                                     </li>
                                 </ul>
                                 <!-- End Fact List -->

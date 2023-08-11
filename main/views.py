@@ -5,8 +5,13 @@ from django.db.models import Min
 from django.urls import reverse
 from .forms import BookingForm,BookingModelForm
 from datetime import datetime, timedelta
+import random
+import string
 import time
-
+def generate_random_string(length):
+    characters = string.ascii_letters + string.digits
+    random_string = ''.join(random.choice(characters) for _ in range(length))
+    return random_string
 def home(request):
     cities = City.objects.all()
     hotels = Hotel.objects.all()
@@ -40,10 +45,14 @@ def single(request, city_slug, hotel_slug):
     hotel = Hotel.objects.get(slug=hotel_slug)
     rooms = Room.objects.filter(hotel=hotel.id)
 
+
+
+
     content = {"city": city,
                "hotel": hotel,
                "hotels": hotels,
-               "rooms": rooms}
+               "rooms": rooms
+               }
 
     return render(request, 'hotel-single.html', content)
 
@@ -66,8 +75,6 @@ def booking(request,city_slug,hotel_slug,room_slug):
     today_jalali_str = today_jalali.strftime("%Y-%m-%d")
 
 
-        #
-
     content = {"city": city,
                "hotel": hotel,
                "hotels":hotels,
@@ -85,6 +92,8 @@ def confirm(request,room_slug,city_slug,hotel_slug):
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
     rooms = Room.objects.get(slug=room_slug)
+
+
     room = rooms.faname
     room_count = request.GET.get('room')
     enter = request.GET.get('enter')
@@ -92,7 +101,10 @@ def confirm(request,room_slug,city_slug,hotel_slug):
     passengers = request.GET.get('passengers')
     children = request.GET.get('children')
     passengers_count = int(passengers)+int(children)
-    print(room_count,enter,exit,passengers_count)
+    # print(room_count,enter,exit,passengers_count)
+
+    random_string = generate_random_string(10)  # تولید رشته‌ای تصادفی با طول 10
+    print(random_string)
 
     start_time = datetime.now()
     countdown_duration = timedelta(minutes=1)
@@ -100,6 +112,11 @@ def confirm(request,room_slug,city_slug,hotel_slug):
 
     context = {
         'end_time': end_time,
+        'room':room,
+        'enter':enter,
+        'exit':exit,
+        'hotel':hotel,
+
     }
     return render(request, 'hotel-confirm.html', context)
 
