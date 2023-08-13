@@ -29,40 +29,6 @@
                                     </div>
                                 </div>
                             </div>
-{#                            <div class="pt-4 pb-5 px-5 border-bottom">#}
-{#                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">#}
-{#                                    اطلاعات مسافران#}
-{#                                </h5>#}
-{#                                <!-- Fact List -->#}
-{#                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">#}
-{##}
-{##}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium">نام سرگروه</span>#}
-{#                                        <span class="text-secondary text-right">حسن معجونی</span>#}
-{#                                    </li>#}
-{##}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium">شماره تماس سرگروه</span>#}
-{#                                        <span class="text-secondary text-right">09122221111</span>#}
-{#                                    </li>#}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium">تعداد بزرگسال </span>#}
-{#                                        <span class="text-secondary text-right">2</span>#}
-{#                                    </li>#}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium">تعداد خردسال </span>#}
-{#                                        <span class="text-secondary text-right">2</span>#}
-{#                                    </li>#}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium"> نیازمندی های ویژه</span>#}
-{#                                        <span class="text-secondary text-right">ویلچر</span>#}
-{#                                    </li>#}
-{##}
-{##}
-{#                                </ul>#}
-{#                                <!-- End Fact List -->#}
-{#                            </div>#}
                             <div class="pt-4 pb-5 px-5 border-bottom">
                                 <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
                                     اطلاعات رزرو
@@ -76,41 +42,76 @@
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">نام هتل </span>
-                                        <span class="text-secondary text-right">{{ hotel.faname }}</span>
+                                        <span class="text-secondary text-right">{{ reserve.room.hotel.faname }}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">نام اتاق </span>
-                                        <span class="text-secondary text-right">{{ room.faname }}</span>
+                                        <span class="text-secondary text-right">{{ reserve.room.faname }}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">مبلغ کل پرداختی </span>
-                                        <span class="text-secondary text-right">{{ room.price|intcomma }}</span>
+                                        <span class="text-secondary text-right">{{ reserve.room.price}}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">تاریخ ورود </span>
-                                        <span class="text-secondary text-right">{{ enter}}</span>
+                                        <span class="text-secondary text-right">{{reserve.enter}}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">تاریخ خروج </span>
-                                        <span class="text-secondary text-right">{{ exit}}</span>
+                                        <span class="text-secondary text-right">{{ reserve.exit}}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">آدرس هتل </span>
-                                        <span class="text-secondary text-right">{{ hotel.address}}</span>
+                                        <span class="text-secondary text-right">{{ reserve.room.hotel.address}}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">توضیحات هتل </span>
-                                        <span class="text-secondary text-right">{{ hotel.explanation}}</span>
+                                        <span class="text-secondary text-right">{{ reserve.room.hotel.explanation}}</span>
                                     </li>
                                 </ul>
                                 <!-- End Fact List -->
                             </div>
+                            <div class="pt-4 pb-5 px-5 border-bottom">
+                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
+                                    اطلاعات مسافران
+                                </h5>
+                                <!-- Fact List -->
+                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">
+
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">نام سرگروه</span>
+                                        <span class="text-secondary text-right">حسن معجونی</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">شماره تماس سرگروه</span>
+                                        <span class="text-secondary text-right">09122221111</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تعداد بزرگسال </span>
+                                        <span class="text-secondary text-right">2</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تعداد خردسال </span>
+                                        <span class="text-secondary text-right">2</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium"> نیازمندی های ویژه</span>
+                                        <span class="text-secondary text-right">ویلچر</span>
+                                    </li>
+
+
+                                </ul>
+                                <!-- End Fact List -->
+                            </div>
+
 
 
 
@@ -174,23 +175,7 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
   </script>
-    <script>
-    function checkReservationStatus() {
-        $.ajax({
-            url: '{% url 'check-reservation-status' reserve_confirm=reserve.reserve_code %}',
-            method: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                if (response.confirm === 'A') {
-                    window.location.href = '{% url 'hotel-booking' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug reserve=reserve.reserve_code %}';
-                }
-            }
-        });
-    }
 
-    // هر 3 ثانیه تابع بررسی وضعیت را فراخوانی کنید
-    setInterval(checkReservationStatus, 3000);
-</script>
 
         <!-- Page Preloader -->
         <!-- <div id="jsPreloader" class="page-preloader">

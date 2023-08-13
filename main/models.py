@@ -76,19 +76,34 @@ class Room(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.faname+" "+self.hotel.faname
 
     class Meta:
         verbose_name = ("اتاق")
         verbose_name_plural = ("اتاق ها")
 class Request(models.Model):
-    reserve_code = models.CharField(max_length=10, default='xxxxxxxxxx')
+    CONFIRM_CHOICES = (
+        ('W', 'در انتظار تایید'),
+        ('R', 'رد شده'),
+        ('A', 'تایید شده'),
+    )
+    RESERVE_CHOICES = (
+        ('WC', 'در انتظار کانفرم'),
+        ('WI', 'در انتظار اطلاعات'),
+        ('P', 'در انتظار پرداخت'),
+        ('R', 'لغو شده'),
+        ('D', 'انجام شده'),
+    )
+    reserve_code = models.CharField(max_length=10, default='xxxxxxxxxx',verbose_name='کد رزرو')
     room = models.ForeignKey(Room, blank=True,on_delete=models.CASCADE, verbose_name='اتاق')
     enter = models.CharField(max_length=20,verbose_name='ورود')
     exit = models.CharField(max_length=20,verbose_name='خروج')
     room_count = models.IntegerField(verbose_name='تعداد اتاق')
-    passenger_count = models.IntegerField(verbose_name='تعداد مسافر')
-    confirm = models.BooleanField(default=False, verbose_name='کانفرم')
+    passenger_count = models.IntegerField(verbose_name='تعداد بزرگسال')
+    child_count = models.IntegerField(default=0, verbose_name='تعداد خردسال')
+    needs = models.CharField(max_length=255, default="",blank=True, verbose_name='نیازمندی ها')
+    confirm = models.CharField(max_length=1, choices=CONFIRM_CHOICES, default='W', verbose_name='وضعیت')
+    reserve_status = models.CharField(max_length=5, choices=RESERVE_CHOICES, default='WC', verbose_name='وضعیت رزرو')
 
     class Meta:
         verbose_name = ("درخواست")
@@ -97,3 +112,21 @@ class Request(models.Model):
     def reserve_code_save(self):
         code = generate_random_string(10)
         return Room.objects.filter(hotel=self).aggregate(min_price=Min('price'))['min_price']
+    def __str__(self):
+        return self.reserve_code
+
+class Passenger(models.Model):
+    firstname = models.CharField(max_length=75,verbose_name='نام')
+    lastname = models.CharField(max_length=75,verbose_name='نام خانوادگی')
+    email = models.EmailField(max_length=75,verbose_name='ایمیل',blank=True)
+    phone = models.IntegerField(verbose_name='شماره تماس',blank=True)
+    nid = models.IntegerField(verbose_name='کد ملی')
+    birthdate = models.CharField(max_length=15,verbose_name='تاریخ تولد')
+    reserves = models.ManyToManyField(Request, blank=True,verbose_name='رزرو ها')
+
+    class Meta:
+        verbose_name = ("مسافران")
+        verbose_name_plural = ("مسافران")
+
+    def __str__(self):
+        return self.firstname+" "+self.lastname

@@ -33,10 +33,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home,name='home'),
     path('login', views.login,name='login'),
+    path('<str:reserve>/confirm', views.check, name='hotel-check'),
     path('<slug:city_slug>', views.list,name='hotel-list'),
     path('<slug:city_slug>/<slug:hotel_slug>', views.single,name='hotel-single'),
-    path('<slug:city_slug>/<slug:hotel_slug>/<slug:room_slug>', views.booking,name='hotel-booking'),
-    path('<slug:city_slug>/<slug:hotel_slug>/<slug:room_slug>/confirm', views.confirm,name='hotel-confirm'),
+    path('<slug:city_slug>/<slug:hotel_slug>/<slug:room_slug>/<str:reserve_confirm>', views.confirm,name='hotel-confirm'),
+    path('<slug:city_slug>/<slug:hotel_slug>/<slug:room_slug>/<str:reserve>/informations', views.booking,name='hotel-booking'),
+    path('check-reservation-status/<str:reserve_confirm>/', views.check_reservation_status, name='check-reservation-status'),
+
     # path('home',index),
     # path('', include(router.urls)),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
