@@ -71,7 +71,7 @@
                                 <ul class="list-unstyled font-size-1 mb-0 font-size-16">
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">شماره رزرو </span>
-                                        <span class="text-secondary text-right">5784-BD245</span>
+                                        <span class="text-secondary text-right">{{ reserve.reserve_code }}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
@@ -81,7 +81,7 @@
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">نام اتاق </span>
-                                        <span class="text-secondary text-right">{{ room }}</span>
+                                        <span class="text-secondary text-right">{{ room.faname }}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
@@ -131,6 +131,7 @@ var endDateTime;
 if (savedEndTime) {
   endDateTime = new Date(savedEndTime);
 } else {
+
   endDateTime = new Date('{{ end_time|date:"c" }}');
   localStorage.setItem('end_time', endDateTime);
 }
@@ -171,6 +172,33 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+function checkConfirmation(){
+    {#console.log('{{ reserve.confirm }}')#}
+    fetch('{% url 'hotel-confirm' city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug reserve_confirm=reserve %}',{
+        headers: {'Confirm': '123'}
+    }).then(function (response) {
+        response.text().then(function (data){
+            console.log(data)
+        })
+
+    })
+   if('{{ reserve.confirm }}'=='A'){
+        const urlParams = new URLSearchParams(window.location.search);
+
+            // خواندن مقدار پارامترها از URL با استفاده از نام پارامترها
+            const enterValue = urlParams.get('enter');
+            const exitValue = urlParams.get('exit');
+            const roomValue = urlParams.get('room');
+            const passValue = urlParams.get('passengers');
+            const childValue = urlParams.get('children');
+             // Create the URL with the search value
+                const url = `{% url "hotel-booking" city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug reserve=reserve%}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+
+                // Redirect the user to the new URL
+                window.location.href = url;
+    }
+}
+setInterval(checkConfirmation, 1000);
 
   </script>
         <!-- Page Preloader -->

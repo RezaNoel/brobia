@@ -76,19 +76,25 @@ class Room(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.faname+" "+self.hotel.faname
 
     class Meta:
         verbose_name = ("اتاق")
         verbose_name_plural = ("اتاق ها")
 class Request(models.Model):
-    reserve_code = models.CharField(max_length=10, default='xxxxxxxxxx')
+    CONFIRM_CHOICES = (
+        ('W', 'در انتظار تایید'),
+        ('R', 'رد شده'),
+        ('A', 'تایید شده'),
+    )
+    reserve_code = models.CharField(max_length=10, default='xxxxxxxxxx',verbose_name='کد رزرو')
     room = models.ForeignKey(Room, blank=True,on_delete=models.CASCADE, verbose_name='اتاق')
     enter = models.CharField(max_length=20,verbose_name='ورود')
     exit = models.CharField(max_length=20,verbose_name='خروج')
     room_count = models.IntegerField(verbose_name='تعداد اتاق')
-    passenger_count = models.IntegerField(verbose_name='تعداد مسافر')
-    confirm = models.BooleanField(default=False, verbose_name='کانفرم')
+    passenger_count = models.IntegerField(verbose_name='تعداد بزرگسال')
+    child_count = models.IntegerField(default=0, verbose_name='تعداد خردسال')
+    confirm = models.CharField(max_length=1, choices=CONFIRM_CHOICES, default='W', verbose_name='وضعیت')
 
     class Meta:
         verbose_name = ("درخواست")

@@ -32,7 +32,18 @@ class FacilityAdmin(admin.ModelAdmin):
     list_display = ['name','faname']
 
 class RequestAdmin(admin.ModelAdmin):
-    list_display = ['room','enter','exit','room_count','passenger_count']
+    list_display = ['reserve_code', 'get_confirm_status', 'get_room_name', 'enter', 'exit', 'room_count', 'passenger_count']
+    search_fields = ['reserve_code', 'room__faname']  # جستجو بر اساس کد رزرو و نام اتاق
+
+    def get_confirm_status(self, obj):
+        return obj.get_confirm_display()
+
+    get_confirm_status.short_description = 'وضعیت کانفرم'
+
+    def get_room_name(self, obj):
+        return obj.room.faname
+    get_room_name.short_description = 'نام اتاق'
+
 
 # ثبت مدل‌ها با استفاده از کلاس‌های Admin
 admin.site.register(Hotel, HotelAdmin)
