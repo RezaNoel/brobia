@@ -17,16 +17,16 @@
                             <div class="py-3 px-4 px-xl-12 border-bottom">
                                 <ul class="list-group flex-nowrap overflow-auto overflow-md-visble list-group-horizontal list-group-borderless flex-center-between pt-1">
                                     <li class="list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
-                                        <div class="flex-content-center mb-3 width-40 height-40 bg-primary border-width-2 border border-primary text-white mx-auto rounded-circle">
+                                        <div class="flex-content-center mb-3 width-40 height-40 border  border-width-2 border-gray mx-auto rounded-circle">
                                             1
                                         </div>
-                                        <div class="text-primary">تایید رزرو</div>
+                                        <div class="text-gray-1">تایید رزرو</div>
                                     </li>
-                                    <li class="list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
-                                        <div class="flex-content-center mb-3 width-40 height-40 border  border-width-2 border-gray mx-auto rounded-circle">
+                                    <li class=" list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40 bg-primary border-width-2 border border-primary text-white mx-auto rounded-circle">
                                             2
                                         </div>
-                                        <div class="text-gray-1">اطلاعات مسافران</div>
+                                        <div class="text-primary">اطلاعات مسافران</div>
 
                                     </li>
                                     <li class="list-group-item text-center flex-shrink-0 flex-md-shrink-1">
@@ -46,59 +46,62 @@
                                     <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-4">
                                         اطلاعات سرگروه را وارد کنید
                                     </h5>
-                                    <div class="row">
+                                <div class="row">
+{#                                {% for headMyBookingForm in headMyBookingForm %}#}
+
                                         <div class="col-sm-6 mb-4">
                                             <div class="js-form-message">
-                                        {{ bookingForm.firstname.label_tag }}
-                                        {{ bookingForm.firstname.errors }}
-                                        {{ bookingForm.firstname }}
+                                        {{ headMyBookingForm.firstname.label_tag }}
+                                        {{ headMyBookingForm.firstname.errors }}
+                                        {{ headMyBookingForm.firstname }}
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
                                             <div class="js-form-message">
-                                        {{ bookingForm.lastname.label_tag }}
-                                        {{ bookingForm.lastname.errors }}
-                                        {{ bookingForm.lastname }}
+                                        {{ headMyBookingForm.lastname.label_tag }}
+                                        {{ headMyBookingForm.lastname.errors }}
+                                        {{ headMyBookingForm.lastname }}
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
                                             <div class="js-form-message">
-                                        {{ bookingForm.email.label_tag }}
-                                        {{ bookingForm.email.errors }}
-                                        {{ bookingForm.email }}
+                                        {{ headMyBookingForm.email.label_tag }}
+                                        {{ headMyBookingForm.email.errors }}
+                                        {{ headMyBookingForm.email }}
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
                                             <div class="js-form-message">
-                                        {{ bookingForm.phone.label_tag }}
-                                        {{ bookingForm.phone.errors }}
-                                        {{ bookingForm.phone }}
+                                        {{ headMyBookingForm.phone.label_tag }}
+                                        {{ headMyBookingForm.phone.errors }}
+                                        {{ headMyBookingForm.phone }}
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
                                             <div class="js-form-message">
-                                        {{ bookingForm.nid.label_tag }}
-                                        {{ bookingForm.nid.errors }}
-                                        {{ bookingForm.nid }}
+                                        {{ headMyBookingForm.nid.label_tag }}
+                                        {{ headMyBookingForm.nid.errors }}
+                                        {{ headMyBookingForm.nid }}
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
                                             <div class="js-form-message">
-                                        {{ bookingForm.birthdate.label_tag }}
-                                        {{ bookingForm.birthdate.errors }}
-                                        {{ bookingForm.birthdate }}
+                                        {{ headMyBookingForm.birthdate.label_tag }}
+                                        {{ headMyBookingForm.birthdate.errors }}
+                                        {{ headMyBookingForm.birthdate }}
                                             </div>
                                         </div>
                                         <div class="w-100"></div>
                                         <div class="col">
                                             <div class="js-form-message mb-6">
-                                                {{ bookingForm.neeeds.label_tag }}
-                                                {{ bookingForm.neeeds.errors }}
-                                                {{ bookingForm.neeeds }}
+                                                {{ headMyBookingForm.needs.label_tag }}
+                                                {{ headMyBookingForm.needs.errors }}
+                                                {{ headMyBookingForm.needs }}
                                             </div>
                                         </div>
-                                    </div>
 
+{#                                {% endfor %}#}
+                                 </div>
 
                                     <!-- End Contacts Form -->
                                     <h5 id="group-members" class="font-size-21 font-weight-bold text-dark mb-4">
@@ -109,34 +112,36 @@
                                     <!-- Contacts Form -->
 
                                     <div class="row" id="mainForm">
-                                        <div class="col-sm-6 mb-4">
-                                        <div class="js-form-message">
-                                    {{ bookingForm.firstname.label_tag }}
-                                    {{ bookingForm.firstname.errors }}
-                                    {{ bookingForm.firstname }}
-                                        </div>
-                                    </div>
-                                        <div class="col-sm-6 mb-4">
-                                        <div class="js-form-message">
-                                    {{ bookingForm.lastname.label_tag }}
-                                    {{ bookingForm.lastname.errors }}
-                                    {{ bookingForm.lastname }}
-                                        </div>
-                                    </div>
-                                        <div class="col-sm-6 mb-4">
-                                        <div class="js-form-message">
-                                    {{ bookingForm.nid.label_tag }}
-                                    {{ bookingForm.nid.errors }}
-                                    {{ bookingForm.nid }}
-                                        </div>
-                                    </div>
-                                        <div class="col-sm-6 mb-4">
-                                        <div class="js-form-message">
-                                    {{ bookingForm.birthdate.label_tag }}
-                                    {{ bookingForm.birthdate.errors }}
-                                    {{ bookingForm.birthdate }}
-                                        </div>
-                                    </div>
+                                        {% for form in myBookingForm %}
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="js-form-message">
+                                                    {{ form.firstname.label_tag }}
+                                                    {{ form.firstname.errors }}
+                                                    {{ form.firstname }}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="js-form-message">
+                                                    {{ form.lastname.label_tag }}
+                                                    {{ form.lastname.errors }}
+                                                    {{ form.lastname }}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="js-form-message">
+                                                    {{ form.nid.label_tag }}
+                                                    {{ form.nid.errors }}
+                                                    {{ form.nid }}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="js-form-message">
+                                                    {{ form.birthdate.label_tag }}
+                                                    {{ form.birthdate.errors }}
+                                                    {{ form.birthdate }}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <!-- End Contacts Form -->

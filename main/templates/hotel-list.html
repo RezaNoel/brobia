@@ -1073,9 +1073,7 @@
 
         <!-- JS Plugins Init. -->
         <script>
-
-            $(window).on('load', function () {
-                const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(window.location.search);
 
             // خواندن مقدار پارامترها از URL با استفاده از نام پارامترها
             const enterValue = urlParams.get('enter');
@@ -1092,7 +1090,9 @@
             document.getElementById('roomInput').value = roomValue;
 
             const roomInfoSpan = document.getElementById('roomInfo');
-            roomInfoSpan.textContent = `${roomValue} اتاق - ${passValue} بزرگسال، ${childValue} کودک`;
+            roomInfoSpan.textContent = `${roomValue} اتاق - ${passValue} بزرگسال، ${childValue} خردسال`;
+            $(window).on('load', function () {
+
 
 
                 // initialization of HSMegaMenu component

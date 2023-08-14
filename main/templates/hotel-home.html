@@ -29,7 +29,7 @@
                                 <form id="myForm" action="" method="GET" class="js-validate">
 {#                                <input type="text" name="search" id="searchInput" placeholder="Enter your search text">#}
                                     <div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3">
-                                        <div class="col-3">
+                                        <div class="col-sm-12 col-lg-3 col-xl-3 mb-4 mb-lg-0 ">
                                             <span class="d-block text-gray-1 font-weight-normal text-left mb-0">نام شهر مقصد</span>
                                             <!-- Select -->
                                             <select id="searchInput"  class="js-select selectpicker dropdown-select tab-dropdown col-12 pl-0 flaticon-pin-1 d-flex align-items-center text-warning font-weight-semi-bold" title="کجا میری؟" data-style="" data-live-search="true" data-searchbox-classes="input-group-sm">
@@ -47,7 +47,7 @@
                                             <!-- End Select -->
                                         </div>
 
-                                        <div class="col-2  ">
+                                        <div class="col-sm-12 col-lg-2 col-xl-2 mb-4 mb-lg-0 ">
                                             <!-- Input -->
                                             <span class="d-block text-gray-1 text-left font-weight-normal mb-0">ورود</span>
                                             <div class="border-bottom border-width-2 border-color-1">
@@ -57,14 +57,14 @@
                                                           <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
                                                         </span>
                                                     </div>
-                                                    <input id="enterInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-20" data-jdp>
+                                                    <input id="enterInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-20" data-jdp value="{{ formatted_current_date}}">
                                                 </div>
                                                 <!-- End Datepicker -->
                                             </div>
                                             <!-- End Input -->
 
                                         </div>
-                                    <div class="col-2 ">
+                                    <div class="col-sm-12 col-lg-2 col-xl-2 mb-4 mb-lg-0 ">
                                         <!-- Input -->
                                             <span class="d-block text-gray-1 text-left font-weight-normal mb-0">خروج</span>
                                             <div class="border-bottom border-width-2 border-color-1">
@@ -74,19 +74,19 @@
                                                           <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
                                                         </span>
                                                     </div>
-                                                    <input id="exitInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-24" data-jdp>
+                                                    <input id="exitInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-24" data-jdp value="{{ formatted_exit_date}}">
                                                 </div>
                                                 <!-- End Datepicker -->
                                             </div>
                                             <!-- End Input -->
                                         </div>
 
-                                        <div class="col-3">
+                                        <div class="col-sm-12 col-lg-3 col-xl-3 mb-4 mb-lg-0 ">
                                             <!-- Input -->
                                             <span class="d-block text-gray-1 text-left font-weight-normal mb-0">اتاق ها و مهمانان</span>
                                             <a id="basicDropdownClickInvoker" class="dropdown-nav-link dropdown-toggle d-flex pt-3 pb-2" href="javascript:;" role="button" aria-controls="basicDropdownClick" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#basicDropdownClick" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
                                                 <i class="flaticon-plus d-flex align-items-center mr-3 font-size-18 text-warning font-weight-semi-bold"></i>
-                                                <span class="text-black font-size-16 font-weight-semi-bold">1 اتاق - 2 مهمان</span>
+                                                <span id="roomInfo" class="text-black font-size-16 font-weight-semi-bold">1 اتاق - 2 مهمان</span>
                                             </a>
                                             <div id="basicDropdownClick" class="dropdown-menu dropdown-unfold col-11 m-0" aria-labelledby="basicDropdownClickInvoker">
                                                 <div class="w-100 py-2 px-3 mb-3">
@@ -138,9 +138,9 @@
                                             <!-- End Input -->
                                         </div>
 
-                                        <div class="col-2">
+                                        <div class="col-sm-12 col-lg-1dot8 align-self-lg-end text-md-right">
 {#                                            <a href="{% url 'hotel-list' city_id=2 %}" class="btn btn-primary btn-md border-radius-3 mb-xl-0 mb-lg-1 transition-3d-hover" >sss#}
-                                            <button type="submit" class="btn btn-warning btn-md border-radius-3 mb-xl-0 mb-lg-1 transition-3d-hover"  ><i class="flaticon-magnifying-glass font-size-20 mr-2"></i>جستجو کردن</button>
+                                            <button type="submit" class="btn btn-warning col-sm-12 btn-md border-radius-3 mb-xl-0 mb-lg-1 transition-3d-hover"  ><i class="flaticon-magnifying-glass font-size-20 mr-2"></i>جستجو کردن</button>
 {#                                        </a>#}
                                         </div>
                                     </div>
@@ -185,7 +185,7 @@
                             <div class="js-slide mt-2">
                             <div class="card transition-3d-hover shadow-hover-2 h-100 w-100">
                                 <div class="position-relative">
-                                    <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5">
+                                    <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
                                         <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
                                     </a>
                                     <div class="position-absolute top-0 right-0 pt-3 pr-3">
@@ -195,7 +195,7 @@
                                     </div>
                                    <div class="position-absolute bottom-0 left-0 right-0 rtl">
                                         <div class="px-4 pb-3">
-                                            <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block">
+                                            <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block hotel-link">
                                                 <div class="d-flex align-items-center font-size-14 text-white">
                                                     <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ hotel.address}}
                                                 </div>
@@ -213,7 +213,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark">{{ hotel.faname}}</a>
+                                    <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">{{ hotel.faname}}</a>
                                     <div class="mt-2 mb-3">
                                         <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ hotel.starts }} ستاره </span>
                                     </div>
@@ -244,10 +244,10 @@
                                 <header class="w-100 d-flex justify-content-between mb-3">
                                     <div>
                                         <div class="destination pb-3 text-lh-1">
-                                            <a href="{% url 'hotel-list' city_slug='kish' %}" class="text-white font-weight-bold font-size-21">کیش</a>
+                                            <a href="{% url 'hotel-list' city_slug='kish' %}" class="text-white font-weight-bold font-size-21 hotel-link">کیش</a>
                                         </div>
                                         <div class="mt-1 pt-1">
-                                            <a href="{% url 'hotel-list' city_slug='kish' %}" class="text-white">هتل {{ kish_count}}</a>
+                                            <a href="{% url 'hotel-list' city_slug='kish' %}" class="text-white hotel-link">هتل {{ kish_count}}</a>
                                         </div>
                                     </div>
                                 </header>
@@ -261,10 +261,10 @@
                                 <header class="w-100 d-flex justify-content-between mb-3">
                                     <div>
                                         <div class="destination pb-3 text-lh-1">
-                                            <a href="{% url 'hotel-list' city_slug='qeshm' %}" class="text-white font-weight-bold font-size-21">قشم</a>
+                                            <a href="{% url 'hotel-list' city_slug='qeshm' %}" class="text-white font-weight-bold font-size-21 hotel-link">قشم</a>
                                         </div>
                                         <div class="mt-1 pt-1">
-                                            <a href="{% url 'hotel-list' city_slug='qeshm' %}" class="text-white">هتل {{ qeshm_count }}</a>
+                                            <a href="{% url 'hotel-list' city_slug='qeshm' %}" class="text-white hotel-link">هتل {{ qeshm_count }}</a>
                                         </div>
                                     </div>
                                 </header>
@@ -279,10 +279,10 @@
                                 <header class="w-100 d-flex justify-content-between mb-3">
                                     <div>
                                         <div class="destination pb-3 text-lh-1">
-                                            <a href="{% url 'hotel-list' city_slug='isfahan' %}" class="text-white font-weight-bold font-size-21">اصفهان</a>
+                                            <a href="{% url 'hotel-list' city_slug='isfahan' %}" class="text-white font-weight-bold font-size-21 hotel-link">اصفهان</a>
                                         </div>
                                         <div class="mt-1 pt-1">
-                                            <a href="{% url 'hotel-list' city_slug='isfahan' %}" class="text-white">هتل {{ isfahan_count }}</a>
+                                            <a href="{% url 'hotel-list' city_slug='isfahan' %}" class="text-white hotel-link">هتل {{ isfahan_count }}</a>
                                         </div>
                                     </div>
                                 </header>
@@ -297,10 +297,10 @@
                                 <header class="w-100 d-flex justify-content-between mb-3">
                                     <div>
                                         <div class="destination pb-3 text-lh-1">
-                                            <a href="{% url 'hotel-list' city_slug='tabriz' %}l" class="text-white font-weight-bold font-size-21">تبریز</a>
+                                            <a href="{% url 'hotel-list' city_slug='tabriz' %}l" class="text-white font-weight-bold font-size-21 hotel-link">تبریز</a>
                                         </div>
                                         <div class="mt-1 pt-1">
-                                            <a href="{% url 'hotel-list' city_slug='tabriz' %}" class="text-white">هتل {{ tabriz_count }}</a>
+                                            <a href="{% url 'hotel-list' city_slug='tabriz' %}" class="text-white hotel-link">هتل {{ tabriz_count }}</a>
                                         </div>
                                     </div>
                                 </header>
@@ -315,10 +315,10 @@
                                 <header class="w-100 d-flex justify-content-between mb-3">
                                     <div>
                                         <div class="destination pb-3 text-lh-1">
-                                            <a href="{% url 'hotel-list' city_slug='shiraz' %}" class="text-white font-weight-bold font-size-21">شیراز</a>
+                                            <a href="{% url 'hotel-list' city_slug='shiraz' %}" class="text-white font-weight-bold font-size-21 hotel-link">شیراز</a>
                                         </div>
                                         <div class="mt-1 pt-1">
-                                            <a href="{% url 'hotel-list' city_slug='shiraz' %}" class="text-white">هتل {{ shiraz_count }}</a>
+                                            <a href="{% url 'hotel-list' city_slug='shiraz' %}" class="text-white hotel-link">هتل {{ shiraz_count }}</a>
                                         </div>
                                     </div>
                                 </header>
@@ -332,10 +332,10 @@
                                 <header class="w-100 d-flex justify-content-between mb-3">
                                     <div>
                                         <div class="destination pb-3 text-lh-1">
-                                            <a href="{% url 'hotel-list' city_slug='mashhad' %}" class="text-white font-weight-bold font-size-21">مشهد</a>
+                                            <a href="{% url 'hotel-list' city_slug='mashhad' %}" class="text-white font-weight-bold font-size-21 hotel-link">مشهد</a>
                                         </div>
                                         <div class="mt-1 pt-1">
-                                            <a href="{% url 'hotel-list' city_slug='mashhad' %}" class="text-white">هتل {{ mashhad_count }}</a>
+                                            <a href="{% url 'hotel-list' city_slug='mashhad' %}" class="text-white hotel-link">هتل {{ mashhad_count }}</a>
                                         </div>
                                     </div>
                                 </header>
@@ -407,7 +407,7 @@
                                         <div class="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1">
                                     <div class="card transition-3d-hover shadow-hover-2 tab-card h-100">
                                         <div class="position-relative">
-                                            <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5">
+                                            <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
                                                 <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
                                             </a>
                                             <div class="position-absolute top-0 right-0 pt-3 pr-3">
@@ -417,7 +417,7 @@
                                             </div>
                                             <div class="position-absolute bottom-0 left-0 right-0 pb-3">
                                                 <div class="col">
-                                                    <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block">
+                                                    <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block hotel-link">
                                                         <div class="d-flex align-items-center font-size-14 text-white">
                                                             <i class="icon flaticon-pin-1 mr-2 font-size-20"></i>{{ hotel.address}}
                                                         </div>
@@ -435,7 +435,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                            <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark">{{ hotel.faname }}</a>
+                                            <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">{{ hotel.faname }}</a>
                                             <div class="mt-2 mb-3">
                                                         <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ hotel.starts }} ستاره </span>
                                             </div>
@@ -556,6 +556,12 @@
 
         <!-- JS Plugins Init. -->
         <script>
+            const Adult = document.getElementById('passInput').value;
+            const Child = document.getElementById('childInput').value;
+            const Room = document.getElementById('roomInput').value;
+
+            const roomInfoSpan = document.getElementById('roomInfo');
+            roomInfoSpan.textContent = `${Room} اتاق - ${Adult} بزرگسال، ${Child} کودک`;
             $(window).on('load', function () {
                 // initialization of HSMegaMenu component
                 $('.js-mega-menu').HSMegaMenu({
@@ -613,6 +619,29 @@
         // Redirect the user to the new URL
         window.location.href = url;
 
+    });
+    const hotelLinks = document.querySelectorAll('.hotel-link');
+
+    // اضافه کردن event listener به هر لینک
+    hotelLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // جلوگیری از اجرای عملکرد پیش‌فرض لینک
+
+            // اطلاعات مورد نیاز برای ارسال در URL
+            var searchValue = document.getElementById('searchInput').value;
+            var enterValue = document.getElementById('enterInput').value;
+            var exitValue = document.getElementById('exitInput').value;
+            var passValue = document.getElementById('passInput').value;
+            var childValue = document.getElementById('childInput').value;
+            var roomValue = document.getElementById('roomInput').value;
+
+                // Create the URL with the search value
+                const url = `${link.getAttribute('href')}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+
+                // Redirect the user to the new URL
+                window.location.href = url;
+
+        });
     });
 
         </script>
