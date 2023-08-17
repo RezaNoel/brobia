@@ -32,7 +32,7 @@ class FacilityAdmin(admin.ModelAdmin):
     list_display = ['name','faname']
 
 class RequestAdmin(admin.ModelAdmin):
-    list_display = ['reserve_code', 'get_confirm_status','get_reserve_status', 'get_room_name', 'enter', 'exit', 'room_count', 'passenger_count','child_count']
+    list_display = ['reserve_code', 'get_confirm_status','get_reserve_status', 'get_room_name', 'reserve_time']
     search_fields = ['reserve_code', 'room__faname']  # جستجو بر اساس کد رزرو و نام اتاق
 
     def get_confirm_status(self, obj):
@@ -46,8 +46,9 @@ class RequestAdmin(admin.ModelAdmin):
     get_reserve_status.short_description = 'وضعیت رزرو'
 
     def get_room_name(self, obj):
-        return obj.room.faname
-    get_room_name.short_description = 'نام اتاق'
+        room_name = f'{obj.room.faname} - {obj.room.hotel.faname}'
+        return room_name
+    get_room_name.short_description = 'اتاق'
 
 
 

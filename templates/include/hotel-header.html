@@ -39,10 +39,19 @@
 
                             </ul>
                             <div class="position-relative px-3 u-header__topbar-divider">
-                                <a href="{% url 'login' %}" class="d-flex align-items-center text-white">
+
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'logout' %}" class="d-flex align-items-center text-white">
                                     <i class="flaticon-user mr-2 ml-1"></i>
-                                    <span class="d-inline-block font-size-14 mr-1">وارد شوید یا ثبت نام کنید</span>
+                                    <span class="d-inline-block font-size-14 mr-1">خروج از حساب کاربری</span>
                                 </a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="d-flex align-items-center text-white">
+                                    <i class="flaticon-user mr-2 ml-1"></i>
+                                    <span class="d-inline-block font-size-14 mr-1">ورود به حساب کاربری</span>
+                                </a>
+                                {% endif %} 
+
                             </div>
 {#                            <div class="position-relative pl-3 language-switcher dropdown-connector-xl u-header__topbar-divider">#}
 {#                                <a id="languageDropdownInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center ml-1 py-3" href="javascript:;" role="button" aria-controls="languageDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#languageDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">#}

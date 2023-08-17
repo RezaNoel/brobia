@@ -104,6 +104,7 @@ class Request(models.Model):
     needs = models.CharField(max_length=255, default="",blank=True, verbose_name='نیازمندی ها')
     confirm = models.CharField(max_length=1, choices=CONFIRM_CHOICES, default='W', verbose_name='وضعیت')
     reserve_status = models.CharField(max_length=5, choices=RESERVE_CHOICES, default='WC', verbose_name='وضعیت رزرو')
+    reserve_time = models.CharField(default='00:00', max_length=5, verbose_name='زمان رزرو')
 
     class Meta:
         verbose_name = ("درخواست")
@@ -119,8 +120,8 @@ class Passenger(models.Model):
     firstname = models.CharField(max_length=75,verbose_name='نام')
     lastname = models.CharField(max_length=75,verbose_name='نام خانوادگی')
     email = models.EmailField(max_length=75,verbose_name='ایمیل',blank=True)
-    phone = models.IntegerField(verbose_name='شماره تماس',blank=True)
-    nid = models.IntegerField(verbose_name='کد ملی')
+    phone = models.CharField(max_length=11,verbose_name='شماره تماس',blank=True)
+    nid = models.CharField(max_length=10,verbose_name='کد ملی')
     birthdate = models.CharField(max_length=15,verbose_name='تاریخ تولد')
     reserves = models.ManyToManyField(Request, blank=True,verbose_name='رزرو ها')
 

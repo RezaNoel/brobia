@@ -43,17 +43,15 @@
                                 <form method="POST" >
                                     {% csrf_token %}
                                     <!-- Contacts Form -->
-                                    <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-4">
+                                    <h5 class="font-size-21 font-weight-bold text-dark mb-4">
                                         اطلاعات سرگروه را وارد کنید
                                     </h5>
-                                <div class="row">
-{#                                {% for headMyBookingForm in headMyBookingForm %}#}
-
+                                    <div class="row">
                                         <div class="col-sm-6 mb-4">
                                             <div class="js-form-message">
-                                        {{ headMyBookingForm.firstname.label_tag }}
-                                        {{ headMyBookingForm.firstname.errors }}
-                                        {{ headMyBookingForm.firstname }}
+                                                {{ headMyBookingForm.firstname.label_tag }}
+                                                {{ headMyBookingForm.firstname.errors }}
+                                                {{ headMyBookingForm.firstname }}
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
@@ -85,34 +83,29 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
-                                            <div class="js-form-message">
+                                            <div class="js-form-message  ">
                                         {{ headMyBookingForm.birthdate.label_tag }}
                                         {{ headMyBookingForm.birthdate.errors }}
                                         {{ headMyBookingForm.birthdate }}
                                             </div>
                                         </div>
-                                        <div class="w-100"></div>
-                                        <div class="col">
+                                        <div class="col-sm-12 mb-4">
                                             <div class="js-form-message mb-6">
                                                 {{ headMyBookingForm.needs.label_tag }}
                                                 {{ headMyBookingForm.needs.errors }}
                                                 {{ headMyBookingForm.needs }}
                                             </div>
                                         </div>
-
-{#                                {% endfor %}#}
-                                 </div>
-
+                                    </div>
                                     <!-- End Contacts Form -->
-                                    <h5 id="group-members" class="font-size-21 font-weight-bold text-dark mb-4">
+                                    <!-- Contacts Form -->
+                                    <h5 class="font-size-21 font-weight-bold text-dark mb-4">
                                         اطلاعات اعضا گروه را وارد کنید
                                     </h5>
-
-
-                                    <!-- Contacts Form -->
-
-                                    <div class="row" id="mainForm">
+                                    <div class="row">
                                         {% for form in myBookingForm %}
+                                            <div class="border-top border-width-2 border-color-1"></div>
+                                            <br>
                                             <div class="col-sm-6 mb-4">
                                                 <div class="js-form-message">
                                                     {{ form.firstname.label_tag }}
@@ -141,9 +134,9 @@
                                                     {{ form.birthdate }}
                                                 </div>
                                             </div>
+
                                         {% endfor %}
                                     </div>
-
                                     <!-- End Contacts Form -->
                                     <button type="submit" class="btn btn-primary btn-wide rounded-sm transition-3d-hover font-size-16 font-weight-bold py-3">صفحه بعد</button>
 
@@ -426,35 +419,7 @@
                     duration: 700
                 });
             });
-        document.addEventListener('DOMContentLoaded', function() {
-        const adults = '{{ reserve.passenger_count }}';
-        const children = '{{ reserve.child_count }}';
-        console.log(adults, children);
 
-        const mainForm = document.getElementById('mainForm');
-        const group_members = document.getElementById('group-members');
-        if (adults==1 && children==0){
-
-            mainForm.innerHTML = '';
-            group_members.innerHTML = '';
-        }
-        if (adults==1 && children==1){
-        for (let i = 2; i < children; i++) {
-                const clonedForm = mainForm.cloneNode(true);
-                mainForm.parentNode.insertBefore(clonedForm, mainForm.nextSibling);
-         }
-        }
-
-        else{
-         for (let i = 2; i < adults; i++) {
-             const clonedForm = mainForm.cloneNode(true);
-             mainForm.parentNode.insertBefore(clonedForm, mainForm.nextSibling);
-         }
-        for (let i = 0; i < children; i++) {
-                const clonedForm = mainForm.cloneNode(true);
-                mainForm.parentNode.insertBefore(clonedForm, mainForm.nextSibling);
-         }}
-        });
         </script>
 
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCuY6I4hZQvxo5RqCH7kogGKzcrjetRKQI&amp;callback=initMap" async defer></script>

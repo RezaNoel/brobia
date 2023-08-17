@@ -12,7 +12,7 @@
         <main id="content" class="bg-gray space-2">
         <div style="background-color: #ffcc00; padding: 20px;">
     <h4 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
-      مدت زمان انتظار <span id="countdown">00:10</span>
+      اعتبار رزرو شما تا ساعت {{ end_time.time }}
     </h4>
   </div>
            <div class="mb-5 shadow-soft bg-white rounded-sm">
@@ -219,7 +219,7 @@ setInterval(updateCountdown, 1000);
     }
 
     // هر 3 ثانیه تابع بررسی وضعیت را فراخوانی کنید
-    setInterval(checkReservationStatus, 3000);
+    setInterval(checkReservationStatus, 10000);
 </script>
 
         <!-- Page Preloader -->

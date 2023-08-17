@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'accounts',
     "bootstrap5",
     'rest_framework',
     'django.contrib.humanize',
@@ -130,8 +131,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-
 ]
+# STATIC_ROOT = BASE_DIR / "static-cdn"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

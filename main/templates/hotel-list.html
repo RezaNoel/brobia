@@ -31,12 +31,12 @@
                                                 <div class="mb-4">
                                                     <div class="input-group border-bottom border-width-2 border-color-1">
 {#                                                        <i class="flaticon-pin-1 d-flex align-items-center mr-2 text-warning font-weight-semi-bold font-size-22"></i>#}
-                                                        <select id="searchInput"  class="js-select selectpicker dropdown-select tab-dropdown col-12 pl-0 flaticon-pin-1 d-flex align-items-center text-warning font-weight-semi-bold" title={{ city.faname }} data-style="" data-live-search="true" data-searchbox-classes="input-group-sm">
+                                                        <select id="searchInput"  class="js-select selectpicker dropdown-select tab-dropdown col-12 pl-0 flaticon-pin-1 d-flex align-items-center text-warning font-weight-semi-bold" title={{ city.faname }}-{{ city.name }} data-style="" data-live-search="true" data-searchbox-classes="input-group-sm">
                                                             {% for city in cities %}
 
-                                                                <option  class="border-bottom border-color-1" value="{{ city.slug }}" data-content="
+                                                                <option  class="border-bottom border-color-1 flaticon-pin-1" value="{{ city.slug }}" data-content="
                                                                     <span  class='d-flex align-items-center'>
-                                                                        <span class='font-size-16'>{{ city.faname }}</span>
+                                                                        <span class='font-size-16 '> {{ city.faname }} - {{ city.name }} </span>
                                                                     </span>">
                                                             </option>
                                                             {% endfor %}
@@ -129,7 +129,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="w-100 text-right py-1 pr-5">
-                                                                <a class="text-primary font-weight-semi-bold font-size-16" href="#">انجام شده</a>
+                                                                <button type="button" class="btn btn-warning transition-3d-hover done-link font-weight-semi-bold font-size-16" >انجام شده</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -244,6 +244,8 @@
                                                                 </div>
                                                                 <div class="js-scrollbar height-100vh-72">
                                                                     <ul class="d-block list-unstyled">
+
+
                                                                         <li class="card mb-4 overflow-hidden">
                                                                             <div class="product-item__outer w-100">
                                                                                 <div class="row">
@@ -817,7 +819,8 @@
                                     <ul class="d-block list-unstyled products-group prodcut-list-view">
                                         <li class="card mb-5 overflow-hidden">
                                             <div class="product-item__outer w-100">
-                                                <div class="row">
+                                                {% for hotel in hotels %}
+                                                           <div class="row">
                                                     <div class="col-md-5 col-xl-4">
                                                         <div class="product-item__header">
                                                             <div class="position-relative">
@@ -847,15 +850,15 @@
                                                     </div>
                                                     <div class="col-md-7 col-xl-5 col-wd-4gdot5 flex-horizontal-center">
                                                         <div class="w-100 position-relative m-4 m-md-0">
-                                                            <div class="mb-1 pb-1">
-                                                                <span class="badge badge-orange text-white rounded-xs font-size-13 py-1 p-xl-2">پیشنهاد زمان محدود</span>
-                                                                <span class="green-lighter ml-2">
-                                                                    <small class="fas fa-star font-size-10"></small>
-                                                                    <small class="fas fa-star font-size-10"></small>
-                                                                    <small class="fas fa-star font-size-10"></small>
-                                                                    <small class="fas fa-star font-size-10"></small>
-                                                                    <small class="fas fa-star font-size-10"></small>
-                                                                </span>
+                                                            <div class="mb-1 pb-1 text-warning">
+                                                                {% if hotel.special_offer %}
+                                                        <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
+                                                   {% endif %}
+{#                                                                <span class="lighter">#}
+                                                                   {% for _ in "x"|rjust:hotel.starts %}
+                                                                        <small class="fas fa-star"></small>
+                                                                    {% endfor %}
+{#                                                                </span>#}
                                                             </div>
 
                                                             <div class="position-absolute top-0 right-0 pr-md-3 d-none d-md-block">
@@ -864,12 +867,12 @@
                                                                 </button>
                                                             </div>
                                                             <a href="hotel-single-v1.html">
-                                                                <span class="font-weight-medium font-size-17 text-dark d-flex mb-1">خلیج کازوی امپایر پرستیژ</span>
+                                                                <span class="font-weight-medium font-size-17 text-dark d-flex mb-1">هتل {{ hotel.faname}}</span>
                                                             </a>
                                                             <div class="card-body p-0">
                                                                 <a href="hotel-single-v1.html" class="d-block mb-3">
                                                                     <div class="d-flex flex-wrap flex-xl-nowrap align-items-center font-size-14 text-gray-1">
-                                                                        <i class="icon flaticon-placeholder mr-2 font-size-20"></i>لندن، بریتانیا
+                                                                        <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ hotel.address}}
                                                                     <small class="px-1 font-size-15">- </small>
                                                                         <span class="text-primary font-size-14">نمایش روی نقشه</span>
                                                                     </div>
@@ -918,6 +921,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {% endfor %}
+
                                             </div>
                                         </li>
 
@@ -1091,6 +1096,16 @@
 
             const roomInfoSpan = document.getElementById('roomInfo');
             roomInfoSpan.textContent = `${roomValue} اتاق - ${passValue} بزرگسال، ${childValue} خردسال`;
+            const doneLink = document.querySelectorAll('.done-link');
+    // اضافه کردن event listener به هر لینک
+    doneLink.forEach(link => {
+        link.addEventListener('click', function(event) {
+            const Adult = document.getElementById('passInput').value;
+        const Child = document.getElementById('childInput').value;
+        const Room = document.getElementById('roomInput').value;
+
+        const roomInfoSpan = document.getElementById('roomInfo');
+            roomInfoSpan.textContent = `${Room} اتاق - ${Adult} بزرگسال، ${Child} کودک`;});});
             $(window).on('load', function () {
 
 

@@ -12,15 +12,15 @@
         <main id="content">
             <!-- ========== HERO ========== -->
             <div class="hero-block hero-v4 bg-img-hero-bottom text-center z-index-2" style="background-image: url({% static 'img/1920x800/img2.jpg' %});">
-                <div class="container space-2 space-top-lg-4 space-top-xl-10">
-                    <div class="row justify-content-md-center pb-xl-11">
-                        <!-- Info -->
-                        <div class="mb-wd-11 pb-5 py-lg-5">
-                            <h1 class="font-size-50 font-size-xs-30 text-white font-weight-bold">هتل ایده آل خود را پیدا کنید و قیمت ها را مقایسه کنید</h1>
-                            <p class="font-size-20 font-weight-normal text-white">بهترین معاملات را در بیش از 2000000 هتل در سراسر جهان بررسی کنید</p>
-                        </div>
-                        <!-- End Info -->
-                    </div>
+                <div class="container space-2 space-top-lg-4 space-top-xl-4">
+    <div class="row justify-content-md-center pb-xl-20">
+        <!-- Info -->
+        <div class="mb-wd-11 pb-5 py-lg-5 mt-lg-4 pt-lg-4">
+            <h1 class="font-size-50 font-size-xs-30 text-white font-weight-bold">هتل ایده آل خود را پیدا کنید و قیمت ها را مقایسه کنید</h1>
+            <p class="font-size-20 font-weight-normal text-white">دقیق ترین ویژگی ها را در بیش از 1000 هتل در سراسر ایران بررسی کنید</p>
+        </div>
+        <!-- End Info -->
+    </div>
                     <div class="mb-lg-n16">
                         <!-- Search Jobs Form -->
                         <div class="card border-0 tab-shadow">
@@ -34,9 +34,9 @@
                                             <!-- Select -->
                                             <select id="searchInput"  class="js-select selectpicker dropdown-select tab-dropdown col-12 pl-0 flaticon-pin-1 d-flex align-items-center text-warning font-weight-semi-bold" title="کجا میری؟" data-style="" data-live-search="true" data-searchbox-classes="input-group-sm">
                                                 {% for city in cities %}
-                                                    <option  class="border-bottom border-color-1" value="{{ city.slug }}" data-content="
+                                                    <option  class="border-bottom border-color-1 flaticon-pin-1" value="{{ city.slug }}" data-content="
                                                         <span  class='d-flex align-items-center'>
-                                                            <span class='font-size-16'>{{ city.faname }}</span>
+                                                            <span class='font-size-16 '> {{ city.faname }} - {{ city.name }}</span>
                                                         </span>">
 
                                                 </option>
@@ -132,7 +132,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-100 text-right py-1 pr-5">
-                                                    <a class="text-warning font-weight-semi-bold font-size-16" href="#">انجام شده</a>
+                                                    <button type="button" class="btn btn-warning transition-3d-hover done-link font-weight-semi-bold font-size-16" >انجام شده</button>
                                                 </div>
                                             </div>
                                             <!-- End Input -->
@@ -235,7 +235,7 @@
             <div class="destination-block destination-v4">
                 <div class="container space-bottom-1 pt-3">
                     <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mt-3">
-                        <h2 class="section-title text-black font-size-30 font-weight-bold mb-0">مقصد محبوب</h2>
+                        <h2 class="section-title text-black font-size-30 font-weight-bold mb-0">مقاصد محبوب</h2>
                     </div>
                     <div class="row">
                         <!-- Card Block -->
@@ -275,7 +275,9 @@
 
                         <!-- Card Block -->
                         <div class="col-md-6 col-xl-3 mb-3 mb-md-4 pb-1">
-                            <div class="min-height-350 bg-img-hero rounded-border p-5 gradient-overlay-half-bg-gradient transition-3d-hover shadow-hover-2" style="background-image: url({% static 'img/300x350/img4.jpg' %});">
+{#                            <img src="/cat012351000001" class="border-radius cover-image" alt="ترکیه" width="400" height="200">#}
+
+                            <div class="min-height-350 bg-img-hero rounded-border border-radius p-5 cover-image gradient-overlay-half-bg-gradient transition-3d-hover shadow-hover-2" style="background-image: url({% static 'img/300x350/img4.jpg' %});">
                                 <header class="w-100 d-flex justify-content-between mb-3">
                                     <div>
                                         <div class="destination pb-3 text-lh-1">
@@ -556,12 +558,18 @@
 
         <!-- JS Plugins Init. -->
         <script>
-            const Adult = document.getElementById('passInput').value;
-            const Child = document.getElementById('childInput').value;
-            const Room = document.getElementById('roomInput').value;
+        const doneLink = document.querySelectorAll('.done-link');
 
-            const roomInfoSpan = document.getElementById('roomInfo');
-            roomInfoSpan.textContent = `${Room} اتاق - ${Adult} بزرگسال، ${Child} کودک`;
+    // اضافه کردن event listener به هر لینک
+    doneLink.forEach(link => {
+        link.addEventListener('click', function(event) {
+            const Adult = document.getElementById('passInput').value;
+        const Child = document.getElementById('childInput').value;
+        const Room = document.getElementById('roomInput').value;
+
+        const roomInfoSpan = document.getElementById('roomInfo');
+            roomInfoSpan.textContent = `${Room} اتاق - ${Adult} بزرگسال، ${Child} کودک`;});});
+
             $(window).on('load', function () {
                 // initialization of HSMegaMenu component
                 $('.js-mega-menu').HSMegaMenu({

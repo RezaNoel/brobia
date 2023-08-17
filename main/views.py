@@ -102,7 +102,8 @@ def confirm(request,room_slug,city_slug,hotel_slug,reserve_confirm):
     passengers = int(request.GET.get('passengers'))
     children = int(request.GET.get('children'))
     room_count = request.GET.get('room')
-    print(room_count)
+
+    start_time = datetime.now()
     reserve_code_status = ''
     try:
         reserve_code_status = Request.objects.get(reserve_code=reserve_confirm)
@@ -115,13 +116,16 @@ def confirm(request,room_slug,city_slug,hotel_slug,reserve_confirm):
             exit=exit,
             passenger_count=passengers,
             child_count=children,
-            reserve_code=reserve_confirm
+            reserve_code=reserve_confirm,
+            reserve_time = start_time.strftime('%H:%M')
         )
 
 
-    start_time = datetime.now()
+    date_time_object = datetime.strptime(reserve_code_status.reserve_time, '%H:%M')
+
+
     countdown_duration = timedelta(minutes=20)
-    end_time = start_time + countdown_duration
+    end_time = date_time_object + countdown_duration
 
 
 
@@ -242,7 +246,7 @@ def booking(request,reserve):
 
         return render(request, 'hotel-booking.html',content)
     else:
-        return HttpResponseNotFound()
+        raise Http404()
 def check(request,reserve):
     my_reserve = Request.objects.get(reserve_code=reserve)
     my_reserve.reserve_status = 'P'
@@ -252,7 +256,7 @@ def check(request,reserve):
 
 
 
-def login(request):
-    return render(request, 'login.html')
 
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
 

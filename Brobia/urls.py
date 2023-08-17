@@ -21,6 +21,8 @@ from django.urls import path, include
 # from product.serializer import ProductViewSet
 # from product.views import index
 from main import views
+from accounts import urls
+import main
 
 # Routers provide an easy way of automatically determining the URL conf.
 # router = routers.DefaultRouter()
@@ -29,10 +31,11 @@ from main import views
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
+handler404 = 'main.views.custom_404'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home,name='home'),
-    path('login', views.login,name='login'),
+    path('', include('accounts.urls')),
     path('<str:reserve>/informations', views.booking,name='hotel-booking'),
     path('<str:reserve>/confirm', views.check, name='hotel-check'),
     path('<slug:city_slug>', views.list,name='hotel-list'),
