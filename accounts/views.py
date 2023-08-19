@@ -10,8 +10,8 @@ import main
 
 def LoginView(request):
     if request.method =='POST':
-        login_form = LoginForm(request.POST)
-        if login_form.is_valid():
+        loginForm = LoginForm(request.POST)
+        if loginForm.is_valid():
             username = request.POST.get('username')
             password = request.POST.get('password')
             user = authenticate(request,username=username,password=password)
@@ -19,15 +19,16 @@ def LoginView(request):
                 login(request,user)
                 return HttpResponseRedirect(reverse(main.views.home))
             else:
+                loginForm = LoginForm()
                 context = {
-                    'username':username,
-                    'error_message':'اطلاعات اشتباه است'
+                    'loginForm': loginForm,
+                    'error_message':'نام کاربری یا رمز عبور اشتباه است.'
                 }
                 return render(request, 'accounts/login.html', context)
     else:
-        login_form = LoginForm()
+        loginForm = LoginForm()
         context = {
-            'login_form': login_form
+            'loginForm': loginForm
         }
 
     return render(request, 'accounts/login.html', context)

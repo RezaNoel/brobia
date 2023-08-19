@@ -67,23 +67,23 @@
 
             <!-- 2 column grid layout with text inputs for the first and last names -->
 
-            <p>{{ username }} {{ error_message }}</p>
+            <p class="text-danger">{{ error_message }}</p>
             <!-- Email input -->
             <div class="form-outline mb-4">
 {#              <input type="email" id="form3Example3" class="form-control" />#}
 {#              <label class="form-label" for="form3Example3">Email address</label>#}
-                {{login_form.username.label_tag}}
-                {{login_form.username}}
-                {{login_form.username.errors}}
+                {{loginForm.username.label_tag}}
+                {{loginForm.username}}
+                {{loginForm.username.errors}}
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
 {#              <input type="password" id="form3Example4" class="form-control" />#}
 {#              <label class="form-label" for="form3Example4">Password</label>#}
-                {{login_form.password.label_tag}}
-                {{login_form.password}}
-                {{login_form.password.errors}}
+                {{loginForm.password.label_tag}}
+                {{loginForm.password}}
+                {{loginForm.password.errors}}
             </div>
 
 
