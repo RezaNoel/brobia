@@ -68,72 +68,70 @@
 
 
             <!-- Email input -->
+{#            <div class="row">#}
+{#                <div class="col-lg-6 col-md-6 mb-4">#}
+{#                    <div class="form-outline">#}
+{#                        {{registerForm.first_name.label_tag}}#}
+{#                        {{registerForm.first_name}}#}
+{#                        {{registerForm.first_name.errors}}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-6 col-md-6 mb-4">#}
+{#                    <div class="form-outline">#}
+{#                        {{registerForm.last_name.label_tag}}#}
+{#                        {{registerForm.last_name}}#}
+{#                        {{registerForm.last_name.errors}}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#              <div class="row">#}
+{#                <div class="col-lg-6 col-md-6 mb-4">#}
+{#                    <div class="form-outline">#}
+{#                        {{registerForm.phone.label_tag}}#}
+{#                        {{registerForm.phone}}#}
+{#                        {{registerForm.phone.errors}}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-6 col-md-6 mb-4">#}
+{#                    <div class="form-outline">#}
+{#                        {{registerForm.nid.label_tag}}#}
+{#                        {{registerForm.nid}}#}
+{#                        {{registerForm.nid.errors}}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#              <div class="border-top border-width-2 border-color-1"></div>#}
+              <div class="row">
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="form-outline">
+                        {{registerForm.username.label_tag}}
+                        {{registerForm.username}}
+                        {{registerForm.username.errors}}
+                    </div>
+                </div>
+              <!-- Password input -->
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="form-outline">
+                        {{registerForm.password.label_tag}}
+                        {{registerForm.password}}
+                        {{registerForm.password.errors}}
+                    </div>
+                </div>
+            </div>
             <div class="row">
+                <!-- Email input -->
                 <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="form-outline">
-                        {{register_form.first_name.label_tag}}
-                        {{register_form.first_name}}
-                        {{register_form.first_name.errors}}
-                    </div>
+                    {{registerForm.email.label_tag}}
+                    {{registerForm.email}}
+                    {{registerForm.email.errors}}
                 </div>
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="form-outline">
-                        {{register_form.last_name.label_tag}}
-                        {{register_form.last_name}}
-                        {{register_form.last_name.errors}}
-                    </div>
-                </div>
+                <!-- Password input -->
+{#                <div class="col-lg-6 col-md-6 mb-4">#}
+{#                    {{registerForm.confirm_password.label_tag}}#}
+{#                    {{registerForm.confirm_password}}#}
+{#                    {{registerForm.confirm_password.errors}}#}
+{#                </div>#}
             </div>
-              <div class="row">
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="form-outline">
-                        {{register_form.phone.label_tag}}
-                        {{register_form.phone}}
-                        {{register_form.phone.errors}}
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="form-outline">
-                        {{register_form.nid.label_tag}}
-                        {{register_form.nid}}
-                        {{register_form.nid.errors}}
-                    </div>
-                </div>
-            </div>
-              <div class="border-top border-width-2 border-color-1"></div>
-              <div class="row">
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="form-outline">
-                        {{register_form.username.label_tag}}
-                        {{register_form.username}}
-                        {{register_form.username.errors}}
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="form-outline">
-                        {{register_form.password.label_tag}}
-                        {{register_form.password}}
-                        {{register_form.password.errors}}
-                    </div>
-                </div>
-            </div>
-
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-{#              <input type="password" id="form3Example4" class="form-control" />#}
-{#              <label class="form-label" for="form3Example4">Password</label>#}
-                {{register_form.email.label_tag}}
-                {{register_form.email}}
-                {{register_form.email.errors}}
-            </div>
-            <div class="form-outline mb-4">
-{#              <input type="password" id="form3Example4" class="form-control" />#}
-{#              <label class="form-label" for="form3Example4">Password</label>#}
-                {{register_form.confirm_password.label_tag}}
-                {{register_form.confirm_password}}
-                {{register_form.confirm_password.errors}}
-            </div>
-
 
             <!-- Checkbox -->
 {#            <div class="form-check d-flex justify-content-center mb-4">#}

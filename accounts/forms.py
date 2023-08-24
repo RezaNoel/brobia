@@ -13,6 +13,9 @@ class RegisterForm(forms.ModelForm):
     password = forms.CharField(label="رمز عبور",max_length=100, widget=forms.PasswordInput(
         attrs={'class': 'form-control','placeholder': 'رمز عبور خود را وارد کنید'}
     ))
+    confirm_password = forms.CharField(label="تکرار رمز عبور", max_length=100, widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'تکرار رمز عبور خود را وارد کنید'}
+    ))
     email = forms.CharField(label="ایمیل",max_length=100, widget=forms.EmailInput(
         attrs={'class': 'form-control','placeholder': 'ایمیل خود را وارد کنید'}
     ))
@@ -27,20 +30,17 @@ class RegisterForm(forms.ModelForm):
         self.fields['nid'].widget.attrs.update({'class': 'form-control', 'placeholder': 'کد ملی خود را وارد کنید'})
         self.fields['birthdate'].widget.attrs.update({'class': 'form-control', 'placeholder': 'تاریخ تولد خود را وارد کنید'})
 
-    def clean_phone(self):
-        phone = self.cleaned_data.get('phone')
-        if not re.match(r'^09\d{9}$', phone):
-            raise forms.ValidationError('شماره تماس را به درستی وارد کنید (با قالب 09xxxxxxxxx)')
-        return phone
+    # def clean_phone(self):
+    #     phone = self.cleaned_data.get('phone')
+    #     if not re.match(r'^09\d{9}$', phone):
+    #         raise forms.ValidationError('شماره تماس را به درستی وارد کنید (با قالب 09xxxxxxxxx)')
+    #     return phone
 
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="نام کاربری",max_length=100, widget=forms.TextInput(
         attrs={'class': 'form-control','placeholder': 'نام کاربری خود را وارد کنید'}
     ))
-    # email = forms.EmailField(label="ایمیل",max_length=100, widget=forms.EmailInput(
-    #     attrs={'class': 'form-control','placeholder': 'ایمیل خود را وارد کنید'}
-    # ))
     password = forms.CharField(label="رمز عبور",max_length=100, widget=forms.PasswordInput(
         attrs={'class': 'form-control','placeholder': 'رمز عبور خود را وارد کنید'}
     ))
