@@ -1,11 +1,15 @@
 
 {% extends 'base.html' %}
+
 {% load static %}
 {% load humanize %}
 
         <!-- Title -->
 {% block title %}برو بیا | {{ city.faname }}{% endblock %}
-{% block header %}{% endblock %}
+{% block header %}
+ <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+{% endblock %}
 {% block content %}
 
 {% include 'include/list-header.html' %}
@@ -825,24 +829,9 @@
                                                         <div class="product-item__header">
                                                             <div class="position-relative">
                                                                 <div class="js-slick-carousel u-slick u-slick--equal-height " data-slides-show="1" data-slides-scroll="1" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic v4 u-slick__arrow-classic--v4 u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="flaticon-back u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left" data-arrow-right-classes="flaticon-next u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right" data-pagi-classes="js-pagination text-center u-slick__pagination u-slick__pagination--white position-absolute right-0 bottom-0 left-0 mb-3 mb-0">
-                                                                    <div class="js-slide">
-                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img58.jpg' %}"></a>
-                                                                    </div>
-                                                                    <div class="js-slide">
-                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img59.jpg' %}"></a>
-                                                                    </div>
-                                                                    <div class="js-slide">
-                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img60.jpg' %}"></a>
-                                                                    </div>
-                                                                    <div class="js-slide">
-                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img61.jpg' %}"></a>
-                                                                    </div>
-                                                                    <div class="js-slide">
-                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img62.jpg' %}"></a>
-                                                                    </div>
-                                                                    <div class="js-slide">
-                                                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="{% static 'img/300x230/img63.jpg' %}"></a>
-                                                                    </div>
+                                                                    <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}">
+                                                                    <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
+                                                                    </a>
                                                                 </div>
 
                                                             </div>
@@ -850,74 +839,51 @@
                                                     </div>
                                                     <div class="col-md-7 col-xl-5 col-wd-4gdot5 flex-horizontal-center">
                                                         <div class="w-100 position-relative m-4 m-md-0">
+                                                        <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="text-dark hotel-link">
                                                             <div class="mb-1 pb-1 text-warning">
                                                                 {% if hotel.special_offer %}
-                                                        <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
-                                                   {% endif %}
+                                                                    <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
+                                                                {% endif %}
 {#                                                                <span class="lighter">#}
-                                                                   {% for _ in "x"|rjust:hotel.starts %}
-                                                                        <small class="fas fa-star"></small>
-                                                                    {% endfor %}
+                                                                {% for _ in "x"|rjust:hotel.starts %}
+                                                                    <small class="fas fa-star"></small>
+                                                                {% endfor %}
 {#                                                                </span>#}
                                                             </div>
+                                                        </a>
 
                                                             <div class="position-absolute top-0 right-0 pr-md-3 d-none d-md-block">
                                                                 <button type="button" class="btn btn-sm btn-icon rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن">
                                                                     <span class="flaticon-heart-1 font-size-20"></span>
                                                                 </button>
                                                             </div>
-                                                            <a href="hotel-single-v1.html">
+                                                            <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}">
                                                                 <span class="font-weight-medium font-size-17 text-dark d-flex mb-1">هتل {{ hotel.faname}}</span>
                                                             </a>
                                                             <div class="card-body p-0">
-                                                                <a href="hotel-single-v1.html" class="d-block mb-3">
+                                                                <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block mb-3">
                                                                     <div class="d-flex flex-wrap flex-xl-nowrap align-items-center font-size-14 text-gray-1">
                                                                         <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ hotel.address}}
-                                                                    <small class="px-1 font-size-15">- </small>
-                                                                        <span class="text-primary font-size-14">نمایش روی نقشه</span>
+
+
                                                                     </div>
                                                                 </a>
-                                                                <ul class="list-unstyled mb-2 d-md-flex flex-lg-wrap flex-xl-nowrap">
-                                                                    <li class="border border-dark rounded-xs d-flex align-items-center text-lh-1 py-1 px-2 mr-md-2 mb-2 mb-md-0 mb-lg-2 mb-xl-0">
-                                                                        <span class="font-weight-normal font-size-14">صبحانه</span>
-                                                                    </li>
-                                                                    <li class="border border-dark rounded-xs d-flex align-items-center text-lh-1 py-1 px-2 mr-md-2 mb-2 mb-md-0 mb-lg-2 mb-xl-0 mb-md-0">
-                                                                        <span class="font-weight-normal font-size-14">لغو رایگان</span>
-                                                                    </li>
-                                                                    <li class="border border-dark rounded-xs d-flex align-items-center text-lh-1 py-1 px-2 mb-2 mb-md-0">
-                                                                        <span class="font-weight-normal font-size-14">در هتل پرداخت کنید</span>
-                                                                    </li>
-                                                                </ul>
-                                                                <ul class="list-unstyled d-md-flex">
-                                                                    <li class="border border-green bg-green rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mb-2 mb-md-0">
-                                                                        <span class="font-weight-normal font-size-14 text-white">پایین ترین قیمت شامل</span>
-                                                                    </li>
-                                                                    <li class="border border-green rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 ml-md-n1 mb-2 mb-md-0">
-                                                                        <span class="font-weight-normal font-size-14 text-green">صبحانه رایگان</span>
-                                                                    </li>
-                                                                </ul>
+                                                                <a href="" >
+                                                                    <span class="fas fa-map "></span>
+                                                                 <span class="text-primary font-size-14">نمایش روی نقشه</span>
+                                                                    </a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col col-xl-3 col-wd-3gdot5 align-self-center py-4 py-xl-0 border-top border-xl-top-0">
                                                         <div class="d-xl-flex flex-wrap border-xl-left ml-4 ml-xl-0 pr-xl-3 pr-wd-5 text-xl-right justify-content-xl-end">
-                                                            <div class="mb-xl-5 mb-wd-7">
-                                                                <div class="mb-0">
-                                                                    <div class="my-xl-1">
-                                                                        <div class="d-flex align-items-center justify-content-xl-end mb-2">
-                                                                            <span class="badge badge-primary rounded-xs font-size-14 p-2 mr-2 mb-0">4.6 / 5 </span>
-                                                                            <span class="font-size-17 font-weight-bold text-primary">بسیار خوب</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <span class="font-size-14 text-gray-1">(1186 بررسی)</span>
-                                                                </div>
-                                                                <span class="font-size-14 pl-xl-2">"ارزش عالی" "موقعیت مکانی عالی"</span>
-                                                            </div>
+                                                            <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="text-dark hotel-link">
                                                             <div class="mb-0">
                                                                 <span class="mr-1 font-size-14 text-gray-1">از </span>
-                                                                <span class="font-weight-bold">350 تومان </span>
+                                                                <span class="font-weight-bold">{{ hotel.min_price|intcomma }} تومان </span>
                                                                 <span class="font-size-14 text-gray-1">/ شب</span>
                                                             </div>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -989,22 +955,19 @@
                                                         </div>
                                                     </div>
                                                     <a  href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">{{hotel.faname}}</a>
-
-
-
-
+                                                    <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="text-dark hotel-link">
                                                     <div class="mt-2 mb-3">
                                                         {% if hotel.special_offer %}
                                                         <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
                                                    {% endif %}
                                                         <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ hotel.starts }}ستاره </span>
                                                     </div>
-
                                                     <div class="mb-0">
                                                         <span class="mr-1 font-size-14 text-gray-1">از </span>
                                                         <span class="font-weight-bold">{{ hotel.min_price|intcomma }} تومان </span>
                                                         <span class="font-size-14 text-gray-1">/ شب</span>
                                                     </div>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1077,6 +1040,7 @@
         <script src="{% static 'js/components/hs.malihu-scrollbar.js' %}"></script>
 
         <!-- JS Plugins Init. -->
+
         <script>
         const urlParams = new URLSearchParams(window.location.search);
 
