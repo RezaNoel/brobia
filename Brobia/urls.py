@@ -20,9 +20,7 @@ from django.urls import path, include
 # from user.serializer import UserViewSet
 # from product.serializer import ProductViewSet
 # from product.views import index
-from main import views
-from accounts import urls
-import main
+
 
 # Routers provide an easy way of automatically determining the URL conf.
 # router = routers.DefaultRouter()
@@ -34,14 +32,11 @@ import main
 handler404 = 'main.views.custom_404'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home,name='home'),
+
     path('', include('accounts.urls')),
-    path('<str:reserve>/informations', views.booking,name='hotel-booking'),
-    path('<str:reserve>/confirm', views.check, name='hotel-check'),
-    path('<slug:city_slug>', views.list,name='hotel-list'),
-    path('<slug:city_slug>/<slug:hotel_slug>', views.single,name='hotel-single'),
-    path('<slug:city_slug>/<slug:hotel_slug>/<slug:room_slug>/<str:reserve_confirm>', views.confirm,name='hotel-confirm'),
-    path('rV7mGkP8fFv6zLjYtNq2/<str:reserve_confirm>/', views.check_reservation_status, name='check-reservation-status'),
+    path('', include('main.urls')),
+    path('', include('hotels.urls')),
+
 
     # path('home',index),
     # path('', include(router.urls)),

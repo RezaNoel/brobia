@@ -39,11 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+
     'main',
     'accounts',
+    'hotels',
+
     "bootstrap5",
     'rest_framework',
-    'django.contrib.humanize',
+
 
 
 ]
@@ -86,7 +90,7 @@ WSGI_APPLICATION = 'Brobia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'brobia2',
+        'NAME': 'brobia',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
@@ -113,6 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.User'
+GOOGLE_MAPS_API_KEY = 'your_api_key_here'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
