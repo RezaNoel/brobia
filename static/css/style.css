@@ -9,15 +9,24 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@font-face {
+    font-family: iransans;
+    src: url('../fonts/IRANSansWeb(FaNum).ttf');
+}
+@font-face {
+    font-family: 'Ferdosi Regular';
+    src: url('../fonts/ferdosi.ttf') format('truetype');
+}
 :root {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: iransans;
   background: #f6f9ff;
   color: #444444;
 }
+
 
 a {
   color: #4154f1;
@@ -35,7 +44,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito", sans-serif;
+  font-family: iransans;
 }
 
 /*--------------------------------------------------------------
@@ -237,7 +246,7 @@ h6 {
   font-size: 18px;
   font-weight: 500;
   color: #012970;
-  font-family: "Poppins", sans-serif;
+  font-family: iransans;
 }
 
 .card-title span {
@@ -257,7 +266,7 @@ h6 {
 /* Alerts */
 .alert-heading {
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: iransans;
   font-size: 20px;
 }
 
@@ -306,7 +315,7 @@ h6 {
 /* Breadcrumbs */
 .breadcrumb {
   font-size: 14px;
-  font-family: "Nunito", sans-serif;
+  font-family: iransans;
   color: #899bbd;
   font-weight: 600;
 }
@@ -373,7 +382,7 @@ h6 {
   font-size: 26px;
   font-weight: 700;
   color: #012970;
-  font-family: "Nunito", sans-serif;
+  font-family: iransans;
 }
 
 .header {
