@@ -76,4 +76,5 @@ def RegisterView(request):
     return render(request, 'accounts/register.html', context)
 
 
-
+def UserProfileView(request):
+    return render(request, 'accounts/user_profile.html')
