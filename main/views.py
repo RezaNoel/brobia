@@ -1,16 +1,14 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import City,Hotel,Room,Request,Passenger
-from jdatetime import date as jalali_date,timedelta as jalali_timedelta
 from django.db.models import Min
 from django.urls import reverse
-from .forms import BookingForm,BookingModelForm
-from datetime import datetime, timedelta
 from django.shortcuts import redirect
-from urllib.parse import urlencode
 from django.http import JsonResponse,Http404,HttpResponseNotFound
 from django.contrib import messages
-# from jdatetime import datetime as j
-
+from urllib.parse import urlencode
+from datetime import datetime, timedelta
+from jdatetime import date as jalali_date,timedelta as jalali_timedelta
+from .models import City,Hotel,Room,Request,Passenger
+from .forms import BookingForm,BookingModelForm
 
 import random
 import string
@@ -57,18 +55,7 @@ def home(request):
                'formatted_exit_date':formatted_exit_date,}
     return render(request, 'hotel-home.html', content)
 
-def list(request, city_slug):
-    city = City.objects.get(slug=city_slug)
-    cities = City.objects.all()
-    hotels_count = Hotel.objects.filter(city=city.id).count()
-    hotels = Hotel.objects.filter(city=city.id)
 
-    content = {"city": city,
-               "cities": cities,
-               "hotels": hotels,
-               "hotel_count": hotels_count}
-
-    return render(request, 'hotel-list.html', content)
 
 def single(request, city_slug, hotel_slug):
 
@@ -89,10 +76,10 @@ def single(request, city_slug, hotel_slug):
     return render(request, 'hotel-single.html', content)
 
 
-def confirm(request,room_slug,city_slug,hotel_slug,reserve_confirm):
+def confirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
 
-
-    city = City.objects.get(slug=city_slug)
+    print (confirm_city_slug)
+    city = City.objects.get(slug=confirm_city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
     rooms = Room.objects.get(slug=room_slug)
