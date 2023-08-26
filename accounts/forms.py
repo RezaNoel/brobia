@@ -1,28 +1,26 @@
 from django import forms
-from .models import ProfileModel
+from .models import User
 class RegisterForm(forms.ModelForm):
-    first_name = forms.CharField(label="نام",max_length=100, widget=forms.TextInput(
+    first_name = forms.CharField(label="نام",max_length=100,required=False, widget=forms.TextInput(
         attrs={'class': 'form-control','placeholder': 'نام خود را وارد کنید'}
     ))
-    last_name = forms.CharField(label="نام خانوادگی",max_length=100, widget=forms.TextInput(
+    last_name = forms.CharField(label="نام خانوادگی",max_length=100,required=False, widget=forms.TextInput(
         attrs={'class': 'form-control','placeholder': 'نام خانوادگی خود را وارد کنید'}
     ))
-    username = forms.CharField(label="نام کاربری",max_length=100, widget=forms.TextInput(
-        attrs={'class': 'form-control','placeholder': 'نام کاربری خود را وارد کنید'}
-    ))
-    password = forms.CharField(label="رمز عبور",max_length=100, widget=forms.PasswordInput(
+
+    password = forms.CharField(label="رمز عبور",max_length=100,required=True, widget=forms.PasswordInput(
         attrs={'class': 'form-control','placeholder': 'رمز عبور خود را وارد کنید'}
     ))
-    confirm_password = forms.CharField(label="تکرار رمز عبور", max_length=100, widget=forms.PasswordInput(
+    confirm_password = forms.CharField(label="تکرار رمز عبور", max_length=100,required=True, widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'تکرار رمز عبور خود را وارد کنید'}
     ))
-    email = forms.CharField(label="ایمیل",max_length=100, widget=forms.EmailInput(
+    email = forms.CharField(label="ایمیل",max_length=100,required=False, widget=forms.EmailInput(
         attrs={'class': 'form-control','placeholder': 'ایمیل خود را وارد کنید'}
     ))
 
     class Meta:
-        model = ProfileModel
-        fields = ['phone', 'nid', 'birthdate']
+        model = User
+        fields = ['phone', 'nid','birthdate']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -37,10 +35,20 @@ class RegisterForm(forms.ModelForm):
     #     return phone
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField(label="نام کاربری",max_length=100, widget=forms.TextInput(
-        attrs={'class': 'form-control','placeholder': 'نام کاربری خود را وارد کنید'}
-    ))
+class LoginForm(forms.ModelForm):
+    # username = forms.CharField(label="نام کاربری",max_length=100, widget=forms.TextInput(
+    #     attrs={'class': 'form-control','placeholder': 'نام کاربری خود را وارد کنید'}
+    # ))
     password = forms.CharField(label="رمز عبور",max_length=100, widget=forms.PasswordInput(
         attrs={'class': 'form-control','placeholder': 'رمز عبور خود را وارد کنید'}
     ))
+
+    class Meta:
+        model = User
+        fields = ['phone']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['phone'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'شماره تماس خود را وارد کنید'})
+

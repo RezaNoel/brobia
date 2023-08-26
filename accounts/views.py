@@ -1,11 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate,login,logout
-from .forms import LoginForm,RegisterForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import ProfileModel
+from .models import User
+from .forms import LoginForm,RegisterForm
 import main
-from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -14,9 +13,9 @@ def LoginView(request):
     if request.method =='POST':
         loginForm = LoginForm(request.POST)
         if loginForm.is_valid():
-            username = request.POST.get('username')
+            phone = request.POST.get('phone')
             password = request.POST.get('password')
-            user = authenticate(request,username=username,password=password)
+            user = authenticate(request,username=phone,password=password)
             if user is not None:
                 login(request,user)
                 return HttpResponseRedirect(reverse(main.views.home))
@@ -42,24 +41,26 @@ def LogoutView(request):
 def RegisterView(request):
     if request.method =='POST':
         registerForm = RegisterForm(request.POST)
+
         if registerForm.is_valid():
+            # Variables
 
-            user = User.objects.create_user(
-                username = registerForm.cleaned_data['username'],
-                email = registerForm.cleaned_data['email'],
-                password = registerForm.cleaned_data['password'],
-            )
-
-
+            email = registerForm.cleaned_data.get('email')
+            password = registerForm.cleaned_data.get('password')
+            first_name = registerForm.cleaned_data.get('first_name')
+            last_name = registerForm.cleaned_data.get('last_name')
+            phone = registerForm.cleaned_data.get('phone')
+            nid = registerForm.cleaned_data.get('nid')
+            username = phone
+            # Create User
+            user = User(username=username,email=email,first_name=first_name,last_name=last_name,phone=phone,nid=nid)
+            user.set_password(password)
             user.save()
 
-            # profileModel = ProfileModel(user = user,
-            #                             name = registerForm.cleaned_data.get('first_name'),
-            #                             family = registerForm.cleaned_data.get('last_name'),
-            #                             phone = registerForm.cleaned_data.get('phone'),
-            #                             nid = registerForm.cleaned_data.get('nid'),
-            #                             birthday = registerForm.cleaned_data.get('birthday'))
-            # profileModel.save()
+            # Login User
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
+
             return HttpResponseRedirect(reverse(main.views.home))
         context = {
             'registerForm': registerForm
@@ -69,7 +70,7 @@ def RegisterView(request):
     else:
         registerForm = RegisterForm()
         context = {
-            'registerForm': RegisterForm
+            'registerForm': registerForm
         }
 
     return render(request, 'accounts/register.html', context)

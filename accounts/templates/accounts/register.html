@@ -66,71 +66,76 @@
               {% csrf_token %}
             <!-- 2 column grid layout with text inputs for the first and last names -->
 
-
-            <!-- Email input -->
-{#            <div class="row">#}
-{#                <div class="col-lg-6 col-md-6 mb-4">#}
-{#                    <div class="form-outline">#}
-{#                        {{registerForm.first_name.label_tag}}#}
-{#                        {{registerForm.first_name}}#}
-{#                        {{registerForm.first_name.errors}}#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-lg-6 col-md-6 mb-4">#}
-{#                    <div class="form-outline">#}
-{#                        {{registerForm.last_name.label_tag}}#}
-{#                        {{registerForm.last_name}}#}
-{#                        {{registerForm.last_name.errors}}#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#              <div class="row">#}
-{#                <div class="col-lg-6 col-md-6 mb-4">#}
-{#                    <div class="form-outline">#}
-{#                        {{registerForm.phone.label_tag}}#}
-{#                        {{registerForm.phone}}#}
-{#                        {{registerForm.phone.errors}}#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-lg-6 col-md-6 mb-4">#}
-{#                    <div class="form-outline">#}
-{#                        {{registerForm.nid.label_tag}}#}
-{#                        {{registerForm.nid}}#}
-{#                        {{registerForm.nid.errors}}#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#              <div class="border-top border-width-2 border-color-1"></div>#}
+    <h5 class="fw-bold mb-5">اطلاعات حساب کاربری</h5>
               <div class="row">
+              <!-- Username input -->
                 <div class="col-lg-6 col-md-6 mb-4">
                     <div class="form-outline">
-                        {{registerForm.username.label_tag}}
-                        {{registerForm.username}}
-                        {{registerForm.username.errors}}
+                        <a title="اجباری"><span class="text-danger font-size-1 fas fa-asterisk"></span> {{registerForm.phone.label_tag}}</a>
+                        {{registerForm.phone}}
+                        {{registerForm.phone.errors}}
                     </div>
                 </div>
-              <!-- Password input -->
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="form-outline">
-                        {{registerForm.password.label_tag}}
-                        {{registerForm.password}}
-                        {{registerForm.password.errors}}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Email input -->
+             <!-- Email input -->
                 <div class="col-lg-6 col-md-6 mb-4">
                     {{registerForm.email.label_tag}}
                     {{registerForm.email}}
                     {{registerForm.email.errors}}
                 </div>
-                <!-- Password input -->
-{#                <div class="col-lg-6 col-md-6 mb-4">#}
-{#                    {{registerForm.confirm_password.label_tag}}#}
-{#                    {{registerForm.confirm_password}}#}
-{#                    {{registerForm.confirm_password.errors}}#}
-{#                </div>#}
+            </div>
+            <div class="row">
+                 <!-- Password input -->
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="form-outline">
+                        <a title="اجباری"><span class="text-danger font-size-1 fas fa-asterisk"></span> {{registerForm.password.label_tag}}</a>
+                        {{registerForm.password}}
+                        {{registerForm.password.errors}}
+                    </div>
+                </div>
+
+                <!-- Confirm Password input -->
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <a title="اجباری"><span class="text-danger font-size-1 fas fa-asterisk"></span> {{registerForm.confirm_password.label_tag}}</a>
+                    {{registerForm.confirm_password}}
+                    {{registerForm.confirm_password.errors}}
+                </div>
+            </div>
+              <div class="border-top border-width-2 border-color-1"></div>
+              <br>
+           <h5 class="fw-bold mb-5">اطلاعات شخصی</h5>
+            <!-- Email input -->
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="form-outline">
+                        {{registerForm.first_name.label_tag}}
+                        {{registerForm.first_name}}
+                        {{registerForm.first_name.errors}}
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="form-outline">
+                        {{registerForm.last_name.label_tag}}
+                        {{registerForm.last_name}}
+                        {{registerForm.last_name.errors}}
+                    </div>
+                </div>
+            </div>
+              <div class="row">
+
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="form-outline">
+                        {{registerForm.nid.label_tag}}
+                        {{registerForm.nid}}
+                        {{registerForm.nid.errors}}
+                    </div>
+                </div>
+                  <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="form-outline">
+                        {{registerForm.birthdate.label_tag}}
+                        {{registerForm.birthdate}}
+                        {{registerForm.birthdate.errors}}
+                    </div>
+                </div>
             </div>
 
             <!-- Checkbox -->
