@@ -15,35 +15,6 @@ import string
 import time
 
 
-def home(request):
-    current_date = jalali_date.today()
-    exit_date=current_date + jalali_timedelta(days=4)
-    formatted_exit_date = exit_date.strftime('%Y/%m/%d')
-    formatted_current_date = current_date.strftime('%Y/%m/%d')
-    # print(formatted_new_date)
-
-    cities = City.objects.all()
-    hotels = Hotel.objects.all()
-    kish_count = City.objects.get(faname='کیش').hotel_set.count()
-    mashhad_count = City.objects.get(faname='مشهد').hotel_set.count()
-    qeshm_count = City.objects.get(faname='قشم').hotel_set.count()
-    isfahan_count = City.objects.get(faname='اصفهان').hotel_set.count()
-    shiraz_count = City.objects.get(faname='شیراز').hotel_set.count()
-    tabriz_count = City.objects.get(faname='تبریز').hotel_set.count()
-    # hotel = Hotel.objects.get(slug=hotels.slug)
-    content = {'cities': cities,
-               'hotels':hotels,
-               'kish_count':kish_count,
-               'mashhad_count':mashhad_count,
-               'qeshm_count':qeshm_count,
-               'tabriz_count':tabriz_count,
-               'shiraz_count':shiraz_count,
-               'isfahan_count':isfahan_count,
-               'formatted_current_date':formatted_current_date,
-               'formatted_exit_date':formatted_exit_date,}
-    return render(request, 'hotel-home.html', content)
-
-
 
 
 
