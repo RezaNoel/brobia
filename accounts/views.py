@@ -1,3 +1,4 @@
+import hotels.views
 from django.shortcuts import render
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect
@@ -18,7 +19,7 @@ def LoginView(request):
             user = authenticate(request,username=phone,password=password)
             if user is not None:
                 login(request,user)
-                return HttpResponseRedirect(reverse(main.views.home))
+                return HttpResponseRedirect(reverse(hotels.views.home))
             else:
                 loginForm = LoginForm()
                 context = {
@@ -36,7 +37,7 @@ def LoginView(request):
 
 def LogoutView(request):
     logout(request)
-    return HttpResponseRedirect(reverse(main.views.home))
+    return HttpResponseRedirect(reverse(hotels.views.home))
 
 def RegisterView(request):
     if request.method =='POST':
