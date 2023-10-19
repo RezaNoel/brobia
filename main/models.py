@@ -56,7 +56,15 @@ class Hotel(models.Model):
 
     def min_price(self):
         # کمترین قیمت اتاق‌ها را برای هتل محاسبه کنید و برگردانید
-        return Room.objects.filter(hotel=self).aggregate(min_price=Min('price'))['min_price']
+        min_price = Room.objects.filter(hotel=self).aggregate(min_price=Min('price'))['min_price']
+
+        if min_price is not None:
+            # تبدیل عدد به رشته با ویرگول برای جداکردن هر 3 رقم
+            formatted_price = '{:,.0f}'.format(min_price)  # اینجا شما می‌توانید تنظیمات نمایش عدد را تغییر دهید
+            return formatted_price
+        else:
+            return "0"  # یا هر پیام دلخواه دیگر برای نمایش در صورت عدم وجود قیمت
+
     class Meta:
         verbose_name = ("هتل")
         verbose_name_plural = ("هتل ها")
