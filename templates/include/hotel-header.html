@@ -43,7 +43,7 @@
                                 {% if user.is_authenticated %}
                                 <a href="{% url 'profile' %}" class="d-flex align-items-center text-white">
                                     <i class="flaticon-user mr-2 ml-1"></i>
-                                    <span class="d-inline-block font-size-14 mr-1">حساب کاربری</span>
+                                    <span class="d-inline-block font-size-14 mr-1">{{ user.first_name }} {{ user.last_name }}</span>
                                 </a>
                                 {% else %}
                                     <a href="{% url 'login' %}" class="d-flex align-items-center text-white">
@@ -53,16 +53,6 @@
                                 {% endif %} 
 
                             </div>
-{#                            <div class="position-relative pl-3 language-switcher dropdown-connector-xl u-header__topbar-divider">#}
-{#                                <a id="languageDropdownInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center ml-1 py-3" href="javascript:;" role="button" aria-controls="languageDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#languageDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">#}
-{#                                    <span class="d-inline-block">یورو</span>#}
-{#                                </a>#}
-{#                                <div id="languageDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right mt-0" aria-labelledby="languageDropdownInvoker">#}
-{#                                    <a class="dropdown-item" href="#">دلار </a>#}
-{#                                    <a class="dropdown-item active" href="#"> یورو </a>#}
-{#                                    <a class="dropdown-item" href="#"> تومان </a>#}
-{#                                </div>#}
-{#                            </div>#}
                         </div>
                     </div>
                 </div>
@@ -98,183 +88,50 @@
                             <ul class="navbar-nav u-header__navbar-nav">
                                 <!-- Home -->
 {#                                <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
-                                    <a  class="nav-link u-header__nav-link u-header__nav-link-border" href="/">صفحه اصلی</a>
+                                    <a  class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-hotel-1 mr-2 ml-1 "></i> هتل</a>
 {#                                </li>#}
                                 <!-- End Home -->
 
                                 <!-- Hotel -->
-                                    <a  class="nav-link u-header__nav-link u-header__nav-link-border" href="https://sap19.ir/" >رزرو پرواز</a>
+                                    <a  class="nav-link u-header__nav-link u-header__nav-link-border" href="https://sap19.ir/" ><i class="bi bi-airplane  mr-2 ml-1"></i> پرواز</a>
                                 <!-- End Hotel -->
                                 <!-- About -->
-                                    <a  class="nav-link u-header__nav-link u-header__nav-link-border" href="{% url 'taxi-home' %}" >درخواست تاکسی</a>
+                                    <a  class="nav-link u-header__nav-link u-header__nav-link-border" href="{% url 'taxi-home' %}" ><i class="bi bi-taxi-front-fill  mr-2 ml-1"></i> تاکسی</a>
                                 <!-- End About -->
-{##}
-{#                                <!-- Tour -->#}
-{#                                <li class="nav-item hs-has-mega-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut" data-max-width="722px" data-position="right">#}
-{#                                    <a id="tourMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">تور</a>#}
-{##}
-{#                                    <!-- Tour - Mega Menu -->#}
-{#                                    <div class="hs-mega-menu u-header__sub-menu u-header__sub-menu-rounded" aria-labelledby="tourMegaMenu">#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-12 col-xl-3dot64">#}
-{#                                                <span class="u-header__sub-menu-title">سبک فهرست</span>#}
-{#                                                <ul class="u-header__sub-menu-nav-group u-header__sub-menu-bordered mb-3">#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../tour/tour-list.html">نوار کناری</a></li>#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../tour/tour-fullwidth.html">تمام عرض</a></li>#}
-{#                                                </ul>#}
-{#                                                <span class="u-header__sub-menu-title">رزرو تور</span>#}
-{#                                                <ul class="u-header__sub-menu-nav-group u-header__sub-menu-bordered mb-3">#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../tour/tour-booking.html">رزرو تور</a></li>#}
-{#                                                </ul>#}
-{#                                            </div>#}
-{#                                            <div class="col-12 col-xl-3dot64">#}
-{#                                                <span class="u-header__sub-menu-title">تنها</span>#}
-{#                                                <ul class="u-header__sub-menu-nav-group u-header__sub-menu-bordered mb-3">#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../tour/tour-single-v1.html">تور تنها 1</a></li>#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../tour/tour-single-v2.html">تور تنها 2</a></li>#}
-{#                                                </ul>#}
-{#                                            </div>#}
-{#                                            <div class="col-12 col-xl">#}
-{#                                                <!-- Banner Image -->#}
-{#                                                <div class="u-header__banner u-header__banner-no-overlay rounded-xs" style="background-image: url(../../assets/img/240x243/img1.jpg);">#}
-{#                                                    <div class="u-header__banner-content u-header__banner-content-not-centered">#}
-{#                                                        <span class="u-header__banner-title">پیشنهادهای ویژه</span>#}
-{#                                                        <p class="u-header__banner-text">هتل های عالی خود را بیابید بهترین قیمت ها را در بیش از 20000 ملک با بهترین قیمت ها دریافت کنید</p>#}
-{#                                                        <a class="btn btn-white text-blue btn-sm rounded-xs transition-3d-hover" href="#">معاملات را ببینید</a>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                                <!-- End Banner Image -->#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <!-- End Tour - Mega Menu -->#}
-{#                                </li>#}
-{#                                <!-- End Tour -->#}
-{##}
-{#                                <!-- Activity -->#}
-{#                                <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
-{#                                    <a id="ActivityMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle u-header__nav-link-border" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="ActivitySubMenu">فعالیت</a>#}
-{#                                    <!-- Activity Submenu -->#}
-{#                                    <ul id="ActivitySubMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu-rounded u-header__sub-menu-bordered hs-sub-menu-right u-header__sub-menu--spacer" aria-labelledby="ActivityMenu" style="min-width: 230px;">#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../activities/activities-list.html">نوار کناری</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../activities/activities-fullwidth.html">تمام عرض</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../activities/activities-single-v1.html">فعالیت تنها 1</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../activities/activities-single-v2.html">فعالیت تنها 2</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../activities/activities-booking.html">رزرو فعالیت</a></li>#}
-{#                                    </ul>#}
-{#                                    <!-- End Activity Submenu -->#}
-{#                                </li>#}
-{#                                <!-- End Activity -->#}
-{##}
-{#                                <!-- Rental -->#}
-{#                                <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
-{#                                    <a id="rentalMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle u-header__nav-link-border" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="rentalSubMenu">اجاره ای</a>#}
-{#                                    <!-- Rental Submenu -->#}
-{#                                    <ul id="rentalSubMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu-rounded u-header__sub-menu-bordered hs-sub-menu-right u-header__sub-menu--spacer" aria-labelledby="rentalMenu" style="min-width: 230px;">#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../rental/rental-list.html">نوار کناری</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../rental/rental-list-02.html">فهرست با نقشه</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../rental/rental-single-v1.html">اجاره تنها 1</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../rental/rental-single-v2.html">اجاره تک نسخه 2</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../rental/rental-booking.html">رزرو اجاره</a></li>#}
-{#                                    </ul>#}
-{#                                    <!-- End Rental Submenu -->#}
-{#                                </li>#}
-{#                                <!-- End Rental -->#}
-{##}
-{##}
-{#                                <!-- Car -->#}
-{#                                <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
-{#                                    <a id="carMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle u-header__nav-link-border" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="carSubMenu">ماشین</a>#}
-{#                                    <!-- Car Submenu -->#}
-{#                                    <ul id="carSubMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu-rounded u-header__sub-menu-bordered hs-sub-menu-right u-header__sub-menu--spacer" aria-labelledby="carMenu" style="min-width: 230px;">#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../cars/cars-list.html">نوار کناری</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../cars/cars-fullwidth.html">تمام عرض</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../cars/cars-single-v1.html">ماشین تنها 1</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../cars/cars-single-v2.html">ماشین تک نسخه 2</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../cars/cars-booking.html">رزرو خودرو</a></li>#}
-{#                                    </ul>#}
-{#                                    <!-- End Car Submenu -->#}
-{#                                </li>#}
-{#                                <!-- End Car -->#}
-{##}
-{#                                <!-- Yacht -->#}
-{#                                <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
-{#                                    <a id="yachtMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle u-header__nav-link-border" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="yachtSubMenu">قایق بادبانی</a>#}
-{#                                    <!-- Yacht Submenu -->#}
-{#                                    <ul id="yachtSubMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu-rounded u-header__sub-menu-bordered hs-sub-menu-right u-header__sub-menu--spacer" aria-labelledby="yachtMenu" style="min-width: 230px;">#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../yacht/yacht-list.html">نوار کناری</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../yacht/yacht-fullwidth.html">تمام عرض</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../yacht/yacht-single-v1.html">قایق تنها 1</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../yacht/yacht-single-v2.html">قایق تنها 2</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../yacht/yacht-booking.html">رزرو قایق بادبانی</a></li>#}
-{#                                    </ul>#}
-{#                                    <!-- End Yacht Submenu -->#}
-{#                                </li>#}
-{#                                <!-- End Yacht -->#}
-{##}
-{#                                <!-- Flights -->#}
-{#                                <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
-{#                                    <a id="flightsMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle u-header__nav-link-border" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="flightsSubMenu">پروازها</a>#}
-{#                                    <!-- Flights Submenu -->#}
-{#                                    <ul id="flightsSubMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu-rounded u-header__sub-menu-bordered hs-sub-menu-right u-header__sub-menu--spacer" aria-labelledby="flightsMenu" style="min-width: 230px;">#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../flights/flights-list.html">نوار کناری</a></li>#}
-{#                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="../flights/flights-booking.html">رزرو پرواز</a></li>#}
-{#                                    </ul>#}
-{#                                    <!-- End Flights Submenu -->#}
-{#                                </li>#}
-{#                                <!-- End Flights -->#}
-{##}
-{#                                <!-- Pages -->#}
-{#                                <li class="nav-item hs-has-mega-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut" data-max-width="722px" data-position="right">#}
-{#                                    <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">صفحات</a>#}
-{#                                    <!-- Pages - Mega Menu -->#}
-{#                                    <div class="hs-mega-menu u-header__sub-menu u-header__sub-menu-rounded" aria-labelledby="pagesMegaMenu">#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-12 col-xl-4">#}
-{#                                                <ul class="u-header__sub-menu-nav-group u-header__sub-menu-bordered mb-3">#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/destination.html">مقصد</a></li>#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/about.html">درباره ما</a></li>#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/contact.html">تماس با ما</a></li>#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/terms-conditions.html">شرایط استفاده</a></li>#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/faq.html">سوالات متداول</a></li>#}
-{#                                                </ul>#}
-{#                                            </div>#}
-{#                                            <div class="col-12 col-xl-4">#}
-{#                                                <ul class="u-header__sub-menu-nav-group u-header__sub-menu-bordered mb-3">#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../blog/blog-list.html">وبلاگ</a></li>#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../blog/blog-single.html">وبلاگ مجرد</a></li>#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/become-expert.html">متخصص شوید</a></li>#}
-{#                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="../others/404.html">404</a></li>#}
-{#                                                </ul>#}
-{#                                            </div>#}
-{#                                            <div class="col-12 col-xl-4">#}
-{#                                                <a href="#" class="btn btn-soft-primary mb-3 w-100"><span class="fas fa-laptop-code mr-2"></span>مستندات</a>#}
-{#                                                <a href="#" class="btn btn-soft-secondary w-100"><span class="fas fa-th mr-2"></span>شروع کننده</a>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <!-- End Pages - Mega Menu -->#}
-{#                                </li>#}
-{#                                <!-- End Pages -->#}
-{##}
-{#                            </ul>#}
-{#                        </div>#}
+
+                            </ul>
+                        </div>
                         <!-- End Navigation -->
 
+                        <!-- Logo -->
+                        <div class="d-lg-none d-xl-none   mr-auto">
+                           <a href="{% url 'home' %}" aria-label="MyHotel">
+                            <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="My Icon">
+                            <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
+                        </a>
+                        </div>
+                        <!-- End Logo -->
+
                         <!-- Shopping Cart -->
-                        <div class="pl-2 pl-md-4 ml-auto shopping-cart">
-                            <a id="shoppingCartDropdownInvoker" class="btn-text-secondary poition-relative py-4" href="javascript:;" role="button" aria-controls="shoppingCartDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#shoppingCartDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                                <span class="flaticon-shopping-basket font-size-25 text-primary-max-lg"></span>
-                            </a>
-                            <div id="shoppingCartDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right text-center p-7" aria-labelledby="shoppingCartDropdownInvoker" style="min-width: 250px;">
-                                <span class="btn btn-icon btn-soft-primary rounded-circle mb-3">
-                                    <span class="flaticon-shopping-basket btn-icon__inner"></span>
-                                </span>
-                                <span class="d-block">سبد خرید شما خالی است</span>
+                        <div class="d-lg-none d-xl-none ">
+                            <div class="position-relative u-header__topbar-divider">
+
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'profile' %}" class="d-flex align-items-center text-primary">
+                                    <i class="flaticon-user mr-2 ml-1 "></i>
+                                </a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="d-flex align-items-center text-primary">
+                                    <i class="flaticon-user mr-2 ml-1"></i>
+                                </a>
+                                {% endif %}
+
                             </div>
                         </div>
                         <!-- End Shopping Cart -->
-{#                    </nav>#}
+
+
+                    </nav>
                     <!-- End Nav -->
                 </div>
             </div>
