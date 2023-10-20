@@ -658,10 +658,10 @@
     minusBtns.forEach((btn) => btn.addEventListener('click', () => btn.nextElementSibling.value = btn.nextElementSibling.value >= 2 ? +btn.nextElementSibling.value - 1 : btn.nextElementSibling.value ))
 
     const plusRoomBtn = document.querySelector('.js-pluss')
-    plusRoomBtn.addEventListener('click', () => roomInput.value = roomInput.value < 10 ? +roomInput.value + 1 : roomInput.value )
+    plusRoomBtn.addEventListener('click', () => roomInput.value = roomInput.value < 4 ? +roomInput.value + 1 : roomInput.value )
 
     const plusGuestBtn = document.querySelector('.guest-plus')
-    plusGuestBtn.addEventListener('click', () => guestInput.value = guestInput.value < 20 ? +guestInput.value + 1 : guestInput.value )
+    plusGuestBtn.addEventListener('click', () => guestInput.value = guestInput.value < 6 ? +guestInput.value + 1 : guestInput.value )
 
 </script>
  {% endblock %}
