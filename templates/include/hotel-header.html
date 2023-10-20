@@ -111,12 +111,26 @@
                 <div id="logoAndNav"  class="container-fluid py-1">
                     <!-- Nav -->
                     <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space" >
-                        <!-- Logo -->
-                        <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-white" href="{% url 'home' %}" aria-label="MyHotel">
-                            <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="My Icon">
-                            <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
-                        </a>
-                        <!-- End Logo -->
+                        <ul class="navbar-nav u-header__navbar-nav">
+                            <!-- Logo -->
+                            <li class="nav-item hs-has-sub-menu u-header__nav-item">
+                                <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-white" href="{% url 'home' %}" aria-label="MyHotel">
+                                    <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="My Icon">
+                                    <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
+                                </a>
+                            </li>
+                            <!-- Hotel -->
+                            <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+                                <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-down-chevron mr-2 ml-1"></i> بیشتر</a>
+                                <ul id="homeSubMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu-rounded u-header__sub-menu-bordered hs-sub-menu-right u-header__sub-menu--spacer" aria-labelledby="homeMenu" style="min-width: 230px;">
+                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="index.html">وبلاگ</a></li>
+                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="home-v2.html">ارتباط با ما</a></li>
+                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="home-v3.html">درباره ما</a></li>
+                                </ul>
+                            </li>
+                            <!-- End Hotel -->
+                            <!-- End Logo -->
+                        </ul>
                         <!-- End Handheld Logo -->
 
                         <!-- Scroll Logo -->
@@ -137,31 +151,31 @@
                         <!-- Navigation -->
                         <div id="navBar" class="navbar-collapse u-header__navbar-collapse collapse order-2 order-xl-0 pt-4 p-xl-0 position-relative">
                             <ul class="navbar-nav u-header__navbar-nav">
-                                <!-- Home -->
+                                <!-- Hotel -->
 {#                                <li class="nav-item hs-has-sub-menu u-header__nav-item airplane" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
                                     <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-hotel-1 mr-2 ml-1 airplane"></i> هتل</a>
 {#                                </li>#}
-                                <!-- End Home -->
-
-                                <!-- Hotel -->
-                                    <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border " href="https://sap19.ir/" ><i class="bi bi-airplane  mr-2 ml-1 "></i> پرواز</a>
                                 <!-- End Hotel -->
-                                <!-- About -->
+
+                                <!-- Flight -->
+                                    <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border " href="https://sap19.ir/" ><i class="bi bi-airplane  mr-2 ml-1 "></i> پرواز</a>
+                                <!-- End Flight -->
+
+                                <!-- Taxi -->
                                     <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border " href="{% url 'taxi-home' %}" ><i class="bi bi-taxi-front-fill  mr-2 ml-1"></i> تاکسی</a>
-                                <!-- End About -->
+                                <!-- End Taxi -->
 
                             </ul>
                         </div>
                         <!-- End Navigation -->
-
-                        <!-- Logo -->
-                        <div class="d-lg-none d-xl-none   mr-auto">
-                           <a href="{% url 'home' %}" aria-label="MyHotel">
-                            <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="My Icon">
-                            <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
-                        </a>
-                        </div>
-                        <!-- End Logo -->
+                            <!-- Logo -->
+                            <div class="d-lg-none d-xl-none   mr-auto">
+                                <a href="{% url 'home' %}" aria-label="MyHotel">
+                                    <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="My Icon">
+                                    <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
+                                </a>
+                            </div>
+                            <!-- End Logo -->
 
                         <!-- Shopping Cart -->
                         <div class="d-lg-none d-xl-none ">
