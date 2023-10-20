@@ -1,0 +1,14 @@
+.contact-icon svg{
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    margin-top: 2px;
+}
+
+.contact-icon:hover path{
+    stroke:white
+}
+
+#nav-item-hover:hover {
+    color: #fc0;
+}
