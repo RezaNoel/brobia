@@ -12,3 +12,7 @@
 #nav-item-hover:hover {
     color: #fc0;
 }
+
+.js-slide:nth-child(odd){
+    margin-top: 200px !important;
+}
