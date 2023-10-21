@@ -9,6 +9,15 @@
     stroke:white
 }
 
+.card-odd-down:nth-child(odd){
+    margin-top: 70px !important;
+}
+
 #nav-item-hover:hover {
     color: #fc0;
+}
+
+#facilities{
+    width: 320px !important;
+    margin-left: 50px;
 }
