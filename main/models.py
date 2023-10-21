@@ -38,12 +38,14 @@ class Hotel(models.Model):
     faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
     address = models.CharField(max_length=75,verbose_name='آدرس')
     starts = models.IntegerField(verbose_name="ستاره")
+    likes = models.IntegerField(default=0 ,verbose_name="لایک ها")
     city = models.ForeignKey(City,on_delete=models.CASCADE,verbose_name='شهر')
     facilities = models.ManyToManyField(Facility, blank=True,verbose_name='امکانات')
     description = models.TextField(blank=True,verbose_name="توضیحات کوتاه")
     explanation = models.TextField(blank=True,verbose_name="توضیحات بلند")
     slug = models.SlugField(default="",null=False,blank=True,db_index=True,verbose_name='لینک')
     special_offer = models.BooleanField(default=False, verbose_name='آفر ویژه')
+    online_reserve = models.BooleanField(default=False, verbose_name='رزرو آنلاین')
 
     def get_absolute_url(self):
         return reverse('hotel-single', args=(self.slug))
