@@ -7,7 +7,7 @@ from django.contrib import messages
 from urllib.parse import urlencode
 from datetime import datetime, timedelta
 from jdatetime import date as jalali_date,timedelta as jalali_timedelta
-from main.models import City,Hotel,Room,Request,Passenger
+from main.models import City,Hotel,Room,Request,Passenger,Facility
 from main.forms import BookingForm,BookingModelForm
 
 import random
@@ -43,6 +43,7 @@ def home(request):
 
     cities = City.objects.all()
     hotels = Hotel.objects.all()
+    facilities = Facility.objects.all()
     kish_count = City.objects.get(faname='کیش').hotel_set.count()
     mashhad_count = City.objects.get(faname='مشهد').hotel_set.count()
     qeshm_count = City.objects.get(faname='قشم').hotel_set.count()
@@ -52,6 +53,7 @@ def home(request):
     # hotel = Hotel.objects.get(slug=hotels.slug)
     content = {'cities': cities,
                'hotels':hotels,
+               'facilities':facilities,
                'kish_count':kish_count,
                'mashhad_count':mashhad_count,
                'qeshm_count':qeshm_count,

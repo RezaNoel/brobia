@@ -150,24 +150,15 @@
                                             <div id="collapseHotelFacilities" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                               <div class="card-body container">
                                                   <div class="row mb-3 user-select-none">
-                                                      <div class="form-check col">
-                                                          <label class="form-check-label" for="poolCheckbox">
-                                                              <input class="form-check-input" type="checkbox" value="" id="poolCheckbox">
-                                                            استخر
-                                                          </label>
-                                                      </div>
-                                                      <div class="form-check col">
-                                                          <label class="form-check-label" for="wifiCheckbox">
-                                                              <input class="form-check-input" type="checkbox" value="" id="wifiCheckbox">
-                                                            وایفای
-                                                          </label>
-                                                      </div>
-                                                      <div class="form-check col">
-                                                          <label class="form-check-label" for="lunchCheckbox">
-                                                              <input class="form-check-input" type="checkbox" value="" id="lunchCheckbox">
-                                                            وعده ناهار
-                                                          </label>
-                                                      </div>
+                                                      {% for fac in facilities %}
+                                                          <div class="form-check col">
+                                                              <label class="form-check-label" for="{{ fac.name }}">
+                                                                  <input class="form-check-input" type="checkbox" value="" id="{{ fac.name }}">
+                                                                {{ fac.faname }}
+                                                              </label>
+                                                          </div>
+                                                      {% endfor %}
+
                                                       <div class="w-100"><hr/></div>
                                                       <div class="form-check col">
                                                           <label class="form-check-label" for="bathCheckbox">
