@@ -1,5 +1,5 @@
 from django.db import models
-from main.models import Request
+from main.models import Request,Hotel
 from django.contrib.auth.models import User,AbstractUser
 
 # Create your models here.
@@ -10,7 +10,7 @@ class User(AbstractUser):
     nid = models.CharField(max_length=10, blank=True,verbose_name='کد ملی')
     birthdate = models.CharField(max_length=15,blank=True, verbose_name='تاریخ تولد')
     reserves = models.ManyToManyField(Request, blank=True, verbose_name='رزرو ها')
-
+    hotel_likes = models.ManyToManyField(Hotel, blank=True, verbose_name='هتل های محبوب')
     class Meta:
         verbose_name = ("اطلاعات کاربر")
         verbose_name_plural = ("اطلاعات کاربران")
