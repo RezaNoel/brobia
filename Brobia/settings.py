@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'Brobia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'brobia2',
+        'NAME': 'boroobia',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
