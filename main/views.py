@@ -14,7 +14,11 @@ import random
 import string
 import time
 
+def about(request):
+    pass
 
+def contact(request):
+    pass
 
 
 
