@@ -115,7 +115,7 @@
                             <!-- Logo -->
                             <li class="nav-item hs-has-sub-menu u-header__nav-item">
                                 <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-white" href="{% url 'home' %}" aria-label="MyHotel">
-                                    <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="My Icon">
+                                    <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="boroobia logo">
                                     <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
                                 </a>
                             </li>
@@ -123,9 +123,9 @@
                             <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
                                 <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-down-chevron mr-2 ml-1"></i> بیشتر</a>
                                 <ul id="homeSubMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu-rounded u-header__sub-menu-bordered hs-sub-menu-right u-header__sub-menu--spacer" aria-labelledby="homeMenu" style="min-width: 230px;">
-                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="index.html">وبلاگ</a></li>
-                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="home-v2.html">ارتباط با ما</a></li>
-                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="home-v3.html">درباره ما</a></li>
+                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="{% url 'blog-list' %}">وبلاگ</a></li>
+                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="{% url 'contact-us' %}">ارتباط با ما</a></li>
+                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="{% url 'about-us' %}">درباره ما</a></li>
                                 </ul>
                             </li>
                             <!-- End Hotel -->

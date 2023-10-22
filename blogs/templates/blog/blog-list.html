@@ -1,0 +1,576 @@
+{% extends 'base.html' %}
+{% load static %}
+        <!-- Title -->
+        {% block title %}برو بیا | چه برو بیا ایه{% endblock %}
+        {% block header %}{% endblock %}
+        {% block content %}
+
+        {% include 'include/hotel-header.html' %}
+        <!-- ========== MAIN CONTENT ========== -->
+        <main id="content">
+            <!-- Hero Section -->
+            <div class="bg-img-hero text-center mb-5 mb-lg-8" style="background-image: url({% static 'img/1920x400/img3.jpg' %});">
+                <div class="container space-top-xl-3 py-6 py-xl-0">
+                    <div class="row justify-content-center py-xl-4">
+                        <!-- Info -->
+                        <div class="py-xl-10 py-5">
+                            <h1 class="font-size-40 font-size-xs-30 text-white font-weight-bold mb-0">وبلاگ</h1>
+                            <nav aria-label="خرده نان">
+                                <ol class="breadcrumb breadcrumb-no-gutter mb-0">
+                                    <li class="breadcrumb-item font-size-14"><a class="text-white" href="../home/index.html">صفحه اصلی</a></li>
+                                    <li class="breadcrumb-item custom-breadcrumb-item font-size-14 text-white active" aria-current="page">وبلاگ</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <!-- End Info -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Hero Section -->
+            <div class="mb-6 mb-lg-8 pt-lg-1">
+                <div class="container mb-5 mb-lg-9 pb-lg-1">
+                    <div class="row">
+                        <div class="col-lg-8 col-xl-9">
+                            <div class="mb-5 pb-1">
+                                <div class="mb-4">
+                                    <a class="d-block" href="blog-single.html">
+                                        <img class="img-fluid mb-4 rounded-xs w-100" src="{% static 'img/955x450/img1.jpg' %}" alt="توضیحات تصویر">
+                                    </a>
+                                    <h5 class="font-weight-bold font-size-21 text-gray-3">
+                                        <a href="blog-single.html">جلسه تجاری 1400 در سانفرانسیسکو</a>
+                                    </h5>
+                                    <div class="mb-3">
+                                        <a class="mr-3 pr-1" href="#">
+                                            <span class="font-weight-normal text-gray-3">21 آبان 1400 </span>
+                                        </a>
+                                        <a href="#"><span class="font-weight-normal text-primary">سبک زندگی</span></a><a href="#">
+                                        <span class="font-weight-normal text-primary"></span>
+                                    </a>
+                                    </div>
+                                    <p class="mb-0 text-lh-lg">دوربین&zwnj;های دیجیتال ساده نقطه&zwnj;ای می&zwnj;توانند با داشتن لنزها و حسگرهای مناسب، کیفیت شگفت&zwnj;انگیزی ارائه دهند. از آنجایی که فوکوس و نوردهی آنها کاملاً خودکار است، فقط باید به سمت یک سوژه اشاره کرد و روی آنها کلیک کرد. آنها توانایی های محدودی برای کنترل تصویر دارند، اگرچه…
+                                    </p>
+                                </div>
+                                <div class="mb-4">
+                                    <a class="d-block" href="blog-single.html">
+                                        <img class="img-fluid mb-4 rounded-xs w-100" src="../../assets/img/955x450/img2.jpg" alt="توضیحات تصویر">
+                                    </a>
+                                    <h5 class="font-weight-bold font-size-21 text-gray-3">
+                                        <a href="blog-single.html">همه در کوه راکی</a>
+                                    </h5>
+                                    <div class="mb-3">
+                                        <a class="mr-3 pr-1" href="#">
+                                            <span class="font-weight-normal text-gray-3">21 آبان 1400 </span>
+                                        </a>
+                                        <a href="#"><span class="font-weight-normal text-primary">سبک زندگی</span></a><a href="#">
+                                        <span class="font-weight-normal text-primary"></span>
+                                    </a>
+                                    </div>
+                                    <p class="mb-0 text-lh-lg">دوربین&zwnj;های دیجیتال ساده نقطه&zwnj;ای می&zwnj;توانند با داشتن لنزها و حسگرهای مناسب، کیفیت شگفت&zwnj;انگیزی ارائه دهند. از آنجایی که فوکوس و نوردهی آنها کاملاً خودکار است، فقط باید به سمت یک سوژه اشاره کرد و روی آنها کلیک کرد. آنها توانایی های محدودی برای کنترل تصویر دارند، اگرچه…
+                                    </p>
+                                </div>
+                                <div class="mb-4">
+                                    <a class="d-block" href="blog-single.html">
+                                        <img class="img-fluid mb-4 rounded-xs w-100" src="../../assets/img/955x450/img3.jpg" alt="توضیحات تصویر">
+                                    </a>
+                                    <h5 class="font-weight-bold font-size-21 text-gray-3">
+                                        <a href="blog-single.html">نکات و ملزومات عکاسی دیجیتال</a>
+                                    </h5>
+                                    <div class="mb-3">
+                                        <a class="mr-3 pr-1" href="#">
+                                            <span class="font-weight-normal text-gray-3">21 آبان 1400 </span>
+                                        </a>
+                                        <a href="#"><span class="font-weight-normal text-primary">سبک زندگی</span></a><a href="#">
+                                        <span class="font-weight-normal text-primary"></span>
+                                    </a>
+                                    </div>
+                                    <p class="mb-0 text-lh-lg">دوربین&zwnj;های دیجیتال ساده نقطه&zwnj;ای می&zwnj;توانند با داشتن لنزها و حسگرهای مناسب، کیفیت شگفت&zwnj;انگیزی ارائه دهند. از آنجایی که فوکوس و نوردهی آنها کاملاً خودکار است، فقط باید به سمت یک سوژه اشاره کرد و روی آنها کلیک کرد. آنها توانایی های محدودی برای کنترل تصویر دارند، اگرچه…
+                                    </p>
+                                </div>
+                                <div class="mb-0">
+                                    <a class="d-block" href="blog-single.html">
+                                        <img class="img-fluid mb-4 rounded-xs w-100" src="../../assets/img/955x450/img4.jpg" alt="توضیحات تصویر">
+                                    </a>
+                                    <h5 class="font-weight-bold font-size-21 text-gray-3">
+                                        <a href="blog-single.html">شانه کردن مو 10 نکته برای شانه کردن صحیح مو</a>
+                                    </h5>
+                                    <div class="mb-3">
+                                        <a class="mr-3 pr-1" href="#">
+                                            <span class="font-weight-normal text-gray-3">21 آبان 1400 </span>
+                                        </a>
+                                        <a href="#"><span class="font-weight-normal text-primary">سبک زندگی</span></a><a href="#">
+                                        <span class="font-weight-normal text-primary"></span>
+                                    </a>
+                                    </div>
+                                    <p class="mb-0">دوربین&zwnj;های دیجیتال ساده نقطه&zwnj;ای می&zwnj;توانند با داشتن لنزها و حسگرهای مناسب، کیفیت شگفت&zwnj;انگیزی ارائه دهند. از آنجایی که فوکوس و نوردهی آنها کاملاً خودکار است، فقط باید به سمت یک سوژه اشاره کرد و روی آنها کلیک کرد. آنها توانایی های محدودی برای کنترل تصویر دارند، اگرچه…
+                                    </p>
+                                </div>
+                            </div>
+                            <nav aria-label="پیمایش صفحه">
+                                <ul class="list-pagination-1 pagination border border-color-4 rounded-sm mb-5 mb-lg-0 overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2">
+                                    <li class="page-item">
+                                        <a class="page-link border-right rounded-0 text-gray-5" href="#" aria-label="قبلی">
+                                            <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
+                                            <span class="sr-only">قبلی</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link font-size-14" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link font-size-14 active" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link font-size-14" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link font-size-14" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link font-size-14" href="#">5</a></li>
+                                    <li class="page-item disabled"><a class="page-link font-size-14" href="#">...</a></li>
+                                    <li class="page-item"><a class="page-link font-size-14" href="#">66</a></li>
+                                    <li class="page-item"><a class="page-link font-size-14" href="#">67</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link border-left rounded-0 text-gray-5" href="#" aria-label="بعد">
+                                            <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
+                                            <span class="sr-only">بعد</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-lg-4 col-xl-3">
+                            <form class="input-group input-group-borderless mb-5">
+                                <!-- Input -->
+                                <div class="js-focus-state w-100">
+                                    <div class="input-group border border-color-8 border-width-2 rounded d-flex align-items-center">
+                                        <input type="text" class="form-control font-size-14 placeholder-1 ml-1" placeholder="جستجو کردن" aria-label="شرکت یا عنوان">
+                                        <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="flaticon-magnifying-glass-1 font-size-20 text-gray-8 mr-1"></i>
+                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Input -->
+                            </form>
+                            <!-- List -->
+                            <ul id="sidebarNav" class="custom-dropdown list-unstyled border border-color-7 rounded pt-4 pb-1 mb-5">
+                                <h5 class="font-weight-bold font-size-17 text-gray-6 mb-2 pb-1 px-4">همه دسته بندی ها</h5>
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav1Collapse" data-target="#sidebarNav1Collapse">
+                                        <span class="font-weight-normal text-gray-1">همه</span>
+                                    </a>
+
+                                    <div id="sidebarNav1Collapse" class="collapse" data-parent="#sidebarNav">
+                                        <ul id="sidebarNav1" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item" href="#">موبایل ها</a></li>
+                                            <li><a class="dropdown-item" href="#">قرص</a></li>
+                                            <li><a class="dropdown-item" href="#">لپ تاپ ها</a></li>
+                                            <li><a class="dropdown-item" href="#">دسکتاپ ها</a></li>
+                                            <li><a class="dropdown-item" href="#">کنسول های بازی</a></li>
+                                            <li><a class="dropdown-item" href="#">دوربین های ماشین</a></li>
+                                            <li><a class="dropdown-item" href="#">دوربین های امنیتی</a></li>
+                                            <li><a class="dropdown-item" href="#">دوربین های دیجیتال</a></li>
+                                            <li><a class="dropdown-item" href="#">ابزارک ها</a></li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav2Collapse" data-target="#sidebarNav2Collapse">
+                                        <span class="font-weight-normal text-gray-1">امکانات</span>
+                                    </a>
+
+                                    <div id="sidebarNav2Collapse" class="collapse " data-parent="#sidebarNav">
+                                        <ul id="sidebarNav2" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item" href="#">موبایل ها</a></li>
+                                            <li><a class="dropdown-item" href="#">قرص</a></li>
+                                            <li><a class="dropdown-item" href="#">لپ تاپ ها</a></li>
+                                            <li><a class="dropdown-item" href="#">دسکتاپ ها</a></li>
+                                            <li><a class="dropdown-item" href="#">کنسول های بازی</a></li>
+                                            <li><a class="dropdown-item" href="#">دوربین های ماشین</a></li>
+                                            <li><a class="dropdown-item" href="#">دوربین های امنیتی</a></li>
+                                            <li><a class="dropdown-item" href="#">دوربین های دیجیتال</a></li>
+                                            <li><a class="dropdown-item" href="#">ابزارک ها</a></li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav3Collapse" data-target="#sidebarNav3Collapse">
+                                        <span class="font-weight-normal text-gray-1">لغزنده ها</span>
+                                    </a>
+
+                                    <div id="sidebarNav3Collapse" class="collapse" data-parent="#sidebarNav">
+                                        <ul id="sidebarNav3" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item" href="#">صوت خانگی</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav3Two" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav3Two">
+                                                    <span>لوازم بزرگ</span>
+                                                </a>
+                                                <ul id="sidebarNav3Two" class="collapse list-unstyled px-3" data-parent="#sidebarNav3">
+                                                    <li><a class="dropdown-item" href="#">آشپزخانه</a></li>
+                                                    <li><a class="dropdown-item" href="#">هال</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">خنک کننده و تصفیه هوا</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav3One" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav3One">
+                                                    <span>دستگاه های تلویزیون و ویدئو</span>
+                                                </a>
+                                                <ul id="sidebarNav3One" class="collapse list-unstyled px-3" data-parent="#sidebarNav3">
+                                                    <li><a class="dropdown-item" href="#">تجهیزات جانبی</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="dropdown-item " href="#">جاروبرقی و مراقبت از کف</a></li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav4Collapse" data-target="#sidebarNav4Collapse">
+                                        <span class="font-weight-normal text-gray-1">مدیریت لیست ها</span>
+                                    </a>
+                                    <div id="sidebarNav4Collapse" class="collapse" data-parent="#sidebarNav">
+                                        <ul id="sidebarNav4" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item " href="#">مکمل های غذایی</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav4One" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav4One">
+                                                    <span>ابزار زیبایی</span>
+                                                </a>
+                                                <ul id="sidebarNav4One" class="collapse list-unstyled px-3" data-parent="#sidebarNav4">
+                                                    <li><a class="dropdown-item" href="#">ولی</a></li>
+                                                    <li><a class="dropdown-item" href="#">زنان</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="dropdown-item " href="#">مراقبت از پوست</a></li>
+                                            <li><a class="dropdown-item " href="#">آرایش</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav4Two" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav4Two">
+                                                    <span>لوازم پزشکی</span>
+                                                </a>
+                                                <ul id="sidebarNav4Two" class="collapse list-unstyled px-3" data-parent="#sidebarNav4">
+                                                    <li><a class="dropdown-item" href="#">حمام و بدن</a></li>
+                                                    <li><a class="dropdown-item" href="#">مراقبت از مو</a></li>
+                                                    <li><a class="dropdown-item" href="#">کارکنانی که</a></li>
+                                                </ul>
+                                            </li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav5Collapse" data-target="#sidebarNav5Collapse">
+                                        <span class="font-weight-normal text-gray-1">آدرس و نقشه</span>
+                                    </a>
+                                    <div id="sidebarNav5Collapse" class="collapse" data-parent="#sidebarNav">
+                                        <ul id="sidebarNav5" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item " href="#">پوشک و لگن</a></li>
+                                            <li><a class="dropdown-item " href="#">مهد کودک</a></li>
+                                            <li><a class="dropdown-item " href="#">مراقبت شخصی کودک</a></li>
+                                            <li><a class="dropdown-item " href="#">لباس و لوازم جانبی</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav5One" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav5One">
+                                                    <span>خوراکی ها</span>
+                                                </a>
+                                                <ul id="sidebarNav5One" class="collapse list-unstyled px-3" data-parent="#sidebarNav5">
+                                                    <li><a class="dropdown-item" href="#">تغذیه</a></li>
+                                                    <li><a class="dropdown-item" href="#">فرمول شیر</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="dropdown-item " href="#">کودک و اسباب بازی</a></li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav6Collapse" data-target="#sidebarNav6Collapse">
+                                        <span class="font-weight-normal text-gray-1">درخواست های رزرو</span>
+                                    </a>
+
+                                    <div id="sidebarNav6Collapse" class="collapse" data-parent="#sidebarNav">
+                                        <ul id="sidebarNav6" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item " href="#">لوازم داخلی</a></li>
+                                            <li><a class="dropdown-item " href="#">لوازم جانبی خارجی</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav6One" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav6One">
+                                                    <span>خودرو</span>
+                                                </a>
+                                                <ul id="sidebarNav6One" class="collapse list-unstyled px-3" data-parent="#sidebarNav6">
+                                                    <li><a class="dropdown-item" href="#">خدمات و تاسیسات</a></li>
+                                                    <li><a class="dropdown-item" href="#">روغن و مایعات خودرو</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="dropdown-item " href="#">ضبط ماشین</a></li>
+                                            <li><a class="dropdown-item " href="#">ماشینی که</a></li>
+                                            <li><a class="dropdown-item " href="#">وسایل سواری</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav6Two" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav6Two">
+                                                    <span>موتورسیکلت</span>
+                                                </a>
+                                                <ul id="sidebarNav6Two" class="collapse list-unstyled px-3" data-parent="#sidebarNav6">
+                                                    <li><a class="dropdown-item" href="#">خدمات و تاسیسات</a></li>
+                                                    <li><a class="dropdown-item" href="#">روغن و مایعات خودرو</a></li>
+                                                </ul>
+                                            </li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav7Collapse" data-target="#sidebarNav7Collapse">
+                                        <span class="font-weight-normal text-gray-1">رزروهای شما</span>
+                                    </a>
+
+                                    <div id="sidebarNav7Collapse" class="collapse" data-parent="#sidebarNav">
+                                        <ul id="sidebarNav7" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item " href="#">موبایل ها</a></li>
+                                            <li><a class="dropdown-item " href="#">قرص</a></li>
+                                            <li><a class="dropdown-item " href="#">لپ تاپ ها</a></li>
+                                            <li><a class="dropdown-item " href="#">دسکتاپ ها</a></li>
+                                            <li><a class="dropdown-item " href="#">کنسول های بازی</a></li>
+                                            <li><a class="dropdown-item " href="#">دوربین های ماشین</a></li>
+                                            <li><a class="dropdown-item " href="#">دوربین های امنیتی</a></li>
+                                            <li><a class="dropdown-item " href="#">دوربین های دیجیتال</a></li>
+                                            <li><a class="dropdown-item " href="#">ابزارک ها</a></li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav8Collapse" data-target="#sidebarNav8Collapse">
+                                        <span class="font-weight-normal text-gray-1">نتایج جستجو</span>
+                                    </a>
+                                    <div id="sidebarNav8Collapse" class="collapse" data-parent="#sidebarNav">
+                                        <ul id="sidebarNav8" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item " href="#">پوشک و لگن</a></li>
+                                            <li><a class="dropdown-item " href="#">مهد کودک</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav8One" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav8One">
+                                                    <span>خوراکی ها</span>
+                                                </a>
+                                                <ul id="sidebarNav8One" class="collapse list-unstyled px-3" data-parent="#sidebarNav8">
+                                                    <li><a class="dropdown-item" href="#">تغذیه</a></li>
+                                                    <li><a class="dropdown-item" href="#">فرمول شیر</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="dropdown-item " href="#">مراقبت شخصی کودک</a></li>
+                                            <li><a class="dropdown-item " href="#">لباس و لوازم جانبی</a></li>
+                                            <li><a class="dropdown-item " href="#">کودک و اسباب بازی</a></li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav9Collapse" data-target="#sidebarNav9Collapse">
+                                        <span class="font-weight-normal text-gray-1">طرح های رنگی</span>
+                                    </a>
+
+                                    <div id="sidebarNav9Collapse" class="collapse" data-parent="#sidebarNav">
+                                        <ul id="sidebarNav9" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item" href="#">موبایل ها</a></li>
+                                            <li><a class="dropdown-item" href="#">قرص</a></li>
+                                            <li><a class="dropdown-item" href="#">لپ تاپ ها</a></li>
+                                            <li><a class="dropdown-item" href="#">دسکتاپ ها</a></li>
+                                            <li><a class="dropdown-item" href="#">کنسول های بازی</a></li>
+                                            <li><a class="dropdown-item" href="#">دوربین های ماشین</a></li>
+                                            <li><a class="dropdown-item" href="#">دوربین های امنیتی</a></li>
+                                            <li><a class="dropdown-item" href="#">دوربین های دیجیتال</a></li>
+                                            <li><a class="dropdown-item" href="#">ابزارک ها</a></li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="list-item">
+                                    <a class="d-block dropdown-toggle dropdown-toggle-collapse" href="javascript:;" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav10Collapse" data-target="#sidebarNav10Collapse">
+                                        <span class="font-weight-normal text-gray-1">پاسخگویی</span>
+                                    </a>
+
+                                    <div id="sidebarNav10Collapse" class="collapse" data-parent="#sidebarNav">
+                                        <ul id="sidebarNav10" class="list-unstyled">
+                                            <!-- Menu List -->
+                                            <li><a class="dropdown-item" href="#">لوازم داخلی</a></li>
+                                            <li><a class="dropdown-item" href="#">لوازم جانبی خارجی</a></li>
+                                            <li><a class="dropdown-item" href="#">ضبط ماشین</a></li>
+                                            <li><a class="dropdown-item" href="#">ماشینی که</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav10One" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav10One">
+                                                    <span>خودرو</span>
+                                                </a>
+                                                <ul id="sidebarNav10One" class="collapse list-unstyled px-3" data-parent="#sidebarNav10">
+                                                    <li><a class="dropdown-item" href="#">خدمات و تاسیسات</a></li>
+                                                    <li><a class="dropdown-item" href="#">روغن و مایعات خودرو</a></li>
+                                                </ul>
+                                            </li><li><a class="dropdown-item " href="#">وسایل سواری</a></li>
+                                            <li>
+                                                <a class="dropdown-item dropdown-toggle dropdown-toggle-collapse" href="javascript:;" data-target="#sidebarNav10Two" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="sidebarNav10Two">
+                                                    <span>موتورسیکلت</span>
+                                                </a>
+                                                <ul id="sidebarNav10Two" class="collapse list-unstyled px-3" data-parent="#sidebarNav10">
+                                                    <li><a class="dropdown-item" href="#">خدمات و تاسیسات</a></li>
+                                                    <li class="mb-2"><a class="dropdown-item" href="#">روغن و مایعات خودرو</a></li>
+                                                </ul>
+                                            </li>
+                                            <!-- End Menu List -->
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- End List -->
+
+                            <div class="border border-color-7 rounded p-4 mb-5">
+                                <h6 class="font-size-17 font-weight-bold text-gray-3 mx-1 mb-3 pb-1">چرا با ما رزرو کنید؟</h6>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="flaticon-star font-size-25 text-primary mr-3 pr-1"></i>
+                                    <h6 class="mb-0 font-size-14 text-gray-1">
+                                        <a href="#">تضمین بهترین قیمت بدون دردسر</a>
+                                    </h6>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="flaticon-support font-size-25 text-primary mr-3 pr-1"></i>
+                                    <h6 class="mb-0 font-size-14 text-gray-1">
+                                        <a href="#">مراقبت از مشتری 24/7 در دسترس است</a>
+                                    </h6>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="flaticon-favorites-button font-size-25 text-primary mr-3 pr-1"></i>
+                                    <h6 class="mb-0 font-size-14 text-gray-1">
+                                        <a href="#">تورها و فعالیت&zwnj;های دست&zwnj;چین شده</a>
+                                    </h6>
+                                </div>
+                                <div class="d-flex align-items-center mb-0">
+                                    <i class="flaticon-airplane font-size-25 text-primary mr-3 pr-1"></i>
+                                    <h6 class="mb-0 font-size-14 text-gray-1">
+                                        <a href="#">بیمه مسافرتی رایگان</a>
+                                    </h6>
+                                </div>
+                            </div>
+
+                            <div class="border border-color-7 rounded p-4">
+                                <h6 class="font-size-17 font-weight-bold text-gray-3 mx-1 mb-3 pb-1">برچسب ها</h6>
+                                <div class="d-flex flex-wrap">
+                                    <a class="btn d-flex align-items-center justify-content-center btn-gray-1 rounded-xs transition-3d-hover font-size-14 text-gray-1 height-35 width-70 mr-2 mb-2" href="../cars/cars-list.html">
+                                        موزه&zwnj;
+                                    </a><a class="btn d-flex align-items-center justify-content-center btn-gray-1 rounded-xs transition-3d-hover font-size-14 text-gray-1 height-35 width-90 mr-2 mb-2" href="../activities/activities-list.html">
+                                        فعالیت
+                                    </a><a class="btn d-flex align-items-center justify-content-center btn-gray-1 rounded-xs transition-3d-hover font-size-14 text-gray-1 height-35 width-80 mr-2 mb-2" href="../yacht/yacht-list.html">
+                                        قایق&zwnj;
+                                    </a><a class="btn d-flex align-items-center justify-content-center btn-gray-1 rounded-xs transition-3d-hover font-size-14 text-gray-1 height-35 width-90 mb-2" href="../tour/tour-list.html">
+                                        تفریحی
+                                    </a><a class="btn d-flex align-items-center justify-content-center btn-gray-1 rounded-xs transition-3d-hover font-size-14 text-gray-1 height-35 width-90 mr-2 mb-2" href="../rental/rental-list.html">
+                                    اجاره&zwnj;ای
+                                </a>
+                                    <a class="btn d-flex align-items-center justify-content-center btn-gray-1 rounded-xs transition-3d-hover font-size-14 text-gray-1 height-35 width-70 mr-2 mb-2" href="../tour/tour-list.html">
+                                        تور
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-color-8"></div>
+            </div>
+        </main>
+        <!-- ========== END MAIN CONTENT ========== -->
+{% endblock %}
+{% block footer %}
+    {% include 'include/hotel-footer.html' %}
+{% endblock %}
+{% block javascript %}
+
+
+        <!-- Page Preloader -->
+        <!-- <div id="jsPreloader" class="page-preloader">
+            <div class="page-preloader__content-centered">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div> -->
+        <!-- End Page Preloader -->
+        <!-- Go to Top -->
+        <a class="js-go-to u-go-to-modern" href="#" data-position='{"bottom": 15, "right": 15 }' data-type="fixed" data-offset-top="400" data-compensation="#header" data-show-effect="slideInUp" data-hide-effect="slideOutDown">
+            <span class="flaticon-arrow u-go-to-modern__inner"></span>
+        </a>
+        <!-- End Go to Top -->
+
+        <!-- JS Global Compulsory -->
+        <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="../../assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+        <script src="../../assets/vendor/popper.js/dist/umd/popper.min.js"></script>
+        <script src="../../assets/vendor/bootstrap/bootstrap.min.js"></script>
+
+        <!-- JS Implementing Plugins -->
+        <script src="../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+        <script src="../../documentation/assets/vendor/jquery-ui/jquery-ui.core.min.js"></script>
+        <script src="../../documentation/assets/vendor/jquery-ui/ui/widgets/menu.js"></script>
+        <script src="../../documentation/assets/vendor/jquery-ui/ui/widgets/mouse.js"></script>
+        <script src="../../assets/vendor/svg-injector/dist/svg-injector.min.js"></script>
+        <script src="../../documentation/assets/vendor/jquery-ui/ui/widgets/autocomplete.js"></script>
+        <script src="../../documentation/assets/vendor/prism/prism.js"></script>
+        <script src="../../assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="../../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="../../assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="../../assets/vendor/flatpickr/dist/flatpickr.min.js"></script>
+
+        <!-- JS MyTravel -->
+        <script src="../../assets/js/hs.core.js"></script>
+        <script src="../../assets/js/components/hs.header.js"></script>
+        <script src="../../assets/js/components/hs.unfold.js"></script>
+        <script src="../../assets/js/components/hs.go-to.js"></script>
+        <script src="../../assets/js/components/hs.validation.js"></script>
+        <script src="../../assets/js/components/hs.show-animation.js"></script>
+        <script src="../../assets/js/components/hs.selectpicker.js"></script>
+        <script src="../../assets/js/components/hs.range-datepicker.js"></script>
+        <script src="../../assets/js/components/hs.svg-injector.js"></script>
+
+        <!-- JS Plugins Init. -->
+        <script>
+            $(window).on('load', function () {
+                // initialization of HSMegaMenu component
+                $('.js-mega-menu').HSMegaMenu({
+                    event: 'hover',
+                    pageContainer: $('.container'),
+                    breakpoint: 1199.98,
+                    hideTimeOut: 0
+                });
+
+                // initialization of svg injector module
+                $.HSCore.components.HSSVGIngector.init('.js-svg-injector');
+
+                // Page preloader
+                setTimeout(function() {
+                  $('#jsPreloader').fadeOut(500)
+                }, 800);
+            });
+
+            $(document).on('ready', function () {
+                // initialization of header
+                $.HSCore.components.HSHeader.init($('#header'));
+
+                // initialization of unfold component
+                $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
+
+                // initialization of show animations
+                $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+                // initialization of go to
+                $.HSCore.components.HSGoTo.init('.js-go-to');
+
+                $.HSCore.components.HSSelectPicker.init('.js-select');
+
+                // initialization of datepicker
+                $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+            });
+        </script>
+ {% endblock %}
