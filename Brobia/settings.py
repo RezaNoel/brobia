@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'hotels',
     'taxirents',
+    'blogs',
 
     "bootstrap5",
     'rest_framework',
