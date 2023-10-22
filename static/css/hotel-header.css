@@ -21,3 +21,8 @@
     width: 320px !important;
     margin-left: 50px;
 }
+
+.like-btn path{
+    stroke: none;
+    fill: red;
+}

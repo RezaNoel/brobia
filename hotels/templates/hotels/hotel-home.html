@@ -8,6 +8,9 @@
 
 {% include 'include/hotel-header.html' %}
 
+<head>
+    <link rel="stylesheet" href="{% static 'css\hotel-header.css' %}">
+ </head>
         <!-- ========== MAIN CONTENT ========== -->
         <main id="content">
             <!-- ========== HERO ========== -->
@@ -343,10 +346,15 @@
                                     <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
                                         <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
                                     </a>
-                                    <div class="position-absolute top-0 right-0 pt-3 pr-3">
-                                        <button type="button" class="btn btn-sm btn-icon text-white rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن">
-                                            <span class="flaticon-heart-1 font-size-20"></span>
+                                    <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex flex-column justify-content-center align-items-center">
+                                        <button type="button" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ hotel.id }}">
+                                            <span class="font-size-20">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                                </svg>
+                                            </span>
                                         </button>
+                                        <span id="like-counter-{{ hotel.id }}" class="text-warning bg-dark p-1 rounded font-size-13">{{ hotel.likes }}</span>
                                     </div>
                                    <div class="position-absolute bottom-0 left-0 right-0 rtl">
                                         <div class="px-4 pb-3">
@@ -451,10 +459,15 @@
                                             <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
                                                 <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
                                             </a>
-                                            <div class="position-absolute top-0 right-0 pt-3 pr-3">
-                                                <button type="button" class="btn btn-sm btn-icon text-white rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن">
-                                                    <span class="flaticon-valentine-heart"></span>
+                                            <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex flex-column justify-content-center align-items-center">
+                                                <button type="button" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ hotel.id }}">
+                                                    <span class="font-size-20">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                                        </svg>
+                                                    </span>
                                                 </button>
+                                                <span id="like-counter-{{ hotel.id }}" class="text-warning bg-dark p-1 rounded font-size-13">{{ hotel.likes }}</span>
                                             </div>
                                             <div class="position-absolute bottom-0 left-0 right-0 pb-3">
                                                 <div class="col">
@@ -744,16 +757,56 @@
 
         });
     });
+
+    //logic for decreasing the number for room & adults amount reservation
     const minusBtns = document.querySelectorAll('.js-minuss')
     minusBtns.forEach((btn) => btn.addEventListener('click', () => btn.nextElementSibling.value = btn.nextElementSibling.value >= 2 ? +btn.nextElementSibling.value - 1 : btn.nextElementSibling.value ))
-
+    
+    //logic for increasing the number for room amount reservation
     const plusRoomBtn = document.querySelector('.js-pluss')
     plusRoomBtn.addEventListener('click', () => roomInput.value = roomInput.value < 4 ? +roomInput.value + 1 : roomInput.value )
-
+    
+    //logic for increasing the number for adults amount reservation
     const plusGuestBtn = document.querySelector('.guest-plus')
     plusGuestBtn.addEventListener('click', () => guestInput.value = guestInput.value < 6 ? +guestInput.value + 1 : guestInput.value )
 
+    //logic for like button. (i know it's bullshit but that was the only way i could. Q _ Q)   
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const likeBtns = document.querySelectorAll('.like');
+        likeBtns.forEach((likeBtn) => {
+            let liked = likeBtn.dataset.status
+            if(!liked) {
+            likeBtn.dataset.status = 'not-liked'
+        }
+    })
+    // Get all like buttons by class name
+    const likeButtons = document.querySelectorAll(".like");
+
+    // Add click event listeners to each like button
+    likeButtons.forEach((likeBtn) => {
+      likeBtn.addEventListener("click", function (e) {
+        const hotelId = e.currentTarget.getAttribute("data-hotel-id");
+        const likeCounter = document.getElementById(`like-counter-${hotelId}`);
+        const currentLikes = parseInt(likeCounter.textContent, 10) || 0;
+        let liked = false;
+        if (likeBtn.dataset.status === "liked") {
+          liked = true;
+        } else {
+          liked = false;
+        }
+        if (!liked) {
+          likeBtn.classList.add("like-btn");
+          likeBtn.dataset.status = "liked";
+          likeCounter.textContent = currentLikes + 1;
+        } else {
+          likeBtn.classList.remove("like-btn");
+          likeBtn.dataset.status = "not-liked";
+          likeCounter.textContent = currentLikes - 1;
+        }
+      });
+    });
+  });
+
 </script>
  {% endblock %}
-
-
