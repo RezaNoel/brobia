@@ -787,6 +787,8 @@
     likeButtons.forEach((likeBtn) => {
       likeBtn.addEventListener("click", function (e) {
         const hotelId = e.currentTarget.getAttribute("data-hotel-id");
+
+
         const likeCounter = document.getElementById(`like-counter-${hotelId}`);
         const currentLikes = parseInt(likeCounter.textContent, 10) || 0;
         let liked = false;
