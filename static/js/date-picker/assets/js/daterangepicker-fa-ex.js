@@ -515,9 +515,6 @@
                 var minYear = (minDate && minDate[localYear]()) || (currentYear - 50);
                 var inMinYear = currentYear == minYear;
                 var inMaxYear = currentYear == maxYear;
-                console.log(calendar[1][1])
-                console.log(currentMonth)
-                console.log(currentYear)
                 var monthHtml = '<select class="monthselect form-control">';
                 for (var m = 0; m < 12; m++) {
                     if ((!inMinYear || m >= minDate[localMonth]()) && (!inMaxYear || m <= maxDate[localMonth]())) {
@@ -1003,14 +1000,10 @@
             var month = parseInt(cal.find('.monthselect').val(), 10);
             var year = cal.find('.yearselect').val();
             if (jalaali) {
-                console.log(month)
-                console.log(year)
                 var localDate = moment(year + '/' + month + '/15', 'jYYYY/jM/jD');
                 month = localDate.month();
                 year = localDate.year();
             }
-            console.log(month)
-            console.log(year)
             if (!isLeft) {
                 if (year < this.startDate.year() || (year == this.startDate.year() && month < this.startDate.month())) {
                     month = this.startDate.month();
@@ -1038,8 +1031,6 @@
                 if (this.linkedCalendars)
                     this.leftCalendar.month = this.rightCalendar.month.clone().subtract(1, 'month');
             }
-            console.log(this.rightCalendar.month)
-            console.log(this.leftCalendar.month)
             this.updateCalendars();
         },
         timeChanged: function (e) {

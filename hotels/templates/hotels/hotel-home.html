@@ -688,8 +688,8 @@
 
         // Get the value entered by the user
         var searchValue = document.getElementById('searchInput').value;
-        var enterValue = document.getElementById('dateRangePicker').value;
-        var exitValue = document.getElementById('dateRangePickerEnd').value;
+        var enterValue = document.getElementById('dateRangePicker').value.split(' -');
+        var exitValue = document.getElementById('dateRangePicker').value.split('- ');
         var passValue = document.getElementById('passInput').value;
         var childValue = document.getElementById('childInput').value;
         var roomValue = document.getElementById('roomInput').value;
