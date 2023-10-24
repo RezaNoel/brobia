@@ -1,3 +1,4 @@
+import accounts.views
 from django.shortcuts import render,redirect,get_object_or_404
 from django.db.models import Min
 from django.urls import reverse
@@ -35,56 +36,19 @@ def generate_random_string(length):
     return random_string
 
 
-@api_view(['POST','GET','PATCH'])
-def hotellike(request, pk=None):
-    try:
+def hotellike(request, pk):
+    if request.user.is_authenticated:
         hotel = Hotel.objects.get(pk=pk)
+        if request.method == "POST":
+            data = request.POST
+            request.user.increase_likes(hotel)
+        referer = request.META.get('HTTP_REFERER')
+        if referer:
+            return redirect(referer)
+        else:
+            return redirect(home)
+    return redirect(accounts.views.LoginView)
 
-        if request.method == 'PATCH':
-            serializer = HotelSerializer(hotel, data=request.data, partial=True)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-        elif request.method == 'POST':
-
-            serializer = HotelSerializer(data=request.data)
-
-            if serializer.is_valid():
-                serializer.save()
-
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-        elif request.method == 'GET':
-
-            if pk is not None:
-
-                try:
-
-                    hotel = Hotel.objects.get(pk=pk)
-
-                    serializer = HotelSerializer(hotel)
-
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
-                except Hotel.DoesNotExist:
-
-                    return Response({'error': 'Hotel not found.'}, status=status.HTTP_404_NOT_FOUND)
-
-            else:
-
-                categories = Category.objects.all()
-
-                serializer = CategorySerializer(categories, many=True)
-
-                return Response(serializer.data, status=status.HTTP_200_OK)
-
-    except Product.DoesNotExist:
-        return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
 

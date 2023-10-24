@@ -47,6 +47,12 @@ class Hotel(models.Model):
     special_offer = models.BooleanField(default=False, verbose_name='آفر ویژه')
     online_reserve = models.BooleanField(default=False, verbose_name='رزرو آنلاین')
 
+    def increase_likes(self):
+        self.likes += 1
+        self.save()
+    def decrease_likes(self):
+        self.likes -= 1
+        self.save()
 
     def get_absolute_url(self):
         return reverse('hotel-single', args=(self.slug))

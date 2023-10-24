@@ -4,15 +4,16 @@ from rest_framework import routers
 from .serializer import HotelViewSet
 
 
-router = routers.DefaultRouter()
-router.register(r'rL7mikP8JFv66LjYtNq2', HotelViewSet)
+# router = routers.DefaultRouter()
+# router.register(r'rL7mikP8JFv66LjYtNq2', HotelViewSet)
 
 
 urlpatterns = [
 
     path('', views.home, name='home'),
-    path('', include(router.urls)),
-    path('rL7mikP8JFv66LjYtNq2/<int:pk>',views.hotellike),
+    # path('rL7mikP8JFv66LjYtNq2', views.hotellike, name='like'),
+    # path('', include(router.urls)),
+    path('rL7mikP8JFv66LjYtNq2/<int:pk>',views.hotellike,name='likepk'),
     path('<slug:city_slug>', views.list,name='hotel-list'),
     path('<str:reserve>/informations', views.booking, name='hotel-booking'),
     path('<slug:city_slug>/<slug:hotel_slug>', views.single, name='hotel-single'),
