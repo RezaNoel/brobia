@@ -50,9 +50,9 @@
                                                 </select>
                                                 <!-- End Select -->
                                             </div>
-                                            <div class="col-sm-12 col-lg-2 col-xl-2 mb-4 mb-lg-0 ">
+                                            <div class="col-sm-12 col-lg-2 col-xl-3 mb-4 mb-lg-0 ">
                                                 <!-- Input -->
-                                                <span class="d-block text-gray-1 text-left font-weight-normal mb-0">ورود</span>
+                                                <span class="d-block text-gray-1 text-left font-weight-normal mb-0">ورود و خروج</span>
                                                 <div class="border-bottom border-width-2 border-color-1">
                                                     <div id="datepickerWrapperFromOne" class="u-datepicker input-group">
                                                         <div class="input-group-prepend">
@@ -60,14 +60,14 @@
                                                               <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
                                                             </span>
                                                         </div>
-                                                        <input id="dateRangePicker" type="text" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-20" value="{{ formatted_current_date}}">
+                                                        <input id="dateRangePicker" type="text" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-20" value="{{ formatted_current_date}} تا ..">
                                                     </div>
                                                     <!-- End Datepicker -->
                                                 </div>
                                                 <!-- End Input -->
                                             </div>
-                                            <div class="col-sm-12 col-lg-2 col-xl-2 mb-4 mb-lg-0 ">
-                                            <!-- Input -->
+                                            <!-- <div class="col-sm-12 col-lg-2 col-xl-2 mb-4 mb-lg-0 ">
+                                            Input
                                                 <span class="d-block text-gray-1 text-left font-weight-normal mb-0">خروج</span>
                                                 <div class="border-bottom border-width-2 border-color-1">
                                                     <div id="datepickerWrapperFromOne" class="u-datepicker input-group">
@@ -78,10 +78,10 @@
                                                         </div>
                                                         <input id="dateRangePickerEnd" type="text" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-24" value="{{ formatted_exit_date}}">
                                                     </div>
-                                                    <!-- End Datepicker -->
+                                                    End Datepicker
                                                 </div>
-                                                <!-- End Input -->
-                                            </div>
+                                                End Input
+                                            </div> -->
                                             <div class="col-sm-12 col-lg-3 col-xl-3 mb-4 mb-lg-0 ">
                                                 <!-- Input -->
                                                 <span class="d-block text-gray-1 text-left font-weight-normal mb-0">اتاق ها و مهمانان</span>
@@ -582,66 +582,52 @@
         <script>
             // Date Picker
             $(document).ready(function () {
-            var night;
-            var isRtl = true;
-            var dateFormat = isRtl ? 'jYYYY/jMM/jDD' : 'YYYY/MM/DD';
-            var dateFrom = false ? moment("") : undefined;
-            var dateTo = false ? moment("") : undefined;
-            var $dateRanger = $("#dateRangePicker");
+        var night;
+        var isRtl = true;
+        var dateFormat = isRtl ? "jYYYY/jMM/jDD" : "YYYY/MM/DD";
+        var dateFrom = false ? moment("") : undefined;
+        var dateTo = false ? moment("") : undefined;
+        var $dateRanger = $("#dateRangePicker");
 
-            $dateRanger.daterangepicker({
-                clearLabel: 'Clear',
-                autoUpdateInput: !!(dateFrom && dateTo),
-                minDate: moment(),
-                autoApply: true,
-                opens: isRtl ? 'left' : 'right',
-                locale: {
-                    separator: ' - ',
-                    format: dateFormat
-                },
-                startDate: dateFrom,
-                endDate: dateTo,
-                jalaali: isRtl,
-                showDropdowns: true
-            }).on('apply.daterangepicker', function (ev, picker) {
-                night = picker.endDate.diff(picker.startDate, 'days');
-                if (night > 0) {
-                    $(this).val(picker.startDate.format(dateFormat));
-                    $('#dateRangePickerEnd').val(picker.endDate.format(dateFormat));
-                } else {
-                    $(this).val('')
-                }
-            });
+        $dateRanger
+          .daterangepicker({
+            clearLabel: "Clear",
+            autoUpdateInput: !!(dateFrom && dateTo),
+            minDate: moment(),
+            autoApply: true,
+            opens: isRtl ? "left" : "right",
+            locale: {
+              separator: " - ",
+              format: dateFormat,
+            },
+            startDate: dateFrom,
+            endDate: dateTo,
+            jalaali: isRtl,
+            showDropdowns: true,
+          })
+          .on("apply.daterangepicker", function (ev, picker) {
+            night = picker.endDate.diff(picker.startDate, "days");
+            if (night > 0) {
+              $(this).val(
+                picker.startDate.format(dateFormat) +
+                  " - " +
+                  picker.endDate.format(dateFormat)
+              );
+            } else {
+              $(this).val("");
+            }
+          });
 
-            
-            $('.ga-datepicker').daterangepicker({
-                clearLabel: 'Clear',
-                // autoUpdateInput: !!(dateFrom && dateTo),
-                //minDate: moment(),
-                autoApply: true,
-                opens: 'right',
-                singleDatePicker: true,
-                showDropdowns: true,
-                language: 'en'
-            }).on('apply.daterangepicker', function () {
-                $('.tooltip').hide();
-                $('.date-select').text($(this).val());
-            });
-
-            $('.jalali-datepicker').daterangepicker({
-                clearLabel: 'Clear',
-                autoApply: true,
-                opens: 'left',
-                singleDatePicker: true,
-                showDropdowns: true,
-                jalaali: true,
-                language: 'fa'
-            }).on('apply.daterangepicker', function () {
-                $('.tooltip').hide();
-                $('.date-select').text($(this).val());
-            });
-
-        });
+        $(document).on(
+          "mouseover",
+          ".daterangepicker .calendar td",
+          function () {
+            var gagDate = $(this).attr("data-original-title");
+            $(".date-hover").text("");
+            $(".date-hover").text(gagDate);
+          }
+        );
+      });
 
         const roomInput = document.querySelector('#roomInput')
         const guestInput = document.querySelector('#passInput')
@@ -702,8 +688,8 @@
 
         // Get the value entered by the user
         var searchValue = document.getElementById('searchInput').value;
-        var enterValue = document.getElementById('dateRangePicker').value;
-        var exitValue = document.getElementById('dateRangePickerEnd').value;
+        var enterValue = document.getElementById('dateRangePicker').value.split(' -');
+        var exitValue = document.getElementById('dateRangePicker').value.split('- ');
         var passValue = document.getElementById('passInput').value;
         var childValue = document.getElementById('childInput').value;
         var roomValue = document.getElementById('roomInput').value;
