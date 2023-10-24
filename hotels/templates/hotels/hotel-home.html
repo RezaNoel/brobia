@@ -10,6 +10,8 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'css\hotel-header.css' %}">
+    <link href="{% static 'js/date-picker/assets/css/daterangepicker.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'js/date-picker/assets/css/datepicker-theme.css' %}" rel="stylesheet" type="text/css" media="all"  />
  </head>
         <!-- ========== MAIN CONTENT ========== -->
         <main id="content">
@@ -55,7 +57,7 @@
                                                               <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
                                                             </span>
                                                         </div>
-                                                        <input id="enterInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-20" data-jdp value="{{ formatted_current_date}}">
+                                                        <input id="dateRangePicker" type="text" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-20" value="{{ formatted_current_date}}">
                                                     </div>
                                                     <!-- End Datepicker -->
                                                 </div>
@@ -71,7 +73,7 @@
                                                               <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
                                                             </span>
                                                         </div>
-                                                        <input id="exitInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-24" data-jdp value="{{ formatted_exit_date}}">
+                                                        <input id="dateRangePickerEnd" type="text" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-24" value="{{ formatted_exit_date}}">
                                                     </div>
                                                     <!-- End Datepicker -->
                                                 </div>
@@ -660,8 +662,78 @@
         <script src="{% static 'js/components/hs.slick-carousel.js' %}"></script>
         <script src="{% static 'js/components/hs.quantity-counter.js' %}"></script>
 
+        <!--JS Date Picker -->
+        <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script src="{% static 'js/date-picker/assets/js/moment.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/date-picker/assets/js/moment-jalaali.js' %}"></script>
+        <script src="{% static 'js/date-picker/assets/js/daterangepicker-fa-ex.js' %}"></script>
+
         <!-- JS Plugins Init. -->
         <script>
+            // Date Picker
+            $(document).ready(function () {
+            var night;
+            var isRtl = true;
+            var dateFormat = isRtl ? 'jYYYY/jMM/jDD' : 'YYYY/MM/DD';
+            var dateFrom = false ? moment("") : undefined;
+            var dateTo = false ? moment("") : undefined;
+            var $dateRanger = $("#dateRangePicker");
+
+            $dateRanger.daterangepicker({
+                clearLabel: 'Clear',
+                autoUpdateInput: !!(dateFrom && dateTo),
+                minDate: moment(),
+                autoApply: true,
+                opens: isRtl ? 'left' : 'right',
+                locale: {
+                    separator: ' - ',
+                    format: dateFormat
+                },
+                startDate: dateFrom,
+                endDate: dateTo,
+                jalaali: isRtl,
+                showDropdowns: true
+            }).on('apply.daterangepicker', function (ev, picker) {
+                night = picker.endDate.diff(picker.startDate, 'days');
+                if (night > 0) {
+                    $(this).val(picker.startDate.format(dateFormat));
+                    $('#dateRangePickerEnd').val(picker.endDate.format(dateFormat));
+                } else {
+                    $(this).val('')
+                }
+            });
+
+            
+            $('.ga-datepicker').daterangepicker({
+                clearLabel: 'Clear',
+                // autoUpdateInput: !!(dateFrom && dateTo),
+                //minDate: moment(),
+                autoApply: true,
+                opens: 'right',
+                singleDatePicker: true,
+                showDropdowns: true,
+                language: 'en'
+            }).on('apply.daterangepicker', function () {
+                $('.tooltip').hide();
+                $('.date-select').text($(this).val());
+            });
+
+            $('.jalali-datepicker').daterangepicker({
+                clearLabel: 'Clear',
+                autoApply: true,
+                opens: 'left',
+                singleDatePicker: true,
+                showDropdowns: true,
+                jalaali: true,
+                language: 'fa'
+            }).on('apply.daterangepicker', function () {
+                $('.tooltip').hide();
+                $('.date-select').text($(this).val());
+            });
+
+        });
+
         const roomInput = document.querySelector('#roomInput')
         const guestInput = document.querySelector('#passInput')
         const doneLink = document.querySelectorAll('.done-link');
@@ -721,8 +793,8 @@
 
         // Get the value entered by the user
         var searchValue = document.getElementById('searchInput').value;
-        var enterValue = document.getElementById('enterInput').value;
-        var exitValue = document.getElementById('exitInput').value;
+        var enterValue = document.getElementById('dateRangePicker').value;
+        var exitValue = document.getElementById('dateRangePickerEnd').value;
         var passValue = document.getElementById('passInput').value;
         var childValue = document.getElementById('childInput').value;
         var roomValue = document.getElementById('roomInput').value;
@@ -743,8 +815,8 @@
 
             // اطلاعات مورد نیاز برای ارسال در URL
             var searchValue = document.getElementById('searchInput').value;
-            var enterValue = document.getElementById('enterInput').value;
-            var exitValue = document.getElementById('exitInput').value;
+            var enterValue = document.getElementById('dateRangePicker').value;
+            var exitValue = document.getElementById('dateRangePickerEnd').value;
             var passValue = document.getElementById('passInput').value;
             var childValue = document.getElementById('childInput').value;
             var roomValue = document.getElementById('roomInput').value;
@@ -798,10 +870,12 @@
         if (!liked) {
           likeBtn.classList.add("like-btn");
           likeBtn.dataset.status = "liked";
+          likeBtn.setAttribute('action', 'like')
           likeCounter.textContent = currentLikes + 1;
         } else {
-          likeBtn.classList.remove("like-btn");
-          likeBtn.dataset.status = "not-liked";
+            likeBtn.classList.remove("like-btn");
+            likeBtn.dataset.status = "not-liked";
+            likeBtn.setAttribute('action', 'unlike')
           likeCounter.textContent = currentLikes - 1;
         }
       });
