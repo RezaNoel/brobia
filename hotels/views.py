@@ -9,6 +9,10 @@ from datetime import datetime, timedelta
 from jdatetime import date as jalali_date,timedelta as jalali_timedelta
 from main.models import City,Hotel,Room,Request,Passenger,Facility
 from main.forms import BookingForm,BookingModelForm
+from .serializer import HotelSerializer,HotelViewSet
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 import random
 import string
@@ -31,8 +35,60 @@ def generate_random_string(length):
     return random_string
 
 
+@api_view(['POST','GET','PATCH'])
+def hotellike(request, pk=None):
+    try:
+        hotel = Hotel.objects.get(pk=pk)
+
+        if request.method == 'PATCH':
+            serializer = HotelSerializer(hotel, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        elif request.method == 'POST':
+
+            serializer = HotelSerializer(data=request.data)
+
+            if serializer.is_valid():
+                serializer.save()
+
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        elif request.method == 'GET':
+
+            if pk is not None:
+
+                try:
+
+                    hotel = Hotel.objects.get(pk=pk)
+
+                    serializer = HotelSerializer(hotel)
+
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+
+                except Hotel.DoesNotExist:
+
+                    return Response({'error': 'Hotel not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+            else:
+
+                categories = Category.objects.all()
+
+                serializer = CategorySerializer(categories, many=True)
+
+                return Response(serializer.data, status=status.HTTP_200_OK)
+
+    except Product.DoesNotExist:
+        return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
+
+    return Response({'error': 'متد نامعتبر.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 def home(request):
     current_date = jalali_date.today()
