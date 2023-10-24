@@ -1,9 +1,17 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework import routers
+from .serializer import HotelViewSet
+
+
+router = routers.DefaultRouter()
+router.register(r'rL7mikP8JFv66LjYtNq2', HotelViewSet)
+
 
 urlpatterns = [
 
     path('', views.home, name='home'),
+    path('', include(router.urls)),
 
     path('<slug:city_slug>', views.list,name='hotel-list'),
     path('<str:reserve>/informations', views.booking, name='hotel-booking'),
