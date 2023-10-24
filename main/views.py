@@ -15,13 +15,10 @@ import string
 import time
 
 def about(request):
-    pass
+    return render(request, 'about.html')
 
 def contact(request):
-    pass
-
-
-
+    return render(request, 'contact.html')
 
 
 def custom_404(request, exception):
