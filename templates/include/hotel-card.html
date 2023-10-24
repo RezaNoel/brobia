@@ -7,7 +7,8 @@
             </a>
             <form method="POST" action={% url 'likepk' hotel.pk %}>
                 {% csrf_token %}
-            <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex flex-column justify-content-center align-items-center">
+
+            <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex flex-column justify-content-center align-items-center {% if hotel in user.hotel_likes.all %}like-btn{% endif %}">
                 <button type="submit" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ hotel.id }}" name="like" value="like">
                     <span class="font-size-20">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
