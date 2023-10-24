@@ -223,7 +223,7 @@
   visibility: hidden; }
 
 .dzsparallaxer.height-is-based-on-content {
-  height: auto;
+  /*height: auto;*/
   padding: 0; }
   .dzsparallaxer.height-is-based-on-content .dzs-container {
     padding: 45px 0; }

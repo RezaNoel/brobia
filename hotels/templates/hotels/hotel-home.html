@@ -3,14 +3,19 @@
 
         <!-- Title -->
 {% block title %}برو بیا | چه برو بیا ایه{% endblock %}
-{% block header %}{% endblock %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'vendor/dzsparallaxer/dzsparallaxer.css'%}">
+    <link rel="stylesheet" href="{% static 'css\hotel-header.css' %}">
+    <link href="{% static 'js/date-picker/assets/css/daterangepicker.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'js/date-picker/assets/css/datepicker-theme.css' %}" rel="stylesheet" type="text/css" media="all"  />
+
+{% endblock %}
 {% block content %}
 
 {% include 'include/hotel-header.html' %}
 
 <head>
-    <link rel="stylesheet" href="{% static 'css\hotel-header.css' %}">
- </head>
+
         <!-- ========== MAIN CONTENT ========== -->
         <main id="content">
             <!-- ========== HERO ========== -->
@@ -55,7 +60,7 @@
                                                               <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
                                                             </span>
                                                         </div>
-                                                        <input id="enterInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-20" data-jdp value="{{ formatted_current_date}}">
+                                                        <input id="dateRangePicker" type="text" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-20" value="{{ formatted_current_date}}">
                                                     </div>
                                                     <!-- End Datepicker -->
                                                 </div>
@@ -71,7 +76,7 @@
                                                               <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
                                                             </span>
                                                         </div>
-                                                        <input id="exitInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-24" data-jdp value="{{ formatted_exit_date}}">
+                                                        <input id="dateRangePickerEnd" type="text" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-24" value="{{ formatted_exit_date}}">
                                                     </div>
                                                     <!-- End Datepicker -->
                                                 </div>
@@ -340,54 +345,7 @@
                         }
                         }]">
                         {% for hotel in hotels %}
-                            <div class="mt-2">
-                            <div class="card transition-3d-hover shadow-hover-2 h-100 w-100">
-                                <div class="position-relative">
-                                    <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
-                                        <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
-                                    </a>
-                                    <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex flex-column justify-content-center align-items-center">
-                                        <button type="button" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ hotel.id }}">
-                                            <span class="font-size-20">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                                </svg>
-                                            </span>
-                                        </button>
-                                        <span id="like-counter-{{ hotel.id }}" class="text-warning bg-dark p-1 rounded font-size-13">{{ hotel.likes }}</span>
-                                    </div>
-                                   <div class="position-absolute bottom-0 left-0 right-0 rtl">
-                                        <div class="px-4 pb-3">
-                                            <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block hotel-link">
-                                                <div class="d-flex align-items-center font-size-14 text-white">
-                                                    <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ hotel.address}}
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body px-4 pt-2 pb-3">
-                                    <div class="mb-2">
-                                        <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
-                                            <div class="lighter">
-                                                {% for _ in "x"|rjust:hotel.starts %}
-                                                    <small class="fas fa-star"></small>
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">{{ hotel.faname}}</a>
-                                    <div class="mt-2 mb-3">
-                                        <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ hotel.starts }} ستاره </span>
-                                    </div>
-                                    <div class="mb-0">
-                                        <span class="mr-1 font-size-14 text-gray-1">از </span>
-                                        <span class="font-weight-bold">{{ hotel.min_price }} تومان </span>
-                                        <span class="font-size-14 text-gray-1">/ شب</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            {% include 'include/hotel-card.html' %}
                         {% endfor %}
                     </div>
                 </div>
@@ -397,7 +355,7 @@
 
 
             <!--Banner v3-->
-            <div class="banner-block banner-v3 dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll" data-options="{direction: &quot;normal&quot;}">
+            <div class="banner-block banner-v3 dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll" data-options="{direction: 'normal'}">
                 <!-- Apply your Parallax background image here -->
                 <div class="divimage dzsparallaxer--target bg-img-hero" style="height: 130%; background-image: url({% static 'img/1920x500/img4.jpg' %});">
                     <div class="text-center space-3">
@@ -453,54 +411,7 @@
                             <div class="row">
                                 {% for hotel in hotels %}
                                     {% if hotel.city == city %}
-                                        <div class="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1">
-                                            <div class="card transition-3d-hover shadow-hover-2 h-100 w-100">
-                                                <div class="position-relative">
-                                                    <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
-                                                        <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
-                                                    </a>
-                                                    <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex flex-column justify-content-center align-items-center">
-                                                        <button type="button" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ hotel.id }}">
-                                                            <span class="font-size-20">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                                                </svg>
-                                                            </span>
-                                                        </button>
-                                                        <span id="like-counter-{{ hotel.id }}" class="text-warning bg-dark p-1 rounded font-size-13">{{ hotel.likes }}</span>
-                                                    </div>
-                                                   <div class="position-absolute bottom-0 left-0 right-0 rtl">
-                                                        <div class="px-4 pb-3">
-                                                            <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block hotel-link">
-                                                                <div class="d-flex align-items-center font-size-14 text-white">
-                                                                    <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ hotel.address}}
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card-body px-4 pt-2 pb-3">
-                                                    <div class="mb-2">
-                                                        <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
-                                                            <div class="lighter">
-                                                                {% for _ in "x"|rjust:hotel.starts %}
-                                                                    <small class="fas fa-star"></small>
-                                                                {% endfor %}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">{{ hotel.faname}}</a>
-                                                    <div class="mt-2 mb-3">
-                                                        <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ hotel.starts }} ستاره </span>
-                                                    </div>
-                                                    <div class="mb-0">
-                                                        <span class="mr-1 font-size-14 text-gray-1">از </span>
-                                                        <span class="font-weight-bold">{{ hotel.min_price }} تومان </span>
-                                                        <span class="font-size-14 text-gray-1">/ شب</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                </div>
+                                        {% include 'include/hotel-card.html' %}
                                     {% endif %}
 
                                 {% endfor %}
@@ -660,8 +571,78 @@
         <script src="{% static 'js/components/hs.slick-carousel.js' %}"></script>
         <script src="{% static 'js/components/hs.quantity-counter.js' %}"></script>
 
+        <!--JS Date Picker -->
+        <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script src="{% static 'js/date-picker/assets/js/moment.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/date-picker/assets/js/moment-jalaali.js' %}"></script>
+        <script src="{% static 'js/date-picker/assets/js/daterangepicker-fa-ex.js' %}"></script>
+
         <!-- JS Plugins Init. -->
         <script>
+            // Date Picker
+            $(document).ready(function () {
+            var night;
+            var isRtl = true;
+            var dateFormat = isRtl ? 'jYYYY/jMM/jDD' : 'YYYY/MM/DD';
+            var dateFrom = false ? moment("") : undefined;
+            var dateTo = false ? moment("") : undefined;
+            var $dateRanger = $("#dateRangePicker");
+
+            $dateRanger.daterangepicker({
+                clearLabel: 'Clear',
+                autoUpdateInput: !!(dateFrom && dateTo),
+                minDate: moment(),
+                autoApply: true,
+                opens: isRtl ? 'left' : 'right',
+                locale: {
+                    separator: ' - ',
+                    format: dateFormat
+                },
+                startDate: dateFrom,
+                endDate: dateTo,
+                jalaali: isRtl,
+                showDropdowns: true
+            }).on('apply.daterangepicker', function (ev, picker) {
+                night = picker.endDate.diff(picker.startDate, 'days');
+                if (night > 0) {
+                    $(this).val(picker.startDate.format(dateFormat));
+                    $('#dateRangePickerEnd').val(picker.endDate.format(dateFormat));
+                } else {
+                    $(this).val('')
+                }
+            });
+
+            
+            $('.ga-datepicker').daterangepicker({
+                clearLabel: 'Clear',
+                // autoUpdateInput: !!(dateFrom && dateTo),
+                //minDate: moment(),
+                autoApply: true,
+                opens: 'right',
+                singleDatePicker: true,
+                showDropdowns: true,
+                language: 'en'
+            }).on('apply.daterangepicker', function () {
+                $('.tooltip').hide();
+                $('.date-select').text($(this).val());
+            });
+
+            $('.jalali-datepicker').daterangepicker({
+                clearLabel: 'Clear',
+                autoApply: true,
+                opens: 'left',
+                singleDatePicker: true,
+                showDropdowns: true,
+                jalaali: true,
+                language: 'fa'
+            }).on('apply.daterangepicker', function () {
+                $('.tooltip').hide();
+                $('.date-select').text($(this).val());
+            });
+
+        });
+
         const roomInput = document.querySelector('#roomInput')
         const guestInput = document.querySelector('#passInput')
         const doneLink = document.querySelectorAll('.done-link');
@@ -721,8 +702,8 @@
 
         // Get the value entered by the user
         var searchValue = document.getElementById('searchInput').value;
-        var enterValue = document.getElementById('enterInput').value;
-        var exitValue = document.getElementById('exitInput').value;
+        var enterValue = document.getElementById('dateRangePicker').value;
+        var exitValue = document.getElementById('dateRangePickerEnd').value;
         var passValue = document.getElementById('passInput').value;
         var childValue = document.getElementById('childInput').value;
         var roomValue = document.getElementById('roomInput').value;
@@ -743,8 +724,8 @@
 
             // اطلاعات مورد نیاز برای ارسال در URL
             var searchValue = document.getElementById('searchInput').value;
-            var enterValue = document.getElementById('enterInput').value;
-            var exitValue = document.getElementById('exitInput').value;
+            var enterValue = document.getElementById('dateRangePicker').value;
+            var exitValue = document.getElementById('dateRangePickerEnd').value;
             var passValue = document.getElementById('passInput').value;
             var childValue = document.getElementById('childInput').value;
             var roomValue = document.getElementById('roomInput').value;
@@ -783,29 +764,7 @@
     // Get all like buttons by class name
     const likeButtons = document.querySelectorAll(".like");
 
-    // Add click event listeners to each like button
-    likeButtons.forEach((likeBtn) => {
-      likeBtn.addEventListener("click", function (e) {
-        const hotelId = e.currentTarget.getAttribute("data-hotel-id");
-        const likeCounter = document.getElementById(`like-counter-${hotelId}`);
-        const currentLikes = parseInt(likeCounter.textContent, 10) || 0;
-        let liked = false;
-        if (likeBtn.dataset.status === "liked") {
-          liked = true;
-        } else {
-          liked = false;
-        }
-        if (!liked) {
-          likeBtn.classList.add("like-btn");
-          likeBtn.dataset.status = "liked";
-          likeCounter.textContent = currentLikes + 1;
-        } else {
-          likeBtn.classList.remove("like-btn");
-          likeBtn.dataset.status = "not-liked";
-          likeCounter.textContent = currentLikes - 1;
-        }
-      });
-    });
+
   });
 
 </script>

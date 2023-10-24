@@ -922,55 +922,7 @@
                                 <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                                     <div class="row">
                                         {% for hotel in hotels %}
-                                            <div class="col-md-6 col-lg-4 mb-3 mb-md-4 pb-1">
-                                            <div class="card transition-3d-hover shadow-hover-2 tab-card h-100">
-                                                <div class="position-relative">
-                                                    <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
-                                                        <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
-                                                    </a>
-
-                                                    <div class="position-absolute top-0 right-0 pt-3 pr-3">
-                                                        <button type="button" class="btn btn-sm btn-icon text-white rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن">
-                                                            <span class="flaticon-valentine-heart"></span>
-                                                        </button>
-                                                    </div>
-                                                   <div class="position-absolute bottom-0 left-0 right-0 rtl">
-                                                        <div class="px-4 pb-3">
-                                                            <a  href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block hotel-link">
-                                                                <div class="d-flex align-items-center font-size-14 text-white">
-                                                                    <i class="icon flaticon-pin-1 mr-2 font-size-20"></i>{{ hotel.address }}
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card-body pl-3 pr-4 pt-2 pb-3">
-                                                    <div class="ml-1 mb-2">
-                                                        <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
-                                                            <div class="lighter">
-                                                                    {% for _ in "x"|rjust:hotel.starts %}
-                                                                        <small class="fas fa-star"></small>
-                                                                    {% endfor %}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <a  href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">{{hotel.faname}}</a>
-                                                    <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="text-dark hotel-link">
-                                                    <div class="mt-2 mb-3">
-                                                        {% if hotel.special_offer %}
-                                                        <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
-                                                   {% endif %}
-                                                        <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ hotel.starts }}ستاره </span>
-                                                    </div>
-                                                    <div class="mb-0">
-                                                        <span class="mr-1 font-size-14 text-gray-1">از </span>
-                                                        <span class="font-weight-bold">{{ hotel.min_price|intcomma }} تومان </span>
-                                                        <span class="font-size-14 text-gray-1">/ شب</span>
-                                                    </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            {% include 'include/hotel-card.html' %}
                                         {% endfor %}
                                     </div>
                                 </div>

@@ -1,3 +1,4 @@
+import accounts.views
 from django.shortcuts import render,redirect,get_object_or_404
 from django.db.models import Min
 from django.urls import reverse
@@ -9,6 +10,10 @@ from datetime import datetime, timedelta
 from jdatetime import date as jalali_date,timedelta as jalali_timedelta
 from main.models import City,Hotel,Room,Request,Passenger,Facility
 from main.forms import BookingForm,BookingModelForm
+from .serializer import HotelSerializer,HotelViewSet
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 import random
 import string
@@ -31,8 +36,23 @@ def generate_random_string(length):
     return random_string
 
 
+def hotellike(request, pk):
+    if request.user.is_authenticated:
+        hotel = Hotel.objects.get(pk=pk)
+        if request.method == "POST":
+            data = request.POST
+            request.user.increase_likes(hotel)
+        referer = request.META.get('HTTP_REFERER')
+        if referer:
+            return redirect(referer)
+        else:
+            return redirect(home)
+    return redirect(accounts.views.LoginView)
 
 
+
+
+    return Response({'error': 'متد نامعتبر.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 def home(request):
     current_date = jalali_date.today()
