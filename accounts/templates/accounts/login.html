@@ -40,7 +40,7 @@
 {#        </div>#}
 {#      </form>#}
 {#    </main>#}
-{#  </body>#}
+</body>
     <!-- Section: Design Block -->
 <!-- Section: Design Block -->
 <section class="text-center">
@@ -88,33 +88,18 @@
 
 
             <!-- Submit button -->
-            <button type="submit" class="btn col-lg-4 col-xl-4 btn-primary  mb-4">
-              ورود
-            </button>
-              <a href="{% url 'register' %}"><button type="button" class="btn col-lg-4 col-xl-4 btn-primary  mb-4">
-              ثبت نام
-            </button>
+              <div>
+                <button type="submit" class="btn col-lg-4 col-xl-4 btn-primary mb-4 mr-10">
+                  ورود
+                </button>
+                <button type="button" class="btn col-lg-4 col-xl-4 btn-primary mb-4">
+                  <a href="{% url 'register' %}" class="text-white">
+                  ثبت نام
                   </a>
-
-            <!-- Register buttons -->
-{#            <div class="text-center">#}
-{#              <p>or sign up with:</p>#}
-{#              <button type="button" class="btn btn-link btn-floating mx-1">#}
-{#                <i class="fab fa-facebook-f"></i>#}
-{#              </button>#}
-{##}
-{#              <button type="button" class="btn btn-link btn-floating mx-1">#}
-{#                <i class="fab fa-google"></i>#}
-{#              </button>#}
-{##}
-{#              <button type="button" class="btn btn-link btn-floating mx-1">#}
-{#                <i class="fab fa-twitter"></i>#}
-{#              </button>#}
-{##}
-{#              <button type="button" class="btn btn-link btn-floating mx-1">#}
-{#                <i class="fab fa-github"></i>#}
-{#              </button>#}
-{#            </div>#}
+                </button>
+              </div>
+              <button type="button" class="btn col-lg-2 col-xl-2 btn-outline-primary mb-4 font-size-12">فراموشی رمز عبور</button>
+              <button type="button" class="btn col-lg-2 col-xl-2 btn-outline-primary mb-4 font-size-12">ورود با رمز یک بار مصرف</button>
           </form>
         </div>
       </div>
