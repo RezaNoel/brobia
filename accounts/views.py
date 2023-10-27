@@ -24,7 +24,7 @@ def LoginView(request):
                 loginForm = LoginForm()
                 context = {
                     'loginForm': loginForm,
-                    'error_message':'نام کاربری یا رمز عبور اشتباه است.'
+                    'error_message':'شماره همراه یا رمز عبور اشتباه است.'
                 }
                 return render(request, 'accounts/login.html', context)
     else:
@@ -62,7 +62,7 @@ def RegisterView(request):
             user = authenticate(request, username=username, password=password)
             login(request, user)
 
-            return HttpResponseRedirect(reverse(main.views.home))
+            return HttpResponseRedirect(reverse(hotels.views.home))
         context = {
             'registerForm': registerForm
         }

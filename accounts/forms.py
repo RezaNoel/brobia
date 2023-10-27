@@ -24,7 +24,7 @@ class RegisterForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['phone'].widget.attrs.update({'class': 'form-control', 'placeholder': 'شماره تماس خود را وارد کنید'})
+        self.fields['phone'].widget.attrs.update({'class': 'form-control', 'placeholder': 'شماره همراه خود را وارد کنید'})
         self.fields['nid'].widget.attrs.update({'class': 'form-control', 'placeholder': 'کد ملی خود را وارد کنید'})
         self.fields['birthdate'].widget.attrs.update({'class': 'form-control', 'placeholder': 'تاریخ تولد خود را وارد کنید'})
 
@@ -50,5 +50,5 @@ class LoginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['phone'].widget.attrs.update(
-            {'class': 'form-control', 'placeholder': 'شماره تماس خود را وارد کنید'})
+            {'class': 'form-control', 'placeholder': 'شماره همراه خود را وارد کنید'})
 
