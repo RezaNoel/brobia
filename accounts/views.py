@@ -20,6 +20,27 @@ def LoginView(request):
             if user is not None:
                 login(request,user)
                 return HttpResponseRedirect(reverse(hotels.views.home))
+            elif len(password)<8:
+                loginForm = LoginForm()
+                context = {
+                    'loginForm': loginForm,
+                    'error_message': 'رمز عبور باید حداقل 8 کاراکتر باشد.'
+                }
+                return render(request, 'accounts/login.html', context)
+            elif password==None:
+                loginForm = LoginForm()
+                context = {
+                    'loginForm': loginForm,
+                    'error_message': 'رمز عبوراجباریست.'
+                }
+                return render(request, 'accounts/login.html', context)
+            elif len(phone)!=11:
+                loginForm = LoginForm()
+                context = {
+                    'loginForm': loginForm,
+                    'error_message': 'شماره همراه باید 11 کاراکتر باشد.'
+                }
+                return render(request, 'accounts/login.html', context)
             else:
                 loginForm = LoginForm()
                 context = {

@@ -1,5 +1,6 @@
 from django import forms
 from .models import User
+
 class RegisterForm(forms.ModelForm):
     first_name = forms.CharField(label="نام",max_length=100,required=False, widget=forms.TextInput(
         attrs={'class': 'form-control','placeholder': 'نام خود را وارد کنید'}
@@ -40,7 +41,7 @@ class LoginForm(forms.ModelForm):
     #     attrs={'class': 'form-control','placeholder': 'نام کاربری خود را وارد کنید'}
     # ))
     password = forms.CharField(label="رمز عبور",max_length=100, widget=forms.PasswordInput(
-        attrs={'class': 'form-control','placeholder': 'رمز عبور خود را وارد کنید'}
+        attrs={'class': 'form-control','placeholder': 'رمز عبور خود را وارد کنید', 'spellcheck': 'false', 'autocorrect': 'off', 'autocapitalize': 'off', 'name': 'current-password', 'autocomplete': 'current-password'}
     ))
 
     class Meta:

@@ -5,42 +5,11 @@
 
 {% block title %}سپاهان آرامش پرواز{% endblock %}
 {% block header %}
-{#    <link rel="stylesheet" href="{% static 'css/sign-in.css' %}" />#}
 {% endblock %}
 {% block content %}
 
-{#  <body class="d-flex align-items-center py-4 bg-body-tertiary">#}
-{#    <main class="form-signin m-auto">#}
-{#      <form class="d-flex row">#}
-{#        <img class="text-center align-content-lg-center" src="{% static 'img/logo/purelogo.png' %}" alt="logo" style="width: 10em;height: 10em" />#}
-{#        <h1 class="h3 mb-3 fw-normal">#}
-{#          Please Enter your Email address and Password#}
-{#        </h1>#}
-{##}
-{#        <div class="form-floating">#}
-{#          <input#}
-{#            type="email"#}
-{#            class="form-control"#}
-{#            id="floatingInput"#}
-{#            placeholder="name@example.com"#}
-{#          />#}
-{#          <label for="floatingInput">Email address</label>#}
-{#        </div>#}
-{#        <div class="form-floating">#}
-{#          <input#}
-{#            type="password"#}
-{#            class="form-control"#}
-{#            id="floatingPassword"#}
-{#            placeholder="Password"#}
-{#          />#}
-{#          <label for="floatingPassword">Password</label>#}
-{#        </div>#}
-{#        <div class="d-flex justify-content-center">#}
-{#          <button class="btn btn-warning w-50 py-2" type="submit">Login</button>#}
-{#        </div>#}
-{#      </form>#}
-{#    </main>#}
-{#  </body>#}
+
+</body>
     <!-- Section: Design Block -->
 <!-- Section: Design Block -->
 <section class="text-center">
@@ -58,12 +27,24 @@
         background: hsla(0, 0%, 100%, 0.8);
         backdrop-filter: blur(30px);
         ">
+        <!-- <button class="btn btn-outline-primary position-absolute top-0 left-0 p-5">
+          <a href="#" class="link-primary">برگشت به صفحه اصلی</a>
+        </button> -->
+        <button type="button" class="btn col-lg-2 col-xl-2 mb-4 position-absolute top-0 left-0 p-3 d-flex justify-content-center align-content-center">
+          <a href="{% url 'home' %}" class="text-primary mr-1">
+          برگشت به خانه
+          </a>
+          <i><svg style="width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+          </svg>
+          </i>
+        </button>
     <div class="card-body py-5 px-md-5">
 
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">وارد اکانت خود شوید</h2>
-          <form action="" method="POST" class="form">
+          <form action="" method="POST" class="form needs-validation">
               {% csrf_token %}
 
             <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -75,51 +56,124 @@
                 {{loginForm.phone.label_tag}}
                 {{loginForm.phone}}
                 {{loginForm.phone.errors}}
+
+                  <!-- <label for="phoneInput" class="form-label">شماره همراه:</label>
+                  <input type="number" id="id_phone" class="form-control invalid-input" maxlength="11" autocomplete="tel" placeholder="شماره همراه خود را وارد کنید" min="0" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div> -->
+
+
             </div>
 
             <!-- Password input -->
-            <div class="form-outline mb-4">
+            <div class="form-outline mb-6">
 
                 {{loginForm.password.label_tag}}
                 {{loginForm.password}}
                 {{loginForm.password.errors}}
+{#                <p class="text-red-lighter-1 font-size-14">رمز عبور باید حداقل 8 کاراکتر باشد</p>#}
+
+                <!-- <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                  <input class="form-control" type="password" id="password" name="password" placeholder="Password" value="">
+                  <span class="input-group-text"><i class="far fa-eye-slash" id="togglePassword"></i></span>
+                </div> -->
+
             </div>
-
-
-
             <!-- Submit button -->
-            <button type="submit" class="btn col-lg-4 col-xl-4 btn-primary  mb-4">
-              ورود
-            </button>
-              <a href="{% url 'register' %}"><button type="button" class="btn col-lg-4 col-xl-4 btn-primary  mb-4">
-              ثبت نام
-            </button>
+              <div>
+                <button type="submit" class="btn col-lg-4 col-xl-4 btn-primary mb-4 mr-10">
+                  ورود
+                </button>
+                <button type="button" class="btn col-lg-4 col-xl-4 btn-primary mb-4">
+                  <a href="{% url 'register' %}" class="text-white">
+                  ثبت نام
                   </a>
-
-            <!-- Register buttons -->
-{#            <div class="text-center">#}
-{#              <p>or sign up with:</p>#}
-{#              <button type="button" class="btn btn-link btn-floating mx-1">#}
-{#                <i class="fab fa-facebook-f"></i>#}
-{#              </button>#}
-{##}
-{#              <button type="button" class="btn btn-link btn-floating mx-1">#}
-{#                <i class="fab fa-google"></i>#}
-{#              </button>#}
-{##}
-{#              <button type="button" class="btn btn-link btn-floating mx-1">#}
-{#                <i class="fab fa-twitter"></i>#}
-{#              </button>#}
-{##}
-{#              <button type="button" class="btn btn-link btn-floating mx-1">#}
-{#                <i class="fab fa-github"></i>#}
-{#              </button>#}
-{#            </div>#}
+                </button>
+              </div>
+              <button type="button" class="btn col-lg-2 col-xl-2 btn-outline-primary mb-4 font-size-12">فراموشی رمز عبور</button>
+              <button type="button" class="btn col-lg-2 col-xl-2 btn-outline-primary mb-4 font-size-12">ورود با رمز یک بار مصرف</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- Section: Design Block -->
+
+
+<!-- Styles -->
+<style>
+  .invalid{
+    border-color: #f03e3e;
+  }
+  
+  .invalid:focus{
+    border-color: #f03e3e;
+    box-shadow: 0 0 8px #ffa8a8;
+  }
+  
+  .valid{
+    border-color: #37b24d;
+  }
+  .valid:focus{
+    border-color: #37b24d;
+    box-shadow: 0 0 8px #8ce99a;
+  }
+
+  #id_phone::-webkit-inner-spin-button{
+    display: none;
+  }
+
+  #id_phone{
+    -moz-appearance: textfield;
+  }
+
+</style>
+
+
+<!-- Scripts -->
+<script defer>
+  const togglePassword = document.querySelector("#togglePassword");
+  const password = document.querySelector("#password");
+  
+  // togglePassword.addEventListener("click", function () {
+     
+  //   // toggle the type attribute
+  //   const type = password.getAttribute("type") === "password" ? "text" : "password";
+  //   password.setAttribute("type", type);
+  //   // toggle the eye icon
+  //   this.classList.toggle('fa-eye-slash');
+  //   this.classList.toggle('fa-eye');
+  // });
+
+  const telInput = document.getElementById('id_phone')
+  telInput.setAttribute('type', 'number')
+  telInput.setAttribute('autocomplete',"tel")
+  telInput.addEventListener('input', (e) => {
+    e.target.value = '0' + (Math.abs(+e.target.value) !== 0 ? Math.abs(+e.target.value) : '')
+    if(e.target.value.length !== 11) {
+      telInput.classList.add('invalid')
+      telInput.classList.remove('valid')
+    }
+    else {
+      telInput.classList.remove('invalid')
+      telInput.classList.add('valid')
+    }
+  })
+
+  const passInput = document.getElementById('id_password')
+  passInput.addEventListener('input', (e) => {
+    if(e.target.value.length < 8) {
+      passInput.classList.add('invalid')
+      passInput.classList.remove('valid')
+    }
+    else {
+      passInput.classList.remove('invalid')
+      passInput.classList.add('valid')
+    }
+  })
+
+  
+</script>
 {% endblock %}
