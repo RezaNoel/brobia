@@ -57,6 +57,7 @@
                     <div class="form-outline">
                         <a title="اجباری"><span class="text-danger font-size-1 fas fa-asterisk"></span> {{registerForm.password.label_tag}}</a>
                         {{registerForm.password}}
+                        <p class="text-red-lighter-1 font-size-14">رمز عبور باید حداقل 8 کاراکتر باشد</p>
                         {{registerForm.password.errors}}
                     </div>
                 </div>
@@ -118,4 +119,75 @@
   </div>
 </section>
 <!-- Section: Design Block -->
+
+<style>
+  .invalid{
+    border-color: #f03e3e;
+    color: #f03e3e;
+  }
+  
+  .invalid:focus{
+    border-color: #f03e3e;
+    box-shadow: 0 0 8px #ffa8a8;
+  }
+  
+  .valid{
+    border-color: #37b24d;
+    color: #37b24d;
+  }
+  .valid:focus{
+    border-color: #37b24d;
+    box-shadow: 0 0 8px #8ce99a;
+  }
+
+  #id_phone::-webkit-inner-spin-button{
+    display: none;
+  }
+
+  #id_phone{
+    -moz-appearance: textfield;
+  }
+
+</style>
+
+<script defer>
+  const telInput = document.getElementById('id_phone')
+  telInput.setAttribute('type', 'number')
+  telInput.setAttribute('autocomplete',"tel")
+  telInput.addEventListener('input', (e) => {
+    e.target.value = '0' + (Math.abs(+e.target.value) !== 0 ? Math.abs(+e.target.value) : '')
+    if(e.target.value.length !== 11) {
+      telInput.classList.add('invalid')
+      telInput.classList.remove('valid')
+    }
+    else {
+      telInput.classList.remove('invalid')
+      telInput.classList.add('valid')
+    }
+  })
+
+  const passInput = document.getElementById('id_password')
+  passInput.addEventListener('input', (e) => {
+    if(e.target.value.length < 8) {
+      passInput.classList.add('invalid')
+      passInput.classList.remove('valid')
+    }
+    else {
+      passInput.classList.remove('invalid')
+      passInput.classList.add('valid')
+    }
+  })
+
+  const passConInput = document.getElementById('id_confirm_password')
+  passConInput.addEventListener('input', (e) => {
+    if(e.target.value !== passInput.value) {
+      passConInput.classList.add('invalid')
+      passConInput.classList.remove('valid')
+    }
+    else {
+      passConInput.classList.remove('invalid')
+      passConInput.classList.add('valid')
+    }
+  })
+</script>
 {% endblock %}
