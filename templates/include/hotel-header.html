@@ -94,7 +94,7 @@
                                 {% if user.is_authenticated %}
                                 <a href="{% url 'profile' %}" class="d-flex align-items-center text-white">
                                     <i class="flaticon-user mr-2 ml-1"></i>
-                                    <span class="d-inline-block font-size-14 mr-1">{{ user.first_name }} {{ user.last_name }}</span>
+                                    <span class="d-inline-block font-size-14 mr-1" id="user_name">{{ user.first_name }} {{ user.last_name }}</span>
                                 </a>
                                 {% else %}
                                     <a href="{% url 'login' %}" class="d-flex align-items-center text-white">
@@ -209,3 +209,9 @@
             </div>
         </header>
         <!-- ========== End HEADER ========== -->
+
+        <script>
+            const usersName = document.getElementById('user_name')
+            console.log(usersName)
+            if(usersName.innerHTML === ' ') usersName.innerHTML = 'پروفایل'
+        </script>
