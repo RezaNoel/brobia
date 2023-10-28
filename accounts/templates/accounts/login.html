@@ -85,11 +85,11 @@
                 <button type="submit" class="btn col-lg-4 col-xl-4 btn-primary mb-4 mr-10">
                   ورود
                 </button>
+                <a href="{% url 'register' %}" class="text-white">
                 <button type="button" class="btn col-lg-4 col-xl-4 btn-primary mb-4">
-                  <a href="{% url 'register' %}" class="text-white">
                   ثبت نام
-                  </a>
                 </button>
+                 </a>
               </div>
               <button type="button" class="btn col-lg-2 col-xl-2 btn-outline-primary mb-4 font-size-12">فراموشی رمز عبور</button>
               <button type="button" class="btn col-lg-2 col-xl-2 btn-outline-primary mb-4 font-size-12">ورود با رمز یک بار مصرف</button>
@@ -168,7 +168,7 @@
       passInput.classList.remove('valid')
     }
     else {
-      passInput.classList.remove('invalid')
+      passInput.classList.remove('invalid')0
       passInput.classList.add('valid')
     }
   })
