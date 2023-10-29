@@ -31,7 +31,7 @@
           <a href="#" class="link-primary">برگشت به صفحه اصلی</a>
         </button> -->
         <button type="button" class="btn col-lg-2 col-xl-2 mb-4 position-absolute top-0 left-0 p-3 d-flex justify-content-center align-content-center">
-          <a href="{% url 'register' %}" class="text-primary mr-1">
+          <a href="{% url 'home' %}" class="text-primary mr-1">
           برگشت به خانه
           </a>
           <i><svg style="width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -68,14 +68,9 @@
 
             <!-- Password input -->
             <div class="form-outline mb-6">
-
-                {{loginForm.password.label_tag}}
-                {{loginForm.password}}
-                {{loginForm.password.errors}}
-
-                <div class="input-group">
+                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                  <input class="form-control" type="password" id="password" name="password" placeholder="" value="">
+                {{loginForm.password}}
                   <span class="input-group-text"><i class="far fa-eye-slash" id="togglePassword"></i></span>
                 </div>
 
@@ -145,7 +140,15 @@
     this.classList.toggle('fa-eye-slash');
     this.classList.toggle('fa-eye');
   });
+   togglePassword.addEventListener("click", function () {
 
+     // toggle the type attribute
+     const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+     // toggle the eye icon
+     this.classList.toggle('fa-eye-slash');
+     this.classList.toggle('fa-eye');
+   });
   const telInput = document.getElementById('id_phone')
   telInput.setAttribute('type', 'number')
   telInput.setAttribute('autocomplete',"tel")
@@ -161,7 +164,7 @@
     }
   })
 
-  const passInput = document.getElementById('id_password')
+  const passInput = document.getElementById('password')
   passInput.addEventListener('input', (e) => {
     if(e.target.value.length < 8) {
       passInput.classList.add('invalid')
