@@ -56,22 +56,15 @@
                 {{loginForm.phone.label_tag}}
                 {{loginForm.phone}}
                 {{loginForm.phone.errors}}
-
-                  <!-- <label for="phoneInput" class="form-label">شماره همراه:</label>
-                  <input type="number" id="id_phone" class="form-control invalid-input" maxlength="11" autocomplete="tel" placeholder="شماره همراه خود را وارد کنید" min="0" required>
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div> -->
-
-
+                
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-6">
                  <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                {{loginForm.password}}
-                  <span class="input-group-text"><i class="far fa-eye-slash" id="togglePassword"></i></span>
+                  {{loginForm.password}}
+                  <span class="input-group-text cursor-pointer user-select-none"><i class="far fa-eye-slash" id="togglePassword"></i></span>
                 </div>
 
             </div>
@@ -128,27 +121,18 @@
 
 <!-- Scripts -->
 <script defer>
-  const togglePassword = document.querySelector("#togglePassword");
-  const password = document.querySelector("#password");
-  
+  const togglePassword = document.getElementById("togglePassword");
+  const password = document.getElementById("password");
+
   togglePassword.addEventListener("click", function () {
-     
     // toggle the type attribute
-    const type = password.getAttribute("type") === "password" ? "text" : "password";
-    password.setAttribute("type", type);
+    const type = password.getAttribute("type") === 'password' ? 'text' : 'password';
+    password.type = type
     // toggle the eye icon
     this.classList.toggle('fa-eye-slash');
     this.classList.toggle('fa-eye');
   });
-   togglePassword.addEventListener("click", function () {
 
-     // toggle the type attribute
-     const type = password.getAttribute("type") === "password" ? "text" : "password";
-    password.setAttribute("type", type);
-     // toggle the eye icon
-     this.classList.toggle('fa-eye-slash');
-     this.classList.toggle('fa-eye');
-   });
   const telInput = document.getElementById('id_phone')
   telInput.setAttribute('type', 'number')
   telInput.setAttribute('autocomplete',"tel")
