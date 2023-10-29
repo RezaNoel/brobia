@@ -73,11 +73,11 @@
                 {{loginForm.password}}
                 {{loginForm.password.errors}}
 
-                <!-- <div class="input-group">
+                <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                  <input class="form-control" type="password" id="password" name="password" placeholder="Password" value="">
+                  <input class="form-control" type="password" id="password" name="password" placeholder="" value="">
                   <span class="input-group-text"><i class="far fa-eye-slash" id="togglePassword"></i></span>
-                </div> -->
+                </div>
 
             </div>
             <!-- Submit button -->
@@ -136,15 +136,15 @@
   const togglePassword = document.querySelector("#togglePassword");
   const password = document.querySelector("#password");
   
-  // togglePassword.addEventListener("click", function () {
+  togglePassword.addEventListener("click", function () {
      
-  //   // toggle the type attribute
-  //   const type = password.getAttribute("type") === "password" ? "text" : "password";
-  //   password.setAttribute("type", type);
-  //   // toggle the eye icon
-  //   this.classList.toggle('fa-eye-slash');
-  //   this.classList.toggle('fa-eye');
-  // });
+    // toggle the type attribute
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+    // toggle the eye icon
+    this.classList.toggle('fa-eye-slash');
+    this.classList.toggle('fa-eye');
+  });
 
   const telInput = document.getElementById('id_phone')
   telInput.setAttribute('type', 'number')
