@@ -25,7 +25,7 @@ class RegisterForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['phone'].widget.attrs.update({'class': 'form-control', 'placeholder': 'شماره همراه خود را وارد کنید'})
+        self.fields['phone'].widget.attrs.update({'class': 'form-control', 'placeholder': '09XXXXXXXXX'})
         self.fields['nid'].widget.attrs.update({'class': 'form-control', 'placeholder': 'کد ملی خود را وارد کنید'})
         self.fields['birthdate'].widget.attrs.update({'class': 'form-control', 'placeholder': 'تاریخ تولد خود را وارد کنید'})
 
@@ -40,8 +40,8 @@ class LoginForm(forms.ModelForm):
     # username = forms.CharField(label="نام کاربری",max_length=100, widget=forms.TextInput(
     #     attrs={'class': 'form-control','placeholder': 'نام کاربری خود را وارد کنید'}
     # ))
-    password = forms.CharField(label="رمز عبور",max_length=100, widget=forms.PasswordInput(
-        attrs={'class': 'form-control','placeholder': 'رمز عبور خود را وارد کنید', 'spellcheck': 'false', 'autocorrect': 'off', 'autocapitalize': 'off', 'name': 'current-password', 'autocomplete': 'current-password'}
+    password = forms.CharField(max_length=100, widget=forms.PasswordInput(
+        attrs={'class': 'form-control','id':' password','placeholder': 'رمز عبور خود را وارد کنید', 'spellcheck': 'false', 'autocorrect': 'off', 'autocapitalize': 'off', 'name': 'current-password', 'autocomplete': 'current-password'}
     ))
 
     class Meta:
@@ -51,5 +51,5 @@ class LoginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['phone'].widget.attrs.update(
-            {'class': 'form-control', 'placeholder': 'شماره همراه خود را وارد کنید'})
+            {'class': 'form-control', 'placeholder': '09XXXXXXXXX'})
 
