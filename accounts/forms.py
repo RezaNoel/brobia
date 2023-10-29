@@ -41,7 +41,7 @@ class LoginForm(forms.ModelForm):
     #     attrs={'class': 'form-control','placeholder': 'نام کاربری خود را وارد کنید'}
     # ))
     password = forms.CharField(max_length=100, widget=forms.PasswordInput(
-        attrs={'class': 'form-control','id':'password','placeholder': 'رمز عبور خود را وارد کنید', 'spellcheck': 'false', 'autocorrect': 'off', 'autocapitalize': 'off', 'name': 'current-password', 'autocomplete': 'current-password'}
+        attrs={'class': 'form-control','id':'password','placeholder': 'رمز عبور خود را وارد کنید', 'oninvalid': "setCustomValidity('لطفا رمز عبور خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off', 'autocapitalize': 'off', 'name': 'current-password', 'autocomplete': 'current-password'}
     ))
 
     class Meta:
