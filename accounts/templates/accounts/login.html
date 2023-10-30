@@ -27,9 +27,6 @@
         background: hsla(0, 0%, 100%, 0.8);
         backdrop-filter: blur(30px);
         ">
-        <!-- <button class="btn btn-outline-primary position-absolute top-0 left-0 p-5">
-          <a href="#" class="link-primary">برگشت به صفحه اصلی</a>
-        </button> -->
         <button type="button" class="btn col-lg-2 col-xl-2 mb-4 position-absolute top-0 left-0 p-3 d-flex justify-content-center align-content-center">
           <a href="{% url 'home' %}" class="text-primary mr-1">
           برگشت به خانه
@@ -61,11 +58,14 @@
             </div>
 
             <!-- Password input -->
-            <div class="form-outline mb-6">
+            <div class="form-outline mb-6 d-flex flex-column">
                  <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-lock"></i></span>
                   {{loginForm.password}}
                   <span class="input-group-text cursor-pointer user-select-none"><i class="far fa-eye-slash" id="togglePassword"></i></span>
+                </div>
+                <div class="text-left ml-9 mt-3 font-size-14">
+                  <a href="#" class="text-primary">رمز عبور خود را فراموش کرده اید؟</a>
                 </div>
 
             </div>
@@ -80,7 +80,6 @@
                 </button>
                  </a>
               </div>
-              <button type="button" class="btn col-lg-2 col-xl-2 btn-outline-primary mb-4 font-size-12">فراموشی رمز عبور</button>
               <button type="button" class="btn col-lg-2 col-xl-2 btn-outline-primary mb-4 font-size-12">ورود با رمز یک بار مصرف</button>
           </form>
         </div>
