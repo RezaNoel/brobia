@@ -6,11 +6,20 @@
 }
 
 .contact-icon:hover path{
-    stroke:white
+    stroke:white;
+}
+
+.like-btn path{
+    stroke: none;
+    fill: red;
 }
 
 .card-odd-down:nth-child(odd){
     margin-top: 70px !important;
+}
+
+.dropdown-toggle::after{
+    margin-left: 0;
 }
 
 #nav-item-hover:hover {
@@ -20,9 +29,4 @@
 #facilities{
     width: 320px !important;
     margin-left: 50px;
-}
-
-.like-btn path{
-    stroke: none;
-    fill: red;
 }
