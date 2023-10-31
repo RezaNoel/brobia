@@ -119,9 +119,6 @@
                                     <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
                                 </a>
                             </li>
-                            <!-- Hotel -->
-                            <!-- End Hotel -->
-                            <!-- End Logo -->
                         </ul>
                         <!-- <ul class="navbar-nav u-header__navbar-nav">
                         <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
@@ -159,17 +156,21 @@
                         <div id="navBar" class="navbar-collapse u-header__navbar-collapse collapse order-2 order-xl-0 pt-4 p-xl-0 position-relative">
                             <ul class="navbar-nav u-header__navbar-nav">
                                 <!-- Hotel -->
-{#                                <li class="nav-item hs-has-sub-menu u-header__nav-item airplane" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
                                     <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-hotel-1 mr-2 ml-1 airplane"></i> هتل</a>
-{#                                </li>#}
-                                <!-- End Hotel -->
-
-                                <!-- Flight -->
-                                    <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border " href="https://sap19.ir/" ><i class="bi bi-airplane  mr-2 ml-1 "></i> پرواز</a>
-                                <!-- End Flight -->
-
-                                <!-- Taxi -->
-                                    <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border " href="{% url 'taxi-home' %}" ><i class="bi bi-taxi-front-fill  mr-2 ml-1"></i> تاکسی</a>
+                                    <!-- End Hotel -->
+                                    
+                                    <!-- Flight -->
+                                    <div class="d-flex justify-content-center align-items-center ml-3">
+                                        <a id="nav-item-hover" class="btn disabled u-header__nav-link u-header__nav-link-border px-0" href="https://sap19.ir/" ><i class="bi bi-airplane  mr-1 ml-0 "></i> پرواز</a>
+                                        <span class="text-warning d-flex justify-content-center align-items-center px-1">به زودی<i class="fas fa-clock mx-1"></i></span>
+                                    </div>
+                                    <!-- End Flight -->
+                                    
+                                    <!-- Taxi -->
+                                    <div class="d-flex justify-content-center align-items-center ml-3">
+                                        <a id="nav-item-hover" class="btn disabled u-header__nav-link u-header__nav-link-border px-0" href="{% url 'taxi-home' %}" ><i class="bi bi-taxi-front-fill  mr-1 ml-0"></i> تاکسی</a>
+                                        <span class="text-warning d-flex justify-content-center align-items-center px-1">به زودی<i class="fas fa-clock mx-1"></i></span>
+                                    </div>
                                 <!-- End Taxi -->
 
                             </ul>
