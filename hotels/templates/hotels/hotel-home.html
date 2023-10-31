@@ -53,18 +53,7 @@
                                             </div>
                                             <div class="col-sm-12 col-lg-2 col-xl-3 mb-4 mb-lg-0 ">
                                                 <!-- Input -->
-                                                <span class="d-block text-gray-1 text-left font-weight-normal mb-0">ورود و خروج</span>
-                                                <div class="border-bottom border-width-2 border-color-1">
-                                                    <div id="datepickerWrapperFromOne" class="u-datepicker input-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="d-flex align-items-center mr-2">
-                                                              <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input id="dateRangePicker" type="text" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-20" value="{{ formatted_current_date}} تا ..">
-                                                    </div>
-                                                    <!-- End Datepicker -->
-                                                </div>
+                                                {% include 'include/date-picker.html' %}
                                                 <!-- End Input -->
                                             </div>
                                             <!-- <div class="col-sm-12 col-lg-2 col-xl-2 mb-4 mb-lg-0 ">
@@ -637,7 +626,7 @@
     // اضافه کردن event listener به هر لینک
     doneLink.forEach(link => {
         link.addEventListener('click', function(event) {
-            const Adult = document.getElementById('passInput').value;
+        const Adult = document.getElementById('passInput').value;
         const Child = document.getElementById('childInput').value;
         const Room = document.getElementById('roomInput').value;
 
@@ -689,14 +678,13 @@
 
         // Get the value entered by the user
         var searchValue = document.getElementById('searchInput').value;
-        var enterValue = document.getElementById('dateRangePicker').value.split(' -');
-        var exitValue = document.getElementById('dateRangePicker').value.split('- ');
+        var dateValue = document.getElementById('dateRangePicker').value;
         var passValue = document.getElementById('passInput').value;
         var childValue = document.getElementById('childInput').value;
         var roomValue = document.getElementById('roomInput').value;
 
         // Create the URL with the search value
-        const url = `${encodeURIComponent(searchValue)}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+        const url = `${encodeURIComponent(searchValue)}?date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
         // Redirect the user to the new URL
         window.location.href = url;
@@ -711,14 +699,13 @@
 
             // اطلاعات مورد نیاز برای ارسال در URL
             var searchValue = document.getElementById('searchInput').value;
-            var enterValue = document.getElementById('dateRangePicker').value;
-            var exitValue = document.getElementById('dateRangePickerEnd').value;
+            var dateValue = document.getElementById('dateRangePicker').value;
             var passValue = document.getElementById('passInput').value;
             var childValue = document.getElementById('childInput').value;
             var roomValue = document.getElementById('roomInput').value;
 
                 // Create the URL with the search value
-                const url = `${link.getAttribute('href')}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+                const url = `${link.getAttribute('href')}?date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
                 // Redirect the user to the new URL
                 window.location.href = url;
