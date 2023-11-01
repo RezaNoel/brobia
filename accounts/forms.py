@@ -1,5 +1,12 @@
 from django import forms
 from .models import User
+from django.contrib.auth.forms import PasswordResetForm
+
+class PasswordResetRequestForm(PasswordResetForm):
+    email = forms.EmailField(label="ایمیل", max_length=254, widget=forms.EmailInput(
+        attrs={'class': 'form-control', 'placeholder': 'ایمیل خود را وارد کنید'}
+    ))
+
 
 class RegisterForm(forms.ModelForm):
     first_name = forms.CharField(label="نام",max_length=100,required=False, widget=forms.TextInput(

@@ -7,8 +7,10 @@
         <!-- Title -->
 {% block title %}برو بیا | {{ city.faname }}{% endblock %}
 {% block header %}
- <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+    <link href="{% static 'js/date-picker/assets/css/daterangepicker.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'js/date-picker/assets/css/datepicker-theme.css' %}" rel="stylesheet" type="text/css" media="all"  />
 {% endblock %}
 {% block content %}
 
@@ -49,34 +51,9 @@
                                                 </div>
                                                 <!-- End Input -->
                                                 <!-- Input -->
-                                                <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">ورود</span>
                                                 <div class="mb-4">
                                                     <div class="border-bottom border-width-2 border-color-1">
-                                                        <div id="datepickerWrapperPick" class="u-datepicker input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="d-flex align-items-center mr-2 font-size-21">
-                                                                  <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
-                                                                </span>
-                                                            </div>
-                                                                <input id="enterInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1400-11-20" data-jdp>
-                                                        </div>
-                                                        <!-- End Datepicker -->
-                                                    </div>
-                                                </div>
-                                                <!-- End Input -->
-                                                <!-- Input -->
-                                                <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">خروج</span>
-                                                <div class="mb-4">
-                                                    <div class="border-bottom border-width-2 border-color-1">
-                                                        <div id="datepickerWrapperPick" class="u-datepicker input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="d-flex align-items-center mr-2 font-size-21">
-                                                                  <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
-                                                                </span>
-                                                            </div>
-                                                                <input id="exitInput" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1400-11-20" data-jdp>
-                                                        </div>
-                                                        <!-- End Datepicker -->
+                                                        {% include 'include/date-picker.html' %}
                                                     </div>
                                                 </div>
                                                 <!-- End Input -->
@@ -94,11 +71,11 @@
                                                                 <div class="js-quantity mx-3 row align-items-center justify-content-between">
                                                                     <span class="d-block font-size-16 text-secondary font-weight-medium">اتاق ها</span>
                                                                     <div class="d-flex">
-                                                                        <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                        <a class="js-minuss btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                             <small class="fas fa-minus btn-icon__inner"></small>
                                                                         </a>
                                                                         <input id="roomInput" class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" type="text" value="1">
-                                                                        <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                        <a class="js-pluss btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                             <small class="fas fa-plus btn-icon__inner"></small>
                                                                         </a>
                                                                     </div>
@@ -108,11 +85,11 @@
                                                                 <div class="js-quantity mx-3 row align-items-center justify-content-between">
                                                                     <span class="d-block font-size-16 text-secondary font-weight-medium">بزرگسالان</span>
                                                                     <div class="d-flex">
-                                                                        <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                        <a class="js-minuss btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                             <small class="fas fa-minus btn-icon__inner"></small>
                                                                         </a>
                                                                         <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" id="passInput" type="text" value="1">
-                                                                        <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
+                                                                        <a class="js-pluss guest-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
                                                                             <small class="fas fa-plus btn-icon__inner"></small>
                                                                         </a>
                                                                     </div>
@@ -764,23 +741,23 @@
                                         </a>
                                     </li>
                                     <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
-                                            <option value="one" selected="">قیمت</option>
-                                            <option value="two">دو</option>
-                                            <option value="three">سه</option>
-                                            <option value="four">چهار</option>
+                                        <select id="sort-select" class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15 text-gray-1 d-flex align-items-center">
+                                            <option value="price">قیمت</option>
+                                            <option value="cheapest">ارزان‌ترین</option>
+                                            <option value="expensive">گران‌ترین</option>
                                         </select>
                                     </li>
                                     <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
                                         <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
                                             <option value="one" selected="">ستاره ها</option>
-                                            <option value="two">دو</option>
-                                            <option value="three">سه</option>
-                                            <option value="four">چهار</option>
+                                            <option value="two">2 ستاره</option>
+                                            <option value="three">3 ستاره</option>
+                                            <option value="four">4 ستاره</option>
+                                            <option value="five">5 ستاره</option>
                                         </select>
                                     </li>
                                     <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">رتبه بندی مهمان
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">الفبا
                                         </a>
                                     </li>
                                     <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
@@ -894,37 +871,18 @@
 
                                     </ul>
                                     <div class="text-center text-md-left font-size-14 mb-3 text-lh-1">نمایش 1-15</div>
-                                    <nav aria-label="پیمایش صفحه">
-                                        <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
-                                            <li class="page-item">
-                                                <a class="page-link border-right rounded-0 text-gray-5" href="#" aria-label="قبلی">
-                                                    <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
-                                                    <span class="sr-only">قبلی</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link font-size-14" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link font-size-14 active" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link font-size-14" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link font-size-14" href="#">4</a></li>
-                                            <li class="page-item"><a class="page-link font-size-14" href="#">5</a></li>
-                                            <li class="page-item disabled"><a class="page-link font-size-14" href="#">...</a></li>
-                                            <li class="page-item"><a class="page-link font-size-14" href="#">66</a></li>
-                                            <li class="page-item"><a class="page-link font-size-14" href="#">67</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link border-left rounded-0 text-gray-5" href="#" aria-label="بعد">
-                                                    <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
-                                                    <span class="sr-only">بعد</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                    {% include 'include/pagination.html' %}
                                 </div>
                                 <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                                     <div class="row">
+                                        <script>
+                                            console.log('{{hotels}}')
+                                        </script>
                                         {% for hotel in hotels %}
                                             {% include 'include/hotel-card.html' %}
                                         {% endfor %}
                                     </div>
+                                    {% include 'include/pagination.html' %}
                                 </div>
                             </div>
                             <!-- End Tab Content -->
@@ -958,7 +916,7 @@
 
 
         <!-- JS Global Compulsory -->
-        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></>
         <script src="{% static 'vendor/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
         <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
         <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
@@ -993,19 +951,74 @@
 
         <!-- JS Plugins Init. -->
 
+        <!--JS Date Picker -->
+        <script src="{% static 'js/date-picker/assets/js/moment.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/date-picker/assets/js/moment-jalaali.js' %}"></script>
+        <script src="{% static 'js/date-picker/assets/js/daterangepicker-fa-ex.js' %}"></script>
+
+        <!-- Pagination -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
+
         <script>
+            // Date Picker
+            $(document).ready(function () {
+        var night;
+        var isRtl = true;
+        var dateFormat = isRtl ? "jYYYY/jMM/jDD" : "YYYY/MM/DD";
+        var dateFrom = false ? moment("") : undefined;
+        var dateTo = false ? moment("") : undefined;
+        var $dateRanger = $("#dateRangePicker");
+
+        $dateRanger
+          .daterangepicker({
+            clearLabel: "Clear",
+            autoUpdateInput: !!(dateFrom && dateTo),
+            minDate: moment(),
+            autoApply: true,
+            opens: isRtl ? "left" : "right",
+            locale: {
+              separator: " - ",
+              format: dateFormat,
+            },
+            startDate: dateFrom,
+            endDate: dateTo,
+            jalaali: isRtl,
+            showDropdowns: true,
+          })
+          .on("apply.daterangepicker", function (ev, picker) {
+            night = picker.endDate.diff(picker.startDate, "days");
+            if (night > 0) {
+              $(this).val(
+                picker.startDate.format(dateFormat) +
+                  " - " +
+                  picker.endDate.format(dateFormat)
+              );
+            } else {
+              $(this).val("");
+            }
+          });
+
+        $(document).on(
+          "mouseover",
+          ".daterangepicker .calendar td",
+          function () {
+            var gagDate = $(this).attr("data-original-title");
+            $(".date-hover").text("");
+            $(".date-hover").text(gagDate);
+          }
+        );
+      });
+
         const urlParams = new URLSearchParams(window.location.search);
 
             // خواندن مقدار پارامترها از URL با استفاده از نام پارامترها
-            const enterValue = urlParams.get('enter');
-            const exitValue = urlParams.get('exit');
+            const dateValue = urlParams.get('date');
             const roomValue = urlParams.get('room');
             const passValue = urlParams.get('passengers');
             const childValue = urlParams.get('children');
 
             // اختصاص مقادیر به فیلدهای مربوطه
-            document.getElementById('enterInput').value = enterValue;
-            document.getElementById('exitInput').value = exitValue;
+            document.getElementById('dateRangePicker').value = dateValue;
             document.getElementById('passInput').value = passValue;
             document.getElementById('childInput').value = childValue;
             document.getElementById('roomInput').value = roomValue;
@@ -1089,14 +1102,13 @@
 
                 // Get the value entered by the user
                 var searchValue = document.getElementById('searchInput').value;
-                var enterValue = document.getElementById('enterInput').value;
-                var exitValue = document.getElementById('exitInput').value;
+                var dateValue = document.getElementById('dateRangePicker').value;
                 var passValue = document.getElementById('passInput').value;
                 var childValue = document.getElementById('childInput').value;
                 var roomValue = document.getElementById('roomInput').value;
 
                 // Create the URL with the search value
-                const url = `${encodeURIComponent(searchValue)}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+                const url = `${encodeURIComponent(searchValue)}?date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
                 // Redirect the user to the new URL
                 window.location.href = url;
@@ -1112,20 +1124,34 @@
 
             // اطلاعات مورد نیاز برای ارسال در URL
             var searchValue = document.getElementById('searchInput').value;
-            var enterValue = document.getElementById('enterInput').value;
-            var exitValue = document.getElementById('exitInput').value;
+            var dateValue = document.getElementById('dateRangePicker').value;
             var passValue = document.getElementById('passInput').value;
             var childValue = document.getElementById('childInput').value;
             var roomValue = document.getElementById('roomInput').value;
 
-                // Create the URL with the search value
-                const url = `${link.getAttribute('href')}?enter=${encodeURIComponent(enterValue)}&exit=${encodeURIComponent(exitValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+            // Create the URL with the search value
+            const url = `${link.getAttribute('href')}?date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
-                // Redirect the user to the new URL
-                window.location.href = url;
+            // Redirect the user to the new URL
+            window.location.href = url;
 
         });
     });
 
+    // minus and plus button
+    const roomInput = document.querySelector('#roomInput')
+    const guestInput = document.querySelector('#passInput')
+
+    //logic for decreasing the number for room & adults amount reservation
+    const minusBtns = document.querySelectorAll('.js-minuss')
+    minusBtns.forEach((btn) => btn.addEventListener('click', () => btn.nextElementSibling.value = btn.nextElementSibling.value >= 2 ? +btn.nextElementSibling.value - 1 : btn.nextElementSibling.value ))
+    
+    //logic for increasing the number for room amount reservation
+    const plusRoomBtn = document.querySelector('.js-pluss')
+    plusRoomBtn.addEventListener('click', () => roomInput.value = roomInput.value < 4 ? +roomInput.value + 1 : roomInput.value )
+    
+    //logic for increasing the number for adults amount reservation
+    const plusGuestBtn = document.querySelector('.guest-plus')
+    plusGuestBtn.addEventListener('click', () => guestInput.value = guestInput.value < 6 ? +guestInput.value + 1 : guestInput.value )
         </script>
  {% endblock %}
