@@ -9,6 +9,7 @@ import main
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.views import PasswordResetView
 
+
 class CustomPasswordResetView(PasswordResetView):
     form_class = PasswordResetRequestForm
     email_template_name = 'registration/password_reset_email.html'
