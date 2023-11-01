@@ -741,23 +741,23 @@
                                         </a>
                                     </li>
                                     <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
-                                            <option value="one" selected="">قیمت</option>
-                                            <option value="two">دو</option>
-                                            <option value="three">سه</option>
-                                            <option value="four">چهار</option>
+                                        <select id="sort-select" class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15 text-gray-1 d-flex align-items-center">
+                                            <option value="price">قیمت</option>
+                                            <option value="cheapest">ارزان‌ترین</option>
+                                            <option value="expensive">گران‌ترین</option>
                                         </select>
                                     </li>
                                     <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
                                         <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
                                             <option value="one" selected="">ستاره ها</option>
-                                            <option value="two">دو</option>
-                                            <option value="three">سه</option>
-                                            <option value="four">چهار</option>
+                                            <option value="two">2 ستاره</option>
+                                            <option value="three">3 ستاره</option>
+                                            <option value="four">4 ستاره</option>
+                                            <option value="five">5 ستاره</option>
                                         </select>
                                     </li>
                                     <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">رتبه بندی مهمان
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">الفبا
                                         </a>
                                     </li>
                                     <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
@@ -875,6 +875,9 @@
                                 </div>
                                 <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                                     <div class="row">
+                                        <script>
+                                            console.log('{{hotels}}')
+                                        </script>
                                         {% for hotel in hotels %}
                                             {% include 'include/hotel-card.html' %}
                                         {% endfor %}
@@ -913,7 +916,7 @@
 
 
         <!-- JS Global Compulsory -->
-        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></>
         <script src="{% static 'vendor/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
         <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
         <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
@@ -955,122 +958,6 @@
 
         <!-- Pagination -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
-
-        <style>
-            :root {
-                --primary: #23adad;
-                --greyLight: #23adade1;
-                --greyLight-2: #cbe0dd;
-                --greyDark: #2d4848;
-                }
-
-.items-list {
-  max-width: 90vw;
-  margin: 2rem;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 3rem;
-  justify-content: center;
-  align-content: center;
-
-  @media only screen and (max-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.item {
-  width: 10rem;
-  height: 10rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--greyDark);
-  cursor: pointer;
-
-  span {
-    background: #ffffff;
-    box-shadow: 0 0.8rem 2rem rgba(#5a6181, 0.05);
-    border-radius: 0.6rem;
-    padding: 2rem;
-    font-size: 3rem;
-    transition: all 0.3s ease;
-  }
-
-  &:hover {
-    span {
-      transform: scale(1.2);
-      color: var(--primary);
-    }
-  }
-
-  p {
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    color: var(--greyLight);
-  }
-}
-
-.page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5rem;
-  margin: 3rem;
-  border-radius: 0.6rem;
-  background: #ffffff;
-  box-shadow: 0 0.8rem 2rem rgba(#5a6181, 0.05);
-
-  &__numbers,
-  &__btn,
-  &__dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.8rem;
-    font-size: 1.4rem;
-    cursor: pointer;
-  }
-
-  &__dots {
-    width: 2.6rem;
-    height: 2.6rem;
-    color: var(--greyLight);
-    cursor: initial;
-  }
-
-  &__numbers {
-    width: 2.6rem;
-    height: 2.6rem;
-    border-radius: 0.4rem;
-
-    &:hover {
-      color: var(--primary);
-    }
-
-    &.active {
-      color: #ffffff;
-      background: var(--primary);
-      font-weight: 600;
-      border: 1px solid var(--primary);
-    }
-  }
-
-  &__btn {
-    color: var(--greyLight);
-    pointer-events: none;
-
-    &.active {
-      color: var(--greyDark);
-      pointer-events: initial;
-
-      &:hover {
-        color: var(--primary);
-      }
-    }
-  }
-}
-        </style>
 
         <script>
             // Date Picker
