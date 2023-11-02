@@ -69,6 +69,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# django_project/settings.py
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+PASSWORD_RESET_FORM = 'accounts.forms.PasswordResetRequestForm'
+
+
 ROOT_URLCONF = 'Brobia.urls'
 
 TEMPLATES = [
