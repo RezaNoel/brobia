@@ -167,6 +167,7 @@ def single(request, city_slug, hotel_slug):
     city = City.objects.get(slug=city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
+    gallery = hotel.gallery
     rooms = Room.objects.filter(hotel=hotel.id)
     code = generate_random_string(10)
 
@@ -174,6 +175,7 @@ def single(request, city_slug, hotel_slug):
     content = {"city": city,
                "hotel": hotel,
                "hotels": hotels,
+               "gallery": gallery,
                "rooms": rooms,
                'reserve_code':code
                }

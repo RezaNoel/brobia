@@ -50,9 +50,10 @@
                             &quot;centerPadding&quot;: &quot;20px&quot;
                         }
                     }]">
-                    <div class="js-slide bg-img-hero min-height-550" style="background-image: url({% static 'img/820x550/img4.jpg' %});"></div>
-                    <div class="js-slide bg-img-hero min-height-550" style="background-image: url({% static 'img/820x550/img5.jpg' %});"></div>
-                    <div class="js-slide bg-img-hero min-height-550" style="background-image: url({% static 'img/820x550/img6.jpg' %});"></div>
+                    {% for h in gallery %}
+
+                        <div class="js-slide bg-img-hero min-height-550" style="background-image: url( {{ h }} );"></div>
+                    {% endfor %}
                 </div>
                 <!-- End Images Carousel -->
             </div>

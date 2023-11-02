@@ -3,14 +3,16 @@ from django.utils.text import slugify
 from slugify import slugify as slugify_fa
 from django.urls import reverse
 from django.db.models import Min
-import random
-import string
+import random,string,os
+# import string
+
 # Create your models here.
-import os
 def room_image_path_154(instance, filename):
     return os.path.join('static\img','200x154',  filename)
 def room_image_path_160(instance, filename):
     return os.path.join('static\img','240x160',  filename)
+def room_image_path_550(instance, filename):
+    return os.path.join('static\img','820x550',  filename)
 class City(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام اصلی')
     faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
@@ -40,6 +42,8 @@ class Hotel(models.Model):
     starts = models.IntegerField(verbose_name="ستاره")
     likes = models.IntegerField(default=0 ,verbose_name="لایک ها")
     city = models.ForeignKey(City,on_delete=models.CASCADE,verbose_name='شهر')
+    distance = models.IntegerField(default=0, verbose_name="فاصله تا مکان محبوب")
+    gallery = models.ImageField(blank=True, verbose_name='گالری تصاویر', upload_to=room_image_path_550)
     facilities = models.ManyToManyField(Facility, blank=True,verbose_name='امکانات')
     description = models.TextField(blank=True,verbose_name="توضیحات کوتاه")
     explanation = models.TextField(blank=True,verbose_name="توضیحات بلند")
