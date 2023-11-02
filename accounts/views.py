@@ -112,7 +112,6 @@ def UserProfileView(request):
     return render(request, 'accounts/user_profile.html')
 
 
-<<<<<<< HEAD
 def ChangePasswordView(request):
     return render(request, 'accounts/change_password.html')
 
@@ -121,6 +120,3 @@ def SuccessfulLinkView(request):
 
 def SuccessfulChangeView(request):
     return render(request, 'accounts/successful_change.html')
-=======
-
->>>>>>> 0d6981a917c5a27910ff6adde5259ad79b381bb3

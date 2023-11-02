@@ -9,12 +9,8 @@ urlpatterns = [
     path('logout', views.LogoutView,name='logout'),
     path('register', views.RegisterView,name='register'),
     path('profile', views.UserProfileView,name='profile'),
-<<<<<<< HEAD
-    path('forgot-password', views.ForgotPasswordView,name='forgot_password'),
-    path('change-password', views.ChangePasswordView,name='change_password'),
     path('successful-link', views.SuccessfulLinkView,name='successful_link'),
     path('successful-change', views.SuccessfulChangeView,name='successful_change'),
-=======
 
     path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
@@ -24,5 +20,4 @@ urlpatterns = [
     # path('forgot-password', views.ForgotPasswordView,name='forgot_password'),
     # path('change-password', views.ChangePasswordView,name='change_password'),
     # path('sgPHbLsZYSFAuYEMIdPmwV', views.CheckPhoneView,name='check-phone-correct'),
->>>>>>> 0d6981a917c5a27910ff6adde5259ad79b381bb3
 ]
