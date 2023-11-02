@@ -35,6 +35,17 @@ class Facility(models.Model):
     class Meta:
         verbose_name = ("اماکانات")
         verbose_name_plural = ("امکانات")
+class Image(models.Model):
+    name = models.CharField(blank=True, max_length=100,verbose_name="نام تصویر")
+    file = models.ImageField(upload_to=room_image_path_550, verbose_name="فایل تصویر")
+
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = ("تصویر")
+        verbose_name_plural = ("تصاویر")
+
+
 class Hotel(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام اصلی')
     faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
@@ -43,7 +54,7 @@ class Hotel(models.Model):
     likes = models.IntegerField(default=0 ,verbose_name="لایک ها")
     city = models.ForeignKey(City,on_delete=models.CASCADE,verbose_name='شهر')
     distance = models.IntegerField(default=0, verbose_name="فاصله تا مکان محبوب")
-    gallery = models.ImageField(blank=True, verbose_name='گالری تصاویر', upload_to=room_image_path_550)
+    gallery = models.ManyToManyField(Image, through='HotelImage')
     facilities = models.ManyToManyField(Facility, blank=True,verbose_name='امکانات')
     description = models.TextField(blank=True,verbose_name="توضیحات کوتاه")
     explanation = models.TextField(blank=True,verbose_name="توضیحات بلند")
@@ -81,6 +92,11 @@ class Hotel(models.Model):
     class Meta:
         verbose_name = ("هتل")
         verbose_name_plural = ("هتل ها")
+
+class HotelImage(models.Model):
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+
 class Room(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام')
     faname = models.CharField(default="",max_length=75,verbose_name='نام نمایشی')

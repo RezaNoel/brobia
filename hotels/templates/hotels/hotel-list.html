@@ -800,13 +800,13 @@
                                     <ul class="d-block list-unstyled products-group prodcut-list-view">
                                         <li class="card mb-5 overflow-hidden">
                                             <div class="product-item__outer w-100">
-                                                {% for hotel in hotels %}
+                                                {% for hotel in page %}
                                                            <div class="row">
                                                     <div class="col-md-5 col-xl-4">
                                                         <div class="product-item__header">
                                                             <div class="position-relative">
                                                                 <div class="js-slick-carousel u-slick u-slick--equal-height " data-slides-show="1" data-slides-scroll="1" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic v4 u-slick__arrow-classic--v4 u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="flaticon-back u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left" data-arrow-right-classes="flaticon-next u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right" data-pagi-classes="js-pagination text-center u-slick__pagination u-slick__pagination--white position-absolute right-0 bottom-0 left-0 mb-3 mb-0">
-                                                                    <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}">
+                                                                    <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="hotel-link">
                                                                     <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
                                                                     </a>
                                                                 </div>
@@ -834,20 +834,20 @@
                                                                     <span class="flaticon-heart-1 font-size-20"></span>
                                                                 </button>
                                                             </div>
-                                                            <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}">
+                                                            <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="hotel-link">
                                                                 <span class="font-weight-medium font-size-17 text-dark d-flex mb-1">هتل {{ hotel.faname}}</span>
                                                             </a>
                                                             <div class="card-body p-0">
-                                                                <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block mb-3">
+                                                                <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="d-block hotel-link mb-3">
                                                                     <div class="d-flex flex-wrap flex-xl-nowrap align-items-center font-size-14 text-gray-1">
                                                                         <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ hotel.address}}
 
 
                                                                     </div>
                                                                 </a>
-                                                                <a href="" >
-                                                                    <span class="fas fa-map "></span>
-                                                                 <span class="text-primary font-size-14">نمایش روی نقشه</span>
+                                                                <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="hotel-link" >
+                                                                    <span class="fas fa-exclamation "></span>
+                                                                 <span class="text-primary font-size-14">اطلاعات بیشتر</span>
                                                                     </a>
                                                             </div>
                                                         </div>
@@ -870,20 +870,72 @@
                                         </li>
 
                                     </ul>
-                                    <div class="text-center text-md-left font-size-14 mb-3 text-lh-1">نمایش 1-15</div>
-                                    {% include 'include/pagination.html' %}
+                                     <nav aria-label="پیمایش صفحه">
+    <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
+        {% if page.has_previous %}
+            <li class="page-item">
+                <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
+                    <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
+                    <span class="sr-only">قبلی</span>
+                </a>
+            </li>
+        {% endif %}
+
+        {% for p in page.paginator.page_range %}
+            <li class="page-item {% if p == page.number %}active{% endif %}">
+                <a class="page-link font-size-14 {% if p == page.number %}text-warning{% endif %}" href="?page={{ p }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}">{{ p }}</a>
+            </li>
+        {% endfor %}
+
+        {% if page.has_next %}
+            <li class="page-item">
+                <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
+                    <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
+                    <span class="sr-only">بعد</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
                                 </div>
                                 <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                                     <div class="row">
-                                        <script>
-                                            console.log('{{hotels}}')
-                                        </script>
-                                        {% for hotel in hotels %}
+                                        {% for hotel in page %}
                                             {% include 'include/hotel-card.html' %}
                                         {% endfor %}
                                     </div>
-                                    {% include 'include/pagination.html' %}
+
+                                   <nav aria-label="پیمایش صفحه">
+    <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
+        {% if page.has_previous %}
+            <li class="page-item">
+                <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
+                    <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
+                    <span class="sr-only">قبلی</span>
+                </a>
+            </li>
+        {% endif %}
+
+        {% for p in page.paginator.page_range %}
+            <li class="page-item {% if p == page.number %}active{% endif %}">
+                <a class="page-link font-size-14 {% if p == page.number %}text-warning{% endif %}" href="?page={{ p }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}">{{ p }}</a>
+            </li>
+        {% endfor %}
+
+        {% if page.has_next %}
+            <li class="page-item">
+                <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
+                    <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
+                    <span class="sr-only">بعد</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
                                 </div>
+
                             </div>
                             <!-- End Tab Content -->
                         </div>

@@ -33,11 +33,11 @@ handler404 = 'main.views.custom_404'
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', include('blogs.urls')),
-    path('', include('taxirents.urls')),
     path('', include('accounts.urls')),
+    path('', include('blogs.urls')),
     path('', include('main.urls')),
     path('', include('hotels.urls')),
+    path('', include('taxirents.urls')),
 
 
     # path('home',index),

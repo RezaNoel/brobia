@@ -35,17 +35,16 @@
                             <div class="card border-0 tab-shadow">
                                 <div class="card-body">
                                     <form id="myForm" action="" method="GET" class="js-validate">
-{#                                    <input type="text" name="search" id="searchInput" placeholder="Enter your search text">#}
                                         <div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3">
                                             <div class="col-sm-12 col-lg-3 col-xl-3 mb-4 mb-lg-0 ">
                                                 <span class="d-block text-gray-1 font-weight-normal text-left mb-0">نام شهر مقصد</span>
                                                 <!-- Select -->
                                                 <select id="searchInput"  class="js-select selectpicker dropdown-select tab-dropdown col-12 pl-0 flaticon-pin-1 d-flex align-items-center text-warning font-weight-semi-bold" title="کجا میری؟" data-style="" data-live-search="true" data-searchbox-classes="input-group-sm">
                                                     {% for city in cities %}
-                                                        <option  class="border-bottom border-color-1 flaticon-pin-1" value="{{ city.slug }}" data-content="
-                                                            <span  class='d-flex align-items-center'>
+                                                        <option  class="border-bottom border-color-1 flaticon-pin-1" value="{{ city.slug }}" data-content=
+                                                        "<span  class='d-flex align-items-center'>
                                                                 <span class='font-size-16 mr-2 ml-2 '> {{ city.faname }} - {{ city.name }}</span>
-                                                            </span>">
+                                                        </span>">
                                                     </option>
                                                     {% endfor %}
                                                 </select>
@@ -56,22 +55,6 @@
                                                 {% include 'include/date-picker.html' %}
                                                 <!-- End Input -->
                                             </div>
-                                            <!-- <div class="col-sm-12 col-lg-2 col-xl-2 mb-4 mb-lg-0 ">
-                                            Input
-                                                <span class="d-block text-gray-1 text-left font-weight-normal mb-0">خروج</span>
-                                                <div class="border-bottom border-width-2 border-color-1">
-                                                    <div id="datepickerWrapperFromOne" class="u-datepicker input-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="d-flex align-items-center mr-2">
-                                                              <i class="flaticon-calendar text-warning font-weight-semi-bold"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input id="dateRangePickerEnd" type="text" class="font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent  border-0 datepic" placeholder="1402-06-24" value="{{ formatted_exit_date}}">
-                                                    </div>
-                                                    End Datepicker
-                                                </div>
-                                                End Input
-                                            </div> -->
                                             <div class="col-sm-12 col-lg-3 col-xl-3 mb-4 mb-lg-0 ">
                                                 <!-- Input -->
                                                 <span class="d-block text-gray-1 text-left font-weight-normal mb-0">اتاق ها و مهمانان</span>
@@ -129,9 +112,7 @@
                                                 <!-- End Input -->
                                             </div>
                                             <div class="col-sm-12 col-lg-1dot8 align-self-lg-end text-md-right">
-                            {#                                          <a href="{% url 'hotel-list' city_id=2 %}" class="btn btn-primary btn-md border-radius-3 mb-xl-0 mb-lg-1 transition-3d-hover" >sss#}
                                                 <button type="submit" class="btn btn-warning col-sm-12 btn-md border-radius-3 mb-xl-0 mb-lg-1 transition-3d-hover"  ><i class="flaticon-magnifying-glass font-size-20 mr-2"></i>جستجو کردن</button>
-                            {#                                          </a>#}
                                             </div>
                                         </div>
                                         <!-- End Checkbox -->
@@ -409,19 +390,6 @@
                     </div>
                     <!-- Nav Classic -->
                     <ul class="nav tab-nav-line flex-nowrap pb-4 tab-nav justify-content-lg-center text-nowrap" role="tablist">
-{#                    {% with first_item=True %}#}
-{#                      {% for city in cities %}#}
-{#                        <li class="nav-item">#}
-{#                            <a class="nav-link font-weight-medium active" id="pills-{{ city.id }}-example-t3-tab" data-toggle="pill" href="#pills-{{ city.id }}-example-t3" role="tab" aria-controls="pills-one-example-t3" aria-selected="true">#}
-{#                                <div class="d-flex flex-column flex-md-row  position-relative text-dark align-items-center">#}
-{#                                    <span class="tabtext font-weight-semi-bold">{{ city.faname }}</span>#}
-{#                                </div>#}
-{#                            </a>#}
-{#                        </li>#}
-{#                        {% with first_item=False %}#}
-{#                      {% endfor %}#}
-{#                    {% endwith %}#}
-
                         {% for city in cities %}
                             <li class="nav-item">
                             <a class="nav-link font-weight-medium {% if forloop.first %}active{% endif %}" id="pills-{{ city.id }}-example-t3-tab" data-toggle="pill" href="#pills-{{ city.id }}-example-t3" role="tab" aria-controls="pills-one-example-t3" aria-selected="true">

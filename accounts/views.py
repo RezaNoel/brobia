@@ -1,6 +1,7 @@
 import hotels.views
 from django.shortcuts import render
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User
@@ -97,6 +98,6 @@ def RegisterView(request):
 
     return render(request, 'accounts/register.html', context)
 
-
+@login_required
 def UserProfileView(request):
     return render(request, 'accounts/user_profile.html')

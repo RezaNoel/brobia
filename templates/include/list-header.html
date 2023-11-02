@@ -45,10 +45,17 @@
 
                             </ul>
                             <div class="position-relative px-3 u-header__topbar-divider">
-                                <a href="{% url 'login' %}" class="d-flex align-items-center text-dark">
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'profile' %}" class="d-flex align-items-center text-black">
+                                    <i class="flaticon-user mr-2 ml-1"></i>
+                                    <span class="d-inline-block font-size-14 mr-1" id="user_name">{{ user.first_name }} {{ user.last_name }}</span>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'login' %}" class="d-flex align-items-center text-black">
                                     <i class="flaticon-user mr-2 ml-1"></i>
                                     <span class="d-inline-block font-size-14 mr-1">ورود به حساب کاربری</span>
                                 </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -58,10 +65,17 @@
                     <!-- Nav -->
                     <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space" >
                         <!-- Logo -->
-                        <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-white" href="{% url 'home' %}" aria-label="MyHotel">
-                            <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="My Icon">
-                            <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
-                        </a>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-white" href="{% url 'home' %}" aria-label="MyHotel">
+                                <img src="{% static 'img/logo/purelogo.png' %}" style="max-width: 100%;height: 30px;" alt="My Icon">
+                                <span class="u-header__navbar-brand-text" style="color: #ffcc00;">برو بیا</span>
+                            </a>
+                            <ul class="navbar-nav u-header__navbar-nav">
+                                <li><a class="u-header__navbar-link" href="{% url 'blog-list' %}">وبلاگ</a></li>
+                                <li><a class="u-header__navbar-link" href="{% url 'contact-us' %}">ارتباط با ما</a></li>
+                                <li><a class="u-header__navbar-link" href="{% url 'about-us' %}">درباره ما</a></li>
+                            </ul>
+                        </div>
                         <!-- End Logo -->
                         <!-- End Handheld Logo -->
 
@@ -78,10 +92,8 @@
                         <!-- Navigation -->
                         <div id="navBar" class="navbar-collapse u-header__navbar-collapse collapse order-2 order-xl-0 pt-4 p-xl-0 position-relative">
                             <ul class="navbar-nav u-header__navbar-nav">
-                                 <!-- Home -->
-{#                                <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">#}
-                                    <a id="homeMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="/">صفحه اصلی</a>
-{#                                </li>#}
+                                <!-- Home -->
+                                <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-hotel-1 mr-2 ml-1 airplane"></i> هتل</a>
                                 <!-- End Home -->
 
                                 <!-- Hotel -->

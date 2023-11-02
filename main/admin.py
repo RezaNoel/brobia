@@ -1,11 +1,21 @@
 from django.contrib import admin
-from .models import Hotel, Room,City,Facility,Request,Passenger
+from .models import Hotel, Room,City,Facility,Request,Passenger,HotelImage,Image
 from django.db import models
+
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ['name','file']
+
+
+class HotelImageInline(admin.TabularInline):
+    model = HotelImage
 
 class HotelAdmin(admin.ModelAdmin):
     list_display = ['name', 'faname', 'address', 'starts', 'city', 'facilities_list', 'slug']
     list_display_links = ['name', 'faname']
     filter_horizontal = ['facilities']
+
+    inlines = [HotelImageInline]
+
 
     def facilities_list(self, obj):
         facilities = obj.facilities.values_list('faname', flat=True)
@@ -65,6 +75,7 @@ class PassengerAdmin(admin.ModelAdmin):
 
 # ثبت مدل‌ها با استفاده از کلاس‌های Admin
 admin.site.register(Hotel, HotelAdmin)
+admin.site.register(Image, ImageAdmin)
 admin.site.register(Facility, FacilityAdmin)
 admin.site.register(City, CityAdmin)
 admin.site.register(Room, RoomAdmin)

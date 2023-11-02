@@ -1,6 +1,7 @@
 import accounts.views
 from django.shortcuts import render,redirect,get_object_or_404
 from django.db.models import Min
+from django.core.paginator import Paginator
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.http import JsonResponse,Http404,HttpResponseNotFound
@@ -90,13 +91,20 @@ def home(request):
 def list(request, city_slug):
     city = City.objects.get(slug=city_slug)
     cities = City.objects.all()
-    hotels_count = Hotel.objects.filter(city=city.id).count()
     hotels = Hotel.objects.filter(city=city.id)
+    hotels_count = Hotel.objects.filter(city=city.id).count()
+
+    hotels_per_page = 2
+    paginator = Paginator(hotels, hotels_per_page)
+
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
 
     content = {"city": city,
                "cities": cities,
                "hotels": hotels,
-               "hotel_count": hotels_count}
+               "hotel_count": hotels_count,
+               "page": page}
 
     return render(request, 'hotels/hotel-list.html', content)
 
@@ -167,7 +175,6 @@ def single(request, city_slug, hotel_slug):
     city = City.objects.get(slug=city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
-    gallery = hotel.gallery
     rooms = Room.objects.filter(hotel=hotel.id)
     code = generate_random_string(10)
 
@@ -175,7 +182,6 @@ def single(request, city_slug, hotel_slug):
     content = {"city": city,
                "hotel": hotel,
                "hotels": hotels,
-               "gallery": gallery,
                "rooms": rooms,
                'reserve_code':code
                }
