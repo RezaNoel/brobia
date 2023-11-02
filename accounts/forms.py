@@ -1,12 +1,26 @@
 from django import forms
 from .models import User
-from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm
 
-class PasswordResetRequestForm(PasswordResetForm):
-    email = forms.EmailField(label="ایمیل", max_length=254, widget=forms.EmailInput(
-        attrs={'class': 'form-control', 'placeholder': 'ایمیل خود را وارد کنید'}
+# class PasswordResetRequestForm(PasswordResetForm):
+#     email = forms.EmailField(label="ایمیل", max_length=254, widget=forms.EmailInput(
+#         attrs={'class': 'form-control', 'placeholder': 'ایمیل خود را وارد کنید'}
+#     ))
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(label="آدرس ایمیل", max_length=254, widget=forms.EmailInput(
+        attrs={'class': 'form-control', 'placeholder': 'آدرس ایمیل خود را وارد کنید'}
     ))
 
+class CustomPasswordChangeForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label="New Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password'})
+    )
+
+    new_password2 = forms.CharField(
+        label="Confirm New Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password'})
+    )
 
 class RegisterForm(forms.ModelForm):
     first_name = forms.CharField(label="نام",max_length=100,required=False, widget=forms.TextInput(

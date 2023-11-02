@@ -4,19 +4,9 @@ from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User
-from .forms import LoginForm,RegisterForm,PasswordResetRequestForm
+from .forms import LoginForm,RegisterForm
 import main
-from django.contrib.auth.forms import PasswordResetForm
-from django.contrib.auth.views import PasswordResetView
 
-
-class CustomPasswordResetView(PasswordResetView):
-    form_class = PasswordResetRequestForm
-    email_template_name = 'registration/password_reset_email.html'
-    template_name = 'registration/password_reset_form.html'
-
-    def get_success_url(self):
-        return reverse('password_reset_done')
 
 # Create your views here.
 
@@ -111,5 +101,7 @@ def RegisterView(request):
 def UserProfileView(request):
     return render(request, 'accounts/user_profile.html')
 
+def ForgotPasswordView(request):
+    return render(request, 'accounts/forgot_password.html')
 
 
