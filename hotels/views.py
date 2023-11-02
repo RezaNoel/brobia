@@ -111,14 +111,15 @@ def list(request, city_slug):
 
 def confirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
 
-    print (confirm_city_slug)
     city = City.objects.get(slug=confirm_city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
     rooms = Room.objects.get(slug=room_slug)
 
-    enter = request.GET.get('enter')
-    exit = request.GET.get('exit')
+    date = request.GET.get('date')
+    date_list = date.split(" - ")
+    enter = date_list[0]
+    exit = date_list[1]
     passengers = int(request.GET.get('passengers'))
     children = int(request.GET.get('children'))
     room_count = request.GET.get('room')
