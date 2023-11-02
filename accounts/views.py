@@ -101,7 +101,5 @@ def RegisterView(request):
 def UserProfileView(request):
     return render(request, 'accounts/user_profile.html')
 
-def ForgotPasswordView(request):
-    return render(request, 'accounts/forgot_password.html')
 
 
