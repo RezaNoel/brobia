@@ -203,33 +203,20 @@
                                                               </button>
                                                               <div class="hotel-content-grid">
                                                                   <section>
-                                                                      <h3 class="hotel-title">اتاق دولوکس طلایی کینگ</h3>
-                                                                      <p>از <span class="hotel-price">350 تومن</span> / شب</p>
+                                                                      <h3 class="hotel-title">اتاق {{ room.faname }}</h3>
+                                                                      <p>از <span class="hotel-price">{{ room.format_price }} تومن</span> / شب</p>
                                                                   </section>
                                                                   <div class="hotel-content">
                                                                       <hr>
                                                                     <section>
                                                                         <h3 class="hotel-facilities-title">امکانات رفاهی</h3>
                                                                         <ul class="hotel-facilities">
-                                                                            <li class="list-group-items">وایفای</li>
-                                                                            <li class="list-group-items">استخر</li>
-                                                                            <li class="list-group-items">سشوار</li>
-                                                                            <li class="list-group-items">وایفای</li>
-                                                                            <li class="list-group-items">استخر</li>
-                                                                            <li class="list-group-items">سشوار</li>
-                                                                            <li class="list-group-items">وایفای</li>
-                                                                            <li class="list-group-items">استخر</li>
-                                                                            <li class="list-group-items">سشوار</li>
-                                                                            <li class="list-group-items">وایفای</li>
-                                                                            <li class="list-group-items">استخر</li>
-                                                                            <li class="list-group-items">سشوار</li>
-                                                                            <li class="list-group-items">وایفای</li>
-                                                                            <li class="list-group-items">استخر</li>
-                                                                            <li class="list-group-items">سشوار</li>
-                                                                            <li class="list-group-items">وایفای</li>
-                                                                            <li class="list-group-items">استخر</li>
-                                                                            <li class="list-group-items">سشوار</li>
-                                                                            <li class="list-group-items">وایفای</li>
+                                                                            {% for facility in room.facilities.all %}
+                                                                            <li class="list-group-items">{{ facility.faname }}</li>
+                                                                            {% endfor %}
+
+
+
                                                                         </ul>
                                                                     </section>
                                                                 </div>
@@ -247,7 +234,7 @@
                                                 <div class="text-center my-xl-1">
                                                     <div class="mb-2 pb-1">
                                                         <span class="font-size-14">از </span>
-                                                        <span class="font-weight-bold font-size-22 ml-1">{{ room.price|intcomma }} تومان</span>
+                                                        <span class="font-weight-bold font-size-22 ml-1">{{ room.format_price }} تومان</span>
                                                         <span class="font-size-14">/ شب</span>
                                                     </div>
                                                     <a href="{% url 'hotel-confirm' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">اکنون ثبت کن</a>
@@ -286,7 +273,7 @@
                                     <div class="border-bottom">
                                         <div class="p-4">
                                             <span class="font-size-14">از </span>
-                                            <span class="font-size-24 text-gray-6 font-weight-bold ml-1">{{  hotel.min_price|intcomma }} تومان </span>
+                                            <span class="font-size-24 text-gray-6 font-weight-bold ml-1">{{  hotel.min_price }} تومان </span>
                                             <span class="font-size-14">/ شب</span>
                                         </div>
                                     </div>
@@ -372,7 +359,7 @@
                 <div class="product-card-block product-card-v3">
                     <div class="space-1">
                         <div class="w-md-80 w-lg-50 text-center mx-md-auto pb-4">
-                            <h2 class="section-title text-black font-size-30 font-weight-bold mb-0">هتل نزدیک</h2>
+                            <h2 class="section-title text-black font-size-30 font-weight-bold mb-0">پیشنهاد برو بیا</h2>
                         </div>
                         <div class="js-slick-carousel u-slick u-slick--equal-height u-slick--gutters-3" data-slides-show="4" data-slides-scroll="1" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic v1 u-slick__arrow-classic--v1 u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="fas fa-chevron-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left" data-arrow-right-classes="fas fa-chevron-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right" data-pagi-classes="d-lg-none text-center u-slick__pagination mt-4" data-responsive="[{
                                 &quot;breakpoint&quot;: 1025,
@@ -400,49 +387,7 @@
 
                                 {% if hotel.name != h.name %}
 
-                                <div class="js-slide py-3">
-                                <div class="card transition-3d-hover shadow-hover-2 w-100 mt-2">
-                                    <div class="position-relative">
-                                        <a href="hotel-single-v1.html" class="d-block gradient-overlay-half-bg-gradient-v5">
-                                            <img class="card-img-top" src="{% static 'img/300x230/'|add:h.name|add:'.jpeg' %}" alt="توضیحات تصویر">
-                                        </a>
-                                        <div class="position-absolute top-0 right-0 pt-3 pr-3">
-                                            <button type="button" class="btn btn-sm btn-icon text-white rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن">
-                                                <span class="flaticon-heart-1 font-size-20"></span>
-                                            </button>
-                                        </div>
-                                       <div class="position-absolute bottom-0 left-0 right-0 rtl">
-                                            <div class="px-4 pb-3">
-                                                <a href="hotel-single-v1.html" class="d-block">
-                                                    <div class="d-flex align-items-center font-size-14 text-white">
-                                                        <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ h.address }}
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body px-4 pt-2 pb-3">
-                                        <div class="mb-2">
-                                            <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
-                                                <div class="lighter">
-                                                     {% for _ in "x"|rjust:h.starts %}
-                                                         <small class="fas fa-star"></small>
-                                                     {% endfor %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="hotel-single-v1.html" class="card-title font-size-17 font-weight-medium text-dark">{{h.faname}}</a>
-                                        <div class="mt-2 mb-3">
-                                            <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ h.starts }}ستاره </span>
-                                        </div>
-                                        <div class="mb-0">
-                                            <span class="mr-1 font-size-14 text-gray-1">از </span>
-                                            <span class="font-weight-bold">800000 تومان </span>
-                                            <span class="font-size-14 text-gray-1">/ شب</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                {% include 'include/hotel-card2.html' %}
                                 {% endif %}
                             {% endfor %}
 

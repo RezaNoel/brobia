@@ -61,6 +61,7 @@ class Hotel(models.Model):
     slug = models.SlugField(default="",null=False,blank=True,db_index=True,verbose_name='لینک')
     special_offer = models.BooleanField(default=False, verbose_name='آفر ویژه')
     online_reserve = models.BooleanField(default=False, verbose_name='رزرو آنلاین')
+    boroobia_suggest = models.BooleanField(default=False, verbose_name='پیشنهاد بروبیا')
 
     def increase_likes(self):
         self.likes += 1
@@ -114,6 +115,9 @@ class Room(models.Model):
 
     def __str__(self):
         return self.faname+" "+self.hotel.faname
+
+    def format_price(self):
+        return '{:,.0f}'.format(self.price)
 
     class Meta:
         verbose_name = ("اتاق")
