@@ -1,12 +1,26 @@
 from django import forms
 from .models import User
-from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm
 
-class PasswordResetRequestForm(PasswordResetForm):
-    email = forms.EmailField(label="ایمیل", max_length=254, widget=forms.EmailInput(
-        attrs={'class': 'form-control', 'placeholder': 'ایمیل خود را وارد کنید'}
+# class PasswordResetRequestForm(PasswordResetForm):
+#     email = forms.EmailField(label="ایمیل", max_length=254, widget=forms.EmailInput(
+#         attrs={'class': 'form-control', 'placeholder': 'ایمیل خود را وارد کنید'}
+#     ))
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(label="آدرس ایمیل", max_length=254, widget=forms.EmailInput(
+        attrs={'class': 'form-control', 'placeholder': 'آدرس ایمیل خود را وارد کنید'}
     ))
 
+class CustomPasswordChangeForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label="رمز عبور جدید",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password', 'oninvalid': "setCustomValidity('لطفا رمز عبور جدید خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off', 'autocapitalize': 'off', 'name': 'current-password', 'autocomplete': 'current-password'})
+    )
+
+    new_password2 = forms.CharField(
+        label="تکرار رمز عبور جدید",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'confirm_password', 'oninvalid': "setCustomValidity('لطفا رمز عبور جدید را مجددا وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off', 'autocapitalize': 'off', 'name': 'current-password', 'autocomplete': 'current-password'})
+    )
 
 class RegisterForm(forms.ModelForm):
     first_name = forms.CharField(label="نام",max_length=100,required=False, widget=forms.TextInput(
