@@ -106,3 +106,9 @@ def ForgotPasswordView(request):
 
 def ChangePasswordView(request):
     return render(request, 'accounts/change_password.html')
+
+def SuccessfulLinkView(request):
+    return render(request, 'accounts/successful_link.html')
+
+def SuccessfulChangeView(request):
+    return render(request, 'accounts/successful_change.html')

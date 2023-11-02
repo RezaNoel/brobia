@@ -8,4 +8,6 @@ urlpatterns = [
     path('profile', views.UserProfileView,name='profile'),
     path('forgot-password', views.ForgotPasswordView,name='forgot_password'),
     path('change-password', views.ChangePasswordView,name='change_password'),
+    path('successful-link', views.SuccessfulLinkView,name='successful_link'),
+    path('successful-change', views.SuccessfulChangeView,name='successful_change'),
 ]
