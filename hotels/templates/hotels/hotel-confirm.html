@@ -53,40 +53,6 @@
                                     </div>
                                 </div>
                             </div>
-{#                            <div class="pt-4 pb-5 px-5 border-bottom">#}
-{#                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">#}
-{#                                    اطلاعات مسافران#}
-{#                                </h5>#}
-{#                                <!-- Fact List -->#}
-{#                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">#}
-{##}
-{##}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium">نام سرگروه</span>#}
-{#                                        <span class="text-secondary text-right">حسن معجونی</span>#}
-{#                                    </li>#}
-{##}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium">شماره تماس سرگروه</span>#}
-{#                                        <span class="text-secondary text-right">09122221111</span>#}
-{#                                    </li>#}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium">تعداد بزرگسال </span>#}
-{#                                        <span class="text-secondary text-right">2</span>#}
-{#                                    </li>#}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium">تعداد خردسال </span>#}
-{#                                        <span class="text-secondary text-right">2</span>#}
-{#                                    </li>#}
-{#                                    <li class="d-flex justify-content-between py-2">#}
-{#                                        <span class="font-weight-medium"> نیازمندی های ویژه</span>#}
-{#                                        <span class="text-secondary text-right">ویلچر</span>#}
-{#                                    </li>#}
-{##}
-{##}
-{#                                </ul>#}
-{#                                <!-- End Fact List -->#}
-{#                            </div>#}
                             <div class="pt-4 pb-5 px-5 border-bottom">
                                 <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
                                     اطلاعات رزرو
@@ -110,7 +76,7 @@
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">مبلغ کل پرداختی </span>
-                                        <span class="text-secondary text-right">{{ room.price|intcomma }}</span>
+                                        <span class="text-secondary text-right">{{ room.format_price }}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">

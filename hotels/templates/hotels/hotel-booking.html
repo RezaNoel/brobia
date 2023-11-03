@@ -248,7 +248,7 @@
                                             <ul class="list-unstyled font-size-1 mb-0 font-size-16">
                                                 <li class="d-flex justify-content-between py-2">
                                                     <span class="font-weight-medium">مبلغ کل </span>
-                                                    <span class="text-secondary">{{ room.price|intcomma }} تومان</span>
+                                                    <span class="text-secondary">{{ room.format_price }} تومان</span>
                                                 </li>
 
                                                 <li class="d-flex justify-content-between py-2">
@@ -263,7 +263,7 @@
 
                                                 <li class="d-flex justify-content-between py-2 font-size-17 font-weight-bold">
                                                     <span class="font-weight-bold">مبلغ </span>
-                                                    <span class="">{{ room.price|intcomma }} تومان پرداخت کنید</span>
+                                                    <span class="">{{ room.format_price }} تومان پرداخت کنید</span>
                                                 </li>
                                             </ul>
                                             <!-- End Fact List -->
