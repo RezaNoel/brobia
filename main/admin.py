@@ -43,7 +43,7 @@ class RoomAdmin(admin.ModelAdmin):
 
 
 class FacilityAdmin(admin.ModelAdmin):
-    list_display = ['name','faname']
+    list_display = ['name','faname','related']
 
 class RequestAdmin(admin.ModelAdmin):
     list_display = ['reserve_code', 'get_confirm_status','get_reserve_status', 'get_room_name', 'reserve_time']
