@@ -76,28 +76,63 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
 
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">اطلاعات</button>
+                  <button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-overview">اطلاعات</button>
                 </li>
-
-{#                <li class="nav-item">#}
-{#                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">ویرایش</button>#}
-{#                </li>#}
-{##}
-{##}
-{##}
-{#                <li class="nav-item">#}
-{#                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغییر رمز عبور</button>#}
-{#                </li>#}
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#reservs">رزرو ها</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">ویرایش</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغییر رمز عبور</button>
+                </li>
 
               </ul>
               <div class="tab-content pt-2">
 
-                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                <div class="tab-pane fade show  profile-overview" id="profile-overview">
 
                   <h5 class="card-title">اطلاعات حساب کاربری</h5>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">نام</div>
+                    <div class="col-lg-9 col-md-8">{{ user.first_name}}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">نام خانوادگی</div>
+                    <div class="col-lg-9 col-md-8"> {{ user.last_name }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">کد ملی</div>
+                    <div class="col-lg-9 col-md-8"> {{ user.nid }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">تاریخ تولد</div>
+                    <div class="col-lg-9 col-md-8"> {{ user.birthdate }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">ایمیل</div>
+                    <div class="col-lg-9 col-md-8"> {{ user.email }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">شماره همراه</div>
+                    <div class="col-lg-9 col-md-8">{{user.phone}}</div>
+                  </div>
+
+                </div>
+
+                <div class="tab-pane fade show active profile-overview" id="reservs">
+
+                  <h5 class="card-title">تاریخچه رزرو ها</h5>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">کد رزرو</div>
                     <div class="col-lg-9 col-md-8">{{ user.first_name}}</div>
                   </div>
 
