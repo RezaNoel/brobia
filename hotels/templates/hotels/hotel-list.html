@@ -217,7 +217,7 @@
                                                                         50 هتل از 3771 هتل نشان داده شده است
                                                                     </div>
                                                                     <select class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select option." data-error-class="u-has-error" data-success-class="u-has-success" data-style="form-control font-size-14 border-width-2 border-gray font-weight-normal">
-                                                                        <option value="One" selected="">توصیه شده</option>
+                                                                        <option value="One" selected="">پیشنهاد بروبیا</option>
                                                                         <option value="Two">کم به زیاد</option>
                                                                         <option value="Three">بالا به پایین</option>
                                                                         <option value="Four">محبوب</option>
@@ -734,6 +734,7 @@
                         <!-- Slick Tab carousel -->
                         <div class="u-slick__tab">
                             <!-- Nav Links -->
+<<<<<<< HEAD
                             <div class="mb-5 d-flex">
                                 <ul class="nav nav-tabs justify-content-center filter-hotel-list d-flex justify-content-center align-items-center" role="tablist">
                                     <li class="nav-item">
@@ -741,6 +742,19 @@
                                             <option value="" selected="">قیمت</option>
                                             <option value="expensive">گران ترین</option>
                                             <option value="cheapest">ارزان ترین</option>
+=======
+                            <div class="mb-5">
+                                <ul class="nav flex-nowrap border border-radius-3 tab-nav align-items-center py-2 px-0" role="tablist">
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">پیشنهاد بروبیا
+                                        </a>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <select id="sort-select" class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15 text-gray-1 d-flex align-items-center">
+                                            <option value="price">قیمت</option>
+                                            <option value="cheapest">ارزان‌ترین</option>
+                                            <option value="expensive">گران‌ترین</option>
+>>>>>>> 501042b04a3c450af4058b00183225349f25379c
                                         </select>
                                     </li>
                                     <li class="nav-item">
@@ -762,7 +776,32 @@
                                     <li class="nav-item">
                                         <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">الفبا</a>
                                     </li>
+<<<<<<< HEAD
                                 </ul>                                
+=======
+                                </ul>
+                                <ul class="nav flex-nowrap border border-radius-3 tab-nav-mobile align-items-center py-2 px-0" role="tablist">
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">پیشنهاد بروبیا
+                                        </a>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
+                                            <option value="one" selected="">قیمت</option>
+                                            <option value="cheapest">ارزان‌ترین</option>
+                                            <option value="expensive">گران‌ترین</option>
+                                        </select>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
+                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
+                                            <option value="one" selected="">ستاره ها</option>
+                                            <option value="two">دو</option>
+                                            <option value="three">سه</option>
+                                            <option value="four">چهار</option>
+                                        </select>
+                                    </li>
+                                </ul>
+>>>>>>> 501042b04a3c450af4058b00183225349f25379c
                             </div>
                             <!-- End Nav Links -->
 
@@ -843,32 +882,32 @@
 
                                     </ul>
                                      <nav aria-label="پیمایش صفحه">
-    <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
-        {% if page.has_previous %}
-            <li class="page-item">
-                <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
-                    <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
-                    <span class="sr-only">قبلی</span>
-                </a>
-            </li>
-        {% endif %}
+                                        <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
+                                            {% if page.has_previous %}
+                                                <li class="page-item">
+                                                    <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
+                                                        <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
+                                                        <span class="sr-only">قبلی</span>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
 
-        {% for p in page.paginator.page_range %}
-            <li class="page-item {% if p == page.number %}active{% endif %}">
-                <a class="page-link font-size-14 {% if p == page.number %}text-warning{% endif %}" href="?page={{ p }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}">{{ p }}</a>
-            </li>
-        {% endfor %}
+                                            {% for p in page.paginator.page_range %}
+                                                <li class="page-item {% if p == page.number %}active{% endif %}">
+                                                    <a class="page-link font-size-14 {% if p == page.number %}text-warning{% endif %}" href="?page={{ p }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}">{{ p }}</a>
+                                                </li>
+                                            {% endfor %}
 
-        {% if page.has_next %}
-            <li class="page-item">
-                <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
-                    <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
-                    <span class="sr-only">بعد</span>
-                </a>
-            </li>
-        {% endif %}
-    </ul>
-</nav>
+                                            {% if page.has_next %}
+                                                <li class="page-item">
+                                                    <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
+                                                        <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
+                                                        <span class="sr-only">بعد</span>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </nav>
 
                                 </div>
                                 <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
@@ -879,32 +918,32 @@
                                     </div>
 
                                    <nav aria-label="پیمایش صفحه">
-    <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
-        {% if page.has_previous %}
-            <li class="page-item">
-                <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
-                    <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
-                    <span class="sr-only">قبلی</span>
-                </a>
-            </li>
-        {% endif %}
+                                        <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
+                                            {% if page.has_previous %}
+                                                <li class="page-item">
+                                                    <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
+                                                        <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
+                                                        <span class="sr-only">قبلی</span>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
 
-        {% for p in page.paginator.page_range %}
-            <li class="page-item {% if p == page.number %}active{% endif %}">
-                <a class="page-link font-size-14 {% if p == page.number %}text-warning{% endif %}" href="?page={{ p }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}">{{ p }}</a>
-            </li>
-        {% endfor %}
+                                            {% for p in page.paginator.page_range %}
+                                                <li class="page-item {% if p == page.number %}active{% endif %}">
+                                                    <a class="page-link font-size-14 {% if p == page.number %}text-warning{% endif %}" href="?page={{ p }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}">{{ p }}</a>
+                                                </li>
+                                            {% endfor %}
 
-        {% if page.has_next %}
-            <li class="page-item">
-                <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
-                    <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
-                    <span class="sr-only">بعد</span>
-                </a>
-            </li>
-        {% endif %}
-    </ul>
-</nav>
+                                            {% if page.has_next %}
+                                                <li class="page-item">
+                                                    <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
+                                                        <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
+                                                        <span class="sr-only">بعد</span>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </nav>
 
                                 </div>
 

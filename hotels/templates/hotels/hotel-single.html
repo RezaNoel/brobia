@@ -70,6 +70,11 @@
                                             <span class="font-weight-normal text-white font-size-14">آفر ویژه</span>
                                     </li>
                                     {% endif %}
+                                    {% if hotel.boroobia_suggest %}
+                                    <li class="border border-warning bg-warning rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-md-2 mb-2 mb-md-0 mb-lg-2 mb-xl-0">
+                                            <span class="font-weight-normal text-white font-size-14">پیشنهاد بروبیا</span>
+                                    </li>
+                                    {% endif %}
 
                                 </ul>
                                 <div class="d-block d-md-flex flex-horizontal-center mb-2 mb-md-0">
@@ -407,7 +412,7 @@
                                 }
                             }]">
 
-                            {% for h in hotels %}
+                            {% for h in suggest_hotels %}
 
                                 {% if hotel.name != h.name %}
 

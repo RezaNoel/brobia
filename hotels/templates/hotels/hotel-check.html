@@ -83,24 +83,32 @@
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">نام سرگروه</span>
-                                        <span class="text-secondary text-right">حسن معجونی</span>
+                                        <span class="text-secondary text-right">{{ passengers.first}}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">شماره تماس سرگروه</span>
-                                        <span class="text-secondary text-right">09122221111</span>
+                                        <span class="text-secondary text-right">{% for passenger in passengers %}
+                                            {{ passenger.phone}}
+                                        {% endfor %}
+                                        </span>
                                     </li>
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">تعداد بزرگسال </span>
-                                        <span class="text-secondary text-right">2</span>
+                                        <span class="text-secondary text-right">{{ reserve.passenger_count }}</span>
                                     </li>
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">تعداد خردسال </span>
-                                        <span class="text-secondary text-right">2</span>
+                                        <span class="text-secondary text-right">{{ reserve.child_count }}</span>
                                     </li>
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium"> نیازمندی های ویژه</span>
-                                        <span class="text-secondary text-right">ویلچر</span>
+                                        <span class="text-secondary text-right">{% if reserve.needs %}
+                                            {{reserve.needs}}
+                                        {% else %}
+                                            بدون نیازمندی
+
+                                        {% endif %}</span>
                                     </li>
 
 

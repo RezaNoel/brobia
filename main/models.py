@@ -28,8 +28,14 @@ class City(models.Model):
         verbose_name = ("شهر")
         verbose_name_plural = ("شهر ها")
 class Facility(models.Model):
-    name = models.CharField(max_length=75,verbose_name='نام اصلی')
+    RELATED_CHOICES = (
+        ('H', 'هتل'),
+        ('R', 'اتاق'),
+    )
+
+    name = models.CharField(max_length=75,verbose_name='نام آیکون')
     faname = models.CharField(max_length=75,default="",verbose_name='نام فارسی')
+    related = models.CharField(max_length=10,choices=RELATED_CHOICES,default="",verbose_name='مربوط')
     def __str__(self):
         return self.faname
     class Meta:
