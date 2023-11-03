@@ -734,63 +734,35 @@
                         <!-- Slick Tab carousel -->
                         <div class="u-slick__tab">
                             <!-- Nav Links -->
-                            <div class="mb-5">
-                                <ul class="nav flex-nowrap border border-radius-3 tab-nav align-items-center py-2 px-0" role="tablist">
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">توصیه شده
-                                        </a>
-                                    </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select id="sort-select" class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15 text-gray-1 d-flex align-items-center">
-                                            <option value="price">قیمت</option>
-                                            <option value="cheapest">ارزان‌ترین</option>
-                                            <option value="expensive">گران‌ترین</option>
+                            <div class="mb-5 d-flex">
+                                <ul class="nav nav-tabs justify-content-center filter-hotel-list d-flex justify-content-center align-items-center" role="tablist">
+                                    <li class="nav-item">
+                                        <select class="filter-select font-size-16" style="color: #67747c !important;">
+                                            <option value="" selected="">قیمت</option>
+                                            <option value="expensive">گران ترین</option>
+                                            <option value="cheapest">ارزان ترین</option>
                                         </select>
                                     </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
-                                            <option value="one" selected="">ستاره ها</option>
-                                            <option value="two">2 ستاره</option>
-                                            <option value="three">3 ستاره</option>
-                                            <option value="four">4 ستاره</option>
-                                            <option value="five">5 ستاره</option>
+                                    <li class="nav-item">
+                                        <select class="filter-select font-size-16" style="color: #67747c !important;">
+                                            <option value="" selected="">ستاره</option>
+                                            <option value="one">یک ستاره</option>
+                                            <option value="two">دو ستاره</option>
+                                            <option value="three">سه ستاره</option>
+                                            <option value="four">چهار ستاره</option>
+                                            <option value="five">پنج ستاره</option>
                                         </select>
                                     </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">الفبا
-                                        </a>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">پیشنهاد بروبیا</a>
                                     </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">فاصله
-                                        </a>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">فاصله</a>
                                     </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">بالا بررسی شد
-                                        </a>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">الفبا</a>
                                     </li>
-                                </ul>
-                                <ul class="nav flex-nowrap border border-radius-3 tab-nav-mobile align-items-center py-2 px-0" role="tablist">
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">توصیه شده
-                                        </a>
-                                    </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
-                                            <option value="one" selected="">قیمت</option>
-                                            <option value="two">دو</option>
-                                            <option value="three">سه</option>
-                                            <option value="four">چهار</option>
-                                        </select>
-                                    </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
-                                            <option value="one" selected="">ستاره ها</option>
-                                            <option value="two">دو</option>
-                                            <option value="three">سه</option>
-                                            <option value="four">چهار</option>
-                                        </select>
-                                    </li>
-                                </ul>
+                                </ul>                                
                             </div>
                             <!-- End Nav Links -->
 
@@ -966,9 +938,44 @@
         </a>
         <!-- End Go to Top -->
 
+        <style>
+
+            .filter-hotel-list li{
+                margin-bottom: 20px !important;
+            }
+
+            .nav.nav-tabs.justify-content-center.filter-hotel-list li {
+                border-right: 1px solid #e7eaf3;
+                padding-right: 15px;
+                margin-right: 15px;
+            }
+
+            .filter-select{
+                border: none;
+                cursor: pointer;
+                direction: rtl;
+                padding: 10px;
+            }
+
+            .nav-item::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 100%;
+            width: 0;
+            height: 2px;
+            background-color: #007BFF;
+            transition: width 0.3s;
+            }
+
+            .nav-item:hover::before {
+                width: 100%;
+            }
+
+        </style>
 
         <!-- JS Global Compulsory -->
-        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></>
+        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
         <script src="{% static 'vendor/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
         <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
         <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
@@ -1012,8 +1019,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
 
         <script>
-            // Date Picker
-            $(document).ready(function () {
+        // Date Picker
+        $(document).ready(function () {
         var night;
         var isRtl = true;
         var dateFormat = isRtl ? "jYYYY/jMM/jDD" : "YYYY/MM/DD";
