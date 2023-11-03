@@ -734,27 +734,17 @@
                         <!-- Slick Tab carousel -->
                         <div class="u-slick__tab">
                             <!-- Nav Links -->
-<<<<<<< HEAD
+
                             <div class="mb-5 d-flex">
                                 <ul class="nav nav-tabs justify-content-center filter-hotel-list d-flex justify-content-center align-items-center" role="tablist">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">پیشنهاد بروبیا</a>
+                                    </li>
                                     <li class="nav-item">
                                         <select class="filter-select font-size-16" style="color: #67747c !important;">
                                             <option value="" selected="">قیمت</option>
                                             <option value="expensive">گران ترین</option>
                                             <option value="cheapest">ارزان ترین</option>
-=======
-                            <div class="mb-5">
-                                <ul class="nav flex-nowrap border border-radius-3 tab-nav align-items-center py-2 px-0" role="tablist">
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">پیشنهاد بروبیا
-                                        </a>
-                                    </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select id="sort-select" class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15 text-gray-1 d-flex align-items-center">
-                                            <option value="price">قیمت</option>
-                                            <option value="cheapest">ارزان‌ترین</option>
-                                            <option value="expensive">گران‌ترین</option>
->>>>>>> 501042b04a3c450af4058b00183225349f25379c
                                         </select>
                                     </li>
                                     <li class="nav-item">
@@ -768,40 +758,14 @@
                                         </select>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">پیشنهاد بروبیا</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">فاصله</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">الفبا</a>
                                     </li>
-<<<<<<< HEAD
-                                </ul>                                
-=======
+
                                 </ul>
-                                <ul class="nav flex-nowrap border border-radius-3 tab-nav-mobile align-items-center py-2 px-0" role="tablist">
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">پیشنهاد بروبیا
-                                        </a>
-                                    </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
-                                            <option value="one" selected="">قیمت</option>
-                                            <option value="cheapest">ارزان‌ترین</option>
-                                            <option value="expensive">گران‌ترین</option>
-                                        </select>
-                                    </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
-                                            <option value="one" selected="">ستاره ها</option>
-                                            <option value="two">دو</option>
-                                            <option value="three">سه</option>
-                                            <option value="four">چهار</option>
-                                        </select>
-                                    </li>
-                                </ul>
->>>>>>> 501042b04a3c450af4058b00183225349f25379c
+
                             </div>
                             <!-- End Nav Links -->
 
@@ -812,7 +776,7 @@
                                         <li class="card mb-5 overflow-hidden">
                                             <div class="product-item__outer w-100">
                                                 {% for hotel in page %}
-                                                           <div class="row">
+                                                   <div class="row">
                                                     <div class="col-md-5 col-xl-4">
                                                         <div class="product-item__header">
                                                             <div class="position-relative">
@@ -821,7 +785,6 @@
                                                                     <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
                                                                     </a>
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -832,11 +795,9 @@
                                                                 {% if hotel.special_offer %}
                                                                     <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
                                                                 {% endif %}
-{#                                                                <span class="lighter">#}
                                                                 {% for _ in "x"|rjust:hotel.starts %}
                                                                     <small class="fas fa-star"></small>
                                                                 {% endfor %}
-{#                                                                </span>#}
                                                             </div>
                                                         </a>
 
