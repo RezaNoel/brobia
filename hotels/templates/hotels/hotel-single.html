@@ -219,9 +219,6 @@
                                                                             {% for facility in room.facilities.all %}
                                                                             <li class="list-group-items">{{ facility.faname }}</li>
                                                                             {% endfor %}
-
-
-
                                                                         </ul>
                                                                     </section>
                                                                 </div>
@@ -250,8 +247,6 @@
                                                                 {% for image in room.gallery.all %}
                                                                     <div class="js-slide bg-img-hero min-height-750" style="background-image: url( {{ image.file.url }} );"></div>
                                                                 {% endfor %}
-{#                                                                <img  src="{% static 'img\1920x750\img4.png' %}" alt="">#}
-
                                                             </div>
                                                         </div>
                                                     </div>
