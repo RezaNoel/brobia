@@ -221,8 +221,32 @@
                                                                     </section>
                                                                 </div>
                                                               </div>
-                                                            <div class="hotel-pics">
-                                                                <img src="{% static 'img\1920x750\img4.png' %}" alt="">
+                                                             <div class="js-slick-carousel hotel-pics u-slick u-slick__img-overlay" data-arrows-classes="d-none d-md-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="flaticon-back u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-md-4 ml-xl-8" data-arrow-right-classes="flaticon-next u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-md-4 mr-xl-8" data-infinite="true" data-slides-show="1" data-slides-scroll="1" data-center-mode="true" data-pagi-classes="d-md-none text-center u-slick__pagination mt-5 mb-0" data-center-padding="450px" data-responsive="[{
+                        &quot;breakpoint&quot;: 1480,
+                        &quot;settings&quot;: {
+                            &quot;centerPadding&quot;: &quot;300px&quot;
+                        }
+                    }, {
+                        &quot;breakpoint&quot;: 1199,
+                        &quot;settings&quot;: {
+                            &quot;centerPadding&quot;: &quot;200px&quot;
+                        }
+                    }, {
+                        &quot;breakpoint&quot;: 992,
+                        &quot;settings&quot;: {
+                            &quot;centerPadding&quot;: &quot;120px&quot;
+                        }
+                    }, {
+                        &quot;breakpoint&quot;: 554,
+                        &quot;settings&quot;: {
+                            &quot;centerPadding&quot;: &quot;20px&quot;
+                        }
+                    }]">
+                                                                {% for image in room.gallery.all %}
+                                                                    <div class="js-slide bg-img-hero min-height-750" style="background-image: url( {{ image.file.url }} );"></div>
+                                                                {% endfor %}
+{#                                                                <img  src="{% static 'img\1920x750\img4.png' %}" alt="">#}
+
                                                             </div>
                                                         </div>
                                                     </div>

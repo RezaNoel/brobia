@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.http import JsonResponse,Http404,HttpResponseNotFound
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from urllib.parse import urlencode
 from datetime import datetime, timedelta
@@ -108,7 +109,7 @@ def list(request, city_slug):
 
     return render(request, 'hotels/hotel-list.html', content)
 
-
+@login_required
 def confirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
 
     print (confirm_city_slug)

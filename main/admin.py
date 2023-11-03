@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hotel, Room,City,Facility,Request,Passenger,HotelImage,Image
+from .models import Hotel, Room,City,Facility,Request,Passenger,HotelImage,Image,RoomImage
 from django.db import models
 
 class ImageAdmin(admin.ModelAdmin):
@@ -9,6 +9,8 @@ class ImageAdmin(admin.ModelAdmin):
 class HotelImageInline(admin.TabularInline):
     model = HotelImage
 
+class RoomImageInline(admin.TabularInline):
+    model = RoomImage
 class HotelAdmin(admin.ModelAdmin):
     list_display = ['name', 'faname', 'address','likes', 'starts', 'city', 'facilities_list', 'slug']
     list_display_links = ['name', 'faname']
@@ -30,6 +32,8 @@ class RoomAdmin(admin.ModelAdmin):
     list_display = ['name','faname','price', 'hotel','facilities_list', 'bed','slug','image']
     list_display_links = ['name']
     filter_horizontal = ['facilities']
+
+    inlines = [RoomImageInline]
 
     def facilities_list(self, obj):
         facilities = obj.facilities.values_list('faname', flat=True)

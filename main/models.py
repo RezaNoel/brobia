@@ -105,6 +105,7 @@ class Room(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE,verbose_name='هتل')
     bed = models.IntegerField(verbose_name='تعداد تخت')
     slug = models.SlugField(default="",null=False,blank=True,db_index=True,verbose_name='لینک')
+    gallery = models.ManyToManyField(Image, through='RoomImage')
     image = models.ImageField(blank=True, verbose_name='عکس',upload_to=room_image_path_154)
     image_booking = models.ImageField(blank=True, verbose_name='عکس رزرو',upload_to=room_image_path_160)
     facilities = models.ManyToManyField(Facility, blank=True,verbose_name='امکانات')
@@ -122,6 +123,10 @@ class Room(models.Model):
     class Meta:
         verbose_name = ("اتاق")
         verbose_name_plural = ("اتاق ها")
+
+class RoomImage(models.Model):
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
 class Request(models.Model):
     CONFIRM_CHOICES = (
         ('W', 'در انتظار تایید'),
