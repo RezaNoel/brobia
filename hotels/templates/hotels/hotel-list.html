@@ -734,21 +734,10 @@
                         <!-- Slick Tab carousel -->
                         <div class="u-slick__tab">
                             <!-- Nav Links -->
-                            <div class="mb-5 d-flex">
-                                <ul class="nav nav-tabs justify-content-center filter-hotel-list d-flex justify-content-center align-items-center" role="tablist">
-                                    <li class="nav-item">
-                                        <select class="filter-select font-size-16" style="color: #67747c !important;">
-                                            <option value="" selected="">قیمت</option>
-                                            <option value="expensive">گران ترین</option>
-                                            <option value="cheapest">ارزان ترین</option>
                             <div class="mb-5">
                                 <ul class="nav flex-nowrap border border-radius-3 tab-nav align-items-center py-2 px-0" role="tablist">
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">پیشنهاد بروبیا
-                                        </a>
-                                    </li>
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
-                                        <select id="sort-select" class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15 text-gray-1 d-flex align-items-center">
+                                    <li class="nav-item">
+                                        <select class="filter-select font-size-16" style="color: #67747c !important;">
                                             <option value="price">قیمت</option>
                                             <option value="cheapest">ارزان‌ترین</option>
                                             <option value="expensive">گران‌ترین</option>
@@ -776,10 +765,6 @@
                                 </ul>
                                 </ul>
                                 <ul class="nav flex-nowrap border border-radius-3 tab-nav-mobile align-items-center py-2 px-0" role="tablist">
-                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
-                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">پیشنهاد بروبیا
-                                        </a>
-                                    </li>
                                     <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-right">
                                         <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
                                             <option value="one" selected="">قیمت</option>
@@ -794,6 +779,10 @@
                                             <option value="three">سه</option>
                                             <option value="four">چهار</option>
                                         </select>
+                                    </li>
+                                    <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
+                                        <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">پیشنهاد بروبیا
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -878,7 +867,7 @@
                                             {% if page.has_previous %}
                                                 <li class="page-item">
                                                     <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
-                                                        <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
+                                                        <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
                                                         <span class="sr-only">قبلی</span>
                                                     </a>
                                                 </li>
@@ -893,7 +882,7 @@
                                             {% if page.has_next %}
                                                 <li class="page-item">
                                                     <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
-                                                        <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
+                                                        <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
                                                         <span class="sr-only">بعد</span>
                                                     </a>
                                                 </li>
@@ -914,7 +903,7 @@
                                             {% if page.has_previous %}
                                                 <li class="page-item">
                                                     <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
-                                                        <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
+                                                        <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
                                                         <span class="sr-only">قبلی</span>
                                                     </a>
                                                 </li>
@@ -929,7 +918,7 @@
                                             {% if page.has_next %}
                                                 <li class="page-item">
                                                     <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
-                                                        <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
+                                                        <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
                                                         <span class="sr-only">بعد</span>
                                                     </a>
                                                 </li>
@@ -1001,6 +990,14 @@
 
             .nav-item:hover::before {
                 width: 100%;
+            }
+
+            .page-link{
+                display: inline-block !important;
+                width: 100%;
+                -webkit-transform: rotateX(0deg) !important;
+                transform: rotateX(0deg) !important;
+                padding: 10px !important;
             }
 
         </style>
