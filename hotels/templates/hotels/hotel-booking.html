@@ -4,7 +4,12 @@
 
         <!-- Title -->
 {% block title %}برو بیا | چه برو بیا ایه{% endblock %}
-{% block header %}{% endblock %}
+{% block header %}
+<link href="{% static 'js/date-picker/assets/css/daterangepicker.css' %}" rel="stylesheet" type="text/css"
+          media="all"/>
+<link href="{% static 'js/date-picker/assets/css/datepicker-theme.css' %}" rel="stylesheet" type="text/css"
+          media="all"/>
+{% endblock %}
 {% block content %}
 
 {% include 'include/list-header.html' %}
@@ -49,9 +54,9 @@
                                     <div class="row">
                                         <div class="col-sm-6 mb-4">
                                             <div class="js-form-message">
-                                                {{ headMyBookingForm.firstname.label_tag }}
-                                                {{ headMyBookingForm.firstname.errors }}
-                                                {{ headMyBookingForm.firstname }}
+                                        {{ headMyBookingForm.firstname.label_tag }}
+                                        {{ headMyBookingForm.firstname.errors }}
+                                        {{ headMyBookingForm.firstname }}
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
@@ -66,6 +71,12 @@
                                         {{ headMyBookingForm.email.label_tag }}
                                         {{ headMyBookingForm.email.errors }}
                                         {{ headMyBookingForm.email }}
+                                        <div class="error email-error">
+                                            <i class="error-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16"> <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/> <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/> </svg>
+                                            </i>
+                                            <p class="error-text">لطفا یک ایمیل معتبر وارد کنید</p>
+                                        </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
@@ -73,6 +84,12 @@
                                         {{ headMyBookingForm.phone.label_tag }}
                                         {{ headMyBookingForm.phone.errors }}
                                         {{ headMyBookingForm.phone }}
+                                        <span class="error phone-error">
+                                            <i class="error-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16"> <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/> <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/> </svg>
+                                            </i>
+                                            <p class="error-text">لطفا شماره تلفن خود را درست وارد کنید</p>
+                                        </span>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
@@ -80,13 +97,19 @@
                                         {{ headMyBookingForm.nid.label_tag }}
                                         {{ headMyBookingForm.nid.errors }}
                                         {{ headMyBookingForm.nid }}
+                                        <span class="error nid-error">
+                                            <i class="error-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16"> <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/> <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/> </svg>
+                                            </i>
+                                            <p class="error-text">لطفا شماره ملی خود را درست وارد کنید</p>
+                                        </span>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
                                             <div class="js-form-message  ">
                                         {{ headMyBookingForm.birthdate.label_tag }}
                                         {{ headMyBookingForm.birthdate.errors }}
-                                        {{ headMyBookingForm.birthdate }}
+                                        <input type="text" name="birthdate" class="form-control jalali-datepicker" placeholder="1402/04/15" required="" id="birthdate_">
                                             </div>
                                         </div>
                                         <div class="col-sm-12 mb-4">
@@ -131,7 +154,7 @@
                                                 <div class="js-form-message">
                                                     {{ form.birthdate.label_tag }}
                                                     {{ form.birthdate.errors }}
-                                                    {{ form.birthdate }}
+                                                    <input type="text" name="birthdate" class="form-control jalali-datepicker" placeholder="1402/04/15" required="" id="birthdate_">
                                                 </div>
                                             </div>
 
@@ -178,7 +201,6 @@
                                             <ul class="list-unstyled font-size-1 mb-0 font-size-16">
                                                 <li class="d-flex justify-content-between py-2">
                                                     <span class="font-weight-medium" >تاریخ<br>
-{#                                                        <span class="text-gray-1 font-weight-normal">1 x اتاق استراحت </span>#}
                                                     </span>
                                                     <span class="text-secondary" id="date-range">{{ reserve.enter }} - {{ reserve.exit }}</span>
                                                 </li>
@@ -248,7 +270,7 @@
                                             <ul class="list-unstyled font-size-1 mb-0 font-size-16">
                                                 <li class="d-flex justify-content-between py-2">
                                                     <span class="font-weight-medium">مبلغ کل </span>
-                                                    <span class="text-secondary">{{ room.price|intcomma }} تومان</span>
+                                                    <span class="text-secondary">{{ room.format_price }} تومان</span>
                                                 </li>
 
                                                 <li class="d-flex justify-content-between py-2">
@@ -263,7 +285,7 @@
 
                                                 <li class="d-flex justify-content-between py-2 font-size-17 font-weight-bold">
                                                     <span class="font-weight-bold">مبلغ </span>
-                                                    <span class="">{{ room.price|intcomma }} تومان پرداخت کنید</span>
+                                                    <span class="">{{ room.format_price }} تومان پرداخت کنید</span>
                                                 </li>
                                             </ul>
                                             <!-- End Fact List -->
@@ -279,20 +301,136 @@
             </div>
         </main>
         <!-- ========== END MAIN CONTENT ========== -->
+
+        <style>
+            .invalid{
+              border-color: #f03e3e;
+              color: #f03e3e;
+            }
+            
+            .invalid:focus{
+              border-color: #f03e3e;
+              box-shadow: 0 0 8px #ffa8a8;
+            }
+            
+            .valid{
+              border-color: #37b24d;
+              color: #37b24d;
+            }
+            .valid:focus{
+              border-color: #37b24d;
+              box-shadow: 0 0 8px #8ce99a;
+            }
+          
+            #id_phone::-webkit-inner-spin-button{
+              display: none;
+            }
+          
+            #id_phone{
+              -moz-appearance: textfield;
+            }
+
+            #id_nid::-webkit-inner-spin-button{
+              display: none;
+            }
+          
+            #id_nid{
+              -moz-appearance: textfield;
+            }
+            
+            .error{
+                display: flex;
+                align-items: center;
+                margin-top: 6px;
+                color: #d93025;
+                font-size: 13px;
+            }
+
+            .error-icon{
+                margin-left: 6px;
+            }
+
+            .error-text{
+                color: #d93025;
+                text-align: center;
+                margin: 0;
+                padding-top: 5px;
+            }
+
+            .email-error, .nid-error, .phone-error{
+                display: none;
+            }      
+
+          </style>
+
+          <!--JS Date Picker -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/date-picker/assets/js/moment.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/date-picker/assets/js/moment-jalaali.js' %}"></script>
+    <script src="{% static 'js/date-picker/assets/js/daterangepicker-fa-ex.js' %}"></script>
+
+          <script>
+            function validation(condition, input, errorText) {
+                if(condition) {
+                    input.classList.remove('valid')
+                    input.classList.add('invalid')
+                    errorText.style.display = 'flex'
+                } else {
+                input.classList.remove('invalid')
+                input.classList.add('valid')
+                errorText.style.display = 'none'
+                }
+            }
+
+            const emailInput = document.querySelector('#id_email')
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
+            const emailError = document.querySelector('.email-error')
+            emailInput.addEventListener('input', () => {
+                validation((!emailInput.value.match(emailPattern)), emailInput, emailError)
+            })
+            
+            const telInput = document.getElementById('id_phone')
+            const telError = document.querySelector('.phone-error')
+            telInput.setAttribute('type', 'number')
+            telInput.setAttribute('autocomplete',"tel")
+            telInput.addEventListener('input', (e) => {
+                e.target.value = '0' + (Math.abs(+e.target.value) !== 0 ? Math.abs(+e.target.value) : '')
+                validation((e.target.value.length !== 11), telInput, telError)
+            })
+
+            const nidInput = document.getElementById('id_nid')
+            const nidError = document.querySelector('.nid-error')
+            nidInput.setAttribute('type', 'number')
+            nidInput.addEventListener('input', (e) => {
+                validation((e.target.value.length !== 10), nidInput, nidError)
+            })
+
+            document.addEventListener("DOMContentLoaded", function() {
+            var night;
+            var isRtl = true;
+            var dateFormat = isRtl ? 'jYYYY/jMM/jDD' : 'YYYY/MM/DD';
+            
+
+            $('.jalali-datepicker').daterangepicker({
+                clearLabel: 'Clear',
+                autoApply: true,
+                opens: 'left',
+                singleDatePicker: true,
+                showDropdowns: true,
+                jalaali: true,
+                language: 'fa'
+            }).on('apply.daterangepicker', function () {
+                $('.tooltip').hide();
+                $('.date-select').text($(this).val());
+            });
+        })
+          </script>
+
 {% endblock %}
 {% block footer %}
     {% include 'include/hotel-footer.html' %}
 {% endblock %}
-{% block javascript %}
-        <!-- Page Preloader -->
-        <!-- <div id="jsPreloader" class="page-preloader">
-            <div class="page-preloader__content-centered">
-                <div class="spinner-grow text-primary" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
-        </div> -->
-        <!-- End Page Preloader -->
 
         <!-- Go to Top -->
         <a class="js-go-to u-go-to-modern" href="#" data-position='{"bottom": 15, "right": 15 }' data-type="fixed" data-offset-top="400" data-compensation="#header" data-show-effect="slideInUp" data-hide-effect="slideOutDown">
@@ -334,16 +472,8 @@
         <script src="{% static 'js/components/hs.sticky-block.js' %}"></script>
         <script src="{% static 'js/components/hs.focus-state.js' %}"></script>
 
-{##}
-{#        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@5.4.3/css/mdb.min.css" />#}
-{#        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>#}
-{#        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mdbootstrap@5.4.3/js/mdb.min.js"></script>#}
-{#        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mdbootstrap@5.4.3/js/mdb.min.js"></script>#}
-
         <!-- JS Plugins Init. -->
         <script>
-
-
             $(window).on('load', function () {
 
                 // initialization of HSMegaMenu component
@@ -421,6 +551,3 @@
             });
 
         </script>
-
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCuY6I4hZQvxo5RqCH7kogGKzcrjetRKQI&amp;callback=initMap" async defer></script>
- {% endblock %}

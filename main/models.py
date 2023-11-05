@@ -3,14 +3,16 @@ from django.utils.text import slugify
 from slugify import slugify as slugify_fa
 from django.urls import reverse
 from django.db.models import Min
-import random
-import string
+import random,string,os
+# import string
+
 # Create your models here.
-import os
 def room_image_path_154(instance, filename):
     return os.path.join('static\img','200x154',  filename)
 def room_image_path_160(instance, filename):
     return os.path.join('static\img','240x160',  filename)
+def room_image_path_550(instance, filename):
+    return os.path.join('static\img','820x550',  filename)
 class City(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام اصلی')
     faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
@@ -26,13 +28,30 @@ class City(models.Model):
         verbose_name = ("شهر")
         verbose_name_plural = ("شهر ها")
 class Facility(models.Model):
-    name = models.CharField(max_length=75,verbose_name='نام اصلی')
+    RELATED_CHOICES = (
+        ('H', 'هتل'),
+        ('R', 'اتاق'),
+    )
+
+    name = models.CharField(max_length=75,verbose_name='نام آیکون')
     faname = models.CharField(max_length=75,default="",verbose_name='نام فارسی')
+    related = models.CharField(max_length=10,choices=RELATED_CHOICES,default="",verbose_name='مربوط')
     def __str__(self):
         return self.faname
     class Meta:
         verbose_name = ("اماکانات")
         verbose_name_plural = ("امکانات")
+class Image(models.Model):
+    name = models.CharField(blank=True, max_length=100,verbose_name="نام تصویر")
+    file = models.ImageField(upload_to=room_image_path_550, verbose_name="فایل تصویر")
+
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = ("تصویر")
+        verbose_name_plural = ("تصاویر")
+
+
 class Hotel(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام اصلی')
     faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
@@ -40,12 +59,15 @@ class Hotel(models.Model):
     starts = models.IntegerField(verbose_name="ستاره")
     likes = models.IntegerField(default=0 ,verbose_name="لایک ها")
     city = models.ForeignKey(City,on_delete=models.CASCADE,verbose_name='شهر')
+    distance = models.IntegerField(default=0, verbose_name="فاصله تا مکان محبوب")
+    gallery = models.ManyToManyField(Image, through='HotelImage')
     facilities = models.ManyToManyField(Facility, blank=True,verbose_name='امکانات')
     description = models.TextField(blank=True,verbose_name="توضیحات کوتاه")
     explanation = models.TextField(blank=True,verbose_name="توضیحات بلند")
     slug = models.SlugField(default="",null=False,blank=True,db_index=True,verbose_name='لینک')
     special_offer = models.BooleanField(default=False, verbose_name='آفر ویژه')
     online_reserve = models.BooleanField(default=False, verbose_name='رزرو آنلاین')
+    boroobia_suggest = models.BooleanField(default=False, verbose_name='پیشنهاد بروبیا')
 
     def increase_likes(self):
         self.likes += 1
@@ -77,6 +99,11 @@ class Hotel(models.Model):
     class Meta:
         verbose_name = ("هتل")
         verbose_name_plural = ("هتل ها")
+
+class HotelImage(models.Model):
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+
 class Room(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام')
     faname = models.CharField(default="",max_length=75,verbose_name='نام نمایشی')
@@ -84,6 +111,7 @@ class Room(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE,verbose_name='هتل')
     bed = models.IntegerField(verbose_name='تعداد تخت')
     slug = models.SlugField(default="",null=False,blank=True,db_index=True,verbose_name='لینک')
+    gallery = models.ManyToManyField(Image, through='RoomImage')
     image = models.ImageField(blank=True, verbose_name='عکس',upload_to=room_image_path_154)
     image_booking = models.ImageField(blank=True, verbose_name='عکس رزرو',upload_to=room_image_path_160)
     facilities = models.ManyToManyField(Facility, blank=True,verbose_name='امکانات')
@@ -95,9 +123,16 @@ class Room(models.Model):
     def __str__(self):
         return self.faname+" "+self.hotel.faname
 
+    def format_price(self):
+        return '{:,.0f}'.format(self.price)
+
     class Meta:
         verbose_name = ("اتاق")
         verbose_name_plural = ("اتاق ها")
+
+class RoomImage(models.Model):
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
 class Request(models.Model):
     CONFIRM_CHOICES = (
         ('W', 'در انتظار تایید'),

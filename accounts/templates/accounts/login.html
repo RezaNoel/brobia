@@ -41,7 +41,7 @@
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">وارد اکانت خود شوید</h2>
-          <form action="" method="POST" class="form needs-validation">
+          <form  method="POST" class="form needs-validation">
               {% csrf_token %}
 
             <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -80,7 +80,6 @@
                 </button>
                  </a>
               </div>
-              <button type="button" class="btn col-lg-2 col-xl-2 btn-outline-primary mb-4 font-size-12">ورود با رمز یک بار مصرف</button>
           </form>
         </div>
       </div>
@@ -137,7 +136,7 @@
   telInput.setAttribute('type', 'number')
   telInput.setAttribute('autocomplete',"tel")
   telInput.addEventListener('input', (e) => {
-    e.target.value = '09' + (Math.abs(+e.target.value) !== 0 ? Math.abs(+e.target.value) : '')
+    {#e.target.value = '' + (Math.abs(+e.target.value) !== 0 ? Math.abs(+e.target.value) : '')#}
     if(e.target.value.length !== 11) {
       telInput.classList.add('invalid')
       telInput.classList.remove('valid')

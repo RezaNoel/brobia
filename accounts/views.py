@@ -1,22 +1,13 @@
 import hotels.views
 from django.shortcuts import render
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User
-from .forms import LoginForm,RegisterForm,PasswordResetRequestForm
+from .forms import LoginForm,RegisterForm
 import main
-from django.contrib.auth.forms import PasswordResetForm
-from django.contrib.auth.views import PasswordResetView
 
-
-class CustomPasswordResetView(PasswordResetView):
-    form_class = PasswordResetRequestForm
-    email_template_name = 'registration/password_reset_email.html'
-    template_name = 'registration/password_reset_form.html'
-
-    def get_success_url(self):
-        return reverse('password_reset_done')
 
 # Create your views here.
 
@@ -76,7 +67,6 @@ def RegisterView(request):
 
         if registerForm.is_valid():
             # Variables
-
             email = registerForm.cleaned_data.get('email')
             password = registerForm.cleaned_data.get('password')
             first_name = registerForm.cleaned_data.get('first_name')
@@ -84,6 +74,7 @@ def RegisterView(request):
             phone = registerForm.cleaned_data.get('phone')
             nid = registerForm.cleaned_data.get('nid')
             username = phone
+
             # Create User
             user = User(username=username,email=email,first_name=first_name,last_name=last_name,phone=phone,nid=nid)
             user.set_password(password)
@@ -107,9 +98,6 @@ def RegisterView(request):
 
     return render(request, 'accounts/register.html', context)
 
-
+@login_required
 def UserProfileView(request):
     return render(request, 'accounts/user_profile.html')
-
-
-

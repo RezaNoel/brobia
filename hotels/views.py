@@ -1,9 +1,11 @@
 import accounts.views
 from django.shortcuts import render,redirect,get_object_or_404
-from django.db.models import Min
+from django.db.models import Min,Max,F ,Case, When, IntegerField
+from django.core.paginator import Paginator
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.http import JsonResponse,Http404,HttpResponseNotFound
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from urllib.parse import urlencode
 from datetime import datetime, timedelta
@@ -59,10 +61,9 @@ def home(request):
     exit_date=current_date + jalali_timedelta(days=4)
     formatted_exit_date = exit_date.strftime('%Y/%m/%d')
     formatted_current_date = current_date.strftime('%Y/%m/%d')
-    # print(formatted_new_date)
-
     cities = City.objects.all()
     hotels = Hotel.objects.all()
+    suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
     facilities = Facility.objects.all()
     kish_count = City.objects.get(faname='کیش').hotel_set.count()
     mashhad_count = City.objects.get(faname='مشهد').hotel_set.count()
@@ -73,6 +74,7 @@ def home(request):
     # hotel = Hotel.objects.get(slug=hotels.slug)
     content = {'cities': cities,
                'hotels':hotels,
+               'suggest_hotels':suggest_hotels,
                'facilities':facilities,
                'kish_count':kish_count,
                'mashhad_count':mashhad_count,
@@ -84,33 +86,73 @@ def home(request):
                'formatted_exit_date':formatted_exit_date,}
     return render(request, 'hotels/hotel-home.html', content)
 
-
-
-
 def list(request, city_slug):
     city = City.objects.get(slug=city_slug)
     cities = City.objects.all()
-    hotels_count = Hotel.objects.filter(city=city.id).count()
     hotels = Hotel.objects.filter(city=city.id)
+    hotels_count = Hotel.objects.filter(city=city.id).count()
+
+    # دریافت نوع مرتب سازی از پارامتر درخواست کاربر
+    sort_type = request.GET.get('sort_select')
+
+    if sort_type == 'suggest':
+        # ابتدا برای هتل‌هایی که فیلد boroobia_suggest برابر با True است یک اولویت اعطا می‌کنیم.
+        hotels = hotels.annotate(
+            suggest_priority=Case(
+                When(boroobia_suggest=True, then=1),
+                default=2,
+                output_field=IntegerField()
+            )
+        )
+
+        # سپس داده‌ها را بر اساس اولویت و سپس min_price مرتب می‌کنیم.
+        hotels = hotels.order_by('suggest_priority')
+
+    elif sort_type == 'cheapest':
+        # مرتب سازی بر اساس قیمت کمترین به بیشترین
+        hotels = hotels.annotate(min_price=Min('room__price'))
+        hotels = hotels.order_by('min_price')
+    elif sort_type == 'expensive':
+        # مرتب سازی بر اساس قیمت بیشترین به کمترین
+        hotels = hotels.annotate(max_price=Max('room__price'))
+        hotels = hotels.order_by('-max_price')
+    elif sort_type == 'stars':
+        # مرتب سازی بر اساس تعداد ستاره ها
+        hotels = hotels.order_by('-starts')
+    elif sort_type == 'alphabetical':
+        # مرتب سازی بر اساس الفبا (نام هتل)
+        hotels = hotels.order_by('name')
+    elif sort_type == 'distance':
+        # مرتب سازی بر اساس الفبا (نام هتل)
+        hotels = hotels.order_by('distance')
+    hotels_per_page = 2
+    paginator = Paginator(hotels, hotels_per_page)
+
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
 
     content = {"city": city,
                "cities": cities,
                "hotels": hotels,
-               "hotel_count": hotels_count}
+               "hotel_count": hotels_count,
+               "page": page,
+               "sort_type": sort_type}  # اضافه کردن نوع مرتب سازی به متغیرهای تمپلیت
 
     return render(request, 'hotels/hotel-list.html', content)
 
 
+@login_required
 def confirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
 
-    print (confirm_city_slug)
     city = City.objects.get(slug=confirm_city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
     rooms = Room.objects.get(slug=room_slug)
 
-    enter = request.GET.get('enter')
-    exit = request.GET.get('exit')
+    date = request.GET.get('date')
+    date_list = date.split(" - ")
+    enter = date_list[0]
+    exit = date_list[1]
     passengers = int(request.GET.get('passengers'))
     children = int(request.GET.get('children'))
     room_count = request.GET.get('room')
@@ -158,7 +200,9 @@ def check(request,reserve):
     my_reserve = Request.objects.get(reserve_code=reserve)
     my_reserve.reserve_status = 'P'
     my_reserve.save()
-    context = {'reserve':my_reserve}
+    passengers = Passenger.objects.filter(reserves=my_reserve)
+
+    context = {'reserve': my_reserve, 'passengers': passengers}
     return render(request,'hotels/hotel-check.html',context)
 
 
@@ -167,6 +211,7 @@ def single(request, city_slug, hotel_slug):
     city = City.objects.get(slug=city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
+    suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
     rooms = Room.objects.filter(hotel=hotel.id)
     code = generate_random_string(10)
 
@@ -174,6 +219,7 @@ def single(request, city_slug, hotel_slug):
     content = {"city": city,
                "hotel": hotel,
                "hotels": hotels,
+               'suggest_hotels': suggest_hotels,
                "rooms": rooms,
                'reserve_code':code
                }

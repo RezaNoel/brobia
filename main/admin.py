@@ -1,11 +1,23 @@
 from django.contrib import admin
-from .models import Hotel, Room,City,Facility,Request,Passenger
+from .models import Hotel, Room,City,Facility,Request,Passenger,HotelImage,Image,RoomImage
 from django.db import models
 
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ['name','file']
+
+
+class HotelImageInline(admin.TabularInline):
+    model = HotelImage
+
+class RoomImageInline(admin.TabularInline):
+    model = RoomImage
 class HotelAdmin(admin.ModelAdmin):
-    list_display = ['name', 'faname', 'address', 'starts', 'city', 'facilities_list', 'slug']
+    list_display = ['name', 'faname', 'address','likes', 'starts', 'city', 'facilities_list', 'slug']
     list_display_links = ['name', 'faname']
     filter_horizontal = ['facilities']
+
+    inlines = [HotelImageInline]
+
 
     def facilities_list(self, obj):
         facilities = obj.facilities.values_list('faname', flat=True)
@@ -21,6 +33,8 @@ class RoomAdmin(admin.ModelAdmin):
     list_display_links = ['name']
     filter_horizontal = ['facilities']
 
+    inlines = [RoomImageInline]
+
     def facilities_list(self, obj):
         facilities = obj.facilities.values_list('faname', flat=True)
         return ", ".join(facilities)
@@ -29,7 +43,7 @@ class RoomAdmin(admin.ModelAdmin):
 
 
 class FacilityAdmin(admin.ModelAdmin):
-    list_display = ['name','faname']
+    list_display = ['name','faname','related']
 
 class RequestAdmin(admin.ModelAdmin):
     list_display = ['reserve_code', 'get_confirm_status','get_reserve_status', 'get_room_name', 'reserve_time']
@@ -65,6 +79,7 @@ class PassengerAdmin(admin.ModelAdmin):
 
 # ثبت مدل‌ها با استفاده از کلاس‌های Admin
 admin.site.register(Hotel, HotelAdmin)
+admin.site.register(Image, ImageAdmin)
 admin.site.register(Facility, FacilityAdmin)
 admin.site.register(City, CityAdmin)
 admin.site.register(Room, RoomAdmin)

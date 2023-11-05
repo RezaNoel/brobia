@@ -1,12 +1,27 @@
 from django import forms
 from .models import User
-from django.contrib.auth.forms import PasswordResetForm
+from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm
 
-class PasswordResetRequestForm(PasswordResetForm):
-    email = forms.EmailField(label="ایمیل", max_length=254, widget=forms.EmailInput(
-        attrs={'class': 'form-control', 'placeholder': 'ایمیل خود را وارد کنید'}
+# class PasswordResetRequestForm(PasswordResetForm):
+#     email = forms.EmailField(label="ایمیل", max_length=254, widget=forms.EmailInput(
+#         attrs={'class': 'form-control', 'placeholder': 'ایمیل خود را وارد کنید'}
+#     ))
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(label="آدرس ایمیل", max_length=254, widget=forms.EmailInput(
+        attrs={'class': 'form-control', 'placeholder': 'آدرس ایمیل خود را وارد کنید'}
     ))
 
+class CustomPasswordChangeForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label="رمز عبور جدید",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password', 'oninvalid': "setCustomValidity('لطفا رمز عبور جدید خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off', 'autocapitalize': 'off', 'name': 'current-password', 'autocomplete': 'current-password'})
+    )
+
+    new_password2 = forms.CharField(
+        label="تکرار رمز عبور جدید",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'confirm_password', 'oninvalid': "setCustomValidity('لطفا رمز عبور جدید را مجددا وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off', 'autocapitalize': 'off', 'name': 'current-password', 'autocomplete': 'current-password'})
+    )
 
 class RegisterForm(forms.ModelForm):
     first_name = forms.CharField(label="نام",max_length=100,required=False, widget=forms.TextInput(
@@ -16,7 +31,9 @@ class RegisterForm(forms.ModelForm):
         attrs={'class': 'form-control','placeholder': 'نام خانوادگی خود را وارد کنید'}
     ))
 
-    password = forms.CharField(label="رمز عبور",max_length=100,required=True, widget=forms.PasswordInput(
+    password = forms.CharField(label="رمز عبور",max_length=100,required=True,validators=[
+        MinLengthValidator(limit_value=8, message="پسورد باید حداقل 8 کاراکتر داشته باشد.")
+    ], widget=forms.PasswordInput(
         attrs={'class': 'form-control','placeholder': 'رمز عبور خود را وارد کنید'}
     ))
     confirm_password = forms.CharField(label="تکرار رمز عبور", max_length=100,required=True, widget=forms.PasswordInput(
@@ -25,6 +42,14 @@ class RegisterForm(forms.ModelForm):
     email = forms.CharField(label="ایمیل",max_length=100,required=False, widget=forms.EmailInput(
         attrs={'class': 'form-control','placeholder': 'ایمیل خود را وارد کنید'}
     ))
+    nid = forms.CharField(label="کدملی",validators=[
+        MinLengthValidator(limit_value=10, message="کدملی باید حداقل 10 کاراکتر داشته باشد."),
+        MaxLengthValidator(limit_value=10, message="کدملی نمی‌تواند بیش از 10 کاراکتر داشته باشد.")
+    ])
+    phone = forms.CharField(label="شماره همراه",validators=[
+        MinLengthValidator(limit_value=11, message="شماره همراه باید حداقل 11 کاراکتر داشته باشد."),
+        MaxLengthValidator(limit_value=10, message="شماره همراه نمی‌تواند بیش از 11 کاراکتر داشته باشد.")
+    ])
 
     class Meta:
         model = User

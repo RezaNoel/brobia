@@ -69,11 +69,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# django_project/settings.py
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
-
-PASSWORD_RESET_FORM = 'accounts.forms.PasswordResetRequestForm'
 
 
 ROOT_URLCONF = 'Brobia.urls'
@@ -157,3 +152,18 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'profile'
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR  # مسیر فایل‌های ایمیل
+
+PASSWORD_RESET_FORM = 'accounts.forms.PasswordResetRequestForm'
+
+
+
+
+

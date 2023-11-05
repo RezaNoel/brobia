@@ -16,22 +16,6 @@
   <!-- ======= Header ======= -->
 {% include 'include/profile-header.html' %}
   <!-- ======= Sidebar ======= -->
-{#  <aside id="sidebar" class="sidebar ">#}
-{##}
-{#    <ul class="sidebar-nav" id="sidebar-nav">#}
-{##}
-{#      <li class="nav-item">#}
-{#        <a class="nav-link collapsed" href="index.html">#}
-{#          <i class="bi bi-grid"></i>#}
-{#          <span>Dashboard</span>#}
-{#        </a>#}
-{#      </li><!-- End Dashboard Nav -->#}
-{##}
-{#      <li class="nav-heading">Pages</li>#}
-{##}
-{#    </ul>#}
-{##}
-{#  </aside><!-- End Sidebar-->#}
 
   <main id="main" class="main">
 
@@ -40,7 +24,6 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'home' %}">خانه</a></li>
-{#          <li class="breadcrumb-item">Users</li>#}
           <li class="breadcrumb-item active">حساب کاربری</li>
         </ol>
       </nav>
@@ -56,12 +39,6 @@
               <img src="{% static 'img/200x200/agent.png' %}" alt="Profile" class="rounded-circle">
               <h2>{{ user.first_name}} {{ user.last_name }}</h2>
               <h3>{{ user.phone }}</h3>
-{#              <div class="social-links mt-2">#}
-{#                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>#}
-{#                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>#}
-{#                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>#}
-{#                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>#}
-{#              </div>#}
 
             </div>
             <a href="{% url 'logout' %}" class="btn btn-danger btn-sm" title="Upload new profile image"><i class="bi bi-upload">خروج از حساب</i></a>
@@ -78,21 +55,20 @@
                 <li class="nav-item">
                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">اطلاعات</button>
                 </li>
-
-{#                <li class="nav-item">#}
-{#                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">ویرایش</button>#}
-{#                </li>#}
-{##}
-{##}
-{##}
-{#                <li class="nav-item">#}
-{#                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغییر رمز عبور</button>#}
-{#                </li>#}
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#reservs">رزرو ها</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">ویرایش</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغییر رمز عبور</button>
+                </li>
 
               </ul>
               <div class="tab-content pt-2">
 
-                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                <div class="tab-pane fade show  profile-overview active" id="profile-overview">
 
                   <h5 class="card-title">اطلاعات حساب کاربری</h5>
 
@@ -128,6 +104,165 @@
 
                 </div>
 
+                <div class="tab-pane fade reservs" id="reservs">
+
+                  <h5 class="card-title p-0 m-0 my-3">تاریخچه رزرو ها</h5>
+
+                  <table class="table">
+                    <thead>
+                      <tr class="user-reserve-information">
+                        <th scope="col">#</th>
+                        <th scope="col">وضعیت رزرو</th>
+                        <th scope="col">کد رزرو</th>
+                        <th scope="col">تاریخ رزرو</th>
+                        <th scope="col">مبغ پرداختی</th>
+                        <th scope="col">هتل</th>
+                        <th scope="col">جزئیات بیشتر</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td class="reserve-situation">
+                          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                          <path fill="#c8e6c9" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path fill="#4caf50" d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z"></path>
+                          </svg>
+                        </td>
+                        <td>Fcds56889fewwer</td>
+                        <td>1403/05/02</td>
+                        <td>1,200,000</td>
+                        <td>رضوان</td>
+                        <td><button class="more-btn text-primary text-underline user-reserve-btn">بیشتر</button></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td class="reserve-situation">
+                          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                          <linearGradient id="wRKXFJsqHCxLE9yyOYHkza_fYgQxDaH069W_gr1" x1="9.858" x2="38.142" y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f44f5a"></stop><stop offset=".443" stop-color="#ee3d4a"></stop><stop offset="1" stop-color="#e52030"></stop></linearGradient><path fill="url(#wRKXFJsqHCxLE9yyOYHkza_fYgQxDaH069W_gr1)" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path d="M33.192,28.95L28.243,24l4.95-4.95c0.781-0.781,0.781-2.047,0-2.828l-1.414-1.414	c-0.781-0.781-2.047-0.781-2.828,0L24,19.757l-4.95-4.95c-0.781-0.781-2.047-0.781-2.828,0l-1.414,1.414	c-0.781,0.781-0.781,2.047,0,2.828l4.95,4.95l-4.95,4.95c-0.781,0.781-0.781,2.047,0,2.828l1.414,1.414	c0.781,0.781,2.047,0.781,2.828,0l4.95-4.95l4.95,4.95c0.781,0.781,2.047,0.781,2.828,0l1.414-1.414	C33.973,30.997,33.973,29.731,33.192,28.95z" opacity=".05"></path><path d="M32.839,29.303L27.536,24l5.303-5.303c0.586-0.586,0.586-1.536,0-2.121l-1.414-1.414	c-0.586-0.586-1.536-0.586-2.121,0L24,20.464l-5.303-5.303c-0.586-0.586-1.536-0.586-2.121,0l-1.414,1.414	c-0.586,0.586-0.586,1.536,0,2.121L20.464,24l-5.303,5.303c-0.586,0.586-0.586,1.536,0,2.121l1.414,1.414	c0.586,0.586,1.536,0.586,2.121,0L24,27.536l5.303,5.303c0.586,0.586,1.536,0.586,2.121,0l1.414-1.414	C33.425,30.839,33.425,29.889,32.839,29.303z" opacity=".07"></path><path fill="#fff" d="M31.071,15.515l1.414,1.414c0.391,0.391,0.391,1.024,0,1.414L18.343,32.485	c-0.391,0.391-1.024,0.391-1.414,0l-1.414-1.414c-0.391-0.391-0.391-1.024,0-1.414l14.142-14.142	C30.047,15.124,30.681,15.124,31.071,15.515z"></path><path fill="#fff" d="M32.485,31.071l-1.414,1.414c-0.391,0.391-1.024,0.391-1.414,0L15.515,18.343	c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414c0.391-0.391,1.024-0.391,1.414,0l14.142,14.142	C32.876,30.047,32.876,30.681,32.485,31.071z"></path>
+                          </svg>
+                        </td>
+                        <td>Fcds56889fewwer</td>
+                        <td>1403/05/02</td>
+                        <td>1,200,000</td>
+                        <td>رضوان</td>
+                        <td><button class="more-btn text-primary text-underline user-reserve-btn">بیشتر</button></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td class="reserve-situation">
+                          <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M256 29.464C381.114 29.464 482.536 130.886 482.536 256C482.536 381.114 381.114 482.536 256 482.536C130.886 482.536 29.4641 381.114 29.4641 256C29.4641 130.886 130.886 29.464 256 29.464Z" fill="#FFDC58"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M256 341.492C270.453 341.492 282.168 353.209 282.168 367.663C282.168 382.116 270.453 393.83 256 393.83C241.547 393.83 229.829 382.116 229.829 367.663C229.829 353.209 241.547 341.492 256 341.492ZM275.55 302.281C274.67 324.344 237.304 324.373 236.45 302.274C232.672 264.47 223.007 174.721 223.315 139.2C223.626 128.254 232.698 121.774 244.304 119.302C247.882 118.537 251.817 118.166 255.781 118.17C259.767 118.177 263.713 118.57 267.295 119.335C279.283 121.889 288.696 128.636 288.693 139.779L288.648 140.896L275.55 302.281Z" fill="#FF8A00"/>
+                            </svg>
+                          </td>
+                        <td>Fcds56889fewwer</td>
+                        <td>1403/05/02</td>
+                        <td>1,200,000</td>
+                        <td>رضوان</td>
+                        <td><button class="more-btn text-primary text-underline user-reserve-btn">بیشتر</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="overlay">
+                    <div class="user-reservation">
+                      <button class="btn overlay-close"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      </button>
+                      <div class="user-reservation-context">
+                        <table class="table user-reservation-full">
+                          <thead>
+                            <tr class="user-reserve-information">
+                              <th scope="col">#</th>
+                              <th scope="col">وضعیت رزرو</th>
+                              <th scope="col">کد رزرو</th>
+                              <th scope="col">تاریخ رزرو</th>
+                              <th scope="col">مبغ پرداختی</th>
+                              <th scope="col">هتل</th>
+                              <th scope="col">اتاق</th>
+                              <th scope="col">ورود و خروج</th>
+                              <th scope="col">تعداد اتاق</th>
+                              <th scope="col">تعداد بزرگسال</th>
+                              <th scope="col">نیازمندی ها</th>
+                            </tr>
+                          </thead>
+                          <tbody align="center">
+                            <tr class="user-full-reservation-body">
+                              <th scope="row">1</th>
+                              <td class="reserve-situation">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                                <path fill="#c8e6c9" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path fill="#4caf50" d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z"></path>
+                                </svg>
+                              </td>
+                              <td>Fcds56889fewwer</td>
+                              <td>1403/05/02</td>
+                              <td>1,200,000</td>
+                              <td>رضوان</td>
+                              <td>102</td>
+                              <td>1402/06/01 - 1402/06/08</td>
+                              <td>1</td>
+                              <td>3</td>
+                              <td>یک عدد ویلچر و وایفای رایگان</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td class="reserve-situation">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                                <linearGradient id="wRKXFJsqHCxLE9yyOYHkza_fYgQxDaH069W_gr1" x1="9.858" x2="38.142" y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f44f5a"></stop><stop offset=".443" stop-color="#ee3d4a"></stop><stop offset="1" stop-color="#e52030"></stop></linearGradient><path fill="url(#wRKXFJsqHCxLE9yyOYHkza_fYgQxDaH069W_gr1)" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path d="M33.192,28.95L28.243,24l4.95-4.95c0.781-0.781,0.781-2.047,0-2.828l-1.414-1.414	c-0.781-0.781-2.047-0.781-2.828,0L24,19.757l-4.95-4.95c-0.781-0.781-2.047-0.781-2.828,0l-1.414,1.414	c-0.781,0.781-0.781,2.047,0,2.828l4.95,4.95l-4.95,4.95c-0.781,0.781-0.781,2.047,0,2.828l1.414,1.414	c0.781,0.781,2.047,0.781,2.828,0l4.95-4.95l4.95,4.95c0.781,0.781,2.047,0.781,2.828,0l1.414-1.414	C33.973,30.997,33.973,29.731,33.192,28.95z" opacity=".05"></path><path d="M32.839,29.303L27.536,24l5.303-5.303c0.586-0.586,0.586-1.536,0-2.121l-1.414-1.414	c-0.586-0.586-1.536-0.586-2.121,0L24,20.464l-5.303-5.303c-0.586-0.586-1.536-0.586-2.121,0l-1.414,1.414	c-0.586,0.586-0.586,1.536,0,2.121L20.464,24l-5.303,5.303c-0.586,0.586-0.586,1.536,0,2.121l1.414,1.414	c0.586,0.586,1.536,0.586,2.121,0L24,27.536l5.303,5.303c0.586,0.586,1.536,0.586,2.121,0l1.414-1.414	C33.425,30.839,33.425,29.889,32.839,29.303z" opacity=".07"></path><path fill="#fff" d="M31.071,15.515l1.414,1.414c0.391,0.391,0.391,1.024,0,1.414L18.343,32.485	c-0.391,0.391-1.024,0.391-1.414,0l-1.414-1.414c-0.391-0.391-0.391-1.024,0-1.414l14.142-14.142	C30.047,15.124,30.681,15.124,31.071,15.515z"></path><path fill="#fff" d="M32.485,31.071l-1.414,1.414c-0.391,0.391-1.024,0.391-1.414,0L15.515,18.343	c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414c0.391-0.391,1.024-0.391,1.414,0l14.142,14.142	C32.876,30.047,32.876,30.681,32.485,31.071z"></path>
+                                </svg>
+                              </td>
+                              <td>Fcds56889fewwer</td>
+                              <td>1403/05/02</td>
+                              <td>1,200,000</td>
+                              <td>رضوان</td>
+                              <td>102</td>
+                              <td>1402/06/01 - 1402/06/08</td>
+                              <td>1</td>
+                              <td>3</td>
+                              <td>یک عدد ویلچر و وایفای رایگان</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td class="reserve-situation">
+                                <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M256 29.464C381.114 29.464 482.536 130.886 482.536 256C482.536 381.114 381.114 482.536 256 482.536C130.886 482.536 29.4641 381.114 29.4641 256C29.4641 130.886 130.886 29.464 256 29.464Z" fill="#FFDC58"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M256 341.492C270.453 341.492 282.168 353.209 282.168 367.663C282.168 382.116 270.453 393.83 256 393.83C241.547 393.83 229.829 382.116 229.829 367.663C229.829 353.209 241.547 341.492 256 341.492ZM275.55 302.281C274.67 324.344 237.304 324.373 236.45 302.274C232.672 264.47 223.007 174.721 223.315 139.2C223.626 128.254 232.698 121.774 244.304 119.302C247.882 118.537 251.817 118.166 255.781 118.17C259.767 118.177 263.713 118.57 267.295 119.335C279.283 121.889 288.696 128.636 288.693 139.779L288.648 140.896L275.55 302.281Z" fill="#FF8A00"/>
+                                  </svg>
+                                </td>
+                              <td>Fcds56889fewwer</td>
+                              <td>1403/05/02</td>
+                              <td>1,200,000</td>
+                              <td>رضوان</td>
+                              <td>102</td>
+                              <td>1402/06/01 - 1402/06/08</td>
+                              <td>1</td>
+                              <td>3</td>
+                              <td>یک عدد ویلچر و وایفای رایگان</td>
+                            </tr>
+                            <tr class="user-full-reservation-body">
+                              <th scope="row">1</th>
+                              <td class="reserve-situation">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                                <path fill="#c8e6c9" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path fill="#4caf50" d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z"></path>
+                                </svg>
+                              </td>
+                              <td>Fcds56889fewwer</td>
+                              <td>1403/05/02</td>
+                              <td>1,200,000</td>
+                              <td>رضوان</td>
+                              <td>102</td>
+                              <td>1402/06/01 - 1402/06/08</td>
+                              <td>1</td>
+                              <td>3</td>
+                              <td>یک عدد ویلچر و وایفای رایگان</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
@@ -142,9 +277,6 @@
                         </div>
                       </div>
                     </div>
-
-
-
                     <div class="row mb-3">
                       <label for="Firstname" class="col-md-4 col-lg-3 col-form-label">نام</label>
                       <div class="col-md-8 col-lg-9">
@@ -279,6 +411,137 @@
     </section>
 
   </main><!-- End #main -->
+
+  <style>
+    .more-btn{
+      background-color: white;
+      border: none;
+    }
+
+    .user-reserve-information th{
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .reserve-situation svg{
+      width: 25px;
+      height: 25px;
+    }
+
+            .overlay{
+                opacity: 0;
+                pointer-events: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 40px;
+                z-index: 1002;
+                transition: opacity 0.2s;
+            }
+
+            .overlay.open{
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .overlay-close{
+                cursor: pointer !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translate(-50%, -50%);
+                background-color: #fc3;
+                border-radius: 50%;
+            }
+
+            .overlay-close svg{
+                width: 25px;
+                height: 25px;
+            }
+
+            .user-reservation{
+                position: relative;
+                width: 990px;
+                height: 300px;
+                background-color: white;
+                border-radius: 4px;
+            }
+
+            .user-reservation-context{
+              overflow-y: scroll;
+              width: 100%;
+              height: 100%;
+            }
+
+            /* Firefox */
+            .user-reservation-context {
+            scrollbar-width: thin;
+            scrollbar-color: #A3A3A3 #FFFFFF;
+            }
+
+            /* Chrome, Edge and Safari */
+            .user-reservation-context::-webkit-scrollbar {
+            height: 10px;
+            width: 10px;
+            }
+            .user-reservation-context::-webkit-scrollbar-track {
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            }
+
+            .user-reservation-context::-webkit-scrollbar-track:hover {
+            background-color: #FFFFFF;
+            }
+
+            .user-reservation-context::-webkit-scrollbar-track:active {
+            background-color: #FFFFFF;
+            }
+
+            .user-reservation-context::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #A3A3A3;
+            }
+
+            .user-reservation-context::-webkit-scrollbar-thumb:hover {
+            background-color: #A3A3A3;
+            }
+
+            .user-reservation-context::-webkit-scrollbar-thumb:active {
+            background-color: #A3A3A3;
+            }
+  </style>
+
+<script>
+  const reserveButtons = document.querySelectorAll('.user-reserve-btn');
+
+  const overlay = document.querySelector('.overlay');
+
+  function toggleOverlay() {
+    if(overlay.classList.contains('open')) overlay.classList.remove('open');
+    else overlay.classList.add('open')
+  }
+
+  reserveButtons.forEach(button => {
+    button.addEventListener('click', toggleOverlay);
+  });
+
+  // افزودن گوش به دکمه بستن overlay
+  const closeButton = document.querySelector('.overlay-close');
+  closeButton.addEventListener('click', toggleOverlay);
+
+  document.body.addEventListener('click', function (event) {
+  if (event.target === overlay) {
+    overlay.classList.remove('open');
+  }
+  });
+</script>
+
 
 {% endblock %}
 {% block footer %}
