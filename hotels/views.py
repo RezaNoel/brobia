@@ -91,6 +91,7 @@ def list(request, city_slug):
     cities = City.objects.all()
     hotels = Hotel.objects.filter(city=city.id)
     hotels_count = Hotel.objects.filter(city=city.id).count()
+    rooms = Room.objects.filter(hotel__in=hotels)
 
     # دریافت نوع مرتب سازی از پارامتر درخواست کاربر
     sort_type = request.GET.get('sort_select')
@@ -131,14 +132,24 @@ def list(request, city_slug):
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
 
+    facilities_url = request.GET.get('facilities')
+    facilities_url_split = facilities_url.split(',')
+    facilities = Facility.objects.filter(name__in=facilities_url_split)
+
+    used_hotels = []
+    # print(facilities)
     content = {"city": city,
                "cities": cities,
                "hotels": hotels,
                "hotel_count": hotels_count,
+               "rooms": rooms,
                "page": page,
-               "sort_type": sort_type}  # اضافه کردن نوع مرتب سازی به متغیرهای تمپلیت
+               "sort_type": sort_type,
+               "facilities":facilities,
+               'used_hotels':used_hotels}  # اضافه کردن نوع مرتب سازی به متغیرهای تمپلیت
 
     return render(request, 'hotels/hotel-list.html', content)
+
 
 
 @login_required

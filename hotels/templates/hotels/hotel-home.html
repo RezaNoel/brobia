@@ -177,8 +177,7 @@
                                                         {% if fac.related == "H" %}
                                                         <div class="form-check col">
                                                             <label class="form-check-label" for="{{ fac.name }}">
-                                                                <input class="form-check-input" type="checkbox" value=""
-                                                                       id="{{ fac.name }}">
+                                                                <input class="form-check-input" type="checkbox" value="" id="{{ fac.name }}" data-facility-name="{{ fac.name }}">
                                                                 {{ fac.faname }}
                                                             </label>
                                                         </div>
@@ -196,8 +195,7 @@
                                                         {% if fac.related == "R" %}
                                                         <div class="form-check col">
                                                             <label class="form-check-label" for="{{ fac.name }}">
-                                                                <input class="form-check-input" type="checkbox" value=""
-                                                                       id="{{ fac.name }}">
+                                                                <input class="form-check-input" type="checkbox" value="" id="{{ fac.name }}" data-facility-name="{{ fac.name }}">
                                                                 {{ fac.faname }}
                                                             </label>
                                                         </div>
@@ -679,6 +677,8 @@
 
     <!-- JS Plugins Init. -->
     <script>
+
+
         // Date Picker
         $(document).ready(function () {
             var night;
@@ -784,23 +784,35 @@
             // initialization of go to
             $.HSCore.components.HSGoTo.init('.js-go-to');
         });
+
+
         document.getElementById('myForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault(); // Prevent the form from submitting normally
 
-            // Get the value entered by the user
-            var searchValue = document.getElementById('searchInput').value;
-            var dateValue = document.getElementById('dateRangePicker').value;
-            var passValue = document.getElementById('passInput').value;
-            var childValue = document.getElementById('childInput').value;
-            var roomValue = document.getElementById('roomInput').value;
+    var selectedFacilities = [];
 
-            // Create the URL with the search value
-            const url = `${encodeURIComponent(searchValue)}?date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+    // یافتن تمام چک‌باکس‌های انتخاب شده
+    $('input[type="checkbox"]:checked').each(function () {
+        var facilityName = $(this).data('facility-name');
+        selectedFacilities.push(facilityName);
+    });
 
-            // Redirect the user to the new URL
-            window.location.href = url;
+    // تبدیل آرایه به رشته جداشده توسط ویرگول
+    var selectedFacilitiesString = selectedFacilities.join(',');
 
-        });
+    // Get the value entered by the user
+    var searchValue = document.getElementById('searchInput').value;
+    var dateValue = document.getElementById('dateRangePicker').value;
+    var passValue = document.getElementById('passInput').value;
+    var childValue = document.getElementById('childInput').value;
+    var roomValue = document.getElementById('roomInput').value;
+
+    // Create the URL with the search value
+    const url = `${encodeURIComponent(searchValue)}?facilities=${encodeURIComponent(selectedFacilitiesString)}&date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+
+    // Redirect the user to the new URL
+    window.location.href = url;
+});
         const hotelLinks = document.querySelectorAll('.hotel-link');
 
         // اضافه کردن event listener به هر لینک
