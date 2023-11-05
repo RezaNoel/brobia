@@ -478,8 +478,26 @@
         <script src="{% static 'js/date-picker/assets/js/moment-jalaali.js' %}"></script>
         <script src="{% static 'js/date-picker/assets/js/daterangepicker-fa-ex.js' %}"></script>
         
-
+        
         <style>
+
+            .overlay{
+                opacity: 0;
+                pointer-events: none;
+                display: flex;
+                justify-content: center;
+                overflow-y: scroll;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 40px;
+                z-index: 1002;
+                transition: opacity 0.2s;
+            }
+
             .overlay-close{
                 cursor: pointer !important;
                 position: absolute;
@@ -500,23 +518,6 @@
                 pointer-events: all;
             }
 
-            .overlay{
-                opacity: 0;
-                pointer-events: none;
-                display: flex;
-                justify-content: center;
-                overflow-y: scroll;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background-color: rgba(0, 0, 0, 0.5);
-                padding: 40px;
-                z-index: 1002;
-                transition: opacity 0.2s;
-            }
-            
             .hotel-details{
                 position: relative;
                 width: 1290px;
