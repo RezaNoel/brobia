@@ -872,9 +872,28 @@
                                 </div>
                                 <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                                     <div class="row">
-                                        {% for hotel in page %}
-                                            {% include 'include/hotel-card.html' %}
-                                        {% endfor %}
+                                    {% for facility in facilities %}
+                                        {% if facility.related == 'R' %}
+                                            {% for room in rooms %}
+                                                    {% if facility in room.facilities.all %}
+                                                        {% include 'include/hotel-card-room.html' %}
+                                                    {% endif %}
+                                            {% endfor %}
+                                        {% elif facility.related == 'H' %}
+                                            {% for hotel in page %}
+                                                    {% if facility in hotel.facilities.all %}
+                                                        {% include 'include/hotel-card.html' %}
+                                                    {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+
+
+
+
+
+
+
                                     </div>
 
                                    <nav aria-label="پیمایش صفحه">
