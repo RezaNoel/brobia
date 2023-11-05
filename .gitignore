@@ -1,7 +1,6 @@
 # created by virtualenv automatically
 .idea
 __pycache__
-**/__pycache__/
+**/__pycache__
 Lib
-
 
