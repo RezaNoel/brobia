@@ -1,6 +1,6 @@
 import accounts.views
 from django.shortcuts import render,redirect,get_object_or_404
-from django.db.models import Min,F
+from django.db.models import Min,Max,F ,Case, When, IntegerField
 from django.core.paginator import Paginator
 from django.urls import reverse
 from django.shortcuts import redirect
@@ -86,9 +86,6 @@ def home(request):
                'formatted_exit_date':formatted_exit_date,}
     return render(request, 'hotels/hotel-home.html', content)
 
-
-
-
 def list(request, city_slug):
     city = City.objects.get(slug=city_slug)
     cities = City.objects.all()
@@ -96,12 +93,21 @@ def list(request, city_slug):
     hotels_count = Hotel.objects.filter(city=city.id).count()
 
     # دریافت نوع مرتب سازی از پارامتر درخواست کاربر
-    sort_type = request.GET.get('sort-select')
+    sort_type = request.GET.get('sort_select')
 
     if sort_type == 'suggest':
-        # مرتب سازی بر اساس قیمت کمترین به بیشترین
-        hotels = hotels.annotate(min_price=Min('room__price'))
-        hotels = hotels.order_by('min_price')
+        # ابتدا برای هتل‌هایی که فیلد boroobia_suggest برابر با True است یک اولویت اعطا می‌کنیم.
+        hotels = hotels.annotate(
+            suggest_priority=Case(
+                When(boroobia_suggest=True, then=1),
+                default=2,
+                output_field=IntegerField()
+            )
+        )
+
+        # سپس داده‌ها را بر اساس اولویت و سپس min_price مرتب می‌کنیم.
+        hotels = hotels.order_by('suggest_priority')
+
     elif sort_type == 'cheapest':
         # مرتب سازی بر اساس قیمت کمترین به بیشترین
         hotels = hotels.annotate(min_price=Min('room__price'))
@@ -116,7 +122,9 @@ def list(request, city_slug):
     elif sort_type == 'alphabetical':
         # مرتب سازی بر اساس الفبا (نام هتل)
         hotels = hotels.order_by('name')
-
+    elif sort_type == 'distance':
+        # مرتب سازی بر اساس الفبا (نام هتل)
+        hotels = hotels.order_by('distance')
     hotels_per_page = 2
     paginator = Paginator(hotels, hotels_per_page)
 

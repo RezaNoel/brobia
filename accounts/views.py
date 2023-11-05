@@ -67,7 +67,6 @@ def RegisterView(request):
 
         if registerForm.is_valid():
             # Variables
-
             email = registerForm.cleaned_data.get('email')
             password = registerForm.cleaned_data.get('password')
             first_name = registerForm.cleaned_data.get('first_name')
@@ -75,6 +74,7 @@ def RegisterView(request):
             phone = registerForm.cleaned_data.get('phone')
             nid = registerForm.cleaned_data.get('nid')
             username = phone
+
             # Create User
             user = User(username=username,email=email,first_name=first_name,last_name=last_name,phone=phone,nid=nid)
             user.set_password(password)
