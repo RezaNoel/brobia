@@ -76,11 +76,6 @@
                             </li>
                         </ul>
                     <!-- End Handheld Logo -->
-                    <ul class="navbar-nav u-header__navbar-nav">
-                        <li><a class="nav-link text-warning" href="{% url 'blog-list' %}">وبلاگ</a></li>
-                        <li><a class="nav-link text-warning" href="{% url 'contact-us' %}">ارتباط با ما</a></li>
-                        <li><a class="nav-link text-warning" href="{% url 'about-us' %}">درباره ما</a></li>
-                    </ul>
 
                         <!-- Scroll Logo -->
                         <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-on-scroll"  href="{% url 'home' %}" aria-label="MyHotel">
@@ -92,32 +87,46 @@
                         <!-- Responsive Toggle Button -->
                         <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--primary order-2 ml-3" aria-label="ناوبری را تغییر دهید" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
                             <span id="hamburgerTrigger" class="u-hamburger__box">
-                                <span class="u-hamburger__inner"></span>
+                                <span class="u-hamburger__inner d-flex"></span>
                             </span>
                         </button>
                         <!-- End Responsive Toggle Button -->
 
                         <!-- Navigation -->
                         <div id="navBar" class="navbar-collapse u-header__navbar-collapse collapse order-2 order-xl-0 pt-4 p-xl-0 position-relative">
-                            <ul class="navbar-nav u-header__navbar-nav">
-                                <!-- Hotel -->
-                                    <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-hotel-1 mr-2 ml-1 airplane"></i> هتل</a>
-                                    <!-- End Hotel -->
-                                    
-                                    <!-- Flight -->
-                                    <div class="d-flex justify-content-center align-items-center ml-3 font-size-12">
-                                        <a id="nav-item-hover" class="btn disabled u-header__nav-link u-header__nav-link-border px-0" href="https://sap19.ir/" ><i class="bi bi-airplane  mr-1 ml-0 "></i> پرواز</a>
-                                        <span class="text-warning d-flex justify-content-center align-items-center px-1 user-select-none">به زودی</span>
+                            <ul class="navbar-nav u-header__navbar-nav d-flex justify-content-between ml-0" style="width: 100%;">
+                                    <div class="d-flex justify-content-center font-size-16">
+                                        <div class="d-flex justify-content-center align-items-center ml-3">
+                                            <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'blog-list' %}">وبلاگ</a>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center ml-3">
+                                            <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'contact-us' %}">ارتباط با ما</a>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center ml-3">
+                                            <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'about-us' %}">درباره ما</a>
+                                        </div>
                                     </div>
-                                    <!-- End Flight -->
-                                    
-                                    <!-- Taxi -->
-                                    <div class="d-flex justify-content-center align-items-center ml-3 font-size-12">
-                                        <a id="nav-item-hover" class="btn disabled u-header__nav-link u-header__nav-link-border px-0" href="{% url 'taxi-home' %}" ><i class="bi bi-taxi-front-fill  mr-1 ml-0"></i> تاکسی</a>
-                                        <span class="text-warning d-flex justify-content-center align-items-center px-1 user-select-none">به زودی</span>
+                                    <div class="d-flex justify-content-center">
+                                        <!-- Hotel -->
+                                        <div class="d-flex justify-content-center align-items-center ml-3">
+                                            <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-hotel-1 mr-2 ml-1 airplane"></i> هتل</a>
+                                        </div>
+                                        <!-- End Hotel -->
+                                        
+                                        <!-- Flight -->
+                                        <div class="d-flex justify-content-center align-items-center ml-3 font-size-12">
+                                            <a id="nav-item-hover" class="btn disabled u-header__nav-link u-header__nav-link-border px-0" href="https://sap19.ir/" ><i class="bi bi-airplane  mr-1 ml-0 "></i> پرواز</a>
+                                            <span class="text-warning d-flex justify-content-center align-items-center px-1 user-select-none">به زودی</span>
+                                        </div>
+                                        <!-- End Flight -->
+                                        
+                                        <!-- Taxi -->
+                                        <div class="d-flex justify-content-center align-items-center ml-3 font-size-12">
+                                            <a id="nav-item-hover" class="btn disabled u-header__nav-link u-header__nav-link-border px-0" href="{% url 'taxi-home' %}" ><i class="bi bi-taxi-front-fill  mr-1 ml-0"></i> تاکسی</a>
+                                            <span class="text-warning d-flex justify-content-center align-items-center px-1 user-select-none">به زودی</span>
+                                        </div>
+                                        <!-- End Taxi -->
                                     </div>
-                                <!-- End Taxi -->
-
                             </ul>
                         </div>
                         <!-- End Navigation -->
