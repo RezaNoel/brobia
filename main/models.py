@@ -4,6 +4,9 @@ from slugify import slugify as slugify_fa
 from django.urls import reverse
 from django.db.models import Min
 import random,string,os
+from django.utils import timezone
+from datetime import datetime
+from jdatetime import datetime as jalali_datetime
 # import string
 
 # Create your models here.
@@ -50,8 +53,6 @@ class Image(models.Model):
     class Meta:
         verbose_name = ("تصویر")
         verbose_name_plural = ("تصاویر")
-
-
 class Hotel(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام اصلی')
     faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
@@ -157,10 +158,23 @@ class Request(models.Model):
     confirm = models.CharField(max_length=1, choices=CONFIRM_CHOICES, default='W', verbose_name='وضعیت')
     reserve_status = models.CharField(max_length=5, choices=RESERVE_CHOICES, default='WC', verbose_name='وضعیت رزرو')
     reserve_time = models.CharField(default='00:00', max_length=5, verbose_name='زمان رزرو')
+    reserve_date = models.DateField(default=timezone.now, verbose_name='تاریخ ثبت رزرو')
 
     class Meta:
         verbose_name = ("درخواست")
         verbose_name_plural = ("درخواست ها")
+
+
+
+    def reserve_date_shamsi(self):
+        jalali_date = jalali_datetime.fromgregorian(datetime=self.reserve_date)
+
+        # فرمت دلخواه برای تاریخ جلالی
+        formatted_jalali_date = jalali_date.strftime("%Y/%m/%d")
+
+        return formatted_jalali_date
+        # jalali_date = JalaliDate(self.reserve_date)
+        # return f"{jalali_date.year}/{jalali_date.month:02d}/{jalali_date.day:02d}"
 
     def reserve_code_save(self):
         code = generate_random_string(10)
