@@ -734,7 +734,6 @@
                         <!-- Slick Tab carousel -->
                         <div class="u-slick__tab">
                             <!-- Nav Links -->
-<<<<<<< HEAD
 
                             <div class="mb-5 d-flex">
                                 <ul class="nav nav-tabs justify-content-center filter-hotel-list d-flex justify-content-center align-items-center" role="tablist">
@@ -748,16 +747,6 @@
 
                                     <li class="nav-item">
                                         <a href="?{% if request.GET.page %}{% if page.has_next %}page={{ page.next_page_number }}{% endif %}{% if page.has_previous %}page={{ page.previous_page_number }}{% endif %}{% endif %}&sort_select=cheapest{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" class="nav-link font-size-16" style="color: #67747c !important;">ارزان ترین</a>
-=======
-                            <div class="mb-5">
-                                <ul class="nav flex-nowrap border border-radius-3 tab-nav align-items-center py-2 px-0" role="tablist">
-                                    <li class="nav-item">
-                                        <select class="filter-select font-size-16" style="color: #67747c !important;">
-                                            <option value="price">قیمت</option>
-                                            <option value="cheapest">ارزان‌ترین</option>
-                                            <option value="expensive">گران‌ترین</option>
-                                        </select>
->>>>>>> be5b656dc674fee735e2622619999175d1d67542
                                     </li>
                                     <li class="nav-item">
                                         <a href="?{% if request.GET.page %}{% if page.has_next %}page={{ page.next_page_number }}{% endif %}{% if page.has_previous %}page={{ page.previous_page_number }}{% endif %}{% endif %}&sort_select=stars{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" class="nav-link font-size-16" style="color: #67747c !important;">ستاره</a>
@@ -768,46 +757,9 @@
                                     </li>
                                     </li>
                                     <li class="nav-item">
-<<<<<<< HEAD
                                         <a href="?{% if request.GET.page %}{% if page.has_next %}page={{ page.next_page_number }}{% endif %}{% if page.has_previous %}page={{ page.previous_page_number }}{% endif %}{% endif %}&sort_select=alphabetical{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" class="nav-link font-size-16" style="color: #67747c !important;">الفبا</a>
                                     </li>
 
-=======
-                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">فاصله</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">الفبا</a>
-                                    </li>
-                                </ul>
-                                </ul>
-                                <ul class="nav flex-nowrap border border-radius-3 tab-nav-mobile align-items-center py-2 px-0" role="tablist">
-                                    <li class="nav-item">
-                                        <select class="filter-select font-size-16" style="color: #67747c !important;">
-                                            <option value="price">قیمت</option>
-                                            <option value="cheapest">ارزان‌ترین</option>
-                                            <option value="expensive">گران‌ترین</option>
-                                        </select>
-                                    </li>
-                                    <li class="nav-item">
-                                        <select class="filter-select font-size-16" style="color: #67747c !important;">
-                                            <option value="" selected="">ستاره</option>
-                                            <option value="one">یک ستاره</option>
-                                            <option value="two">دو ستاره</option>
-                                            <option value="three">سه ستاره</option>
-                                            <option value="four">چهار ستاره</option>
-                                            <option value="five">پنج ستاره</option>
-                                        </select>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">پیشنهاد بروبیا</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">فاصله</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link font-size-16" style="color: #67747c !important;">الفبا</a>
-                                    </li>
->>>>>>> be5b656dc674fee735e2622619999175d1d67542
                                 </ul>
 
 
@@ -891,13 +843,9 @@
                                         <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
                                             {% if page.has_previous %}
                                                 <li class="page-item">
-<<<<<<< HEAD
                                                     <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.sort_select %}&sort_select={{ request.GET.sort_select }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
                                                         <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
-=======
-                                                    <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
-                                                        <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
->>>>>>> be5b656dc674fee735e2622619999175d1d67542
+
                                                         <span class="sr-only">قبلی</span>
                                                     </a>
                                                 </li>
@@ -911,13 +859,9 @@
 
                                             {% if page.has_next %}
                                                 <li class="page-item">
-<<<<<<< HEAD
                                                     <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.sort_select %}&sort_select={{ request.GET.sort_select }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
                                                         <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
-=======
-                                                    <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
-                                                        <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
->>>>>>> be5b656dc674fee735e2622619999175d1d67542
+
                                                         <span class="sr-only">بعد</span>
                                                     </a>
                                                 </li>
@@ -937,13 +881,9 @@
                                         <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
                                             {% if page.has_previous %}
                                                 <li class="page-item">
-<<<<<<< HEAD
                                                     <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.sort_select %}&sort_select={{ request.GET.sort_select }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
                                                         <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
-=======
-                                                    <a class="page-link border-right rounded-0 text-gray-5" href="?page={{ page.previous_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="قبلی">
-                                                        <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
->>>>>>> be5b656dc674fee735e2622619999175d1d67542
+
                                                         <span class="sr-only">قبلی</span>
                                                     </a>
                                                 </li>
@@ -957,13 +897,9 @@
 
                                             {% if page.has_next %}
                                                 <li class="page-item">
-<<<<<<< HEAD
                                                     <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.sort_select %}&sort_select={{ request.GET.sort_select }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
                                                         <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
-=======
-                                                    <a class="page-link border-left rounded-0 text-gray-5" href="?page={{ page.next_page_number }}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}{% if request.GET.passengers %}&passengers={{ request.GET.passengers }}{% endif %}{% if request.GET.children %}&children={{ request.GET.children }}{% endif %}{% if request.GET.room %}&room={{ request.GET.room }}{% endif %}" aria-label="بعد">
-                                                        <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
->>>>>>> be5b656dc674fee735e2622619999175d1d67542
+
                                                         <span class="sr-only">بعد</span>
                                                     </a>
                                                 </li>
