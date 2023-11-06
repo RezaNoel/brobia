@@ -261,7 +261,9 @@
                                                         <span class="font-weight-bold font-size-22 ml-1">{{ room.format_price }} تومان</span>
                                                         <span class="font-size-14">/ شب</span>
                                                     </div>
-                                                    <a href="{% url 'hotel-confirm' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">اکنون ثبت کن</a>
+                                                    <a href="{% if canRequesr %}
+
+                                                     {% url 'hotel-confirm' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% endif %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">اکنون ثبت کن</a>
                                                 </div>
                                             </div>
                                         </div>

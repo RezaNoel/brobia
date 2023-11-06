@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.http import JsonResponse,Http404,HttpResponseNotFound
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
 from urllib.parse import urlencode
 from datetime import datetime, timedelta
 from jdatetime import date as jalali_date,timedelta as jalali_timedelta
@@ -184,7 +185,7 @@ def confirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
             reserve_code=reserve_confirm,
             reserve_time = start_time.strftime('%H:%M')
         )
-
+        request.user.reserves.add(reserve_code_status)
 
     date_time_object = datetime.strptime(reserve_code_status.reserve_time, '%H:%M')
 
@@ -225,6 +226,11 @@ def single(request, city_slug, hotel_slug):
     suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
     rooms = Room.objects.filter(hotel=hotel.id)
     code = generate_random_string(10)
+    res=request.user.reserves.all()
+    canRequest = True
+    for r in res:
+        if r.confirm == 'W':
+            canRequest = False
 
 
     content = {"city": city,
@@ -232,7 +238,8 @@ def single(request, city_slug, hotel_slug):
                "hotels": hotels,
                'suggest_hotels': suggest_hotels,
                "rooms": rooms,
-               'reserve_code':code
+               'reserve_code':code,
+               'canRequesr':canRequest
                }
 
     return render(request, 'hotels/hotel-single.html', content)
