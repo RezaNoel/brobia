@@ -1,5 +1,6 @@
 
 {% extends 'base.html' %}
+{% load hotels_tags %}
 
 {% load static %}
 {% load humanize %}
@@ -882,6 +883,8 @@
                                         {% elif facility.related == 'H' %}
                                             {% for hotel in page %}
                                                     {% if facility in hotel.facilities.all %}
+                                                        {{ used_hotels|append_to_list:hotel}}
+{#                                                        {{ used_hotels }}#}
                                                         {% include 'include/hotel-card.html' %}
                                                     {% endif %}
                                             {% endfor %}
