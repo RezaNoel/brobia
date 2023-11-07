@@ -807,8 +807,11 @@
     var childValue = document.getElementById('childInput').value;
     var roomValue = document.getElementById('roomInput').value;
 
-    // Create the URL with the search value
-    const url = `${encodeURIComponent(searchValue)}?facilities=${encodeURIComponent(selectedFacilitiesString)}&date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+        var url = `${encodeURIComponent(searchValue)}?date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
+
+    if (selectedFacilitiesString !== '') {
+        url += `&facilities=${encodeURIComponent(selectedFacilitiesString)}`;
+    }
 
     // Redirect the user to the new URL
     window.location.href = url;

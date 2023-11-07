@@ -87,7 +87,7 @@ def home(request):
                'formatted_exit_date':formatted_exit_date,}
     return render(request, 'hotels/hotel-home.html', content)
 
-def list(request, city_slug):
+def HotelListView(request, city_slug):
     city = City.objects.get(slug=city_slug)
     cities = City.objects.all()
     hotels = Hotel.objects.filter(city=city.id)
@@ -134,20 +134,30 @@ def list(request, city_slug):
     page = paginator.get_page(page_number)
 
     facilities_url = request.GET.get('facilities')
-    facilities_url_split = facilities_url.split(',')
-    facilities = Facility.objects.filter(name__in=facilities_url_split)
+    if facilities_url:
+        facilities_url_split = facilities_url.split(',')
+        facilities = Facility.objects.filter(name__in=facilities_url_split)
+    else:
+        facilities=[]
 
-    used_hotels = []
-    # print(facilities)
-    content = {"city": city,
-               "cities": cities,
-               "hotels": hotels,
-               "hotel_count": hotels_count,
-               "rooms": rooms,
-               "page": page,
-               "sort_type": sort_type,
-               "facilities":facilities,
-               'used_hotels':used_hotels}  # اضافه کردن نوع مرتب سازی به متغیرهای تمپلیت
+    used_hotels = []  # یک لیست خالی برای شروع
+    hotel_execution_status = {}
+    for hotel in page:
+        hotel_execution_status[hotel] = False  # همه هتل‌ها در ابتدا به عنوان False تعریف می‌شوند
+
+    content = {
+        "city": city,
+        "cities": cities,
+        "hotels": hotels,
+        "hotel_count": hotels_count,
+        "rooms": rooms,
+        "page": page,
+        "sort_type": sort_type,
+        "facilities": facilities,
+        'used_hotels': used_hotels,  # اضافه کردن لیست به متغیر تمپلیت
+        "hotel_execution_status": hotel_execution_status  # اضافه کردن دیکشنری به context
+
+    }
 
     return render(request, 'hotels/hotel-list.html', content)
 
