@@ -101,3 +101,7 @@ def RegisterView(request):
 @login_required
 def UserProfileView(request):
     return render(request, 'accounts/user_profile.html')
+
+@login_required
+def HotelAdminView(request):
+    return render(request, 'accounts/hotel_admin.html')

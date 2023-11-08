@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout', views.LogoutView,name='logout'),
     path('register', views.RegisterView,name='register'),
     path('profile', views.UserProfileView,name='profile'),
+    path('hotel-panel', views.HotelAdminView,name='hotel-panel'),
     path('password_reset/', PasswordResetView.as_view(
         template_name='registration/password_reset_form.html',
         email_template_name='registration/password_reset_email.html',
