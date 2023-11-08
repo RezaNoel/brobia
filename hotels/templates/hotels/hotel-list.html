@@ -1,5 +1,6 @@
 
 {% extends 'base.html' %}
+{% load hotels_tags %}
 
 {% load static %}
 {% load humanize %}
@@ -872,21 +873,31 @@
                                 </div>
                                 <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                                     <div class="row">
+                                    {% if facilities|length > 0 %}
                                     {% for facility in facilities %}
                                         {% if facility.related == 'R' %}
                                             {% for room in rooms %}
-                                                    {% if facility in room.facilities.all %}
-                                                        {% include 'include/hotel-card-room.html' %}
-                                                    {% endif %}
+                                                {% if facility in room.facilities.all %}
+                                                    {% include 'include/hotel-card-room.html' %}
+                                                {% endif %}
                                             {% endfor %}
                                         {% elif facility.related == 'H' %}
                                             {% for hotel in page %}
-                                                    {% if facility in hotel.facilities.all %}
+                                                {% if used_hotels != hotel %}
+                                                    {% if facility in hotel.facilities.all  %}
+{#                                                        {% used_hotels|append_to_list:hotel %}#}
                                                         {% include 'include/hotel-card.html' %}
+{#                                                        {% endused_hotels %}#}
                                                     {% endif %}
+                                                {% endif %}
                                             {% endfor %}
                                         {% endif %}
                                     {% endfor %}
+                                    {% else %}
+                                         {% for hotel in page %}
+                                                {% include 'include/hotel-card.html' %}
+                                        {% endfor %}
+                                    {% endif %}
 
 
 

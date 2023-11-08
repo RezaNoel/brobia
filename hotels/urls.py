@@ -21,6 +21,6 @@ urlpatterns = [
 
     path('rV7mGkP8fFv6zLjYtNq2/<str:reserve_confirm>/', views.check_reservation_status,
          name='check-reservation-status'),
-    path('<slug:city_slug>', views.list,name='hotel-list'),
+    path('<slug:city_slug>', views.HotelListView,name='hotel-list'),
     path('<slug:city_slug>/<slug:hotel_slug>', views.single, name='hotel-single'),
 ]

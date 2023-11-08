@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.http import JsonResponse,Http404,HttpResponseNotFound
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
 from urllib.parse import urlencode
 from datetime import datetime, timedelta
 from jdatetime import date as jalali_date,timedelta as jalali_timedelta
@@ -86,7 +87,7 @@ def home(request):
                'formatted_exit_date':formatted_exit_date,}
     return render(request, 'hotels/hotel-home.html', content)
 
-def list(request, city_slug):
+def HotelListView(request, city_slug):
     city = City.objects.get(slug=city_slug)
     cities = City.objects.all()
     hotels = Hotel.objects.filter(city=city.id)
@@ -133,20 +134,30 @@ def list(request, city_slug):
     page = paginator.get_page(page_number)
 
     facilities_url = request.GET.get('facilities')
-    facilities_url_split = facilities_url.split(',')
-    facilities = Facility.objects.filter(name__in=facilities_url_split)
+    if facilities_url:
+        facilities_url_split = facilities_url.split(',')
+        facilities = Facility.objects.filter(name__in=facilities_url_split)
+    else:
+        facilities=[]
 
-    used_hotels = []
-    # print(facilities)
-    content = {"city": city,
-               "cities": cities,
-               "hotels": hotels,
-               "hotel_count": hotels_count,
-               "rooms": rooms,
-               "page": page,
-               "sort_type": sort_type,
-               "facilities":facilities,
-               'used_hotels':used_hotels}  # اضافه کردن نوع مرتب سازی به متغیرهای تمپلیت
+    used_hotels = []  # یک لیست خالی برای شروع
+    hotel_execution_status = {}
+    for hotel in page:
+        hotel_execution_status[hotel] = False  # همه هتل‌ها در ابتدا به عنوان False تعریف می‌شوند
+
+    content = {
+        "city": city,
+        "cities": cities,
+        "hotels": hotels,
+        "hotel_count": hotels_count,
+        "rooms": rooms,
+        "page": page,
+        "sort_type": sort_type,
+        "facilities": facilities,
+        'used_hotels': used_hotels,  # اضافه کردن لیست به متغیر تمپلیت
+        "hotel_execution_status": hotel_execution_status  # اضافه کردن دیکشنری به context
+
+    }
 
     return render(request, 'hotels/hotel-list.html', content)
 
@@ -184,7 +195,7 @@ def confirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
             reserve_code=reserve_confirm,
             reserve_time = start_time.strftime('%H:%M')
         )
-
+        request.user.reserves.add(reserve_code_status)
 
     date_time_object = datetime.strptime(reserve_code_status.reserve_time, '%H:%M')
 
@@ -225,6 +236,11 @@ def single(request, city_slug, hotel_slug):
     suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
     rooms = Room.objects.filter(hotel=hotel.id)
     code = generate_random_string(10)
+    res=request.user.reserves.all()
+    canRequest = True
+    for r in res:
+        if r.confirm == 'W':
+            canRequest = False
 
 
     content = {"city": city,
@@ -232,7 +248,8 @@ def single(request, city_slug, hotel_slug):
                "hotels": hotels,
                'suggest_hotels': suggest_hotels,
                "rooms": rooms,
-               'reserve_code':code
+               'reserve_code':code,
+               'canRequesr':canRequest
                }
 
     return render(request, 'hotels/hotel-single.html', content)

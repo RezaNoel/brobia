@@ -26,7 +26,15 @@
         backdrop-filter: blur(30px);
         ">
     <div class="card-body py-5 px-md-5">
-
+    <button type="button" class="btn col-lg-2 col-xl-2 mb-4 position-absolute top-0 left-0 p-3 d-flex justify-content-center align-content-center">
+          <a href="{% url 'home' %}" class="text-primary mr-1">
+          برگشت به خانه
+          </a>
+          <i><svg style="width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+          </svg>
+          </i>
+        </button>
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">حساب جدید بسازید</h2>
@@ -113,6 +121,10 @@
             </button>
 
           </form>
+            <div class="text-left  mt-3 font-size-14">
+                قبلا ثبت نام کرده‌اید؟
+                  <a href="{% url 'login' %}" class="text-primary">وارد شوید</a>
+                </div>
         </div>
       </div>
     </div>
