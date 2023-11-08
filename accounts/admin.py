@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import User,HotelManagerModel
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -14,5 +14,9 @@ class UserAdmin(admin.ModelAdmin):
         reserves = obj.requests.values_list('reserve_code', flat=True)
         return ", ".join(requests)
     reserves.short_description = 'رزرو ها'
+
+class HotelManagerAdmin(admin.ModelAdmin):
+    list_display = ['user','hotel']
 # Register your models here.
 admin.site.register(User,UserAdmin)
+admin.site.register(HotelManagerModel,HotelManagerAdmin)
