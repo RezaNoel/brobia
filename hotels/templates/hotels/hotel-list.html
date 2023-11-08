@@ -877,14 +877,18 @@
                                     {% for facility in facilities %}
                                         {% if facility.related == 'R' %}
                                             {% for room in rooms %}
-                                                    {% if facility in room.facilities.all %}
-                                                        {% include 'include/hotel-card-room.html' %}
-                                                    {% endif %}
+                                                {% if facility in room.facilities.all %}
+                                                    {% include 'include/hotel-card-room.html' %}
+                                                {% endif %}
                                             {% endfor %}
                                         {% elif facility.related == 'H' %}
                                             {% for hotel in page %}
-                                                {% if facility in hotel.facilities.all  %}
-                                                    {% include 'include/hotel-card.html' %}
+                                                {% if used_hotels != hotel %}
+                                                    {% if facility in hotel.facilities.all  %}
+{#                                                        {% used_hotels|append_to_list:hotel %}#}
+                                                        {% include 'include/hotel-card.html' %}
+{#                                                        {% endused_hotels %}#}
+                                                    {% endif %}
                                                 {% endif %}
                                             {% endfor %}
                                         {% endif %}
