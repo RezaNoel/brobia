@@ -205,6 +205,14 @@
                 <label for="hotelCity">شهر:</label>
                 <input id="hotelCity"disabled value="تهران" type="text" />
               </div>
+              <div class="hotel-floors-number">
+                <label for="hotelFloors">تعداد طبقه:</label>
+                <input id="hotelFloors"disabled value="5" type="number" />
+              </div>
+              <div class="hotel-rooms-number">
+                <label for="hotelRooms">تعداد اتاق:</label>
+                <input id="hotelRooms"disabled value="40" type="number" />
+              </div>
               <div class="hotel-address">
                 <label for="hotelAddress">آدرس هتل:</label>
                 <textarea
@@ -535,6 +543,7 @@
     border-radius: 5px 5px 2px 2px;
     border: 1px solid #CED2D3;
     box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
   }
 
   .hotel-details-header{
@@ -587,37 +596,36 @@
   .hotel-information{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     align-items: center;
     padding-inline: 30px;
   }
 
+  .hotel-information div{
+    justify-self: end;
+  }
+
   .hotel-information input{
-    border-radius: 13px;
-    border: 1.5px solid #6C7680;
+    width: 200px;
+    height: 44px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    border: 1.5px solid #BEC6CC;
     padding-inline: 15px;
     font-size: 18px;
-  }
-
-  #hotelName{
-    width: 200px;
-    height: 44px;
-    grid-column: span 2 / -1;
-  }
-
-  #hotelCity{
-    width: 200px;
-    height: 44px;
+    color: #8F9192;
+    text-align: center;
   }
 
   #hotelAddress{
     width: 560px;
     height: 127px;
-    border-radius: 13px;
-    border: 1.5px solid #6C7680;
+    border-radius: 5px;
+    border: 1.5px solid #BEC6CC;
     padding-inline: 15px;
     padding-block: 10px;
     font-size: 18px;
+    color: #8F9192;
   }
 
   .hotel-address{
