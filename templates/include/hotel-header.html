@@ -95,15 +95,29 @@
                         <!-- Navigation -->
                         <div id="navBar" class="navbar-collapse u-header__navbar-collapse collapse order-2 order-xl-0 pt-4 p-xl-0 position-relative">
                             <ul class="navbar-nav u-header__navbar-nav d-flex justify-content-between ml-0" style="width: 100%;">
-                                    <div class="d-flex justify-content-center font-size-16">
-                                        <div class="d-flex justify-content-center align-items-center ml-3">
-                                            <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'blog-list' %}">وبلاگ</a>
+                                    <div class="dropdown-more d-flex justify-content-center font-size-16">
+                                        <div class="d-flex justify-content-center align-items-center ml-3 more-btn-section">
+                                            <button class="btn btn-bg-transparent more-btn nav-link u-header__nav-link u-header__nav-link-border">
+                                                <span>بیشتر</span>
+                                                <i class="bi bi-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                        <div class="dropdown-more-content dropdown-menu dropdown-unfold m-0 u-unfold--css-animation slideInUp">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'blog-list' %}">وبلاگ</a>
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'contact-us' %}">ارتباط با ما</a>
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'about-us' %}">درباره ما</a>
+                                            </div>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center ml-3">
-                                            <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'contact-us' %}">ارتباط با ما</a>
+                                            <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/">پیشنهاد بروبیا</a>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center ml-3">
-                                            <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'about-us' %}">درباره ما</a>
+                                            <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/">لحظه اخری</a>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center">
@@ -163,9 +177,84 @@
                 </div>
             </div>
         </header>
+
+        <style>
+            .dropdown-more{
+                position: relative;
+                display: inline-block;
+            }
+
+            .more-btn{
+                cursor: pointer !important;
+            }
+
+            .dropdown-more-content{
+                display: none;
+                position: absolute;
+                border-radius: 5px;
+                border: 0.5px solid #CED2D3;
+                box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+                text-wrap: nowrap;
+                text-align: center;
+            }
+
+            .dropdown-more-content a{
+                font-size: 16px;
+            }
+
+            .dropdown-more-content div{
+                margin-inline: 10px;
+            }
+
+            .show-dp{
+                display: block !important;
+            }
+
+            @media screen and (max-width: 1199px) {
+                .more-btn-section {
+                    display: none !important;
+                }
+
+                .dropdown-more-content{
+                    display: inline-block !important;
+                    position: initial;
+                    border: none;
+                    box-shadow: none;
+                }
+
+                .dropdown-more-content div{
+                    display: inline-block !important;
+                }
+                
+                .dropdown-more-content a{
+                    color: #67747c !important;
+                }
+
+                .dropdown-more-content a:hover{
+                    color: #ffce21 !important;
+                }
+            }
+                </style>
         <!-- ========== End HEADER ========== -->
 
         <script>
             const usersName = document.getElementById('user_name')
             if(usersName?.innerHTML === ' ') usersName.innerHTML = 'پروفایل'
+
+            const dropdownMoreBtn = document.querySelector('.more-btn')
+            const dropdownMoreContent = document.querySelector('.dropdown-more-content')
+
+            dropdownMoreBtn.addEventListener('click', () => {
+                dropdownMoreContent.classList.toggle('show-dp')
+            })
+
+            window.addEventListener('scroll', () => {
+                dropdownMoreContent.classList.remove('show-dp')
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!event.target.closest('.dropdown-more')) {
+                    dropdownMoreContent.classList.remove('show-dp')
+                }
+            });
         </script>
