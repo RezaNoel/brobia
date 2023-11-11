@@ -60,7 +60,7 @@ def LoginView(request):
             user = authenticate(request,username=phone,password=password)
             if user is not None:
                 login(request,user)
-                return HttpResponseRedirect(reverse(hotels.views.home))
+                return HttpResponseRedirect(reverse(hotels.views.HotelHomeView))
             elif len(password)<8:
                 loginForm = LoginForm()
                 context = {
@@ -99,7 +99,7 @@ def LoginView(request):
 @login_required
 def LogoutView(request):
     logout(request)
-    return HttpResponseRedirect(reverse(hotels.views.home))
+    return HttpResponseRedirect(reverse(hotels.views.HotelHomeView))
 
 @login_required
 def UserProfileView(request):
