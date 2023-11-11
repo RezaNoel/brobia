@@ -2,7 +2,8 @@
 {% load static %}
 
 <!-- Title -->
-{% block title %}برو بیا | چه برو بیا ایه{% endblock %}
+{% block title %}رزرو هتل و هتل آپارتمان با بهترین قیمت | با تخفیف ویژه برو بیا{% endblock %}
+
 {% block header %}
     <link rel="stylesheet" href="{% static 'css\hotel-header.css' %}">
     <link rel="stylesheet" href="{% static 'css\most-value-card.css' %}">
@@ -361,7 +362,9 @@
         <div class="product-card-block product-card-v3">
             <div class="container-fluid">
                 <div class="w-md-80 w-lg-50 text-center mx-md-auto pb-4 mt-xl-4 d-flex justify-content-center align-items-center overflow-hidden">
-                    <img src="{% static 'img/home/suggestion.png' %}" alt="Suggestions">
+                    <img class="suggestion" src="{% static 'img/home/suggestion.png' %}" alt="Suggestions">
+                    <img class="suggestion-mobile" src="{% static 'img/home/suggestion-mobile.png' %}" alt="Suggestions Mobile">
+                    <img class="suggestion-tablet" src="{% static 'img/home/suggestion-tablet.png' %}" alt="Suggestions Tablet">
                 </div>
                 <div class="js-slick-carousel u-slick u-slick--equal-height u-slick--gutters-3 my-3"
                      data-slides-show="5" data-slides-scroll="1"
@@ -410,8 +413,7 @@
                     <div class="row">
                         <!-- Icon Block -->
                         <div class="col-md-4">
-                            <i class="flaticon-price text-warning font-size-80 mb-3"></i>
-                            <i class="flaticon-price text-warning font-size-80 mb-3"></i>
+                            <img src="{% static 'svg/why-us/wallet.svg' %}" alt="Price">
                             <h5 class="font-size-17 text-dark font-weight-bold mb-2"><a href="#">قیمت های رقابتی</a>
                             </h5>
                             <p class="text-gray-1 px-xl-2 px-uw-7">هتل های لوکس را ، با قیمت‌های استثنایی <a
@@ -421,7 +423,7 @@
 
                         <!-- Icon Block -->
                         <div class="col-md-4">
-                            <i class="flaticon-medal text-warning font-size-80 mb-3"></i>
+                            <img src="{% static 'svg/why-us/support.svg' %}" alt="Support">
                             <h5 class="font-size-17 text-dark font-weight-bold mb-2"><a href="#">پشتیبانی 24 ساعته</a>
                             </h5>
                             <p class="text-gray-1 px-xl-2 px-uw-7">راحت و بی دغدغه ، با پشتیبانی هر لحظه <a
@@ -431,7 +433,7 @@
 
                         <!-- Icon Block -->
                         <div class="col-md-4">
-                            <i class="flaticon-global-1 text-warning font-size-80 mb-3"></i>
+                            <img src="{% static 'svg/why-us/location.svg' %}" alt="Locaion">
                             <h5 class="font-size-17 text-dark font-weight-bold mb-2"><a href="#">پوشش سراسری</a></h5>
                             <p class="text-gray-1 px-xl-2 px-uw-7">بیش از 1000 هتل را ، در سراسر ایران <a
                                     style="color: #ffcc00">برو بیا</a>.</p>
@@ -492,9 +494,9 @@
                  style="height: 130%; background-image: url({% static 'img/1920x500/img4.jpg' %});">
                 <div class="text-center space-3">
                     <div class="pt-xl-2 pb-xl-5 mb-xl-1">
-                        <h6 class="text-gray-4 font-size-30 font-weight-bold mb-1 opacity-6">از تخفیف های تابستانی لذت
+                        <h6 class="text-gray-4 font-size-30 font-weight-bold mb-1 opacity-6">از تخفیف های پاییزه لذت
                             ببرید</h6>
-                        <h5 class="text-white font-size-40 font-weight-bold mb-5 pb-xl-1">تا 40% تخفیف!</h5>
+                        <h5 class="text-white font-size-40 font-weight-bold mb-5 pb-xl-1">تا 30% تخفیف!</h5>
                         <a class="btn btn-outline-white border-width-2 min-width-200 font-weight-normal transition-3d-hover"
                            href="../blog/blog-list.html">بیشتر بدانید</a>
                     </div>
@@ -614,6 +616,45 @@
         <style>
             .btn.btn-warning {
                 white-space: nowrap !important;
+            }
+
+            .suggestion{
+                display: block;
+            }
+            .suggestion-mobile{
+                display: none;
+            }
+
+            .suggestion-tablet{
+                display: none;
+            }
+
+            @media screen and (max-width: 590px) {
+                .suggestion{
+                    display: none;
+                }
+
+                .suggestion-tablet{
+                    display: block;
+                }
+
+                .suggestion-mobile{
+                    display: none;
+                }
+            }
+
+            @media screen and (max-width: 390px) {
+                .suggestion{
+                    display: none;
+                }
+
+                .suggestion-tablet{
+                    display: none;
+                }
+
+                .suggestion-mobile{
+                    display: block;
+                }
             }
         </style>
 
