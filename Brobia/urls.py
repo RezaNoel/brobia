@@ -16,16 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from rest_framework import routers
-# from user.serializer import UserViewSet
-# from product.serializer import ProductViewSet
-# from product.views import index
-
-
-# Routers provide an easy way of automatically determining the URL conf.
-# router = routers.DefaultRouter()
-# router.register(r'users', UserViewSet)
-# router.register(r'products', ProductViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -33,14 +23,10 @@ handler404 = 'main.views.custom_404'
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', include('accounts.urls')),
-    path('', include('blogs.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('blogs/', include('blogs.urls')),
     path('', include('main.urls')),
     path('', include('hotels.urls')),
     path('', include('taxirents.urls')),
 
-
-    # path('home',index),
-    # path('', include(router.urls)),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

@@ -48,7 +48,7 @@
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">مبلغ کل پرداختی </span>
-                                        <span class="text-secondary text-right">{{ reserve.room.price}}</span>
+                                        <span class="text-secondary text-right">{{ reserve.room.format_price}}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">
@@ -70,27 +70,9 @@
                                         <span class="font-weight-medium">توضیحات هتل </span>
                                         <span class="text-secondary text-right">{{ reserve.room.hotel.explanation}}</span>
                                     </li>
-                                </ul>
-                                <!-- End Fact List -->
-                            </div>
-                            <div class="pt-4 pb-5 px-5 border-bottom">
-                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
-                                    اطلاعات مسافران
-                                </h5>
-                                <!-- Fact List -->
-                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">
-
-
-                                    <li class="d-flex justify-content-between py-2">
-                                        <span class="font-weight-medium">نام سرگروه</span>
-                                        <span class="text-secondary text-right">{{ passengers.first}}</span>
-                                    </li>
-
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">شماره تماس سرگروه</span>
-                                        <span class="text-secondary text-right">{% for passenger in passengers %}
-                                            {{ passenger.phone}}
-                                        {% endfor %}
+                                        <span class="text-secondary text-right">{{ passengers.first.phone}}
                                         </span>
                                     </li>
                                     <li class="d-flex justify-content-between py-2">
@@ -110,13 +92,49 @@
 
                                         {% endif %}</span>
                                     </li>
-
-
                                 </ul>
                                 <!-- End Fact List -->
                             </div>
+                            <div class="pt-4 pb-5 px-5 border-bottom">
+                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
+                                    اطلاعات مسافران
+                                </h5>
+                            {% for passenger in passengers %}
+                                <!-- Fact List -->
+                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">
 
 
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">نام و نام خانوادگی </span>
+                                        <span class="text-secondary text-right">{{ passenger.firstname}} {{ passenger.lastname}}</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">کدملی</span>
+                                        <span class="text-secondary text-right">
+                                            {{ passenger.nid}}
+                                        </span>
+                                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تاریخ تولد</span>
+                                        <span class="text-secondary text-right">{{ passenger.birthdate }}</span>
+                                    </li>
+
+                                 <hr>
+
+
+
+
+
+                                </ul>
+                            {% endfor %}
+                                <!-- End Fact List -->
+                            <div class="d-flex justify-content-center align-content-center ">
+            <a  href="{% url 'bankpayment' reserve_confirm=reserve.reserve_code %}" class="btn px-5 py-3 btn-success">پرداخت</a>
+
+            </div>
+                            </div>
 
 
 

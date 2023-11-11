@@ -23,7 +23,14 @@ import string
 import time
 
 # Create your views here.
-def check_reservation_status(request, reserve_confirm):
+
+def BankPaymentEndPoint(request,reserve):
+    my_reserve = Request.objects.get(reserve_code=reserve)
+    my_reserve.reserve_status = 'D'
+    my_reserve.save()
+    return render(request, 'hotels/hotel-home.html')
+
+def CheckReservationStatusEndPoint(request, reserve_confirm):
     try:
         reserve_code_status = Request.objects.get(reserve_code=reserve_confirm)
         data = {'confirm': reserve_code_status.confirm}
@@ -33,13 +40,13 @@ def check_reservation_status(request, reserve_confirm):
     return JsonResponse(data)
 
 
-def generate_random_string(length):
+def GenerateRandomStringEndPoint(length):
     characters = string.ascii_letters + string.digits
     random_string = ''.join(random.choice(characters) for _ in range(length))
     return random_string
 
 
-def hotellike(request, pk):
+def HotelLikeEndPoint(request, pk):
     if request.user.is_authenticated:
         hotel = Hotel.objects.get(pk=pk)
         if request.method == "POST":
@@ -57,7 +64,7 @@ def hotellike(request, pk):
 
     return Response({'error': 'متد نامعتبر.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
-def home(request):
+def HotelHomeView(request):
     current_date = jalali_date.today()
     exit_date=current_date + jalali_timedelta(days=4)
     formatted_exit_date = exit_date.strftime('%Y/%m/%d')
@@ -86,6 +93,7 @@ def home(request):
                'formatted_current_date':formatted_current_date,
                'formatted_exit_date':formatted_exit_date,}
     return render(request, 'hotels/hotel-home.html', content)
+
 
 def HotelListView(request, city_slug):
     city = City.objects.get(slug=city_slug)
@@ -162,9 +170,8 @@ def HotelListView(request, city_slug):
     return render(request, 'hotels/hotel-list.html', content)
 
 
-
 @login_required
-def confirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
+def RequestConfirmView(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
 
     city = City.objects.get(slug=confirm_city_slug)
     hotels = Hotel.objects.filter(city=city.id)
@@ -218,7 +225,7 @@ def confirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
     return render(request, 'hotels/hotel-confirm.html', context)
 
 
-def check(request,reserve):
+def RequestCheckView(request,reserve):
     my_reserve = Request.objects.get(reserve_code=reserve)
     my_reserve.reserve_status = 'P'
     my_reserve.save()
@@ -228,14 +235,14 @@ def check(request,reserve):
     return render(request,'hotels/hotel-check.html',context)
 
 
-def single(request, city_slug, hotel_slug):
+def HotelSingleView(request, city_slug, hotel_slug):
 
     city = City.objects.get(slug=city_slug)
     hotels = Hotel.objects.filter(city=city.id)
     hotel = Hotel.objects.get(slug=hotel_slug)
     suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
     rooms = Room.objects.filter(hotel=hotel.id)
-    code = generate_random_string(10)
+    code = GenerateRandomStringEndPoint(10)
     res=request.user.reserves.all()
     canRequest = True
     for r in res:
@@ -255,7 +262,7 @@ def single(request, city_slug, hotel_slug):
     return render(request, 'hotels/hotel-single.html', content)
 
 
-def booking(request,reserve):
+def HotelBookingView(request,reserve):
     my_reserve = Request.objects.get(reserve_code=reserve)
     if (my_reserve.reserve_status =="WC" or my_reserve.reserve_status=="WI") and (my_reserve.confirm == "A"):
         number_of_forms = int(my_reserve.passenger_count) + int(my_reserve.child_count)-1
