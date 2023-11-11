@@ -872,7 +872,7 @@
 
                                 </div>
                                 <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
-                                    <div class="row">
+                                    <div id="hotel-list" class="row">
                                     {% if facilities|length > 0 %}
                                     {% for facility in facilities %}
                                         {% if facility.related == 'R' %}
@@ -898,15 +898,11 @@
                                                 {% include 'include/hotel-card.html' %}
                                         {% endfor %}
                                     {% endif %}
-
-
-
-
-
-
-
-                                    </div>
-
+                                </div>
+                                <div id="no-result" class="no-result">
+                                    <img class="no-result-img" src="{% static 'img\home\no-result.jpg' %}" alt="">
+                                    <span>هتلی یافت نشد</span>
+                                </div>
                                    <nav aria-label="پیمایش صفحه">
                                         <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
                                             {% if page.has_previous %}
@@ -1011,6 +1007,25 @@
                 padding: 10px !important;
             }
 
+            .no-result{
+                display: none;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 50px;
+            }
+
+            .no-result-img{
+                width: 470px;
+                height: 470px;
+            }
+
+            .no-result span{
+                font-size: 32px;
+                font-weight: bold;
+                color: #007BFF;
+            }
         </style>
 
         <!-- JS Global Compulsory -->
@@ -1058,6 +1073,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
 
         <script>
+
+            const hotelList = document.querySelector('#hotel-list');
+            const noResult = document.querySelector('#no-result')
+            if(hotelList.innerHTML.includes('div')){
+                noResult.style.display = 'none'
+            }else{
+                noResult.style.display = 'flex'
+            }
+
         // Date Picker
         $(document).ready(function () {
         var night;
