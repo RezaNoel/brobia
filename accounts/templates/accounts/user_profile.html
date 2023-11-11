@@ -55,9 +55,17 @@
                 <li class="nav-item">
                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">اطلاعات</button>
                 </li>
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#reservs">رزرو ها</button>
-                </li>
+                {% if isHotelManager %}
+                  
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#hotel-panel">پنل مدیریت هتل</button>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#reservs">رزرو ها</button>
+                    </li>
+
+                {% endif %}
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">ویرایش</button>
                 </li>
@@ -241,6 +249,13 @@
                   </div>
                 </div>
 
+                <div class="tab-pane fade hotel-panel" id="hotel-panel">
+
+                      <a  href="{% url 'hotel-panel' %}" class="btn btn-warning">ورود به پنل مدیریت هتل</a>
+
+
+                </div>
+
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
@@ -349,26 +364,27 @@
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form>
+                  <form method="POST" >
+                      {% csrf_token %}
 
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">رمز عبور فعلی</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
+                        {{ form.old_password }}
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">رمز عبور جدید</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                        {{ form.new_password1 }}
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">تکرار رمز عبور جدید</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                        {{ form.new_password2 }}
                       </div>
                     </div>
 
@@ -615,7 +631,7 @@
   <!-- ======= Footer ======= -->
   <footer  class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Broobia.com</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>Boroobia.com</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->

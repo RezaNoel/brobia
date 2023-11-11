@@ -1,12 +1,15 @@
 import hotels.views
-from django.shortcuts import render
-from django.contrib.auth import authenticate,login,logout
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate,login,logout,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import User
+from .models import User,HotelManagerModel
 from .forms import LoginForm,RegisterForm
 import main
+
 
 
 # Create your views here.
@@ -100,8 +103,32 @@ def RegisterView(request):
 
 @login_required
 def UserProfileView(request):
-    return render(request, 'accounts/user_profile.html')
+    try:
+        myHotel = HotelManagerModel.objects.get(user=request.user)
+        isHotelManager = True
+    except HotelManagerModel.DoesNotExist:
+        isHotelManager = False
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        'form': form,
+        'isHotelManager': isHotelManager
+    }
+    return render(request, 'accounts/user_profile.html',context)
 
 @login_required
 def HotelAdminView(request):
-    return render(request, 'accounts/hotel_admin.html')
+    myHotel = HotelManagerModel.objects.get(user=request.user)
+    context = {
+        'myHotel': myHotel
+    }
+    return render(request, 'accounts/hotel_panel.html', context)

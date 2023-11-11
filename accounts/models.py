@@ -39,5 +39,5 @@ class HotelManagerModel(models.Model):
         verbose_name_plural = ("اطلاعات منیجر هتل ها")
 
     def __str__(self):
-        return self.get_full_name() or self.username
+        return f"{self.user} - {self.hotel}"
 
