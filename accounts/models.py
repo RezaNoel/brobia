@@ -32,8 +32,8 @@ class User(AbstractUser):
         return self.get_full_name() or self.username
 
 class HotelManagerModel(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    hotel = models.ForeignKey(Hotel,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='کاربر')
+    hotel = models.ForeignKey(Hotel,on_delete=models.CASCADE,verbose_name='هتل')
     class Meta:
         verbose_name = ("اطلاعات منیجر هتل")
         verbose_name_plural = ("اطلاعات منیجر هتل ها")

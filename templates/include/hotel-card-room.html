@@ -37,7 +37,7 @@
             <div class="mb-2">
                 <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
                     <div class="lighter">
-                        {% for _ in "x"|rjust:room.hotel.starts %}
+                        {% for _ in "x"|rjust:room.hotel.stars %}
                             <small class="fas fa-star"></small>
                         {% endfor %}
                     </div>
@@ -46,7 +46,7 @@
             <!-- نام هتل و ستاره‌ها -->
             <a href="{% url 'hotel-single' city_slug=room.hotel.city.slug hotel_slug=room.hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">{{ room.hotel.faname }}</a>
             <div class="mt-2 mb-3">
-                <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ room.hotel.starts }} ستاره</span>
+                <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ room.hotel.stars }} ستاره</span>
             </div>
             <!-- قیمت هتل -->
             <div class="mb-0">
