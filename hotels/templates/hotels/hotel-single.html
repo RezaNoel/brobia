@@ -386,8 +386,10 @@
                 <!-- Product Cards Ratings With carousel -->
                 <div class="product-card-block product-card-v3">
                     <div class="space-1">
-                        <div class="w-md-80 w-lg-50 text-center mx-md-auto pb-4">
-                            <h2 class="section-title text-black font-size-30 font-weight-bold mb-0">پیشنهاد برو بیا</h2>
+                        <div class="w-md-80 w-lg-50 text-center mx-md-auto pb-4 mt-xl-4 d-flex justify-content-center align-items-center overflow-hidden">
+                            <img class="suggestion" src="{% static 'img/home/suggestion.png' %}" alt="Suggestions">
+                            <img class="suggestion-mobile" src="{% static 'img/home/suggestion-mobile.png' %}" alt="Suggestions Mobile">
+                            <img class="suggestion-tablet" src="{% static 'img/home/suggestion-tablet.png' %}" alt="Suggestions Tablet">
                         </div>
                         <div class="js-slick-carousel u-slick u-slick--equal-height u-slick--gutters-3" data-slides-show="4" data-slides-scroll="1" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic v1 u-slick__arrow-classic--v1 u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="fas fa-chevron-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left" data-arrow-right-classes="fas fa-chevron-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right" data-pagi-classes="d-lg-none text-center u-slick__pagination mt-4" data-responsive="[{
                                 &quot;breakpoint&quot;: 1025,
@@ -429,6 +431,47 @@
             <button class="btn btn-danger" id="locationDanger">دکمه ارور یک هتل در حال بررسی</button>
 
         </main>
+
+        <style>
+            .suggestion{
+                display: block;
+            }
+            .suggestion-mobile{
+                display: none;
+            }
+
+            .suggestion-tablet{
+                display: none;
+            }
+
+            @media screen and (max-width: 590px) {
+                .suggestion{
+                    display: none;
+                }
+
+                .suggestion-tablet{
+                    display: block;
+                }
+
+                .suggestion-mobile{
+                    display: none;
+                }
+            }
+
+            @media screen and (max-width: 390px) {
+                .suggestion{
+                    display: none;
+                }
+
+                .suggestion-tablet{
+                    display: none;
+                }
+
+                .suggestion-mobile{
+                    display: block;
+                }
+            }
+        </style>
         <!-- ========== END MAIN CONTENT ========== -->
 {% endblock %}
         <!-- ========== FOOTER ========== -->
