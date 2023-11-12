@@ -8,6 +8,7 @@
 {% block header %}
 <link href="{% static 'js/date-picker/assets/css/daterangepicker.css' %}" rel="stylesheet" type="text/css" media="all" />
 <link href="{% static 'js/date-picker/assets/css/datepicker-theme.css' %}" rel="stylesheet" type="text/css" media="all"  />
+<link rel="stylesheet" href="{% static 'js\toast-message\sh_toaster.css' %}">
 {% endblock %}
 {% block content %}
 
@@ -262,8 +263,9 @@
                                                         <span class="font-size-14">/ شب</span>
                                                     </div>
                                                     <a href="{% if canRequesr %}
-
-                                                     {% url 'hotel-confirm' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% endif %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">اکنون ثبت کن</a>
+                                                     {% url 'hotel-confirm' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% endif %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">
+                                                     اکنون ثبت کن
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -417,13 +419,15 @@
                                 {% endif %}
                             {% endfor %}
 
-
-
                         </div>
                     </div>
                 </div>
                 <!-- End Product Cards Ratings With carousel -->
             </div>
+
+            <div class="sh-toast-container" id="shToastContainerBottom"></div>
+            <button class="btn btn-danger" id="locationDanger">دکمه ارور یک هتل در حال بررسی</button>
+
         </main>
         <!-- ========== END MAIN CONTENT ========== -->
 {% endblock %}
@@ -440,6 +444,8 @@
             <span class="flaticon-arrow u-go-to-modern__inner"></span>
         </a>
         <!-- End Go to Top -->
+
+        <script src="{% static 'js\toast-message\sh_toaster.js'%}"></script>
 
         <!-- JS Global Compulsory -->
         <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
@@ -482,7 +488,6 @@
         
         
         <style>
-
             .overlay{
                 opacity: 0;
                 pointer-events: none;
@@ -653,10 +658,21 @@
             .hotel-content::-webkit-scrollbar-thumb:active {
             background-color: #A3A3A3;
             }
-
         </style>
 
-        <script>
+        <script defer>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const showDangerButton = document.getElementById('locationDanger');
+  showDangerButton.addEventListener('click', () => {
+    let Settings = {
+        duration:  5000,
+        showProgress: true,
+        toastLocation: 'bottom'
+    };
+    Toast.danger('شما یک هتل در حال بررسی دارید.', Settings);
+  });
+});
         // Date Picker
         $(document).ready(function () {
         var night;

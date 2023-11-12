@@ -48,7 +48,7 @@ class RegisterForm(forms.ModelForm):
     ])
     phone = forms.CharField(label="شماره همراه",validators=[
         MinLengthValidator(limit_value=11, message="شماره همراه باید حداقل 11 کاراکتر داشته باشد."),
-        MaxLengthValidator(limit_value=10, message="شماره همراه نمی‌تواند بیش از 11 کاراکتر داشته باشد.")
+        MaxLengthValidator(limit_value=11, message="شماره همراه نمی‌تواند بیش از 11 کاراکتر داشته باشد.")
     ])
 
     class Meta:

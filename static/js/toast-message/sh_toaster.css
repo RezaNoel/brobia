@@ -1,0 +1,47 @@
+
+.sh-toast-container {
+  position: fixed;
+/*  bottom: 20px;*/
+  left: 20px;
+  max-width: 300px;
+  z-index: 9999;
+}
+
+.sh-toast-container.top {
+  top: 10px;
+}
+
+.sh-toast-container.bottom {
+  bottom: 20px;
+}
+
+.sh-toast {
+  padding: 20px 30px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+}
+
+.danger {
+  background-color: #f03e3e;
+  color: white;
+}
+
+.sh-progress-bar {
+  height: 4px;
+  background-color: #ccc;
+  width: 100%;
+  position: relative;
+  bottom: -16px;
+  left: 0;
+}
+
+.sh-toast.with-sh-progress-bar .progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background-color: #ccc;
+  width: 0;
+}
