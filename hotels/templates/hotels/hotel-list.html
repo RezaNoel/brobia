@@ -832,11 +832,14 @@
                                                     </div>
                                                 </div>
                                                 {% endfor %}
-
                                             </div>
                                         </li>
-
+                                        
                                     </ul>
+                                    <div id="no-result-pills" class="no-result">
+                                        <img class="no-result-img" src="{% static 'img\home\no-result.jpg' %}" alt="">
+                                        <span>هتلی یافت نشد</span>
+                                    </div>
                                      <nav aria-label="پیمایش صفحه">
                                         <ul class="list-pagination-1 pagination border border-color-4 rounded-sm overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2 mb-0">
                                             {% if page.has_previous %}
@@ -1025,6 +1028,19 @@
                 font-weight: bold;
                 color: #007BFF;
             }
+
+            @media screen and (max-width: 465px) {
+                .no-result-img{
+                    width: 350px;
+                    height: 350px;
+                }
+            }
+            @media screen and (max-width: 350px) {
+                .no-result-img{
+                    width: 290px;
+                    height: 290px;
+                }
+            }
         </style>
 
         <!-- JS Global Compulsory -->
@@ -1075,10 +1091,13 @@
 
             const hotelList = document.querySelector('#hotel-list');
             const noResult = document.querySelector('#no-result')
+            const noResultPills = document.querySelector('#no-result-pills')
             if(hotelList.innerHTML.includes('div')){
                 noResult.style.display = 'none'
+                noResultPills.style.display = 'none'
             }else{
                 noResult.style.display = 'flex'
+                noResultPills.style.display = 'flex'
             }
 
         // Date Picker
