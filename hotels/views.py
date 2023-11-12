@@ -1,26 +1,22 @@
-import accounts.views
-from django.shortcuts import render,redirect,get_object_or_404
-from django.db.models import Min,Max,F ,Case, When, IntegerField
+from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Min, Max, F, Case, When, IntegerField
 from django.core.paginator import Paginator
 from django.urls import reverse
-from django.shortcuts import redirect
-from django.http import JsonResponse,Http404,HttpResponseNotFound
+from django.http import JsonResponse, Http404, HttpResponseNotFound
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from urllib.parse import urlencode
 from datetime import datetime, timedelta
-from jdatetime import date as jalali_date,timedelta as jalali_timedelta
-from main.models import City,Hotel,Room,Request,Passenger,Facility
-from main.forms import BookingForm,BookingModelForm
-from .serializer import HotelSerializer,HotelViewSet
+from jdatetime import date as jalali_date, timedelta as jalali_timedelta
+from main.models import City, Hotel, Room, Request, Passenger, Facility
+from main.forms import BookingForm, BookingModelForm
+from .serializer import HotelSerializer, HotelViewSet
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+import random, string, time
 
-import random
-import string
-import time
 
 # Create your views here.
 
@@ -128,7 +124,7 @@ def HotelListView(request, city_slug):
         hotels = hotels.order_by('-max_price')
     elif sort_type == 'stars':
         # مرتب سازی بر اساس تعداد ستاره ها
-        hotels = hotels.order_by('-starts')
+        hotels = hotels.order_by('-stars')
     elif sort_type == 'alphabetical':
         # مرتب سازی بر اساس الفبا (نام هتل)
         hotels = hotels.order_by('name')
@@ -148,10 +144,10 @@ def HotelListView(request, city_slug):
     else:
         facilities=[]
 
-    used_hotels = []  # یک لیست خالی برای شروع
     hotel_execution_status = {}
     for hotel in page:
         hotel_execution_status[hotel] = False  # همه هتل‌ها در ابتدا به عنوان False تعریف می‌شوند
+
 
     content = {
         "city": city,
@@ -162,7 +158,6 @@ def HotelListView(request, city_slug):
         "page": page,
         "sort_type": sort_type,
         "facilities": facilities,
-        'used_hotels': used_hotels,  # اضافه کردن لیست به متغیر تمپلیت
         "hotel_execution_status": hotel_execution_status  # اضافه کردن دیکشنری به context
 
     }

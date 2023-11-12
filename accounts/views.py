@@ -7,7 +7,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User,HotelManagerModel
-from .forms import LoginForm,RegisterForm
+from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm
 import main
 
 
@@ -37,7 +37,7 @@ def RegisterView(request):
             user = authenticate(request, username=username, password=password)
             login(request, user)
 
-            return HttpResponseRedirect(reverse(hotels.views.home))
+            return HttpResponseRedirect(reverse(hotels.views.HotelHomeView))
         context = {
             'registerForm': registerForm
         }
@@ -109,7 +109,7 @@ def UserProfileView(request):
     except HotelManagerModel.DoesNotExist:
         isHotelManager = False
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
+        form = CustomPasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
@@ -118,12 +118,13 @@ def UserProfileView(request):
         else:
             messages.error(request, 'Please correct the error below.')
     else:
-        form = PasswordChangeForm(request.user)
+        form = CustomPasswordChangeForm(request.user)
+
     context = {
         'form': form,
         'isHotelManager': isHotelManager
     }
-    return render(request, 'accounts/user_profile.html',context)
+    return render(request, 'accounts/user_profile.html', context)
 
 @login_required
 def HotelAdminView(request):
