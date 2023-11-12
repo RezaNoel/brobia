@@ -398,7 +398,7 @@
                 e.target.value = '0' + (Math.abs(+e.target.value) !== 0 ? Math.abs(+e.target.value) : '')
                 validation((e.target.value.length !== 11), telInput, telError)
             })
-
+            
             const nidInput = document.getElementById('id_nid')
             const nidError = document.querySelector('.nid-error')
             nidInput.setAttribute('type', 'number')
@@ -424,6 +424,24 @@
                 $('.tooltip').hide();
                 $('.date-select').text($(this).val());
             });
+        })
+
+        function isPersian(event) {
+            var charCode = event.which || event.keyCode;
+            var charStr = String.fromCharCode(charCode);
+
+            // اعتبارسنجی: فقط حروف الفبای فارسی
+            var persianPattern = /[آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیءئؤ  ]/;
+
+            return persianPattern.test(charStr);
+        }
+
+        
+        document.querySelectorAll('#firstname').forEach((fname) => {
+            fname.setAttribute('onkeypress', 'return isPersian(event)')
+        })
+        document.querySelectorAll('#lastname').forEach((lname) => {
+            lname.setAttribute('onkeypress', 'return isPersian(event)')
         })
           </script>
 

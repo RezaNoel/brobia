@@ -162,7 +162,7 @@
                           </td>
                         </td>
                           {% endif %}
-                        <td>{{ reserve.reserve_code }}</td>
+                        <td><a class="text-underline" href="#">{{ reserve.reserve_code }}</a></td>
                         <td>{{ reserve.reserve_date_shamsi }}</td>
                         <td>{{ reserve.room.format_price}}</td>
                         <td>{{reserve.room.hotel.faname}}</td>
@@ -232,7 +232,7 @@
                                 <td>{{ reserve.reserve_code }}</td>
                                 <td>{{ reserve.reserve_date_shamsi }}</td>
                                 <td>{{ reserve.room.format_price}}</td>
-                                <td>{{reserve.room.hotel.faname}}</td>
+                                <td>{{ reserve.room.hotel.faname}}</td>
                                 <td>{{ reserve.room.faname }}</td>
                                 <td>{{ reserve.enter }}</td>
                                 <td>{{ reserve.exit }}</td>

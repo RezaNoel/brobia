@@ -5,8 +5,8 @@ from django.core.validators import RegexValidator
 
 
 class BookingForm(forms.Form):
-    firstname = forms.CharField(label='* نام',error_messages={'required':'وارد کردن نام اجباری است.'},widget=forms.TextInput(attrs={'class':'form-control','placeholder':'علی'}))
-    lastname = forms.CharField(label='* نام خانوادگی',error_messages={'required':'وارد کردن نام اجباری است.'},widget=forms.TextInput(attrs={'class':'form-control','placeholder':'اوجی'}))
+    firstname = forms.CharField(label='* نام',error_messages={'required':'وارد کردن نام اجباری است.'},widget=forms.TextInput(attrs={'id': 'firstname','class':'form-control','placeholder':'علی'}))
+    lastname = forms.CharField(label='* نام خانوادگی',error_messages={'required':'وارد کردن نام اجباری است.'},widget=forms.TextInput(attrs={'id': 'lastname','class':'form-control','placeholder':'اوجی'}))
     email = forms.EmailField(required=False,label='ایمیل',widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'test@gmail.com'}))
     phone = forms.CharField(
         required=False,
@@ -19,7 +19,7 @@ class BookingForm(forms.Form):
         label='* کدملی',
         error_messages={'required': 'وارد کردن کد ملی اجباری است.'},
         validators=[RegexValidator(r'^[0-9]*$', 'کد ملی باید تنها شامل اعداد باشد.')],
-    widget = forms.TextInput(attrs={'class': 'form-control', 'placeholder': '0123456789'})
+        widget = forms.TextInput(attrs={'class': 'form-control', 'placeholder': '0123456789'})
     )
     birthdate = forms.CharField(
         label='* تاریخ تولد',
