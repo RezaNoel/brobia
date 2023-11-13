@@ -17,6 +17,10 @@
     overflow-y: scroll;
   }
 
+  ul{
+    padding: 0;
+  }
+
   .panel-admin{
     transform: translateX(-130px);
     max-width: fit-content;
@@ -172,6 +176,7 @@
     justify-content: space-between;
     padding-inline: 6px;
     padding-right: 13px;
+    padding-bottom: 5px;
   }
 
   .hotel-profile-image{
@@ -509,7 +514,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-block: 5px;
   }
 
   .facility span{
@@ -940,35 +944,13 @@
             </svg>
           </span>
           <ul class="hotel-facilities-content">
-            <hr>
+            <hr style="margin: 0;">
               {% for facility in myHotel.hotel.facilities.all %}
               <li class="facility flaticon-{{ facility.name }}">
                 <span >{{facility.faname}}</span>
               </li>
-              <hr>
+              <hr style="margin: 0;">
               {% endfor %}
-          {% comment %}
-              <li class="facility">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path opacity="0.4" d="M4.09167 9.86667C7.67501 7.10001 12.3333 7.10001 15.9167 9.86667" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M1.66666 6.96664C6.71666 3.06664 13.2833 3.06664 18.3333 6.96664" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M5.65833 12.9083C8.28333 10.875 11.7083 10.875 14.3333 12.9083" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path opacity="0.4" d="M7.83331 15.9583C9.14998 14.9416 10.8583 14.9416 12.175 15.9583" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>اینترنت رایگان</span>
-              </li>
-              <hr>
-              <li class="facility">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M15.8083 18.3333H4.14166C1.64166 18.3333 1.64166 17.2083 1.64166 15.8333V15C1.64166 14.5417 2.01666 14.1667 2.475 14.1667H17.475C17.9333 14.1667 18.3083 14.5417 18.3083 15V15.8333C18.3083 17.2083 18.3083 18.3333 15.8083 18.3333Z" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M17.2666 10.8333V14.1667H2.72498V10.8333C2.72498 7.63333 4.98331 4.95833 7.99164 4.31666C8.44164 4.21666 8.90831 4.16666 9.39164 4.16666H10.6C11.0833 4.16666 11.5583 4.21666 12.0083 4.31666C15.0166 4.96666 17.2666 7.63333 17.2666 10.8333Z" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path opacity="0.34" d="M12.0833 3.75C12.0833 3.95 12.0583 4.13333 12.0083 4.31666C11.5583 4.21666 11.0833 4.16666 10.6 4.16666H9.39166C8.90832 4.16666 8.44166 4.21666 7.99166 4.31666C7.94166 4.13333 7.91666 3.95 7.91666 3.75C7.91666 2.6 8.84999 1.66666 9.99999 1.66666C11.15 1.66666 12.0833 2.6 12.0833 3.75Z" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path opacity="0.34" d="M12.5 9.16666H7.5" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>رستوران</span>
-              </li>
-              <hr>
-          {% endcomment %}
             </ul>
           </div>
           <div class="hotel-images">
