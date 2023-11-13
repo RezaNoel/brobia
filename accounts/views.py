@@ -127,9 +127,12 @@ def UserProfileView(request):
     return render(request, 'accounts/user_profile.html', context)
 
 @login_required
-def HotelAdminView(request):
+def HotelAdminView(request,page):
     myHotel = HotelManagerModel.objects.get(user=request.user)
+    template_name = f'accounts/hotel_panel_{page}.html'
+
     context = {
         'myHotel': myHotel
     }
-    return render(request, 'accounts/hotel_panel.html', context)
+    return render(request, template_name, context)
+

@@ -621,7 +621,7 @@
       <div class="side-panel-options">
         <ul class="side-panel-pages">
           <li>
-            <a id="dashboard" href="#">
+            <a id="dashboard" href="{% url 'hotel-panel' page='dashboard' %}">
               <span>داشبورد</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -646,7 +646,7 @@
             </a>
           </li>
           <li>
-            <a id="information" href="#">
+            <a id="information" href="{% url 'hotel-panel' page='information' %}">
               <span>اطلاعات</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -683,7 +683,7 @@
             </a>
           </li>
           <li>
-            <a id="rooms" href="#">
+            <a id="rooms" href="{% url 'hotel-panel' page='room' %}">
               <span>اتاق ها</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

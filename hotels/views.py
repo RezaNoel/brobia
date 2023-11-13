@@ -131,7 +131,7 @@ def HotelListView(request, city_slug):
     elif sort_type == 'distance':
         # مرتب سازی بر اساس الفبا (نام هتل)
         hotels = hotels.order_by('distance')
-    hotels_per_page = 2
+    hotels_per_page = 15
     paginator = Paginator(hotels, hotels_per_page)
 
     page_number = request.GET.get('page')
