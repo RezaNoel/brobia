@@ -601,476 +601,19 @@
     width: 190px;
     height: 150px;
   }
-
-  .facility-section{
-    border: none;
-    background-color: transparent;
-  }
-
-  .facilities-overlay{
-    opacity: 0;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 40px;
-    z-index: 1002;
-    transition: opacity 0.2s;
-  }
-
-  .show-overlay{
-    opacity: 1 !important;
-    pointer-events: all !important;
-  }
-
-  .change-facilities{
-    position: relative;
-    width: 980px;
-    height: 610px;
-    background-color: white;
-    border-radius: 4px;
-    padding: 20px;
-  }
-
-  .change-facilities-header{
-    margin-right: 10px;
-    color: #000;
-    font-family: Shabnam;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    }
-
-    .selected-facilities{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .facility-btn{
-      width: 150px;
-      display: flex;
-      align-items: center;
-      justify-content: end;
-      gap: 10px;
-      user-select: none;
-      margin-bottom: 20px;
-    }
-
-    .facility-btn span {
-      font-size: 18px;
-    }
-
-    .check-input-f{
-      display: none;
-    }
-
-    .facility-checkbox{
-      width: 30px;
-      height: 30px;
-      border: solid #6C7680 2px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      padding: 3px;
-      transition: 0.3s all;
-      z-index: 1;
-    }
-
-    .facility-checkbox svg{
-      width: 20px;
-      height: 20px;
-    }
-    
-    .check-input-f:checked + .facility-checkbox{
-      background-color: #fc3;
-      border: solid #fc3 2px;
-    }
-
-    .check-input-f:checked + .facility-checkbox svg path{
-      stroke-dasharray: 500;
-      stroke-dashoffset: 500;
-      stroke: #006400;
-      stroke-width: 3;
-      animation: check 4s forwards;
-    }
-
-
-    .facility-checkbox::before {
-      content: "";
-      background: rgba(251, 218, 119, 0.481);
-      position: absolute;
-      border-radius: 50%;
-      transform: scale(0);
-      display: block;
-      width: 50px;
-      height: 50px;
-      z-index: -1;
-    }
-
-    .check-input-f:checked + .facility-checkbox::before{
-      animation: ripple 0.3s;
-    }
-
-    @keyframes check {
-      to {
-        stroke-dashoffset: 0;
-      }
-      
-    }
-
-    @keyframes ripple {
-      to {
-        transform: scale(1);
-        z-index: 0;
-      }
-    }
-
-    .images-overlay{
-      opacity: 0;
-      pointer-events: none;
-      display: flex;
-      justify-content: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 40px;
-      z-index: 1002;
-      transition: opacity 0.2s;
-    }
-
-    .change-images{
-      position: relative;
-      width: 980px;
-      height: 610px;
-      background-color: white;
-      border-radius: 4px;
-      padding: 20px;
-    }
-
-    .change-images-header{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-right: 10px;
-      color: #000;
-      font-family: Shabnam;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-    }
-
-    .image-name{
-      font-size: 16px;
-      font-weight: normal;
-    }
-
-    .add-image-btn{
-      background-color: #fc3;
-      padding-inline: 20px;
-      padding-block: 10px;
-      border-radius: 5px;
-      color: #fff;
-      text-shadow: -2px 2px 10px rgba(0, 0, 0, 0.10);
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .selected-images{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      user-select: none;
-      justify-items: center;
-    }
-
-    .image-btn{
-      margin-bottom: 20px;
-    }
-
-    .image-checkbox{
-      position: relative;
-      cursor: pointer;
-    }
-
-    .image-checkbox .facility-checkbox{
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin: 8px;
-      background-color: #fff;
-    }
-
-    .image-checkbox img{
-      width: 250px;
-      height: 180px;
-      background-size: contain;
-      border-radius: 4px;
-    }
-
-    .uploaded-image:checked + .image-checkbox .image-tick{
-      background-color: #fc3 !important;
-      border: solid #fc3 2px;
-    }
-
-    .uploaded-image:checked ~ .image-checkbox svg path{
-      stroke-dasharray: 500;
-      stroke-dashoffset: 500;
-      stroke: #006400;
-      stroke-width: 3;
-      animation: check 4s forwards;
-    }
-
-    .check-input-i:checked + .image-checkbox .image-tick::before{
-      animation: ripple 0.3s;
-    }
-
-    @keyframes check {
-      to {
-        stroke-dashoffset: 0;
-      }
-      
-    }
-
-    @keyframes ripple {
-      to {
-        transform: scale(1);
-        z-index: 0;
-      }
-    }
-
-    .image-section{
-      border: none;
-      background-color: transparent;
-    }
-
-    .action-save-image, .action-save-fac{
-      padding-inline: 25px;
-      padding-block: 6px;
-      border-radius: 5px;
-      background: linear-gradient(96deg, #FC0 -33.68%, #FF8C00 269.25%);
-      box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
-      color: #FFF;
-      font-size: 26px;
-      font-weight: 700;
-      border: none;
-    }
-
-    .action-cancel-image, .action-cancel-fac{
-      padding-inline: 25px;
-      padding-block: 6px;
-      border-radius: 5px;
-      background-color: transparent;
-      box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
-      color: #FFF;
-      font-size: 26px;
-      font-weight: 700;
-      border: 2px solid #FC0;
-      background: linear-gradient(117deg, #FC0 -114.34%, rgba(255, 140, 0, 0.00) 656.22%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      }
-
-      .action-buttons-image, .action-buttons-fac{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        margin-bottom: 30px;
-        margin-left: 30px;
-      }
 </style>
 {% endblock %}
 {% block title %}پنل مدیریت هتل{% endblock %}
 {% block content %}
 
 
-<div class="images-overlay">
-  <div class="change-images">
-    <span class="change-images-header">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-          <path d="M30.5813 1.45825H26.2938C25.025 1.45825 24.0917 1.98325 23.6688 2.91659C23.4355 3.3395 23.3334 3.83534 23.3334 4.41867V8.70617C23.3334 10.5583 24.4417 11.6666 26.2938 11.6666H30.5813C31.1646 11.6666 31.6605 11.5645 32.0834 11.3312C33.0167 10.9083 33.5417 9.97492 33.5417 8.70617V4.41867C33.5417 2.56659 32.4334 1.45825 30.5813 1.45825ZM31.9521 7.1895C31.8063 7.33533 31.5875 7.43742 31.3542 7.452H29.298V8.19575L29.3125 9.47908C29.298 9.727 29.2105 9.93117 29.0355 10.1062C28.8896 10.252 28.6709 10.3541 28.4375 10.3541C27.9563 10.3541 27.5625 9.96033 27.5625 9.47908V7.43742L25.5209 7.452C25.0396 7.452 24.6459 7.04367 24.6459 6.56242C24.6459 6.08117 25.0396 5.68742 25.5209 5.68742L26.8042 5.702H27.5625V3.66034C27.5625 3.17909 27.9563 2.77075 28.4375 2.77075C28.9188 2.77075 29.3125 3.17909 29.3125 3.66034L29.298 4.69575V5.68742H31.3542C31.8355 5.68742 32.2292 6.08117 32.2292 6.56242C32.2146 6.81034 32.1125 7.0145 31.9521 7.1895Z" fill="#454545"/>
-          <path d="M13.125 15.1375C15.0419 15.1375 16.5958 13.5835 16.5958 11.6666C16.5958 9.74975 15.0419 8.1958 13.125 8.1958C11.2081 8.1958 9.65417 9.74975 9.65417 11.6666C9.65417 13.5835 11.2081 15.1375 13.125 15.1375Z" fill="#454545"/>
-          <path d="M30.5812 11.6667H29.8958V18.3897L29.7062 18.2292C28.5687 17.2522 26.7312 17.2522 25.5937 18.2292L19.527 23.4355C18.3895 24.4126 16.552 24.4126 15.4145 23.4355L14.9187 23.0272C13.8833 22.123 12.2354 22.0355 11.0687 22.823L5.61454 26.4834C5.29371 25.6667 5.10413 24.7188 5.10413 23.6105V11.3897C5.10413 7.27716 7.27704 5.10425 11.3895 5.10425H23.3333V4.41883C23.3333 3.8355 23.4354 3.33966 23.6687 2.91675H11.3895C6.08121 2.91675 2.91663 6.08133 2.91663 11.3897V23.6105C2.91663 25.2001 3.19371 26.5855 3.73329 27.7522C4.98746 30.523 7.67079 32.0834 11.3895 32.0834H23.6104C28.9187 32.0834 32.0833 28.9188 32.0833 23.6105V11.3313C31.6604 11.5647 31.1645 11.6667 30.5812 11.6667Z" fill="#454545"/>
-        </svg>
-        <span>تصاویر</span>
-      </div>
-      <div class="add-image-section">
-        <span class="image-name">هیچ فایلی انتخاب نشده</span>
-        <input id="add-image" class="add-image" type="file" accept="image/png, image/jpeg" hidden>
-        <label for="add-image" class="add-image-btn">
-          افزودن تصویر
-        </label>
-      </div>
-    </span>
-    <hr>
-    <div class="selected-images">
-      <div class="image-btn">
-        <input id="image-1" class="uploaded-image check-input-i" type="checkbox" hidden>
-        <label for="image-1" class="image-checkbox">
-          <img src="{% static 'img\300x230\img10.jpg' %}" alt="">
-          <i class="facility-checkbox image-tick">
-            <svg viewBox="0 0 22 16" fill="none">
-              <path d="M1 6.85L8.09677 14L21 1"/>
-            </svg>
-          </i>
-        </label>
-      </div>
-      <div class="image-btn">
-        <input id="image-2" class="uploaded-image check-input-i" type="checkbox" hidden>
-        <label for="image-2" class="image-checkbox">
-          <img src="{% static 'img\300x230\img10.jpg' %}" alt="">
-          <i class="facility-checkbox image-tick">
-            <svg viewBox="0 0 22 16" fill="none">
-              <path d="M1 6.85L8.09677 14L21 1"/>
-            </svg>
-          </i>
-        </label>
-      </div>
-      <div class="image-btn">
-        <input id="image-3" class="uploaded-image check-input-i" type="checkbox" hidden>
-        <label for="image-3" class="image-checkbox">
-          <img src="{% static 'img\300x230\img10.jpg' %}" alt="">
-          <i class="facility-checkbox image-tick">
-            <svg viewBox="0 0 22 16" fill="none">
-              <path d="M1 6.85L8.09677 14L21 1"/>
-            </svg>
-          </i>
-        </label>
-      </div>
-      <div class="image-btn">
-        <input id="image-4" class="uploaded-image check-input-i" type="checkbox" hidden>
-        <label for="image-4" class="image-checkbox">
-          <img src="{% static 'img\300x230\img10.jpg' %}" alt="">
-          <i class="facility-checkbox image-tick">
-            <svg viewBox="0 0 22 16" fill="none">
-              <path d="M1 6.85L8.09677 14L21 1"/>
-            </svg>
-          </i>
-        </label>
-      </div>
-      <div class="image-btn">
-        <input id="image-5" class="uploaded-image check-input-i" type="checkbox" hidden>
-        <label for="image-5" class="image-checkbox">
-          <img src="{% static 'img\300x230\img10.jpg' %}" alt="">
-          <i class="facility-checkbox image-tick">
-            <svg viewBox="0 0 22 16" fill="none">
-              <path d="M1 6.85L8.09677 14L21 1"/>
-            </svg>
-          </i>
-        </label>
-      </div>
-    </div>
-    <div class="action-buttons-image">
-      <button class="action-cancel-image">انصراف</button>
-      <button class="action-save-image">ذخیره</button>
-    </div>
-  </div>
-</div>
-<div class="facilities-overlay">
-  <div class="change-facilities">
-    <span class="change-facilities-header">
-      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-        <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
-        <path d="M12.0313 17.5C12.0313 16.7708 11.4479 16.1875 10.7188 16.1875L3.9375 16.1875C3.20833 16.1875 2.625 16.7708 2.625 17.5C2.625 18.2292 3.20833 18.8125 3.9375 18.8125L10.7188 18.8125C11.4333 18.8125 12.0313 18.2292 12.0313 17.5Z" fill="#454545"/>
-        <path d="M22.9688 8.00626C22.9688 8.73542 23.5521 9.31876 24.2812 9.31876L31.0625 9.31876C31.7917 9.31876 32.375 8.73542 32.375 8.00626C32.375 7.27709 31.7917 6.69376 31.0625 6.69376L24.2812 6.69376C23.5667 6.69376 22.9688 7.27709 22.9688 8.00626Z" fill="#454545"/>
-        <path d="M20.1688 10.7188L20.1688 5.29376C20.1688 4.5646 19.5854 3.98126 18.8563 3.98126C18.1271 3.98126 17.5438 4.5646 17.5438 5.29376L17.5438 6.69376L3.93751 6.69376C3.20835 6.69376 2.62501 7.2771 2.62501 8.00626C2.62501 8.73543 3.20835 9.31876 3.93751 9.31876L17.5438 9.31876L17.5438 10.7188C17.5438 11.4479 18.1271 12.0313 18.8563 12.0313C19.5854 12.0313 20.1688 11.4333 20.1688 10.7188Z" fill="#454545"/>
-        <path d="M20.1688 29.7063L20.1688 24.2812C20.1688 23.5521 19.5854 22.9688 18.8563 22.9688C18.1271 22.9688 17.5438 23.5521 17.5438 24.2812L17.5438 25.6813L3.93751 25.6813C3.20835 25.6813 2.62501 26.2646 2.62501 26.9938C2.62501 27.7229 3.20835 28.3063 3.93751 28.3063L17.5438 28.3063L17.5438 29.7063C17.5438 30.4354 18.1271 31.0188 18.8563 31.0188C19.5854 31.0188 20.1688 30.4354 20.1688 29.7063Z" fill="#454545"/>
-        <path d="M17.4563 20.2125L17.4563 18.8125L31.0625 18.8125C31.7917 18.8125 32.375 18.2291 32.375 17.5C32.375 16.7708 31.7917 16.1875 31.0625 16.1875L17.4563 16.1875L17.4563 14.7875C17.4563 14.0583 16.8729 13.475 16.1438 13.475C15.4146 13.475 14.8313 14.0583 14.8313 14.7875L14.8313 20.2125C14.8313 20.9416 15.4146 21.525 16.1438 21.525C16.8729 21.525 17.4563 20.9416 17.4563 20.2125Z" fill="#454545"/>
-      </svg>
-      <span>امکانات</span>
-    </span>
-    <hr>
-    <div class="selected-facilities">
-      <div class="facility-btn">
-        <span>اینترنت رایگان</span>
-        <input id="input-1" class="check-input-f" type="checkbox">
-        <label for="input-1" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <span>رستوران</span>
-        <input id="input-2" class="check-input-f" type="checkbox">
-        <label for="input-2" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <span>استخر</span>
-        <input id="input-3" class="check-input-f" type="checkbox">
-        <label for="input-3" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <span>استخر</span>
-        <input id="input-4" class="check-input-f" type="checkbox">
-        <label for="input-4" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <span>استخر</span>
-        <input id="input-5" class="check-input-f" type="checkbox">
-        <label for="input-5" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <span>استخر</span>
-        <input id="input-6" class="check-input-f" type="checkbox">
-        <label for="input-6" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <span>استخر</span>
-        <input id="input-7" class="check-input-f" type="checkbox">
-        <label for="input-7" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-    </div>
-    <div class="action-buttons-fac">
-      <button class="action-cancel-fac">انصراف</button>
-      <button class="action-save-fac">ذخیره</button>
-    </div>
-  </div>
-</div>
     <div class="side-panel">
       <div class="logo">
         <a href="/">
           <h2 class="logo-text">برو بیا</h2>
           <img
             class="logo-icon"
-            src="{% static 'img/logo/purelogo.png' %}"
+            src="/static/img/logo/purelogo.png"
             alt="boroobia logo"
           />
         </a>
@@ -1140,7 +683,7 @@
             </a>
           </li>
           <li>
-            <a id="rooms" href="#">
+            <a id="rooms" href="{% url 'hotel-panel' page='room' %}">
               <span>اتاق ها</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -1384,24 +927,22 @@
             </div>
           </div>
           <div class="hotel-facilities">
-            <div class="hotel-facilities-header">
+            <span class="hotel-facilities-header">
               <span class="facilities-text">
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                  <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
-                  <path d="M12.0313 17.5C12.0313 16.7708 11.4479 16.1875 10.7188 16.1875L3.9375 16.1875C3.20833 16.1875 2.625 16.7708 2.625 17.5C2.625 18.2292 3.20833 18.8125 3.9375 18.8125L10.7188 18.8125C11.4333 18.8125 12.0313 18.2292 12.0313 17.5Z" fill="#454545"/>
-                  <path d="M22.9688 8.00626C22.9688 8.73542 23.5521 9.31876 24.2812 9.31876L31.0625 9.31876C31.7917 9.31876 32.375 8.73542 32.375 8.00626C32.375 7.27709 31.7917 6.69376 31.0625 6.69376L24.2812 6.69376C23.5667 6.69376 22.9688 7.27709 22.9688 8.00626Z" fill="#454545"/>
-                  <path d="M20.1688 10.7188L20.1688 5.29376C20.1688 4.5646 19.5854 3.98126 18.8563 3.98126C18.1271 3.98126 17.5438 4.5646 17.5438 5.29376L17.5438 6.69376L3.93751 6.69376C3.20835 6.69376 2.62501 7.2771 2.62501 8.00626C2.62501 8.73543 3.20835 9.31876 3.93751 9.31876L17.5438 9.31876L17.5438 10.7188C17.5438 11.4479 18.1271 12.0313 18.8563 12.0313C19.5854 12.0313 20.1688 11.4333 20.1688 10.7188Z" fill="#454545"/>
-                  <path d="M20.1688 29.7063L20.1688 24.2812C20.1688 23.5521 19.5854 22.9688 18.8563 22.9688C18.1271 22.9688 17.5438 23.5521 17.5438 24.2812L17.5438 25.6813L3.93751 25.6813C3.20835 25.6813 2.62501 26.2646 2.62501 26.9938C2.62501 27.7229 3.20835 28.3063 3.93751 28.3063L17.5438 28.3063L17.5438 29.7063C17.5438 30.4354 18.1271 31.0188 18.8563 31.0188C19.5854 31.0188 20.1688 30.4354 20.1688 29.7063Z" fill="#454545"/>
-                  <path d="M17.4563 20.2125L17.4563 18.8125L31.0625 18.8125C31.7917 18.8125 32.375 18.2291 32.375 17.5C32.375 16.7708 31.7917 16.1875 31.0625 16.1875L17.4563 16.1875L17.4563 14.7875C17.4563 14.0583 16.8729 13.475 16.1438 13.475C15.4146 13.475 14.8313 14.0583 14.8313 14.7875L14.8313 20.2125C14.8313 20.9416 15.4146 21.525 16.1438 21.525C16.8729 21.525 17.4563 20.9416 17.4563 20.2125Z" fill="#454545"/>
-                </svg>
-                <span>امکانات</span>
-              </span>
-            <button class="facility-section">
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                <path d="M7.49996 12.5C7.49996 11.7709 7.78121 11.0417 8.33329 10.4896L15.125 3.69794C15.427 3.39585 15.927 3.39585 16.2291 3.69794C16.5312 4.00002 16.5312 4.50002 16.2291 4.8021L9.43746 11.5938C8.93746 12.0938 8.93746 12.9063 9.43746 13.4063L16.2291 20.1979C16.5312 20.5 16.5312 21 16.2291 21.3021C15.927 21.6042 15.427 21.6042 15.125 21.3021L8.33329 14.5104C7.78121 13.9584 7.49996 13.2292 7.49996 12.5Z" fill="#292D32"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
+                <path d="M12.0313 17.5C12.0313 16.7708 11.4479 16.1875 10.7188 16.1875L3.9375 16.1875C3.20833 16.1875 2.625 16.7708 2.625 17.5C2.625 18.2292 3.20833 18.8125 3.9375 18.8125L10.7188 18.8125C11.4333 18.8125 12.0313 18.2292 12.0313 17.5Z" fill="#454545"/>
+                <path d="M22.9688 8.00626C22.9688 8.73542 23.5521 9.31876 24.2812 9.31876L31.0625 9.31876C31.7917 9.31876 32.375 8.73542 32.375 8.00626C32.375 7.27709 31.7917 6.69376 31.0625 6.69376L24.2812 6.69376C23.5667 6.69376 22.9688 7.27709 22.9688 8.00626Z" fill="#454545"/>
+                <path d="M20.1688 10.7188L20.1688 5.29376C20.1688 4.5646 19.5854 3.98126 18.8563 3.98126C18.1271 3.98126 17.5438 4.5646 17.5438 5.29376L17.5438 6.69376L3.93751 6.69376C3.20835 6.69376 2.62501 7.2771 2.62501 8.00626C2.62501 8.73543 3.20835 9.31876 3.93751 9.31876L17.5438 9.31876L17.5438 10.7188C17.5438 11.4479 18.1271 12.0313 18.8563 12.0313C19.5854 12.0313 20.1688 11.4333 20.1688 10.7188Z" fill="#454545"/>
+                <path d="M20.1688 29.7063L20.1688 24.2812C20.1688 23.5521 19.5854 22.9688 18.8563 22.9688C18.1271 22.9688 17.5438 23.5521 17.5438 24.2812L17.5438 25.6813L3.93751 25.6813C3.20835 25.6813 2.62501 26.2646 2.62501 26.9938C2.62501 27.7229 3.20835 28.3063 3.93751 28.3063L17.5438 28.3063L17.5438 29.7063C17.5438 30.4354 18.1271 31.0188 18.8563 31.0188C19.5854 31.0188 20.1688 30.4354 20.1688 29.7063Z" fill="#454545"/>
+                <path d="M17.4563 20.2125L17.4563 18.8125L31.0625 18.8125C31.7917 18.8125 32.375 18.2291 32.375 17.5C32.375 16.7708 31.7917 16.1875 31.0625 16.1875L17.4563 16.1875L17.4563 14.7875C17.4563 14.0583 16.8729 13.475 16.1438 13.475C15.4146 13.475 14.8313 14.0583 14.8313 14.7875L14.8313 20.2125C14.8313 20.9416 15.4146 21.525 16.1438 21.525C16.8729 21.525 17.4563 20.9416 17.4563 20.2125Z" fill="#454545"/>
               </svg>
-            </button>
-          </div>
+              <span>امکانات</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+              <path d="M7.49996 12.5C7.49996 11.7709 7.78121 11.0417 8.33329 10.4896L15.125 3.69794C15.427 3.39585 15.927 3.39585 16.2291 3.69794C16.5312 4.00002 16.5312 4.50002 16.2291 4.8021L9.43746 11.5938C8.93746 12.0938 8.93746 12.9063 9.43746 13.4063L16.2291 20.1979C16.5312 20.5 16.5312 21 16.2291 21.3021C15.927 21.6042 15.427 21.6042 15.125 21.3021L8.33329 14.5104C7.78121 13.9584 7.49996 13.2292 7.49996 12.5Z" fill="#292D32"/>
+            </svg>
+          </span>
           <ul class="hotel-facilities-content">
             <hr style="margin: 0;">
               {% for facility in myHotel.hotel.facilities.all %}
@@ -1422,11 +963,9 @@
                 </svg>
                 <span>تصاویر</span>
               </span>
-              <button class="image-section">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                  <path d="M7.49996 12.5C7.49996 11.7709 7.78121 11.0417 8.33329 10.4896L15.125 3.69794C15.427 3.39585 15.927 3.39585 16.2291 3.69794C16.5312 4.00002 16.5312 4.50002 16.2291 4.8021L9.43746 11.5938C8.93746 12.0938 8.93746 12.9063 9.43746 13.4063L16.2291 20.1979C16.5312 20.5 16.5312 21 16.2291 21.3021C15.927 21.6042 15.427 21.6042 15.125 21.3021L8.33329 14.5104C7.78121 13.9584 7.49996 13.2292 7.49996 12.5Z" fill="#292D32"/>
-                </svg>
-              </button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+              <path d="M7.49996 12.5C7.49996 11.7709 7.78121 11.0417 8.33329 10.4896L15.125 3.69794C15.427 3.39585 15.927 3.39585 16.2291 3.69794C16.5312 4.00002 16.5312 4.50002 16.2291 4.8021L9.43746 11.5938C8.93746 12.0938 8.93746 12.9063 9.43746 13.4063L16.2291 20.1979C16.5312 20.5 16.5312 21 16.2291 21.3021C15.927 21.6042 15.427 21.6042 15.125 21.3021L8.33329 14.5104C7.78121 13.9584 7.49996 13.2292 7.49996 12.5Z" fill="#292D32"/>
+            </svg>
           </span>
           <ul class="hotel-images-content">
             <hr>
@@ -1462,43 +1001,5 @@
     // Toggle the "show-dp" class on the profile dropdown content element
     profileDropdownContent.classList.toggle('show-dp');
   });
-
-  const fOverlay = document.querySelector('.facilities-overlay')
-
-  document.querySelector('.facility-section').addEventListener('click', () => {
-    fOverlay.classList.add('show-overlay')
-  })
-
-  document.querySelector('.action-cancel-fac').addEventListener('click', () => {
-    fOverlay.classList.remove('show-overlay')
-    document.querySelectorAll('.check-input-f').forEach(ci => {
-      ci.checked = false
-    })
-  })
-
-  const imageInput = document.querySelector('.add-image')
-  const imageName = document.querySelector('.image-name')
-
-  imageInput.addEventListener('change', () => {
-    if(imageInput.value){
-      imageName.innerHTML = imageInput.value
-    }else{
-      imageName.innerHTML = 'هیچ فایلی انتخاب نشده'
-      console.log(imageInput.value)
-    }
-  })
-
-  const imagesOverlay = document.querySelector('.images-overlay')
-
-  document.querySelector('.image-section').addEventListener('click', () => {
-    imagesOverlay.classList.add('show-overlay')
-  })
-
-  document.querySelector('.action-cancel-image').addEventListener('click', () => {
-    imagesOverlay.classList.remove('show-overlay')
-    document.querySelectorAll('.check-input-i').forEach(ci => {
-      ci.checked = false
-    })
-  })
 </script>
 {% endblock %}
