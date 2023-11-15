@@ -41524,6 +41524,9 @@ label.btn {
 .min-height-230 {
     min-height: 14.375rem;
 }
+.max-height-230 {
+    max-height: 14.375rem;
+}
 
 .min-height-240 {
     min-height: 15rem;

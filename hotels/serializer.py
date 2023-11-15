@@ -1,6 +1,6 @@
 from rest_framework import serializers,viewsets
 
-from main.models import Hotel
+from hotels.models import Hotel
 
 
 

@@ -7,7 +7,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User,HotelManagerModel
-from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm
+from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm
 import main
 
 
@@ -42,7 +42,7 @@ def RegisterView(request):
             'registerForm': registerForm
         }
 
-        return render(request, 'hotel-home.html', context)
+        return HttpResponseRedirect(reverse(hotels.views.HotelHomeView))
     else:
         registerForm = RegisterForm()
         context = {
@@ -108,20 +108,28 @@ def UserProfileView(request):
         isHotelManager = True
     except HotelManagerModel.DoesNotExist:
         isHotelManager = False
+    form = CustomPasswordChangeForm(request.user)
+    updateProfileForm = UserProfileForm()
     if request.method == 'POST':
-        form = CustomPasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('profile')
-        else:
-            messages.error(request, 'Please correct the error below.')
+        if 'phone' in request.POST:
+            updateProfileForm = UserProfileForm(request.POST, request.FILES, instance=request.user)
+            if updateProfileForm.is_valid():
+                updateProfileForm.save()
+
+        elif 'old_password' in request.POST:
+            form = CustomPasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)
+                updateProfileForm = YourUpdateProfileForm()
+
     else:
         form = CustomPasswordChangeForm(request.user)
+        updateProfileForm = UserProfileForm()
 
     context = {
         'form': form,
+        'updateProfileForm':updateProfileForm,
         'isHotelManager': isHotelManager
     }
     return render(request, 'accounts/user_profile.html', context)
@@ -129,7 +137,7 @@ def UserProfileView(request):
 @login_required
 def HotelAdminView(request,page):
     myHotel = HotelManagerModel.objects.get(user=request.user)
-    template_name = f'accounts/hotel_panel_{page}.html'
+    template_name = f'accounts/hotel-panel/hotel_panel_{page}.html'
 
     context = {
         'myHotel': myHotel

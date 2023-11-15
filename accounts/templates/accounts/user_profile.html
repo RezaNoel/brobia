@@ -36,8 +36,12 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="{% static 'img/200x200/agent.png' %}" alt="Profile" class="rounded-circle">
-              <h2>{{ user.first_name}} {{ user.last_name }}</h2>
+              <img src="{% if user.profile %}
+              {{user.profile.url}}
+              {% else %}
+              {% static 'img/200x200/agent.png' %}
+              {% endif %}" alt="Profile" class="rounded-circle">
+              <h2>{% if user.first_name %}{{ user.first_name}} {{ user.last_name }}{% else %}نام کاربری خود را انتخاب کنید{% endif %}</h2>
               <h3>{{ user.phone }}</h3>
 
             </div>
@@ -259,58 +263,55 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
+
                   <form method="POST">
-                    <div class="row mb-3">
+                    {% csrf_token %}
+                      <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">عکس پروفایل</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2">
-                          <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i class="bi bi-upload">بارگذاری</i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash">حذف</i></a>
-                        </div>
+                        <img src="{% if user.profile %}{{user.profile.url}}{% else %}{% static 'img/200x200/agent.png' %}{% endif %}" alt="Profile">
+                      {{ updateProfileForm.profile }}
+{#                        <div class="pt-2">#}
+{#                          <button type="submit" class="btn btn-warning"><i class="bi bi-upload">بارگذاری</i></button>#}
+{#                        </div>#}
                       </div>
                     </div>
                     <div class="row mb-3">
                       <label for="Firstname" class="col-md-4 col-lg-3 col-form-label">نام</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="firstname" type="text" class="form-control" id="company" >
+                          {{ updateProfileForm.first_name }}
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Lastname" class="col-md-4 col-lg-3 col-form-label">نام خانوادگی</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="lastname" type="text" class="form-control" id="Job" >
+                        {{ updateProfileForm.last_name }}
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Nid" class="col-md-4 col-lg-3 col-form-label">کد ملی</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="nid" type="text" class="form-control" id="nid" >
+                        {{ updateProfileForm.nid }}
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Birthdate" class="col-md-4 col-lg-3 col-form-label">تاریخ تولد</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="birthdate" type="text" class="form-control" id="birthdate" >
+                        {{ updateProfileForm.birthdate }}
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">ایمیل</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="text" class="form-control" id="email" >
+                        {{ updateProfileForm.email }}
                       </div>
                     </div>
 
-                    <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">شماره همراه</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="email" class="form-control" id="phoen" >
-                      </div>
-                    </div>
+
 
 
                     <div class="text-center">

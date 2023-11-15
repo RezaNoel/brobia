@@ -3,8 +3,9 @@
 <div class="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1 my-3 ">
     <div class="card transition-3d-hover shadow-hover-2 h-100 w-100">
         <div class="position-relative">
+
             <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
-                <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:hotel.name|add:'.jpeg' %}" alt="{{ hotel.name }}">
+                <img class="min-height-230 max-height-230 bg-img-hero card-img-top" src="{{ hotel.thumbnail.url }}" alt="{{ hotel.name }}">
             </a>
             <form method="POST" action={% url 'likepk' hotel.pk %}>
                 {% csrf_token %}
@@ -40,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">{{ hotel.faname}}</a>
+            <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">هتل {{ hotel.faname}} {{ hotel.city }}</a>
             <div class="mt-2 mb-3">
                 <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ hotel.stars }} ستاره </span>
             </div>

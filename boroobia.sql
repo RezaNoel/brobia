@@ -1,944 +1,294 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Oct 21, 2023 at 07:04 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               10.4.24-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             12.1.0.6537
+-- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Database: `brobia`
---
+-- Dumping data for table boroobia.accounts_hotelmanagermodel: ~2 rows (approximately)
+INSERT INTO `accounts_hotelmanagermodel` (`id`, `hotel_id`, `user_id`) VALUES
+	(1, 1, 2),
+	(2, 2, 3);
 
--- --------------------------------------------------------
+-- Dumping data for table boroobia.accounts_user: ~3 rows (approximately)
+INSERT INTO `accounts_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `phone`, `nid`, `birthdate`, `hotel_manager`, `profile`) VALUES
+	(1, 'pbkdf2_sha256$600000$ia67TLA4OulVUYiIApkAMP$lEdZWBwmfr5pnyjiUNHSh8IVVchZjAdlcinfF1oQGlo=', '2023-11-15 10:44:03.859771', 1, 'mosjofa@5H2', '', '', 'boroobia.ir@gmail.com', 1, 1, '2023-11-15 10:43:02.881879', '', '', '', 0, ''),
+	(2, 'pbkdf2_sha256$600000$5LSx6TYIcvxxlEs4qSTlmQ$2nOW5bdhxilEdAlMscPIYtVCKn/nqLGu7UvQSUmPveA=', '2023-11-15 18:17:05.000000', 0, '09129471382', '', '', '', 0, 1, '2023-11-15 15:12:45.000000', '09129471382', '1160474745', '', 0, ''),
+	(3, 'pbkdf2_sha256$600000$PrASJeB9vXXfdRjbxJUxzr$cIU5Mnq0cdoTM6yGadpdh2Na7j0mpY9A3MAaIplDxX0=', '2023-11-15 17:03:24.000000', 0, '09129471383', 'رضا', 'توانگر', 'rezatavangar112@gmail.com', 0, 1, '2023-11-15 17:03:23.000000', '09129471384', '1160474745', '1402/06/02', 0, 'static/img/profiles/4bd4826bcc49156c_mHuyiH0.jpg');
 
---
--- Table structure for table `accounts_user`
---
+-- Dumping data for table boroobia.accounts_user_groups: ~0 rows (approximately)
 
-CREATE TABLE `accounts_user` (
-  `id` bigint(20) NOT NULL,
-  `password` varchar(128) NOT NULL,
-  `last_login` datetime(6) DEFAULT NULL,
-  `is_superuser` tinyint(1) NOT NULL,
-  `username` varchar(150) NOT NULL,
-  `first_name` varchar(150) NOT NULL,
-  `last_name` varchar(150) NOT NULL,
-  `email` varchar(254) NOT NULL,
-  `is_staff` tinyint(1) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
-  `date_joined` datetime(6) NOT NULL,
-  `phone` varchar(11) NOT NULL,
-  `nid` varchar(10) NOT NULL,
-  `birthdate` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Dumping data for table boroobia.accounts_user_hotel_likes: ~0 rows (approximately)
 
---
--- Dumping data for table `accounts_user`
---
+-- Dumping data for table boroobia.accounts_user_reserves: ~0 rows (approximately)
 
-INSERT INTO `accounts_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `phone`, `nid`, `birthdate`) VALUES
-(1, 'pbkdf2_sha256$600000$phdfTGH1hvd7Olt9Aj0vQF$19Vh/+cJFSClyrT2F4o3+N3O4eU5CATkx4uqbjDXpFA=', '2023-10-19 15:33:25.351631', 0, '09129471382', 'رضا', 'توانگر', '', 0, 1, '2023-08-26 15:35:10.544361', '09129471382', '', ''),
-(2, 'pbkdf2_sha256$600000$xXEpsrC5ChKCkn48jh2GV6$X4f+Jfg0WUuGPzqJQqPxJ1khnJkjs0KFDmydwzkCmbc=', '2023-10-20 17:57:19.515951', 1, 'reza', '', '', 'reza@reza.com', 1, 1, '2023-09-01 02:53:57.924803', '', '', '');
+-- Dumping data for table boroobia.accounts_user_user_permissions: ~0 rows (approximately)
 
--- --------------------------------------------------------
+-- Dumping data for table boroobia.authtoken_token: ~0 rows (approximately)
 
---
--- Table structure for table `accounts_user_groups`
---
+-- Dumping data for table boroobia.auth_group: ~0 rows (approximately)
 
-CREATE TABLE `accounts_user_groups` (
-  `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `group_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Dumping data for table boroobia.auth_group_permissions: ~0 rows (approximately)
 
--- --------------------------------------------------------
-
---
--- Table structure for table `accounts_user_hotel_likes`
---
-
-CREATE TABLE `accounts_user_hotel_likes` (
-  `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `hotel_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `accounts_user_reserves`
---
-
-CREATE TABLE `accounts_user_reserves` (
-  `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `request_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `accounts_user_user_permissions`
---
-
-CREATE TABLE `accounts_user_user_permissions` (
-  `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auth_group`
---
-
-CREATE TABLE `auth_group` (
-  `id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auth_group_permissions`
---
-
-CREATE TABLE `auth_group_permissions` (
-  `id` bigint(20) NOT NULL,
-  `group_id` int(11) NOT NULL,
-  `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auth_permission`
---
-
-CREATE TABLE `auth_permission` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `content_type_id` int(11) NOT NULL,
-  `codename` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `auth_permission`
---
-
+-- Dumping data for table boroobia.auth_permission: ~80 rows (approximately)
 INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
-(1, 'Can add log entry', 1, 'add_logentry'),
-(2, 'Can change log entry', 1, 'change_logentry'),
-(3, 'Can delete log entry', 1, 'delete_logentry'),
-(4, 'Can view log entry', 1, 'view_logentry'),
-(5, 'Can add permission', 2, 'add_permission'),
-(6, 'Can change permission', 2, 'change_permission'),
-(7, 'Can delete permission', 2, 'delete_permission'),
-(8, 'Can view permission', 2, 'view_permission'),
-(9, 'Can add group', 3, 'add_group'),
-(10, 'Can change group', 3, 'change_group'),
-(11, 'Can delete group', 3, 'delete_group'),
-(12, 'Can view group', 3, 'view_group'),
-(13, 'Can add content type', 4, 'add_contenttype'),
-(14, 'Can change content type', 4, 'change_contenttype'),
-(15, 'Can delete content type', 4, 'delete_contenttype'),
-(16, 'Can view content type', 4, 'view_contenttype'),
-(17, 'Can add session', 5, 'add_session'),
-(18, 'Can change session', 5, 'change_session'),
-(19, 'Can delete session', 5, 'delete_session'),
-(20, 'Can view session', 5, 'view_session'),
-(21, 'Can add شهر', 6, 'add_city'),
-(22, 'Can change شهر', 6, 'change_city'),
-(23, 'Can delete شهر', 6, 'delete_city'),
-(24, 'Can view شهر', 6, 'view_city'),
-(25, 'Can add اماکانات', 7, 'add_facility'),
-(26, 'Can change اماکانات', 7, 'change_facility'),
-(27, 'Can delete اماکانات', 7, 'delete_facility'),
-(28, 'Can view اماکانات', 7, 'view_facility'),
-(29, 'Can add هتل', 8, 'add_hotel'),
-(30, 'Can change هتل', 8, 'change_hotel'),
-(31, 'Can delete هتل', 8, 'delete_hotel'),
-(32, 'Can view هتل', 8, 'view_hotel'),
-(33, 'Can add اتاق', 9, 'add_room'),
-(34, 'Can change اتاق', 9, 'change_room'),
-(35, 'Can delete اتاق', 9, 'delete_room'),
-(36, 'Can view اتاق', 9, 'view_room'),
-(37, 'Can add درخواست', 10, 'add_request'),
-(38, 'Can change درخواست', 10, 'change_request'),
-(39, 'Can delete درخواست', 10, 'delete_request'),
-(40, 'Can view درخواست', 10, 'view_request'),
-(41, 'Can add مسافران', 11, 'add_passenger'),
-(42, 'Can change مسافران', 11, 'change_passenger'),
-(43, 'Can delete مسافران', 11, 'delete_passenger'),
-(44, 'Can view مسافران', 11, 'view_passenger'),
-(45, 'Can add اطلاعات کاربر', 12, 'add_user'),
-(46, 'Can change اطلاعات کاربر', 12, 'change_user'),
-(47, 'Can delete اطلاعات کاربر', 12, 'delete_user'),
-(48, 'Can view اطلاعات کاربر', 12, 'view_user');
+	(1, 'Can add log entry', 1, 'add_logentry'),
+	(2, 'Can change log entry', 1, 'change_logentry'),
+	(3, 'Can delete log entry', 1, 'delete_logentry'),
+	(4, 'Can view log entry', 1, 'view_logentry'),
+	(5, 'Can add permission', 2, 'add_permission'),
+	(6, 'Can change permission', 2, 'change_permission'),
+	(7, 'Can delete permission', 2, 'delete_permission'),
+	(8, 'Can view permission', 2, 'view_permission'),
+	(9, 'Can add group', 3, 'add_group'),
+	(10, 'Can change group', 3, 'change_group'),
+	(11, 'Can delete group', 3, 'delete_group'),
+	(12, 'Can view group', 3, 'view_group'),
+	(13, 'Can add content type', 4, 'add_contenttype'),
+	(14, 'Can change content type', 4, 'change_contenttype'),
+	(15, 'Can delete content type', 4, 'delete_contenttype'),
+	(16, 'Can view content type', 4, 'view_contenttype'),
+	(17, 'Can add session', 5, 'add_session'),
+	(18, 'Can change session', 5, 'change_session'),
+	(19, 'Can delete session', 5, 'delete_session'),
+	(20, 'Can view session', 5, 'view_session'),
+	(21, 'Can add اطلاعات کاربر', 6, 'add_user'),
+	(22, 'Can change اطلاعات کاربر', 6, 'change_user'),
+	(23, 'Can delete اطلاعات کاربر', 6, 'delete_user'),
+	(24, 'Can view اطلاعات کاربر', 6, 'view_user'),
+	(25, 'Can add اطلاعات منیجر هتل', 7, 'add_hotelmanagermodel'),
+	(26, 'Can change اطلاعات منیجر هتل', 7, 'change_hotelmanagermodel'),
+	(27, 'Can delete اطلاعات منیجر هتل', 7, 'delete_hotelmanagermodel'),
+	(28, 'Can view اطلاعات منیجر هتل', 7, 'view_hotelmanagermodel'),
+	(29, 'Can add شهر', 8, 'add_city'),
+	(30, 'Can change شهر', 8, 'change_city'),
+	(31, 'Can delete شهر', 8, 'delete_city'),
+	(32, 'Can view شهر', 8, 'view_city'),
+	(33, 'Can add اماکانات', 9, 'add_facility'),
+	(34, 'Can change اماکانات', 9, 'change_facility'),
+	(35, 'Can delete اماکانات', 9, 'delete_facility'),
+	(36, 'Can view اماکانات', 9, 'view_facility'),
+	(37, 'Can add هتل', 10, 'add_hotel'),
+	(38, 'Can change هتل', 10, 'change_hotel'),
+	(39, 'Can delete هتل', 10, 'delete_hotel'),
+	(40, 'Can view هتل', 10, 'view_hotel'),
+	(41, 'Can add تصویر', 11, 'add_image'),
+	(42, 'Can change تصویر', 11, 'change_image'),
+	(43, 'Can delete تصویر', 11, 'delete_image'),
+	(44, 'Can view تصویر', 11, 'view_image'),
+	(45, 'Can add اتاق', 12, 'add_room'),
+	(46, 'Can change اتاق', 12, 'change_room'),
+	(47, 'Can delete اتاق', 12, 'delete_room'),
+	(48, 'Can view اتاق', 12, 'view_room'),
+	(49, 'Can add room image', 13, 'add_roomimage'),
+	(50, 'Can change room image', 13, 'change_roomimage'),
+	(51, 'Can delete room image', 13, 'delete_roomimage'),
+	(52, 'Can view room image', 13, 'view_roomimage'),
+	(53, 'Can add درخواست', 14, 'add_request'),
+	(54, 'Can change درخواست', 14, 'change_request'),
+	(55, 'Can delete درخواست', 14, 'delete_request'),
+	(56, 'Can view درخواست', 14, 'view_request'),
+	(57, 'Can add مسافران', 15, 'add_passenger'),
+	(58, 'Can change مسافران', 15, 'change_passenger'),
+	(59, 'Can delete مسافران', 15, 'delete_passenger'),
+	(60, 'Can view مسافران', 15, 'view_passenger'),
+	(61, 'Can add hotel image', 16, 'add_hotelimage'),
+	(62, 'Can change hotel image', 16, 'change_hotelimage'),
+	(63, 'Can delete hotel image', 16, 'delete_hotelimage'),
+	(64, 'Can view hotel image', 16, 'view_hotelimage'),
+	(65, 'Can add blog category model', 17, 'add_blogcategorymodel'),
+	(66, 'Can change blog category model', 17, 'change_blogcategorymodel'),
+	(67, 'Can delete blog category model', 17, 'delete_blogcategorymodel'),
+	(68, 'Can view blog category model', 17, 'view_blogcategorymodel'),
+	(69, 'Can add وبلاگ', 18, 'add_blogmodel'),
+	(70, 'Can change وبلاگ', 18, 'change_blogmodel'),
+	(71, 'Can delete وبلاگ', 18, 'delete_blogmodel'),
+	(72, 'Can view وبلاگ', 18, 'view_blogmodel'),
+	(73, 'Can add Token', 19, 'add_token'),
+	(74, 'Can change Token', 19, 'change_token'),
+	(75, 'Can delete Token', 19, 'delete_token'),
+	(76, 'Can view Token', 19, 'view_token'),
+	(77, 'Can add token', 20, 'add_tokenproxy'),
+	(78, 'Can change token', 20, 'change_tokenproxy'),
+	(79, 'Can delete token', 20, 'delete_tokenproxy'),
+	(80, 'Can view token', 20, 'view_tokenproxy');
 
--- --------------------------------------------------------
+-- Dumping data for table boroobia.blogs_blogcategorymodel: ~0 rows (approximately)
 
---
--- Table structure for table `django_admin_log`
---
+-- Dumping data for table boroobia.blogs_blogmodel: ~0 rows (approximately)
 
-CREATE TABLE `django_admin_log` (
-  `id` int(11) NOT NULL,
-  `action_time` datetime(6) NOT NULL,
-  `object_id` longtext DEFAULT NULL,
-  `object_repr` varchar(200) NOT NULL,
-  `action_flag` smallint(5) UNSIGNED NOT NULL CHECK (`action_flag` >= 0),
-  `change_message` longtext NOT NULL,
-  `content_type_id` int(11) DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `django_admin_log`
---
-
+-- Dumping data for table boroobia.django_admin_log: ~45 rows (approximately)
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-(1, '2023-09-01 06:28:25.085704', '22', 'xzmnMvbajM', 2, '[{\"changed\": {\"fields\": [\"\\u0648\\u0636\\u0639\\u06cc\\u062a\"]}}]', 10, 2),
-(2, '2023-09-04 10:04:59.715842', '3', 'جام جم - کیش', 2, '[{\"changed\": {\"fields\": [\"\\u0644\\u06cc\\u0646\\u06a9\"]}}]', 8, 2),
-(3, '2023-09-04 10:05:07.741383', '3', 'جام جم - کیش', 2, '[{\"changed\": {\"fields\": [\"\\u0644\\u06cc\\u0646\\u06a9\"]}}]', 8, 2),
-(4, '2023-09-06 07:54:56.372636', '23', 'sxd28scPfZ', 2, '[{\"changed\": {\"fields\": [\"\\u0648\\u0636\\u0639\\u06cc\\u062a\"]}}]', 10, 2),
-(5, '2023-09-06 08:00:07.610579', '23', 'sxd28scPfZ', 2, '[{\"changed\": {\"fields\": [\"\\u0648\\u0636\\u0639\\u06cc\\u062a \\u0631\\u0632\\u0631\\u0648\"]}}]', 10, 2),
-(6, '2023-09-06 08:00:25.729480', '23', 'sxd28scPfZ', 2, '[{\"changed\": {\"fields\": [\"\\u0632\\u0645\\u0627\\u0646 \\u0631\\u0632\\u0631\\u0648\"]}}]', 10, 2),
-(7, '2023-09-07 07:20:02.462049', '4', 'هما - مشهد', 1, '[{\"added\": {}}]', 8, 2),
-(8, '2023-09-07 07:21:00.074306', '4', 'هما - مشهد', 2, '[{\"changed\": {\"fields\": [\"\\u0622\\u062f\\u0631\\u0633\"]}}]', 8, 2),
-(9, '2023-09-10 06:36:05.383743', '24', 'Ncd9fMBdSt', 2, '[{\"changed\": {\"fields\": [\"\\u0648\\u0636\\u0639\\u06cc\\u062a\"]}}]', 10, 2),
-(10, '2023-09-10 06:37:08.754601', '24', 'Ncd9fMBdSt', 2, '[{\"changed\": {\"fields\": [\"\\u0648\\u0636\\u0639\\u06cc\\u062a \\u0631\\u0632\\u0631\\u0648\"]}}]', 10, 2),
-(11, '2023-10-19 16:10:45.941624', '5', 'تبریز', 2, '[{\"changed\": {\"fields\": [\"\\u0646\\u0627\\u0645 \\u0627\\u0635\\u0644\\u06cc\"]}}]', 6, 2),
-(12, '2023-10-19 16:10:49.626275', '6', 'شیراز', 2, '[{\"changed\": {\"fields\": [\"\\u0646\\u0627\\u0645 \\u0627\\u0635\\u0644\\u06cc\"]}}]', 6, 2);
+	(1, '2023-11-15 10:45:44.923622', '1', 'کیش', 1, '[{"added": {}}]', 8, 1),
+	(2, '2023-11-15 10:45:56.349966', '2', 'مشهد', 1, '[{"added": {}}]', 8, 1),
+	(3, '2023-11-15 10:46:03.385245', '3', 'اصفهان', 1, '[{"added": {}}]', 8, 1),
+	(4, '2023-11-15 10:46:10.892657', '4', 'قشم', 1, '[{"added": {}}]', 8, 1),
+	(5, '2023-11-15 10:46:17.312714', '5', 'شیراز', 1, '[{"added": {}}]', 8, 1),
+	(6, '2023-11-15 10:46:31.343630', '6', 'تبریز', 1, '[{"added": {}}]', 8, 1),
+	(7, '2023-11-15 10:46:47.235341', '6', 'تبریز', 2, '[{"changed": {"fields": ["\\u0646\\u0627\\u0645 \\u0627\\u0635\\u0644\\u06cc"]}}]', 8, 1),
+	(8, '2023-11-15 10:46:50.731381', '5', 'شیراز', 2, '[{"changed": {"fields": ["\\u0646\\u0627\\u0645 \\u0627\\u0635\\u0644\\u06cc"]}}]', 8, 1),
+	(9, '2023-11-15 10:46:54.099688', '4', 'قشم', 2, '[{"changed": {"fields": ["\\u0646\\u0627\\u0645 \\u0627\\u0635\\u0644\\u06cc"]}}]', 8, 1),
+	(10, '2023-11-15 10:46:57.930362', '3', 'اصفهان', 2, '[{"changed": {"fields": ["\\u0646\\u0627\\u0645 \\u0627\\u0635\\u0644\\u06cc"]}}]', 8, 1),
+	(11, '2023-11-15 10:47:01.568368', '2', 'مشهد', 2, '[{"changed": {"fields": ["\\u0646\\u0627\\u0645 \\u0627\\u0635\\u0644\\u06cc"]}}]', 8, 1),
+	(12, '2023-11-15 10:47:06.379499', '1', 'کیش', 2, '[{"changed": {"fields": ["\\u0646\\u0627\\u0645 \\u0627\\u0635\\u0644\\u06cc"]}}]', 8, 1),
+	(13, '2023-11-15 10:47:56.011200', '7', 'تهران', 1, '[{"added": {}}]', 8, 1),
+	(14, '2023-11-15 10:56:10.303488', '1', 'الماس 2 - مشهد', 1, '[{"added": {}}]', 10, 1),
+	(15, '2023-11-15 10:56:37.494836', '1', 'الماس 2 - مشهد', 2, '[{"changed": {"fields": ["\\u0641\\u0627\\u0635\\u0644\\u0647 \\u062a\\u0627 \\u0645\\u06a9\\u0627\\u0646 \\u0645\\u062d\\u0628\\u0648\\u0628"]}}]', 10, 1),
+	(16, '2023-11-15 10:58:36.917797', '1', 'هتل الماس 2', 1, '[{"added": {}}]', 11, 1),
+	(17, '2023-11-15 10:58:49.430040', '1', 'الماس 2 - مشهد', 2, '[{"added": {"name": "hotel image", "object": "HotelImage object (1)"}}]', 10, 1),
+	(18, '2023-11-15 11:07:54.050464', '1', 'الماس 2 - مشهد', 2, '[{"changed": {"fields": ["\\u0639\\u06a9\\u0633 \\u0627\\u0635\\u0644\\u06cc"]}}]', 10, 1),
+	(19, '2023-11-15 12:36:34.824554', '1', 'الماس 2 - مشهد', 2, '[{"changed": {"fields": ["\\u0631\\u0632\\u0631\\u0648 \\u0622\\u0646\\u0644\\u0627\\u06cc\\u0646"]}}]', 10, 1),
+	(20, '2023-11-15 12:46:21.862235', '1', 'الماس 2 - مشهد', 2, '[{"changed": {"fields": ["\\u067e\\u06cc\\u0634\\u0646\\u0647\\u0627\\u062f \\u0628\\u0631\\u0648\\u0628\\u06cc\\u0627"]}}]', 10, 1),
+	(21, '2023-11-15 12:52:37.025497', '2', 'داریوش - کیش', 1, '[{"added": {}}]', 10, 1),
+	(22, '2023-11-15 12:52:58.587291', '2', 'داریوش کیش', 1, '[{"added": {}}]', 11, 1),
+	(23, '2023-11-15 12:53:05.002552', '2', 'داریوش - کیش', 2, '[{"added": {"name": "hotel image", "object": "HotelImage object (2)"}}]', 10, 1),
+	(24, '2023-11-15 12:56:05.717806', '3', 'هتل فلامینگو کیش', 1, '[{"added": {}}]', 11, 1),
+	(25, '2023-11-15 12:56:07.014945', '3', 'فلامینگو - کیش', 1, '[{"added": {}}, {"added": {"name": "hotel image", "object": "HotelImage object (3)"}}]', 10, 1),
+	(26, '2023-11-15 13:00:50.718642', '4', 'هتل پارسیان آزادی تهران', 1, '[{"added": {}}]', 11, 1),
+	(27, '2023-11-15 13:00:52.022306', '4', 'پارسیان آزادی - تهران', 1, '[{"added": {}}, {"added": {"name": "hotel image", "object": "HotelImage object (4)"}}]', 10, 1),
+	(28, '2023-11-15 13:09:46.193061', '5', 'هتل پرشین پلازا تهران', 1, '[{"added": {}}]', 11, 1),
+	(29, '2023-11-15 13:09:48.447388', '5', 'پرشین پلازا - تهران', 1, '[{"added": {}}, {"added": {"name": "hotel image", "object": "HotelImage object (5)"}}]', 10, 1),
+	(30, '2023-11-15 13:19:09.367392', '5', 'پرشین پلازا - مشهد', 2, '[{"changed": {"fields": ["\\u0634\\u0647\\u0631", "\\u0631\\u0632\\u0631\\u0648 \\u0622\\u0646\\u0644\\u0627\\u06cc\\u0646"]}}]', 10, 1),
+	(31, '2023-11-15 13:19:23.045461', '4', 'پارسیان آزادی - مشهد', 2, '[{"changed": {"fields": ["\\u0634\\u0647\\u0631", "\\u0631\\u0632\\u0631\\u0648 \\u0622\\u0646\\u0644\\u0627\\u06cc\\u0646"]}}]', 10, 1),
+	(32, '2023-11-15 13:19:28.524353', '3', 'فلامینگو - مشهد', 2, '[{"changed": {"fields": ["\\u0634\\u0647\\u0631", "\\u0631\\u0632\\u0631\\u0648 \\u0622\\u0646\\u0644\\u0627\\u06cc\\u0646"]}}]', 10, 1),
+	(33, '2023-11-15 13:19:33.523957', '2', 'داریوش - مشهد', 2, '[{"changed": {"fields": ["\\u0634\\u0647\\u0631", "\\u0631\\u0632\\u0631\\u0648 \\u0622\\u0646\\u0644\\u0627\\u06cc\\u0646"]}}]', 10, 1),
+	(34, '2023-11-15 14:37:17.055638', '5', 'پرشین پلازا - کیش', 2, '[{"changed": {"fields": ["\\u0634\\u0647\\u0631"]}}]', 10, 1),
+	(35, '2023-11-15 14:39:04.219765', '5', 'پرشین پلازا - مشهد', 2, '[{"changed": {"fields": ["\\u0634\\u0647\\u0631"]}}]', 10, 1),
+	(36, '2023-11-15 14:41:54.387758', '6', 'هتل پرشین استقلال تهران', 1, '[{"added": {}}]', 11, 1),
+	(37, '2023-11-15 14:41:55.551806', '6', 'پرشین استقلال - تهران', 1, '[{"added": {}}, {"added": {"name": "hotel image", "object": "HotelImage object (6)"}}]', 10, 1),
+	(38, '2023-11-15 14:42:10.275607', '6', 'پرشین استقلال - تهران', 2, '[]', 10, 1),
+	(39, '2023-11-15 15:13:12.767299', '1', '09129471382 - الماس 2 - مشهد', 1, '[{"added": {}}]', 7, 1),
+	(40, '2023-11-15 16:56:43.439128', '2', '09129471382', 2, '[{"changed": {"fields": ["\\u0639\\u06a9\\u0633 \\u067e\\u0631\\u0648\\u0641\\u0627\\u06cc\\u0644"]}}]', 6, 1),
+	(41, '2023-11-15 17:08:16.663093', '3', '09129471383', 2, '[{"changed": {"fields": ["\\u0639\\u06a9\\u0633 \\u067e\\u0631\\u0648\\u0641\\u0627\\u06cc\\u0644"]}}]', 6, 1),
+	(42, '2023-11-15 17:11:03.422232', '3', '09129471383', 2, '[{"changed": {"fields": ["\\u0639\\u06a9\\u0633 \\u067e\\u0631\\u0648\\u0641\\u0627\\u06cc\\u0644"]}}]', 6, 1),
+	(43, '2023-11-15 17:12:30.038851', '3', '09129471383', 2, '[{"changed": {"fields": ["\\u0639\\u06a9\\u0633 \\u067e\\u0631\\u0648\\u0641\\u0627\\u06cc\\u0644"]}}]', 6, 1),
+	(44, '2023-11-15 18:16:52.953574', '2', 'رضا توانگر - داریوش - مشهد', 1, '[{"added": {}}]', 7, 1),
+	(45, '2023-11-15 18:17:29.957223', '2', '09129471382', 2, '[{"changed": {"fields": ["\\u0634\\u0645\\u0627\\u0631\\u0647 \\u0647\\u0645\\u0631\\u0627\\u0647"]}}]', 6, 1);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `django_content_type`
---
-
-CREATE TABLE `django_content_type` (
-  `id` int(11) NOT NULL,
-  `app_label` varchar(100) NOT NULL,
-  `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `django_content_type`
---
-
+-- Dumping data for table boroobia.django_content_type: ~20 rows (approximately)
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
-(12, 'accounts', 'user'),
-(1, 'admin', 'logentry'),
-(3, 'auth', 'group'),
-(2, 'auth', 'permission'),
-(4, 'contenttypes', 'contenttype'),
-(6, 'main', 'city'),
-(7, 'main', 'facility'),
-(8, 'main', 'hotel'),
-(11, 'main', 'passenger'),
-(10, 'main', 'request'),
-(9, 'main', 'room'),
-(5, 'sessions', 'session');
+	(7, 'accounts', 'hotelmanagermodel'),
+	(6, 'accounts', 'user'),
+	(1, 'admin', 'logentry'),
+	(3, 'auth', 'group'),
+	(2, 'auth', 'permission'),
+	(19, 'authtoken', 'token'),
+	(20, 'authtoken', 'tokenproxy'),
+	(17, 'blogs', 'blogcategorymodel'),
+	(18, 'blogs', 'blogmodel'),
+	(4, 'contenttypes', 'contenttype'),
+	(8, 'hotels', 'city'),
+	(9, 'hotels', 'facility'),
+	(10, 'hotels', 'hotel'),
+	(16, 'hotels', 'hotelimage'),
+	(11, 'hotels', 'image'),
+	(15, 'hotels', 'passenger'),
+	(14, 'hotels', 'request'),
+	(12, 'hotels', 'room'),
+	(13, 'hotels', 'roomimage'),
+	(5, 'sessions', 'session');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `django_migrations`
---
-
-CREATE TABLE `django_migrations` (
-  `id` bigint(20) NOT NULL,
-  `app` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `applied` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `django_migrations`
---
-
+-- Dumping data for table boroobia.django_migrations: ~29 rows (approximately)
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'main', '0001_initial', '2023-08-26 15:32:16.517660'),
-(2, 'main', '0002_request_reserve_status', '2023-08-26 15:32:16.563540'),
-(3, 'main', '0003_request_needs_passenger', '2023-08-26 15:32:16.769985'),
-(4, 'main', '0004_request_reserve_time', '2023-08-26 15:32:16.802896'),
-(5, 'main', '0005_alter_passenger_nid_alter_passenger_phone', '2023-08-26 15:32:16.903639'),
-(6, 'contenttypes', '0001_initial', '2023-08-26 15:32:16.944518'),
-(7, 'contenttypes', '0002_remove_content_type_name', '2023-08-26 15:32:17.098344'),
-(8, 'auth', '0001_initial', '2023-08-26 15:32:17.346681'),
-(9, 'auth', '0002_alter_permission_name_max_length', '2023-08-26 15:32:17.400536'),
-(10, 'auth', '0003_alter_user_email_max_length', '2023-08-26 15:32:17.409513'),
-(11, 'auth', '0004_alter_user_username_opts', '2023-08-26 15:32:17.415497'),
-(12, 'auth', '0005_alter_user_last_login_null', '2023-08-26 15:32:17.420484'),
-(13, 'auth', '0006_require_contenttypes_0002', '2023-08-26 15:32:17.422476'),
-(14, 'auth', '0007_alter_validators_add_error_messages', '2023-08-26 15:32:17.428462'),
-(15, 'auth', '0008_alter_user_username_max_length', '2023-08-26 15:32:17.433450'),
-(16, 'auth', '0009_alter_user_last_name_max_length', '2023-08-26 15:32:17.439433'),
-(17, 'auth', '0010_alter_group_name_max_length', '2023-08-26 15:32:17.459380'),
-(18, 'auth', '0011_update_proxy_permissions', '2023-08-26 15:32:17.470350'),
-(19, 'auth', '0012_alter_user_first_name_max_length', '2023-08-26 15:32:17.477331'),
-(20, 'accounts', '0001_initial', '2023-08-26 15:32:17.867974'),
-(21, 'accounts', '0002_alter_user_birthdate_alter_user_nid_alter_user_phone', '2023-08-26 15:32:17.893905'),
-(22, 'admin', '0001_initial', '2023-08-26 15:32:18.014583'),
-(23, 'admin', '0002_logentry_remove_auto_add', '2023-08-26 15:32:18.022562'),
-(24, 'admin', '0003_logentry_add_action_flag_choices', '2023-08-26 15:32:18.029542'),
-(25, 'sessions', '0001_initial', '2023-08-26 15:32:18.143173'),
-(26, 'main', '0006_hotel_likes_hotel_online_reserve', '2023-10-20 17:57:13.482519'),
-(27, 'accounts', '0003_user_hotel_likes', '2023-10-20 17:57:13.648893');
+	(1, 'hotels', '0001_initial', '2023-11-15 10:39:23.140332'),
+	(2, 'contenttypes', '0001_initial', '2023-11-15 10:39:23.180223'),
+	(3, 'contenttypes', '0002_remove_content_type_name', '2023-11-15 10:39:23.244053'),
+	(4, 'auth', '0001_initial', '2023-11-15 10:39:23.477559'),
+	(5, 'auth', '0002_alter_permission_name_max_length', '2023-11-15 10:39:23.522469'),
+	(6, 'auth', '0003_alter_user_email_max_length', '2023-11-15 10:39:23.527455'),
+	(7, 'auth', '0004_alter_user_username_opts', '2023-11-15 10:39:23.533439'),
+	(8, 'auth', '0005_alter_user_last_login_null', '2023-11-15 10:39:23.539424'),
+	(9, 'auth', '0006_require_contenttypes_0002', '2023-11-15 10:39:23.542416'),
+	(10, 'auth', '0007_alter_validators_add_error_messages', '2023-11-15 10:39:23.548400'),
+	(11, 'auth', '0008_alter_user_username_max_length', '2023-11-15 10:39:23.554383'),
+	(12, 'auth', '0009_alter_user_last_name_max_length', '2023-11-15 10:39:23.560339'),
+	(13, 'auth', '0010_alter_group_name_max_length', '2023-11-15 10:39:23.575979'),
+	(14, 'auth', '0011_update_proxy_permissions', '2023-11-15 10:39:23.586978'),
+	(15, 'auth', '0012_alter_user_first_name_max_length', '2023-11-15 10:39:23.592935'),
+	(16, 'accounts', '0001_initial', '2023-11-15 10:39:24.338435'),
+	(17, 'admin', '0001_initial', '2023-11-15 10:39:24.470214'),
+	(18, 'admin', '0002_logentry_remove_auto_add', '2023-11-15 10:39:24.481216'),
+	(19, 'admin', '0003_logentry_add_action_flag_choices', '2023-11-15 10:39:24.491176'),
+	(20, 'authtoken', '0001_initial', '2023-11-15 10:39:24.570453'),
+	(21, 'authtoken', '0002_auto_20160226_1747', '2023-11-15 10:39:24.608353'),
+	(22, 'authtoken', '0003_tokenproxy', '2023-11-15 10:39:24.612341'),
+	(23, 'blogs', '0001_initial', '2023-11-15 10:39:24.703844'),
+	(24, 'blogs', '0002_alter_blogmodel_options', '2023-11-15 10:39:24.707765'),
+	(25, 'sessions', '0001_initial', '2023-11-15 10:39:24.748665'),
+	(26, 'hotels', '0002_alter_hotel_distance', '2023-11-15 10:56:29.243006'),
+	(27, 'hotels', '0003_hotel_thumbnail', '2023-11-15 11:00:50.211665'),
+	(28, 'accounts', '0002_alter_user_phone', '2023-11-15 16:56:14.744863'),
+	(29, 'accounts', '0003_user_profile_alter_user_phone', '2023-11-15 17:04:09.363744');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `django_session`
---
-
-CREATE TABLE `django_session` (
-  `session_key` varchar(40) NOT NULL,
-  `session_data` longtext NOT NULL,
-  `expire_date` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `django_session`
---
-
+-- Dumping data for table boroobia.django_session: ~2 rows (approximately)
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('1k60bkd8o7jn72v2s2obqk0dvmyopg15', '.eJxVjEEOwiAQAP_C2ZAWdgU8eu8byMKuUjU0Ke3J-HdD0oNeZybzVpH2rcS9yRpnVhdl1OmXJcpPqV3wg-p90Xmp2zon3RN92KanheV1Pdq_QaFW-hZsTkYo3NAICApbFhgROQFaB8MZUCQ44x0Q5EGEMNjReY_Oep_V5wvjzTda:1qtVbY:LLIB-WPquh47ldD5cHto9HmGfGzdKs_o_d_QA59ysJY', '2023-11-02 16:10:36.726326'),
-('8xs4l9bpu5a9n7jxfju8jfptceznqiah', '.eJxVjEEOwiAQAP_C2ZAWdgU8eu8byMKuUjU0Ke3J-HdD0oNeZybzVpH2rcS9yRpnVhdl1OmXJcpPqV3wg-p90Xmp2zon3RN92KanheV1Pdq_QaFW-hZsTkYo3NAICApbFhgROQFaB8MZUCQ44x0Q5EGEMNjReY_Oep_V5wvjzTda:1qttkN:pfR0bXtLjkFzaPx0XDSKPloPw_AXsEX7rWFfbzodNa4', '2023-11-03 17:57:19.517969'),
-('9m3n6ld3ekgm3cznt6lbfefavrt93g7f', 'e30:1qd6L7:9DuAf-Y63LnOtMr8ajHtnE8vEsbrpQH9MVuNCNffT-0', '2023-09-18 09:57:49.646401'),
-('ee064ttt890vll7p2sf7sisbcgtrqf7e', '.eJxVjEEOwiAQRe_C2hCgQwZcuvcMZIYhUjWQlHZlvLs26UK3_733XyrRtta0jbKkWdRZWXX63Zjyo7QdyJ3arevc27rMrHdFH3Toa5fyvBzu30GlUb-18RmRwRQDLqILIGw9ZRsxIDmwk4RsIgA4n4thBCE2ED1OyOKgqPcHtRY22A:1qtV1Z:nOp5z8EDIAArjvj3MIjYD4-lVfD57Qe4mp9sXxC54hM', '2023-11-02 15:33:25.356617'),
-('gclza5s51q00anlivbps5ryju6zf2gy9', '.eJxVjEEOwiAQRe_C2hCgQwZcuvcMZIYhUjWQlHZlvLs26UK3_733XyrRtta0jbKkWdRZWXX63Zjyo7QdyJ3arevc27rMrHdFH3Toa5fyvBzu30GlUb-18RmRwRQDLqILIGw9ZRsxIDmwk4RsIgA4n4thBCE2ED1OyOKgqPcHtRY22A:1qfE5h:R_7cnT6H-KpTdVgCdE-PIYNusKvLKr_j5NnQr4Qwuog', '2023-09-24 06:38:41.611525'),
-('jhkzfu0kvsiouz8sjfxngxnynhp521da', '.eJxVjEEOwiAQAP_C2ZAWdgU8eu8byMKuUjU0Ke3J-HdD0oNeZybzVpH2rcS9yRpnVhdl1OmXJcpPqV3wg-p90Xmp2zon3RN92KanheV1Pdq_QaFW-hZsTkYo3NAICApbFhgROQFaB8MZUCQ44x0Q5EGEMNjReY_Oep_V5wvjzTda:1qd6QJ:igpgbSuvJixTKsNiwS3FAmazZkGuBuOD5P9SvQDqvCo', '2023-09-18 10:03:11.976963');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_city`
---
-
-CREATE TABLE `main_city` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(75) NOT NULL,
-  `faname` varchar(75) NOT NULL,
-  `slug` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `main_city`
---
-
-INSERT INTO `main_city` (`id`, `name`, `faname`, `slug`) VALUES
-(1, 'Mashhad', 'مشهد', 'mashhad'),
-(2, 'Kish', 'کیش', 'kish'),
-(3, 'Qeshm', 'قشم', 'qeshm'),
-(4, 'Isfahan', 'اصفهان', 'isfahan'),
-(5, 'Tabriz', 'تبریز', 'tabriz'),
-(6, 'Shiraz', 'شیراز', 'shiraz');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_facility`
---
-
-CREATE TABLE `main_facility` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(75) NOT NULL,
-  `faname` varchar(75) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `main_facility`
---
-
-INSERT INTO `main_facility` (`id`, `name`, `faname`) VALUES
-(1, 'wifi-signal', 'وای فای'),
-(2, 'alarm', 'زنگ بیداری'),
-(3, 'bathrobe', 'حمام'),
-(4, 'weightlifting', 'مرکز تناسب اندام'),
-(5, 'phone-call', 'تلفن'),
-(6, 'folded-towel', 'خشک شویی'),
-(7, 'wine-glass', 'مینی بار'),
-(8, 'hair-dryer', 'سشوار'),
-(9, 'desk-chair', 'صندلی بلند'),
-(10, 'hamburger', 'رستوران'),
-(11, 'air-conditioner', 'تهویه مطبوع'),
-(12, 'slippers', 'دمپایی');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_hotel`
---
-
-CREATE TABLE `main_hotel` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(75) NOT NULL,
-  `faname` varchar(75) NOT NULL,
-  `address` varchar(75) NOT NULL,
-  `starts` int(11) NOT NULL,
-  `description` longtext NOT NULL,
-  `explanation` longtext NOT NULL,
-  `slug` varchar(50) NOT NULL,
-  `special_offer` tinyint(1) NOT NULL,
-  `city_id` bigint(20) NOT NULL,
-  `likes` int(11) NOT NULL,
-  `online_reserve` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `main_hotel`
---
-
-INSERT INTO `main_hotel` (`id`, `name`, `faname`, `address`, `starts`, `description`, `explanation`, `slug`, `special_offer`, `city_id`, `likes`, `online_reserve`) VALUES
-(1, 'rezvan', 'رضوان', 'مشهد - خیابان شیرازی - هتل رضوان', 4, 'این هتل بسیار نزدیک به حرم امام رضا (ع) است', 'این هتل بسیار زیبا و تمیز است و کادری مودب و مناسب دارد', 'rezvan', 1, 1, 0, 0),
-(2, 'gohar', 'گوهر', 'مشهد - امام رضا 5 - هتل گوهر', 3, 'این هتل گوهر است', 'این توضبح بلند است', 'gohar', 0, 1, 0, 0),
-(3, 'jamejam', 'جام جم', 'کیش - بلوار دریا - هتل جام جم', 3, '', '', 'jamejam', 0, 2, 0, 0),
-(4, 'homa', 'هما', 'مشهد - میدان احمد آباد-نبش کلاهدوز-هتل هما1 (هایت سابق)', 5, 'صبحانه بوفه کامل - اینترنت بی سیم - آب معدنی و چای در اتاق- سرویس رفت به حرم رضوی (یک ساعت) قبل از نماز-زمین تنیس- تاکسی سرویس24 ساعته - خدمات پزشکی 24 ساعته- خدمات لباسشویی - پارکینگ- فضای سبز بسیار زیبا و وسیع...-باغ مصفا(پیست پیاده روی)-نوشیدنی خوشامد گویی در بدو ورود-پیست دوچرخه سواری\r\n**امکان پخت و پز در آپارتمان ها و ویلاها وجود دارد.**', 'هزینه اقامت کودکان زیر 3سال رایگان می باشد.کودکان 3 تا 7 سال(در صورت عدم استفاده از سرویس اضافه)نیم بها می باشد.\r\nسرویس اضافه بصورت تخت تاشو می باشد.\r\nپذیرش صیغه نامه معتبر با مهر برجسته امکان پذیر است.\r\nپذیرش خانم تنها (بالای 18 سال)فقط با ارائه مدارک شناسایی معتبر امکان پذیر میباشد.', 'homa', 0, 1, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_hotel_facilities`
---
-
-CREATE TABLE `main_hotel_facilities` (
-  `id` bigint(20) NOT NULL,
-  `hotel_id` bigint(20) NOT NULL,
-  `facility_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `main_hotel_facilities`
---
-
-INSERT INTO `main_hotel_facilities` (`id`, `hotel_id`, `facility_id`) VALUES
-(1, 1, 2),
-(7, 1, 8),
-(24, 2, 1),
-(20, 2, 3),
-(21, 2, 5),
-(22, 3, 1),
-(23, 3, 10),
-(25, 4, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_passenger`
---
-
-CREATE TABLE `main_passenger` (
-  `id` bigint(20) NOT NULL,
-  `firstname` varchar(75) NOT NULL,
-  `lastname` varchar(75) NOT NULL,
-  `email` varchar(75) NOT NULL,
-  `phone` varchar(11) NOT NULL,
-  `nid` varchar(10) NOT NULL,
-  `birthdate` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `main_passenger`
---
-
-INSERT INTO `main_passenger` (`id`, `firstname`, `lastname`, `email`, `phone`, `nid`, `birthdate`) VALUES
-(1, 'رضا', 'توانگر', 'rezatvg112@gmail.com', '09129471382', '1170545454', '1402/06/03'),
-(2, 'رضا', 'Tavangar', 'rezatvg112@gmail.com', '09129471382', '1160484745', '1402/06/02');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_passenger_reserves`
---
-
-CREATE TABLE `main_passenger_reserves` (
-  `id` bigint(20) NOT NULL,
-  `passenger_id` bigint(20) NOT NULL,
-  `request_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `main_passenger_reserves`
---
-
-INSERT INTO `main_passenger_reserves` (`id`, `passenger_id`, `request_id`) VALUES
-(1, 1, 23),
-(2, 2, 23);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_request`
---
-
-CREATE TABLE `main_request` (
-  `id` bigint(20) NOT NULL,
-  `reserve_code` varchar(10) NOT NULL,
-  `enter` varchar(20) NOT NULL,
-  `exit` varchar(20) NOT NULL,
-  `room_count` int(11) NOT NULL,
-  `passenger_count` int(11) NOT NULL,
-  `child_count` int(11) NOT NULL,
-  `confirm` varchar(1) NOT NULL,
-  `room_id` bigint(20) NOT NULL,
-  `reserve_status` varchar(5) NOT NULL,
-  `needs` varchar(255) NOT NULL,
-  `reserve_time` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `main_request`
---
-
-INSERT INTO `main_request` (`id`, `reserve_code`, `enter`, `exit`, `room_count`, `passenger_count`, `child_count`, `confirm`, `room_id`, `reserve_status`, `needs`, `reserve_time`) VALUES
-(22, 'xzmnMvbajM', '1402/06/10', '1402/06/14', 1, 2, 0, 'A', 4, 'WI', '', '09:51'),
-(23, 'sxd28scPfZ', '1402/06/20', '1402/06/27', 1, 2, 0, 'A', 2, 'P', '', '11:35'),
-(24, 'Ncd9fMBdSt', '1402/06/21', '1402/06/25', 1, 2, 0, 'A', 2, 'P', '', '10:05'),
-(25, '51iVwE1Mx1', '1402/07/12', '1402/07/23', 1, 2, 0, 'W', 4, 'WC', '', '17:16'),
-(26, 'qhulEJTeHL', '1402/07/12', '1402/07/16', 1, 2, 0, 'W', 4, 'WC', '', '20:43');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_room`
---
-
-CREATE TABLE `main_room` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(75) NOT NULL,
-  `faname` varchar(75) NOT NULL,
-  `price` int(11) NOT NULL,
-  `bed` int(11) NOT NULL,
-  `slug` varchar(50) NOT NULL,
-  `image` varchar(100) NOT NULL,
-  `image_booking` varchar(100) NOT NULL,
-  `hotel_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `main_room`
---
-
-INSERT INTO `main_room` (`id`, `name`, `faname`, `price`, `bed`, `slug`, `image`, `image_booking`, `hotel_id`) VALUES
-(2, '3takhtgohar', 'سه تخته', 1300000, 3, '3takhtgohar-gohar', 'static/img/200x154/rezvan.jpeg', 'static/img/240x160/rezvan.jpeg', 2),
-(3, '2takhtgohar', 'دو تخته', 820000, 2, '2takhtgohar-gohar', 'static/img/200x154/img1_wUgMrjN.jpg', 'static/img/240x160/img1_2XeKoqg.jpg', 2),
-(4, '4takhtrezvan', 'چهار تخته', 1200000, 4, '4takhtrezvan-rezvan', 'static/img/200x154/rezvan_B0MT0Nv.jpeg', 'static/img/240x160/rezvan_bd0r2LU.jpeg', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_room_facilities`
---
-
-CREATE TABLE `main_room_facilities` (
-  `id` bigint(20) NOT NULL,
-  `room_id` bigint(20) NOT NULL,
-  `facility_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `main_room_facilities`
---
-
-INSERT INTO `main_room_facilities` (`id`, `room_id`, `facility_id`) VALUES
-(1, 2, 1),
-(2, 2, 3),
-(3, 2, 11),
-(4, 2, 12),
-(5, 3, 3),
-(6, 4, 5);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `accounts_user`
---
-ALTER TABLE `accounts_user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `accounts_user_groups`
---
-ALTER TABLE `accounts_user_groups`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `accounts_user_groups_user_id_group_id_59c0b32f_uniq` (`user_id`,`group_id`),
-  ADD KEY `accounts_user_groups_group_id_bd11a704_fk_auth_group_id` (`group_id`);
-
---
--- Indexes for table `accounts_user_hotel_likes`
---
-ALTER TABLE `accounts_user_hotel_likes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `accounts_user_hotel_likes_user_id_hotel_id_7815ee85_uniq` (`user_id`,`hotel_id`),
-  ADD KEY `accounts_user_hotel_likes_hotel_id_08087274_fk_main_hotel_id` (`hotel_id`);
-
---
--- Indexes for table `accounts_user_reserves`
---
-ALTER TABLE `accounts_user_reserves`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `accounts_user_reserves_user_id_request_id_f513a3a4_uniq` (`user_id`,`request_id`),
-  ADD KEY `accounts_user_reserves_request_id_763bb2ac_fk_main_request_id` (`request_id`);
-
---
--- Indexes for table `accounts_user_user_permissions`
---
-ALTER TABLE `accounts_user_user_permissions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `accounts_user_user_permi_user_id_permission_id_2ab516c2_uniq` (`user_id`,`permission_id`),
-  ADD KEY `accounts_user_user_p_permission_id_113bb443_fk_auth_perm` (`permission_id`);
-
---
--- Indexes for table `auth_group`
---
-ALTER TABLE `auth_group`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `auth_group_permissions`
---
-ALTER TABLE `auth_group_permissions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
-  ADD KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`);
-
---
--- Indexes for table `auth_permission`
---
-ALTER TABLE `auth_permission`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`);
-
---
--- Indexes for table `django_admin_log`
---
-ALTER TABLE `django_admin_log`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
-  ADD KEY `django_admin_log_user_id_c564eba6_fk_accounts_user_id` (`user_id`);
-
---
--- Indexes for table `django_content_type`
---
-ALTER TABLE `django_content_type`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`);
-
---
--- Indexes for table `django_migrations`
---
-ALTER TABLE `django_migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `django_session`
---
-ALTER TABLE `django_session`
-  ADD PRIMARY KEY (`session_key`),
-  ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
-
---
--- Indexes for table `main_city`
---
-ALTER TABLE `main_city`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `main_city_slug_f78d04eb` (`slug`);
-
---
--- Indexes for table `main_facility`
---
-ALTER TABLE `main_facility`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `main_hotel`
---
-ALTER TABLE `main_hotel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `main_hotel_city_id_e7e16958_fk_main_city_id` (`city_id`),
-  ADD KEY `main_hotel_slug_fef10b88` (`slug`);
-
---
--- Indexes for table `main_hotel_facilities`
---
-ALTER TABLE `main_hotel_facilities`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `main_hotel_facilities_hotel_id_facility_id_89ad3334_uniq` (`hotel_id`,`facility_id`),
-  ADD KEY `main_hotel_facilities_facility_id_e47497bf_fk_main_facility_id` (`facility_id`);
-
---
--- Indexes for table `main_passenger`
---
-ALTER TABLE `main_passenger`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `main_passenger_reserves`
---
-ALTER TABLE `main_passenger_reserves`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `main_passenger_reserves_passenger_id_request_id_f1ee5901_uniq` (`passenger_id`,`request_id`),
-  ADD KEY `main_passenger_reserves_request_id_5ddfe85b_fk_main_request_id` (`request_id`);
-
---
--- Indexes for table `main_request`
---
-ALTER TABLE `main_request`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `main_request_room_id_fbe54c32_fk_main_room_id` (`room_id`);
-
---
--- Indexes for table `main_room`
---
-ALTER TABLE `main_room`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `main_room_hotel_id_4025f4eb_fk_main_hotel_id` (`hotel_id`),
-  ADD KEY `main_room_slug_e14dd176` (`slug`);
-
---
--- Indexes for table `main_room_facilities`
---
-ALTER TABLE `main_room_facilities`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `main_room_facilities_room_id_facility_id_4a41a5e5_uniq` (`room_id`,`facility_id`),
-  ADD KEY `main_room_facilities_facility_id_c2ad2c06_fk_main_facility_id` (`facility_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `accounts_user`
---
-ALTER TABLE `accounts_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `accounts_user_groups`
---
-ALTER TABLE `accounts_user_groups`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `accounts_user_hotel_likes`
---
-ALTER TABLE `accounts_user_hotel_likes`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `accounts_user_reserves`
---
-ALTER TABLE `accounts_user_reserves`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `accounts_user_user_permissions`
---
-ALTER TABLE `accounts_user_user_permissions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `auth_group`
---
-ALTER TABLE `auth_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `auth_group_permissions`
---
-ALTER TABLE `auth_group_permissions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `auth_permission`
---
-ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
--- AUTO_INCREMENT for table `django_admin_log`
---
-ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `django_content_type`
---
-ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `django_migrations`
---
-ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT for table `main_city`
---
-ALTER TABLE `main_city`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `main_facility`
---
-ALTER TABLE `main_facility`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `main_hotel`
---
-ALTER TABLE `main_hotel`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `main_hotel_facilities`
---
-ALTER TABLE `main_hotel_facilities`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT for table `main_passenger`
---
-ALTER TABLE `main_passenger`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `main_passenger_reserves`
---
-ALTER TABLE `main_passenger_reserves`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `main_request`
---
-ALTER TABLE `main_request`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `main_room`
---
-ALTER TABLE `main_room`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `main_room_facilities`
---
-ALTER TABLE `main_room_facilities`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `accounts_user_groups`
---
-ALTER TABLE `accounts_user_groups`
-  ADD CONSTRAINT `accounts_user_groups_group_id_bd11a704_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  ADD CONSTRAINT `accounts_user_groups_user_id_52b62117_fk_accounts_user_id` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`);
-
---
--- Constraints for table `accounts_user_hotel_likes`
---
-ALTER TABLE `accounts_user_hotel_likes`
-  ADD CONSTRAINT `accounts_user_hotel_likes_hotel_id_08087274_fk_main_hotel_id` FOREIGN KEY (`hotel_id`) REFERENCES `main_hotel` (`id`),
-  ADD CONSTRAINT `accounts_user_hotel_likes_user_id_ff912371_fk_accounts_user_id` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`);
-
---
--- Constraints for table `accounts_user_reserves`
---
-ALTER TABLE `accounts_user_reserves`
-  ADD CONSTRAINT `accounts_user_reserves_request_id_763bb2ac_fk_main_request_id` FOREIGN KEY (`request_id`) REFERENCES `main_request` (`id`),
-  ADD CONSTRAINT `accounts_user_reserves_user_id_1b407514_fk_accounts_user_id` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`);
-
---
--- Constraints for table `accounts_user_user_permissions`
---
-ALTER TABLE `accounts_user_user_permissions`
-  ADD CONSTRAINT `accounts_user_user_p_permission_id_113bb443_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
-  ADD CONSTRAINT `accounts_user_user_p_user_id_e4f0a161_fk_accounts_` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`);
-
---
--- Constraints for table `auth_group_permissions`
---
-ALTER TABLE `auth_group_permissions`
-  ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
-  ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);
-
---
--- Constraints for table `auth_permission`
---
-ALTER TABLE `auth_permission`
-  ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
-
---
--- Constraints for table `django_admin_log`
---
-ALTER TABLE `django_admin_log`
-  ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
-  ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_accounts_user_id` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`);
-
---
--- Constraints for table `main_hotel`
---
-ALTER TABLE `main_hotel`
-  ADD CONSTRAINT `main_hotel_city_id_e7e16958_fk_main_city_id` FOREIGN KEY (`city_id`) REFERENCES `main_city` (`id`);
-
---
--- Constraints for table `main_hotel_facilities`
---
-ALTER TABLE `main_hotel_facilities`
-  ADD CONSTRAINT `main_hotel_facilities_facility_id_e47497bf_fk_main_facility_id` FOREIGN KEY (`facility_id`) REFERENCES `main_facility` (`id`),
-  ADD CONSTRAINT `main_hotel_facilities_hotel_id_6cdc6081_fk_main_hotel_id` FOREIGN KEY (`hotel_id`) REFERENCES `main_hotel` (`id`);
-
---
--- Constraints for table `main_passenger_reserves`
---
-ALTER TABLE `main_passenger_reserves`
-  ADD CONSTRAINT `main_passenger_reser_passenger_id_0fa15c74_fk_main_pass` FOREIGN KEY (`passenger_id`) REFERENCES `main_passenger` (`id`),
-  ADD CONSTRAINT `main_passenger_reserves_request_id_5ddfe85b_fk_main_request_id` FOREIGN KEY (`request_id`) REFERENCES `main_request` (`id`);
-
---
--- Constraints for table `main_request`
---
-ALTER TABLE `main_request`
-  ADD CONSTRAINT `main_request_room_id_fbe54c32_fk_main_room_id` FOREIGN KEY (`room_id`) REFERENCES `main_room` (`id`);
-
---
--- Constraints for table `main_room`
---
-ALTER TABLE `main_room`
-  ADD CONSTRAINT `main_room_hotel_id_4025f4eb_fk_main_hotel_id` FOREIGN KEY (`hotel_id`) REFERENCES `main_hotel` (`id`);
-
---
--- Constraints for table `main_room_facilities`
---
-ALTER TABLE `main_room_facilities`
-  ADD CONSTRAINT `main_room_facilities_facility_id_c2ad2c06_fk_main_facility_id` FOREIGN KEY (`facility_id`) REFERENCES `main_facility` (`id`),
-  ADD CONSTRAINT `main_room_facilities_room_id_9b5b3a47_fk_main_room_id` FOREIGN KEY (`room_id`) REFERENCES `main_room` (`id`);
-COMMIT;
-
+	('095bjc4kx6ojmu5gc051wwfpchvwkxcz', '.eJxVjMsOwiAQRf-FtSGA5VGX7vsNZJgZpGogKe3K-O_apAvd3nPOfYkI21ri1nmJM4mLMOL0uyXAB9cd0B3qrUlsdV3mJHdFHrTLqRE_r4f7d1Cgl2_tnPE-ESdlsic8DzopjwG91kwuI1iXnbIIqBnQ0GgYguaQR8zBDlq8P_0MOMI:1r3KRl:heXVxUuHteTu7RSIR4gO8CcaecFNNSKD3VA3kr7Eq1k', '2023-11-29 18:17:05.408699'),
+	('wc1cb28cwj2dtt6ow7jxpo4p2rbc9t5t', '.eJxVjMEOwiAQRP-FsyEs0BY8eu83NLssSNVAUtqT8d9tkx70Npn3Zt5iwm3N09biMs0srgLE5bcjDM9YDsAPLPcqQy3rMpM8FHnSJsfK8XU73b-DjC3va6-tJ6d5MAm4Bz2AI2LYAyGAisF5S8Y60kmhiZ1JqneBO-oNaghefL7IITdf:1r3DNL:RmFZqcmG5a_3x4tXN51RPAbuh1ShSIquZdcZu7vge2s', '2023-11-29 10:44:03.861772');
+
+-- Dumping data for table boroobia.hotels_city: ~7 rows (approximately)
+INSERT INTO `hotels_city` (`id`, `name`, `faname`, `slug`) VALUES
+	(1, 'Kish', 'کیش', 'kish'),
+	(2, 'Mashhad', 'مشهد', 'mashhad'),
+	(3, 'Isfahan', 'اصفهان', 'isfahan'),
+	(4, 'Qeshm', 'قشم', 'qeshm'),
+	(5, 'Shiraz', 'شیراز', 'shiraz'),
+	(6, 'Tabriz', 'تبریز', 'tabriz'),
+	(7, 'Tehran', 'تهران', 'tehran');
+
+-- Dumping data for table boroobia.hotels_facility: ~0 rows (approximately)
+
+-- Dumping data for table boroobia.hotels_hotel: ~6 rows (approximately)
+INSERT INTO `hotels_hotel` (`id`, `name`, `faname`, `address`, `stars`, `likes`, `floor`, `rooms`, `distance`, `description`, `explanation`, `terms`, `slug`, `special_offer`, `online_reserve`, `boroobia_suggest`, `city_id`, `thumbnail`) VALUES
+	(1, 'almas2', 'الماس 2', 'مشهد، خیابان امام رضا، امام رضا 20', 5, 0, 25, 217, 1.5, 'هتل ۵ ستاره و مجلل الماس دو از گروه هتل های الماس در اسفند ماه سال ۱۳۹۵ افتتاح شد. هتل الماس دو با ۲۱۷ اتاق با امکانات رفاهی ویژه در۲۵ طبقه با الهام از معماری خاص ملل مختلف به سبک های مختلفی چون سبک ایران باستان، سبک روسی، ترکی، رومی، آفریقایی، عربی، ایرانی، اتاق صفوی و ... موزه ای از هنر های بین المللی را به نمایش گذاشته است. هتل الماس با پرسنلی مجرب و آموزش دیده با افتخار آماده میزبانی از شما میهمانان گرامی می‌باشند.\r\nنکته قابل توجه : استعمال دخانیات در این هتل ممنوع می‌باشد.', 'نیم شارژ ورود رایگان\r\nتاریخ اعتبار از 1402/07/17 تا 1402/08/30\r\n\r\nنیم شارژ ورود رایگان ویژه میهمانان اقامت 24 صرفا جهت رزرو اتاق های یاقوت، الماس، سوئیت یک خوابه (سبک معماری تمدن ها) و اتاق دوتخته برلیان(اقامت با صبحانه) از ساعت 9 الی 14 در صورت داشتن ظرفیت و هماهنگی با واحد پشتیبانی\r\n\r\nلازم به ذکر است : نیم شارژ رایگان شامل صبحانه روز ورود نخواهد بود.\r\n\r\nخدمات ویژه هتل :\r\n\r\n- ترانسفر رفت و برگشت (فرودگاهی و راه آهن) ( لازم به ذکر است از ساعت 12 شب لغایت 6 صبح ترانسفر انجام نمی گردد.)\r\n\r\n-ترانسفر رایگان رفت به حرم\r\n\r\n-اینترنت رایگان نامحدود\r\n\r\n-استفاده از امکانات مجموعه آبی و ورزشی(استخر-سونا-جکوزی) به صورت رایگان می باشد.\r\n\r\nرزرو اتاق های VIP ( شامل اتاقهای امپریال، برلیان، سوئیت یکخوابه، هانی مون و پرزیدنت )، به همراه پذیرایی میوه و شیرینی به صورت روزانه در اتاق می باشد .\r\n\r\nپکیج تولد و سالگرد ازدواج:\r\n\r\nدر صورت اقامت میهمان در روز تولد و یا سالگرد ازدواج، از طرف هتل مراسم رایگان در نظر گرفته می شود که شامل موارد ذیل میباشد:\r\n\r\nدیزاین میز ، کیک ، کارت تبریک\r\n\r\nپذیرایی صبحانه در اتاق به صورت روم سرویس، مشمول شارژ هزینه صبحانه وپذیرایی خواهد بود.\r\n\r\nاتاق‌های برلیان ، یاقوت و اتاقهای یک تخته با توجه به ساختمان سازی فاقد ویو و دارای شیشه‌های مشجر می‌باشد.\r\n\r\nلازم به ذکر است: سوئیت هانی مون و ماه عسل و سوئیت های پرزیدنت فاقد خواب می باشند.', 'ورود و خروج: ساعت تحویل اتاق : 15:00 ساعت تخلیه اتاق: 12:00\r\nپذیرش خانم مجرد: با مدارک شناسایی معتبر\r\nصیغه نامه: با مهر برجسته محضر (فقط میهمان ایرانی)\r\nنیم بهاء: اقامت کودک زیر 5 سال (درصورت عدم استفاده از سرویس) رایگان می‌باشد و بازه سنی برای اقامت کودک بین 5 الی 10 سال (درصورت عدم استفاده از سرویس) نیم بها محاسبه می‌گردد.لازم به ذکر است : اقامت رایگان و نیم بها تنها برای یک کودک محاسبه می‌گردد.\r\nکنسلی: درخواست کنسلی رزرو از 4 لغایت 3 روز قبل از تاریخ ورود 25 درصد از مبلغ یک شب و به ازای هر اتاق بعنوان جریمه دریافت می گردد. درخواست کنسلی رزرو از 72 لغایت 48 ساعت قبل از تاریخ ورود 50 درصد از مبلغ یک شب و به ازای هر اتاق بعنوان جریمه دریافت می گردد. درخواست کنسلی رزرو از 48 تا 24 ساعت قبل از تاریخ ورود 70 درصد از مبلغ یک شب و به ازای هر اتاق بعنوان جریمه دریافت می گردد. درخواست کنسلی رزرو کمتر از 24 ساعت قبل از تاریخ ورود 100 درصد مبلغ یک شب و به ازای هر اتاق بعنوان جریمه دریافت می گردد.', 'almas2', 0, 1, 1, 2, 'static/img/200x154/image_9f8b442b-295e-4a40-b4d3-a64c10286a06.jpg'),
+	(2, 'daryosh', 'داریوش', 'کیش، جنب بازار پردیسان، خیابان رودکی', 5, 0, 3, 190, 0, 'هتل داریوش کیش، یکی از بهترین هتل های کیش و معروف ترین هتل های ایران است. هتل پنج ستاره داریوش با الهام از معماری ایران باستان و تخت جمشید، در شمال شرق این جزیره قرار دارد. به همین دلیل این هتل به خودی خود، یکی از جاذبه های توریستی جزیره کیش به حساب می آید. همچنین دیگر جاهای دیدنی کیش هم از این هتل به راحتی قابل دسترسی است. این هتل، یکی از مدرن ترین و مجهز ترین هتل های کیش است. چشم انداز زیبای هتل هم از دیگر مزایای آن است. سواحل خلیج فارس به راحتی از داخل این هتل قابل مشاهده است. اقامت هتل داریوش کیش می تواند خاطره ای به یاد ماندنی و متفاوت برای میهمانان باشد. هتل داریوش کیش، امکانات تفریحی و رفاهی متنوعی دارد که لحظاتی مفرح را برای میهمانانش فراهم می کند. مجموعه آبی، دریاچه اختصاصی و زمین های ورزشی، تنها بخشی از امکانات آن است. با رزرو آنلاین از سایت اقامت ۲۴، می توانید از تخفیف رزرو هتل نیز برخوردار شوید.', 'پیشنهاد ویژه\r\nتاریخ اعتبار از 1402/08/04 تا 1402/08/30\r\n\r\nترانسفر رفت و برگشت رایگان، استفاده از خدمات سالن تنیس و استخر روباز آقایان و بانوان به صورت رایگان ویژه میهمانان اقامت 24\r\n\r\nشارژ عصرانه روزانه به صورت رایگان ویژه رزرو سوئیت های لوکس دریا، آتوسا و استدیو سوئیت رویال باغ و دریا\r\n\r\nنکته قابل توجه : میهمانان گرامی لطفا در زمان ثبت رزرو اطلاعات ترانسفر فرودگاهی ( شامل شماره پرواز، نام ایرلاین، ساعت پرواز و مبدا ) خود را وارد نمایید. در صورت عدم اعلام ترانسفر در زمان ثبت رزرو به منظور انصراف از انجام ترانسفر فرودگاهی بوده و ترانسفر انجام نمی‌پذیرد.\r\n\r\nنکته قابل توجه : ظرفیت و نرخ و سن اقامت کودک رایگان و نیم بها (درصورت عدم استفاده از سرویس) پس از استعلام از هتل اعلام می‌گردد.\r\n\r\nلازم به ذکر است : نرخ مهمان غیرایرانی متفاوت هست . لطفا قبل از ثبت درخواست رزرو خود، با پشتیانی سایت هماهنگ نمایید.\r\n\r\nنکته قابل توجه : اتاق‌های کابانا در فاصله‌ی 5 دقیقه ای از ساختمان اصلی قرار دارد.', 'ورود و خروجساعت تحویل اتاق : 15:00 ساعت تخلیه اتاق : 12:00\r\nپذیرش خانم مجردبا مدارک شناسایی معتبر\r\nصیغه نامهبا مهر برجسته محضر\r\nکنسلیکنسلی رزرو در ایام پیک و غیر پیک: با توجه به اینکه نرخ کنسلی در ایام مختلف و هتل های مختلف متفاوت می باشد، مبلغ دقیق کنسلی بعد از استعلام از هتل مشخص می گردد.\r\nشرایط خاص پذیرش کودکانظرفیت و نرخ و سن اقامت کودک رایگان و نیم بها (درصورت عدم استفاده از سرویس) پس از استعلام از هتل اعلام می‌گردد. لازم به ذکر است : اقامت رایگان و نیم بها تنها برای یک کودک محاسبه می‌گردد.\r\nپذیرش مهمان خارجینرخ میهمان خارجی متفاوت می باشد.', 'daryosh', 0, 1, 1, 2, 'static/img/200x154/1h7ka14do9.jpg'),
+	(3, 'flamingo', 'فلامینگو', 'كيش، میدان امیر کبیر، بلوار دریا', 4, 0, 5, 200, 0, 'هتل فلامينگو کيش هتلی لوکس و شیک با طراحی زیبا به شکل دلفین می‌باشد که در سال ۱۳۷۶ در زمینی به مساحت ۲۴ هزار متر مربع احداث گردیده است. این هتل چهار ستاره با فضای سبز روح انگیز به همراه آبنماها و آلاچیق های زیبا در ۵ طبقه بنا و دارای ۲۰۰ باب اتاق با امکانات رفاهی مناسب می‌باشد. این مجموعه دسترسی مناسبی به مراکز خرید و تفریحی جزیره از جمله بازارهای مروارید، زیتون، ونوس، مریم و اسکله تفریحی جدید(جهت استفاده از جت اسکی، قایق های کف شیشه ای، دوچرخه سواری و...) دارد. هتل فلامینگو با پرسنلی آموزش دیده و مجرب فرصت میزبانی از شما را غنیمت شمرده و اقامتی به یادماندنی را برای شما میهمانان گرامی آرزومند اند.', 'هتل فلامينگو کيش هتلی لوکس و شیک با طراحی زیبا به شکل دلفین می‌باشد که در سال ۱۳۷۶ در زمینی به مساحت ۲۴ هزار متر مربع احداث گردیده است. این هتل چهار ستاره با فضای سبز روح انگیز به همراه آبنماها و آلاچیق های زیبا در ۵ طبقه بنا و دارای ۲۰۰ باب اتاق با امکانات رفاهی مناسب می‌باشد. این مجموعه دسترسی مناسبی به مراکز خرید و تفریحی جزیره از جمله بازارهای مروارید، زیتون، ونوس، مریم و اسکله تفریحی جدید(جهت استفاده از جت اسکی، قایق های کف شیشه ای، دوچرخه سواری و...) دارد. هتل فلامینگو با پرسنلی آموزش دیده و مجرب فرصت میزبانی از شما را غنیمت شمرده و اقامتی به یادماندنی را برای شما میهمانان گرامی آرزومند اند.\r\nلازم به ذکر است : ترانسفر فرودگاهی برای رزروهای با حداقل دو شب اقامت به بالا انجام می‌گردد.', 'ورود و خروجساعت تحویل اتاق : 14:00 ساعت تخلیه اتاق: 12:00\r\nپذیرش خانم مجردبا مدارک شناسایی معتبر\r\nصیغه نامهبا مهر برجسته محضر\r\nنیم بهاءاقامت کودک زیر 3 سال (درصورت عدم استفاده از سرویس) رایگان می‌باشد و هزینه‌ی اقامت کودک بالای 3 سال به طور کامل محاسبه می گردد.لازم به ذکر است : اقامت رایگان و نیم بها تنها برای یک کودک محاسبه می‌گردد.\r\nکنسلیکنسلی رزرو در ایام پیک و غیر پیک: با توجه به اینکه نرخ کنسلی در ایام مختلف و هتل های مختلف متفاوت می باشد، مبلغ دقیق کنسلی بعد از استعلام از هتل مشخص می گردد.', 'flamingo', 0, 1, 1, 2, 'static/img/200x154/Kish-Flamingo-hotel.jpg'),
+	(4, 'parsianazadi', 'پارسیان آزادی', 'تهران، تقاطع بزرگراه چمران و یادگار امام', 5, 0, 26, 475, 0, 'هتل پنج ستاره پارسیان آزادی(هایت سابق) از مدرن‌ترین و مجلل‌ترین هتل‌های کشور می‌باشد که پس از بازسازی و تغییر دکوراسیون کامل توسط کارشناسان خارجی، بازگشایی گردید. این هتل با ۴۷۵ واحد اقامتی لوکس همراه با طراحی و دکوراسیون زیبا در ۲۶ طبقه که مشرف به سلسله جبال البرز و شهر زیبای تهران می‌باشد، بنا گردیده است. از امتیازات هتل آزادی می‌توان به دسترسی مناسب به نمایشگاه بین المللی، مرکز اجتماعات سازمان صدا و سیما، سالن اجلاس سران اسلامی و جاذبه‌های گردشگری چون مجموعه تاریخی سعد آباد، مجموعه تفریحی توچال و پارک ژوراسیک تهران اشاره کرد.\r\nهتل پارسیان آزادی با فراهم نمودن کلیه امکانات رفاهی اختصاصی، فضایی مملو از آرامش و زیبایی را برای میهمانان عزیز به ارمغان می‌آورد. از جمله امکانات این هتل می‌توان به انواع رستوران‌های ایرانی و فرنگی و فست فود و کافی‌شاپ‌های بسیار باکیفیت، گیفت شاپ، انواع سالن همایش و گردهمایی مجهز، کلوپ ورزشی و… اشاره کرد. اگرچه سابقه هتل پارسیان آزادی به دهه ۵۰ شمسی بر ‌می‌گردد، اما با یک بازسازی اساسی که در سال ۸۶ شروع شد و حدود ۴ سال به طول انجامید؛ در حال حاضر این هتل به یکی از به‌روزترین و مجهزترین هتل‌های تهران تبدیل شده است.', 'هتل پنج ستاره پارسیان آزادی(هایت سابق) از مدرن‌ترین و مجلل‌ترین هتل‌های کشور می‌باشد که پس از بازسازی و تغییر دکوراسیون کامل توسط کارشناسان خارجی، بازگشایی گردید. این هتل با ۴۷۵ واحد اقامتی لوکس همراه با طراحی و دکوراسیون زیبا در ۲۶ طبقه که مشرف به سلسله جبال البرز و شهر زیبای تهران می‌باشد، بنا گردیده است. از امتیازات هتل آزادی می‌توان به دسترسی مناسب به نمایشگاه بین المللی، مرکز اجتماعات سازمان صدا و سیما، سالن اجلاس سران اسلامی و جاذبه‌های گردشگری چون مجموعه تاریخی سعد آباد، مجموعه تفریحی توچال و پارک ژوراسیک تهران اشاره کرد.\r\nهتل پارسیان آزادی با فراهم نمودن کلیه امکانات رفاهی اختصاصی، فضایی مملو از آرامش و زیبایی را برای میهمانان عزیز به ارمغان می‌آورد. از جمله امکانات این هتل می‌توان به انواع رستوران‌های ایرانی و فرنگی و فست فود و کافی‌شاپ‌های بسیار باکیفیت، گیفت شاپ، انواع سالن همایش و گردهمایی مجهز، کلوپ ورزشی و… اشاره کرد. اگرچه سابقه هتل پارسیان آزادی به دهه ۵۰ شمسی بر ‌می‌گردد، اما با یک بازسازی اساسی که در سال ۸۶ شروع شد و حدود ۴ سال به طول انجامید؛ در حال حاضر این هتل به یکی از به‌روزترین و مجهزترین هتل‌های تهران تبدیل شده است.\r\nکنسلی رایگان\r\nتاریخ اعتبار از 1402/07/01 تا 1402/09/30\r\n\r\nکنسلی بدون جریمه ویژه میهمانان اقامت 24 تا ساعت 12 روز ورود\r\n\r\nلازم به ذکر است استخر هتل برای کودکان بالای 15 سال قابل استفاده می‌باشد.', 'ورود و خروجساعت تحویل اتاق : 14:00 ساعت تخلیه اتاق: 12:00\r\nپذیرش خانم مجردبا مدارک شناسایی معتبر (غیر بومی)\r\nصیغه نامهبا مهر برجسته محضر\r\nنیم بهاءاقامت کودک زیر 2 سال (درصورت عدم استفاده از سرویس) رایگان می‌باشد و بازه سنی برای اقامت کودک بین 2 الی 7 سال (درصورت عدم استفاده از سرویس) نیم بها محاسبه می‌گردد. لازم به ذکر است : اقامت رایگان و نیم بها تنها برای یک کودک محاسبه می‌گردد.\r\nکنسلیکنسلی رزرو در ایام پیک و غیر پیک: با توجه به اینکه نرخ کنسلی در ایام مختلف و هتل های مختلف متفاوت می باشد، مبلغ دقیق کنسلی بعد از استعلام از هتل مشخص می گردد.', 'parsianazadi', 0, 1, 1, 2, 'static/img/200x154/45-min.jpg'),
+	(5, 'persianplaza', 'پرشین پلازا', 'تهران، سهروردی شمالی، چهارراه کیهان، خیابان میرزایی زینالی شرقی، پلاک ۴۲', 5, 0, 16, 96, 0, 'هتل پرشین پلازا واقع در قلب اداری و تجاری پایتخت، منطقه عباس آباد تهران در فضایی با زیر بنای ۱۳۰۰۰ متر مربع در سال ۱۳۹۷ فعالیت خود را آغاز نموده است. ساختمان این هتل مدرن در ۱۶ طبقه بنا و دارای ۹۶ باب اتاق لوکس مجهز به امکانات رفاهی مناسب می‌باشد. هتل پرشین پلازا با پرسنلی آموزش دیده و مجرب فرصت میزبانی از شما را غنیمت شمرده و اقامتی به یادماندنی را برای شما میهمانان گرامی آرزومند اند.', 'هتل پرشین پلازا واقع در قلب اداری و تجاری پایتخت، منطقه عباس آباد تهران در فضایی با زیر بنای ۱۳۰۰۰ متر مربع در سال ۱۳۹۷ فعالیت خود را آغاز نموده است. ساختمان این هتل مدرن در ۱۶ طبقه بنا و دارای ۹۶ باب اتاق لوکس مجهز به امکانات رفاهی مناسب می‌باشد. هتل پرشین پلازا با پرسنلی آموزش دیده و مجرب فرصت میزبانی از شما را غنیمت شمرده و اقامتی به یادماندنی را برای شما میهمانان گرامی آرزومند اند.\r\nکنسلی رایگان\r\nتاریخ اعتبار از 1402/07/01 تا 1402/08/30\r\n\r\nکنسلی بدون جریمه ویژه میهمانان اقامت 24 تا ساعت 12 روز ورود\r\n\r\nقوانین خاص اقامت کوتاه مدت :\r\n\r\n1- اقامت در اتاقهای ساعتی فاقد صبحانه می‌باشد.\r\n\r\n2- رزرو اتاقهای ساعتی تنها یکبار امکان پذیر است.\r\n\r\n3- حداکثر مدت استفاده از اتاقهای ساعتی 7 ساعت می‌باشد.', 'ورود و خروجساعت تحویل اتاق : 14:00 ساعت تخلیه اتاق: 12:00\r\nپذیرش خانم مجردبا مدارک شناسایی معتبر\r\nصیغه نامهبا مهر برجسته محضر\r\nنیم بهاءاقامت کودک زیر 5 سال (درصورت عدم استفاده از سرویس) رایگان می‌باشد و هزینه‌ی اقامت کودک بالای 5 سال به طور کامل محاسبه می‌گردد.لازم به ذکر است : اقامت رایگان و نیم بها تنها برای یک کودک محاسبه می‌گردد.\r\nکنسلیکنسلی رزرو در ایام پیک و غیر پیک: با توجه به اینکه نرخ کنسلی در ایام مختلف و هتل های مختلف متفاوت می باشد، مبلغ دقیق کنسلی بعد از استعلام از هتل مشخص می گردد.', 'persianplaza', 0, 1, 1, 2, 'static/img/200x154/36150.jpg'),
+	(6, 'parsianesteghlal', 'پرشین استقلال', 'تهران، تقاطع بزرگراه شهيد چمران و خیابان ولی عصر، چهارراه پارک وی', 5, 0, 30, 552, 0, 'هتل استقلال تهران (رویال هیلتون سابق) بزرگترین هتل ۵ ستاره ایران در شمال تهران است که در تاریخ هشتم آذر ۱۳۴۱ افتتاح گردید. این هتل در زمینی به مساحت ۷۰ هزار متر مربع بنا شده است. هتل استقلال پارسیان تهران با قرار گرفتن در یکی از بهترین نقاط تهران، دسترسی مناسبی به طولانی ترین خیابان خاورمیانه و زیباترین خیابان پایتخت، یعنی خیابان ولیعصر دارد. همچنین این هتل تهران در نزدیکی نمایشگاه بین المللی تهران، برج میلاد، تله کابین توچال و مراکز خرید و اماکن دیدنی شهر قرار دارد. به این دلایل هتل استقلال تهران یکی از مناسب ترین انتخاب ها برای افرادی است که به هتل مسائل تجاری و کاری به تهران سفر می‌کنند. این هتل دارای دو برج شرقی و غربی با بیش از ۵۵۰ سوئیت مجلل و اتاق مجهز به امکانات رفاهی بوده و همچنین میزبان ۱۱ رستوران دائمی و فصلی است که انواع غذاهای ایرانی، فرنگی و دریایی را سرو می‌کنند. همچنین از معروف ترین وعده های هتل استقلال تهران صبحانه آن است که می‌توانید آن را امتحان کنید. از سایر امکانات هتل می‌توان به ۲ سالن ویژه‌ی همایش و مراسمات، استخر و سالن‌های ورزشی و تالار هتل استقلال تهران که میزبان عروسی های مجلل است اشاره کرد. هتل استقلال با پرسنلی مجرب فرصت میزبانی از شما را افتخار خود دانسته و اقامتی خاطره انگیز را برای شما به ارمغان خواهد آورد.\r\nلازم به ذکر است استخر هتل برای افراد بالای ۱۵ سال قابل استفاده است.', 'هتل استقلال تهران (رویال هیلتون سابق) بزرگترین هتل ۵ ستاره ایران در شمال تهران است که در تاریخ هشتم آذر ۱۳۴۱ افتتاح گردید. این هتل در زمینی به مساحت ۷۰ هزار متر مربع بنا شده است. هتل استقلال پارسیان تهران با قرار گرفتن در یکی از بهترین نقاط تهران، دسترسی مناسبی به طولانی ترین خیابان خاورمیانه و زیباترین خیابان پایتخت، یعنی خیابان ولیعصر دارد. همچنین این هتل تهران در نزدیکی نمایشگاه بین المللی تهران، برج میلاد، تله کابین توچال و مراکز خرید و اماکن دیدنی شهر قرار دارد. به این دلایل هتل استقلال تهران یکی از مناسب ترین انتخاب ها برای افرادی است که به هتل مسائل تجاری و کاری به تهران سفر می‌کنند. این هتل دارای دو برج شرقی و غربی با بیش از ۵۵۰ سوئیت مجلل و اتاق مجهز به امکانات رفاهی بوده و همچنین میزبان ۱۱ رستوران دائمی و فصلی است که انواع غذاهای ایرانی، فرنگی و دریایی را سرو می‌کنند. همچنین از معروف ترین وعده های هتل استقلال تهران صبحانه آن است که می‌توانید آن را امتحان کنید. از سایر امکانات هتل می‌توان به ۲ سالن ویژه‌ی همایش و مراسمات، استخر و سالن‌های ورزشی و تالار هتل استقلال تهران که میزبان عروسی های مجلل است اشاره کرد. هتل استقلال با پرسنلی مجرب فرصت میزبانی از شما را افتخار خود دانسته و اقامتی خاطره انگیز را برای شما به ارمغان خواهد آورد.\r\nلازم به ذکر است استخر هتل برای افراد بالای ۱۵ سال قابل استفاده است.\r\nکنسلی رایگان\r\nتاریخ اعتبار از 1402/08/02 تا 1402/09/30\r\n\r\nکنسلی بدون جریمه ویژه میهمانان اقامت 24 تا 24 ساعت قبل از ورود', 'ورود و خروجساعت تحویل اتاق : 14:00 ساعت تخلیه اتاق: 12:00\r\nپذیرش خانم مجردبا مدارک شناسایی معتبر\r\nصیغه نامهبا مهر برجسته محضر\r\nنیم بهاءاقامت کودک زیر 2 سال (درصورت عدم استفاده از سرویس) رایگان می‌باشد و بازه سنی برای اقامت کودک بین 2 الی 7 سال (درصورت عدم استفاده از سرویس) نیم بها محاسبه می‌گردد. لازم به ذکر است : اقامت رایگان و نیم بها تنها برای یک کودک محاسبه می‌گردد.\r\nکنسلیکنسلی رزرو در ایام پیک و غیر پیک: با توجه به اینکه نرخ کنسلی در ایام مختلف و هتل های مختلف متفاوت می باشد، مبلغ دقیق کنسلی بعد از استعلام از هتل مشخص می گردد.', 'parsianesteghlal', 0, 1, 1, 7, 'static/img/200x154/هتل-استقلال-تهران.jpg');
+
+-- Dumping data for table boroobia.hotels_hotelimage: ~6 rows (approximately)
+INSERT INTO `hotels_hotelimage` (`id`, `hotel_id`, `image_id`) VALUES
+	(1, 1, 1),
+	(2, 2, 2),
+	(3, 3, 3),
+	(4, 4, 4),
+	(5, 5, 5),
+	(6, 6, 6);
+
+-- Dumping data for table boroobia.hotels_hotel_facilities: ~0 rows (approximately)
+
+-- Dumping data for table boroobia.hotels_image: ~6 rows (approximately)
+INSERT INTO `hotels_image` (`id`, `name`, `file`) VALUES
+	(1, 'هتل الماس 2', 'static/img/820x550/image_9f8b442b-295e-4a40-b4d3-a64c10286a06.jpg'),
+	(2, 'داریوش کیش', 'static/img/820x550/1h7ka14do9.jpg'),
+	(3, 'هتل فلامینگو کیش', 'static/img/820x550/Kish-Flamingo-hotel.jpg'),
+	(4, 'هتل پارسیان آزادی تهران', 'static/img/820x550/45-min.jpg'),
+	(5, 'هتل پرشین پلازا تهران', 'static/img/820x550/36150.jpg'),
+	(6, 'هتل پرشین استقلال تهران', 'static/img/820x550/هتل-استقلال-تهران.jpg');
+
+-- Dumping data for table boroobia.hotels_passenger: ~0 rows (approximately)
+
+-- Dumping data for table boroobia.hotels_passenger_reserves: ~0 rows (approximately)
+
+-- Dumping data for table boroobia.hotels_request: ~0 rows (approximately)
+
+-- Dumping data for table boroobia.hotels_room: ~0 rows (approximately)
+
+-- Dumping data for table boroobia.hotels_roomimage: ~0 rows (approximately)
+
+-- Dumping data for table boroobia.hotels_room_facilities: ~0 rows (approximately)
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
