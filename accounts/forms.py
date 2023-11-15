@@ -1,9 +1,34 @@
 from django import forms
 from .models import User
 from django.core.validators import MinLengthValidator, MaxLengthValidator
-from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm,PasswordChangeForm
+from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm,PasswordChangeForm,UserChangeForm
 
+class UserProfileForm(UserChangeForm):
+    class Meta:
+        model = User  # شما باید مدل پروفایل خود را جایگزین کنید
+        fields = ['first_name', 'last_name','profile',  'nid', 'birthdate', 'email']
 
+    profile = forms.ImageField(required=False,
+                                       widget=forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*'}))
+
+    first_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('نام خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off','id': 'first_name'})
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('نام خانوادگی خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off', 'id': 'last_name'})
+    )
+    nid = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('کدملی خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off','id': 'nid'})
+    )
+    birthdate = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('تاریخ تولد خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off','id': 'birthdate'})
+    )
+    email = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('ایمیل خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off','id': 'email'})
+    )
+    # اگر نیاز به افزودن فیلدهای دلخواه دارید، می‌توانید آنها را اینجا اضافه کنید
+    # مثلا اگر یک فیلد جدید به نام "address" دارید:
+    # address = forms.CharField(max_length=255, required=False, label='آدرس')
 class CustomPasswordResetForm(PasswordResetForm):
     email = forms.EmailField(label="آدرس ایمیل", max_length=254, widget=forms.EmailInput(
         attrs={'class': 'form-control', 'placeholder': 'آدرس ایمیل خود را وارد کنید'}

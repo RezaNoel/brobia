@@ -3,7 +3,7 @@
                                 <div class="card transition-3d-hover shadow-hover-2 w-100 mt-2">
                                     <div class="position-relative">
                                         <a href="{% url 'hotel-single' city_slug=h.city.slug hotel_slug=h.slug %}" class="d-block hotel-link gradient-overlay-half-bg-gradient-v5">
-                                            <img class="card-img-top" src="{% static 'img/300x230/'|add:h.name|add:'.jpeg' %}" alt="توضیحات تصویر">
+                                            <img class="card-img-top" src="{{ h.thumbnail.url }}" alt="توضیحات تصویر">
                                         </a>
                                          <form method="POST" action={% url 'likepk' h.pk %}>
                                             {% csrf_token %}

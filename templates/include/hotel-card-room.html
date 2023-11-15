@@ -5,7 +5,7 @@
         <div class="position-relative">
             <!-- تصویر هتل -->
             <a href="{% url 'hotel-single' city_slug=room.hotel.city.slug hotel_slug=room.hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
-                <img class="min-height-230 bg-img-hero card-img-top" src="{% static 'img/300x230/'|add:room.hotel.name|add:'.jpeg' %}" alt="{{ room.hotel.name }}">
+                <img class="min-height-230 bg-img-hero card-img-top" src="{{ room.hotel.thumbnail.url }}" alt="{{ room.hotel.name }}">
             </a>
             <!-- دکمه لایک -->
             <form method="POST" action="{% url 'likepk' room.hotel.pk %}">

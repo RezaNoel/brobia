@@ -14,9 +14,9 @@ class BlogModel(models.Model):
     description=models.TextField(blank=True ,verbose_name='توضیحات')
     short_description=models.TextField(blank=True, verbose_name='توضیحات کوتاه')
     image=models.ImageField(blank=True,verbose_name='تصاویر',upload_to=room_image_path_154)
-    #
-    # class Meta:
-    #     verbose_name = ("اتاق")
-    #     verbose_name_plural = ("اتاق ها")
+
+    class Meta:
+        verbose_name = ("وبلاگ")
+        verbose_name_plural = ("وبلاگ ها")
 
 

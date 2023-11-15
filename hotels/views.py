@@ -9,8 +9,9 @@ from django.contrib.auth.models import User
 from urllib.parse import urlencode
 from datetime import datetime, timedelta
 from jdatetime import date as jalali_date, timedelta as jalali_timedelta
-from main.models import City, Hotel, Room, Request, Passenger, Facility
-from main.forms import BookingForm, BookingModelForm
+from .models import City, Hotel, Room, Request, Passenger, Facility
+from blogs.models import BlogModel
+from .forms import BookingForm, BookingModelForm
 from .serializer import HotelSerializer, HotelViewSet
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -67,7 +68,12 @@ def HotelHomeView(request):
     formatted_current_date = current_date.strftime('%Y/%m/%d')
     cities = City.objects.all()
     hotels = Hotel.objects.all()
+    blogs = BlogModel.objects.all()
     suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
+    online_reserves_hotels = Hotel.objects.filter(online_reserve=True).all()
+    online_reserves_hotels_city = set()
+    for o_hotel in online_reserves_hotels:
+        online_reserves_hotels_city.add(o_hotel.city)
     facilities = Facility.objects.all()
     kish_count = City.objects.get(faname='کیش').hotel_set.count()
     mashhad_count = City.objects.get(faname='مشهد').hotel_set.count()
@@ -78,7 +84,10 @@ def HotelHomeView(request):
     # hotel = Hotel.objects.get(slug=hotels.slug)
     content = {'cities': cities,
                'hotels':hotels,
+               'blogs':blogs,
                'suggest_hotels':suggest_hotels,
+               'online_reserves_hotels':online_reserves_hotels,
+               'online_reserves_hotels_city':online_reserves_hotels_city,
                'facilities':facilities,
                'kish_count':kish_count,
                'mashhad_count':mashhad_count,
@@ -238,11 +247,13 @@ def HotelSingleView(request, city_slug, hotel_slug):
     suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
     rooms = Room.objects.filter(hotel=hotel.id)
     code = GenerateRandomStringEndPoint(10)
-    res=request.user.reserves.all()
     canRequest = True
-    for r in res:
-        if r.confirm == 'W':
-            canRequest = False
+    if request.user.is_authenticated:
+        res=request.user.reserves.all()
+
+        for r in res:
+            if r.confirm == 'W':
+                canRequest = False
 
 
     content = {"city": city,
