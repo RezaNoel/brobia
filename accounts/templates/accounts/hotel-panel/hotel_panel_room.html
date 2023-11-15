@@ -242,7 +242,7 @@
   .rooms-header{
     display: grid;
     gap: 20px;
-    grid-template-columns: 772px 215px;
+    grid-template-columns: 772px 160px;
   }
 
   .display-state{
@@ -250,15 +250,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 20px;
+    padding-right: 20px;
+    padding-left: 10px;
     border-radius: 5px 5px 2px 2px;
     border: 1px solid #CED2D3;
     background: #FDFDFD;
     box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
     margin-bottom: 20px;
     border: 1px solid #CED2D3;
+    user-select: none;
   }
 
+  .display-state svg{
+    cursor: pointer;
+  }
+  
   .display-state span{
     color: #6C7680;
     font-family: Shabnam;
@@ -269,15 +275,109 @@
   }
 
   .add-room-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 56px;
     border-radius: 5px 5px 2px 2px;
     border: 1px solid #CED2D3;
     background: #FDFDFD;
     box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+    padding-inline: 15px;
   }
 
   .add-room-btn span{
-    
+    color: #4B5259;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .active-svg path{
+    fill: #565c63
+  }
+
+  .rooms-basic-section{
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .rooms-advanced-section{
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .active-section{
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity 1s ease 0s;  
+  }
+
+  .rooms-section-header{
+    display: grid;
+    grid-template-columns: 100px repeat(4, 203px);
+    justify-items: center;
+    align-items: center;
+    border-radius: 5px 5px 2px 2px;
+    border: 1px solid #CED2D3;
+    background: linear-gradient(90deg, #E9EDF2 -3.71%, #EFF3F8 137.23%);
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.07);
+    padding-block: 12px;
+    padding-inline: 20px;
+    color: #292D32;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .hotel-rooms-section{
+    border-radius: 0px 0px 2px 2px;
+    background-color: #fff;
+    box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+    padding-inline: 20px;
+    padding-block: 15px;
+    margin-bottom: 20px;
+  }
+
+  .hotel-rooms{
+    display: grid;
+    grid-template-columns: 100px repeat(4, 203px);
+    align-content: center;
+    justify-items: center;
+    border-radius: 3px;
+    background: #EBEFF3;
+    box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.05);
+    padding-block: 15px;
+    margin-block: 15px;
+    color: #292D32;
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  .room-state{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 5px;
+    box-shadow: -2px 2px 15px 0px rgba(86, 92, 99, 0.07);
+    padding-inline: 10px;
+  }
+
+  .full{
+    color: #C30000;
+    background: #FFF2F2;
+  }
+
+  .empty{
+    color: #00966D;
+    background: #F3FDFA;
+  }
+
+  .more-details{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    background-color: transparent;
   }
 </style>
 {% endblock %}
@@ -493,24 +593,24 @@
                     </filter>
                   </defs>
                 </svg>
-                <svg class="state-advanced" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-                  <g filter="url(#filter0_d_499_371)">
+                <svg class="state-advanced active-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                  <g filter="url(#filter0_d_499_409)">
                     <rect x="12" y="8" width="30" height="30" rx="3" fill="#E7E7E7"/>
                   </g>
-                  <path d="M35.3333 20.1V16.3167C35.3333 15.1417 34.8 14.6667 33.475 14.6667H30.1083C28.7833 14.6667 28.25 15.1417 28.25 16.3167V20.0917C28.25 21.275 28.7833 21.7417 30.1083 21.7417H33.475C34.8 21.75 35.3333 21.275 35.3333 20.1Z" fill="#565C63"/>
-                  <path d="M35.3333 29.475V26.1083C35.3333 24.7833 34.8 24.25 33.475 24.25H30.1083C28.7833 24.25 28.25 24.7833 28.25 26.1083V29.475C28.25 30.8 28.7833 31.3333 30.1083 31.3333H33.475C34.8 31.3333 35.3333 30.8 35.3333 29.475Z" fill="#565C63"/>
-                  <path d="M25.7501 20.1V16.3167C25.7501 15.1417 25.2167 14.6667 23.8917 14.6667H20.5251C19.2001 14.6667 18.6667 15.1417 18.6667 16.3167V20.0917C18.6667 21.275 19.2001 21.7417 20.5251 21.7417H23.8917C25.2167 21.75 25.7501 21.275 25.7501 20.1Z" fill="#565C63"/>
-                  <path d="M25.7501 29.475V26.1083C25.7501 24.7833 25.2167 24.25 23.8917 24.25H20.5251C19.2001 24.25 18.6667 24.7833 18.6667 26.1083V29.475C18.6667 30.8 19.2001 31.3333 20.5251 31.3333H23.8917C25.2167 31.3333 25.7501 30.8 25.7501 29.475Z" fill="#565C63"/>
+                  <path d="M35.3333 20.1V16.3166C35.3333 15.1416 34.8 14.6666 33.475 14.6666H30.1083C28.7833 14.6666 28.25 15.1416 28.25 16.3166V20.0916C28.25 21.275 28.7833 21.7416 30.1083 21.7416H33.475C34.8 21.75 35.3333 21.275 35.3333 20.1Z" fill="#BABDC0"/>
+                  <path d="M35.3333 29.475V26.1083C35.3333 24.7833 34.8 24.25 33.475 24.25H30.1083C28.7833 24.25 28.25 24.7833 28.25 26.1083V29.475C28.25 30.8 28.7833 31.3333 30.1083 31.3333H33.475C34.8 31.3333 35.3333 30.8 35.3333 29.475Z" fill="#BABDC0"/>
+                  <path d="M25.7501 20.1V16.3166C25.7501 15.1416 25.2167 14.6666 23.8917 14.6666H20.5251C19.2001 14.6666 18.6667 15.1416 18.6667 16.3166V20.0916C18.6667 21.275 19.2001 21.7416 20.5251 21.7416H23.8917C25.2167 21.75 25.7501 21.275 25.7501 20.1Z" fill="#BABDC0"/>
+                  <path d="M25.7501 29.475V26.1083C25.7501 24.7833 25.2167 24.25 23.8917 24.25H20.5251C19.2001 24.25 18.6667 24.7833 18.6667 26.1083V29.475C18.6667 30.8 19.2001 31.3333 20.5251 31.3333H23.8917C25.2167 31.3333 25.7501 30.8 25.7501 29.475Z" fill="#BABDC0"/>
                   <defs>
-                    <filter id="filter0_d_499_371" x="0" y="0" width="50" height="50" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <filter id="filter0_d_499_409" x="0" y="0" width="50" height="50" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
                       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
                       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                       <feOffset dx="-2" dy="2"/>
                       <feGaussianBlur stdDeviation="5"/>
                       <feComposite in2="hardAlpha" operator="out"/>
                       <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"/>
-                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_499_371"/>
-                      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_499_371" result="shape"/>
+                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_499_409"/>
+                      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_499_409" result="shape"/>
                     </filter>
                   </defs>
                 </svg>
@@ -523,6 +623,63 @@
                 <path d="M12.5 19.5312C12.0729 19.5312 11.7188 19.1771 11.7188 18.75V6.25C11.7188 5.82292 12.0729 5.46875 12.5 5.46875C12.9271 5.46875 13.2812 5.82292 13.2812 6.25V18.75C13.2812 19.1771 12.9271 19.5312 12.5 19.5312Z" fill="#292D32"/>
               </svg>
             </button>
+          </div>
+          <div class="rooms-advanced-section active-section">
+            </div>
+          </div>
+          </div>
+          <div class="rooms-basic-section">
+            <div class="rooms-section-header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+                <path d="M10.2925 3.1141L2.66532 11.647C1.80593 12.6013 1.43583 14.397 1.84408 15.6356L3.42121 25.9622C4.00479 27.7582 5.94528 28.9885 7.75864 28.7116L25.2123 26.0459C27.013 25.7709 28.5084 24.0025 28.5313 22.1272L26.9542 11.8007C26.2121 11.8007 23.9388 8.89518 22.8463 8.23894L15.1553 2.38471C13.6375 1.47481 11.4589 1.80752 10.2925 3.1141Z" fill="#FFB500"/>
+                <path d="M14.6542 4.8753L5.64659 12.5105C4.63275 13.3634 3.98282 15.1656 4.20379 16.5138V27.4644C4.51574 29.4179 6.28349 31 8.1552 31H26.1705C28.0292 31 29.8099 29.4042 30.1219 27.4644V16.5138C30.3298 15.1656 29.6799 13.3634 28.6791 12.5105L19.6714 4.88907C18.2807 3.70596 16.032 3.70594 14.6542 4.8753Z" fill="#292D32"/>
+              </svg>
+              <span>شماره اتاق</span>
+              <span>تعداد تخت های اتاق</span>
+              <span>وضعیت</span>
+            </div>
+            <div class="hotel-rooms-section">
+              <div class="hotel-rooms">
+                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+                  <path d="M10.2925 3.1141L2.66532 11.647C1.80593 12.6013 1.43583 14.397 1.84408 15.6356L3.42121 25.9622C4.00479 27.7582 5.94528 28.9885 7.75864 28.7116L25.2123 26.0459C27.013 25.7709 28.5084 24.0025 28.5313 22.1272L26.9542 11.8007C26.2121 11.8007 23.9388 8.89518 22.8463 8.23894L15.1553 2.38471C13.6375 1.47481 11.4589 1.80752 10.2925 3.1141Z" fill="#FFB500"/>
+                  <path d="M14.6542 4.8753L5.64659 12.5105C4.63275 13.3634 3.98282 15.1656 4.20379 16.5138V27.4644C4.51574 29.4179 6.28349 31 8.1552 31H26.1705C28.0292 31 29.8099 29.4042 30.1219 27.4644V16.5138C30.3298 15.1656 29.6799 13.3634 28.6791 12.5105L19.6714 4.88907C18.2807 3.70596 16.032 3.70594 14.6542 4.8753Z" fill="#292D32"/>
+                </svg>
+                <span>اتاق 126</span>
+                <span>2 تخت خواب</span>
+                <span class="room-state empty">
+                  <span>خالی</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
+                    <circle cx="7.40088" cy="6.5" r="6.5" fill="#00966D"/>
+                  </svg>
+                </span>
+                <button class="more-details">
+                  نمایش بیشتر
+                  <svg xmlns="http://www.w3.org/2000/svg" width="7" height="15" viewBox="0 0 7 15" fill="none">
+                    <path d="M1.49002e-07 7.5C1.75478e-07 6.89429 0.219831 6.28858 0.651352 5.82997L5.95987 0.188203C6.19599 -0.0627344 6.5868 -0.0627344 6.82291 0.188203C7.05903 0.439141 7.05903 0.854485 6.82291 1.10542L1.51439 6.74719C1.12358 7.16253 1.12358 7.83747 1.51439 8.25281L6.82291 13.8946C7.05903 14.1455 7.05903 14.5609 6.82291 14.8118C6.5868 15.0627 6.19599 15.0627 5.95987 14.8118L0.651352 9.17003C0.219831 8.71142 1.22525e-07 8.10571 1.49002e-07 7.5Z" fill="#565C63"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="hotel-rooms">
+                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+                  <path d="M10.2925 3.1141L2.66532 11.647C1.80593 12.6013 1.43583 14.397 1.84408 15.6356L3.42121 25.9622C4.00479 27.7582 5.94528 28.9885 7.75864 28.7116L25.2123 26.0459C27.013 25.7709 28.5084 24.0025 28.5313 22.1272L26.9542 11.8007C26.2121 11.8007 23.9388 8.89518 22.8463 8.23894L15.1553 2.38471C13.6375 1.47481 11.4589 1.80752 10.2925 3.1141Z" fill="#FFB500"/>
+                  <path d="M14.6542 4.8753L5.64659 12.5105C4.63275 13.3634 3.98282 15.1656 4.20379 16.5138V27.4644C4.51574 29.4179 6.28349 31 8.1552 31H26.1705C28.0292 31 29.8099 29.4042 30.1219 27.4644V16.5138C30.3298 15.1656 29.6799 13.3634 28.6791 12.5105L19.6714 4.88907C18.2807 3.70596 16.032 3.70594 14.6542 4.8753Z" fill="#292D32"/>
+                </svg>
+                <span>اتاق 132</span>
+                <span>3 تخت خواب</span>
+                <span class="room-state full">
+                  <span>پر شده</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                    <path d="M7.5 0C4.05625 0 1.25 2.80625 1.25 6.25C1.25 9.69375 4.05625 12.5 7.5 12.5C10.9438 12.5 13.75 9.69375 13.75 6.25C13.75 2.80625 10.9438 0 7.5 0ZM9.6 7.6875C9.78125 7.86875 9.78125 8.16875 9.6 8.35C9.50625 8.44375 9.3875 8.4875 9.26875 8.4875C9.15 8.4875 9.03125 8.44375 8.9375 8.35L7.5 6.9125L6.0625 8.35C5.96875 8.44375 5.85 8.4875 5.73125 8.4875C5.6125 8.4875 5.49375 8.44375 5.4 8.35C5.21875 8.16875 5.21875 7.86875 5.4 7.6875L6.8375 6.25L5.4 4.8125C5.21875 4.63125 5.21875 4.33125 5.4 4.15C5.58125 3.96875 5.88125 3.96875 6.0625 4.15L7.5 5.5875L8.9375 4.15C9.11875 3.96875 9.41875 3.96875 9.6 4.15C9.78125 4.33125 9.78125 4.63125 9.6 4.8125L8.1625 6.25L9.6 7.6875Z" fill="#C30000"/>
+                  </svg>
+                </span>
+                <button class="more-details">
+                  نمایش بیشتر
+                  <svg xmlns="http://www.w3.org/2000/svg" width="7" height="15" viewBox="0 0 7 15" fill="none">
+                    <path d="M1.49002e-07 7.5C1.75478e-07 6.89429 0.219831 6.28858 0.651352 5.82997L5.95987 0.188203C6.19599 -0.0627344 6.5868 -0.0627344 6.82291 0.188203C7.05903 0.439141 7.05903 0.854485 6.82291 1.10542L1.51439 6.74719C1.12358 7.16253 1.12358 7.83747 1.51439 8.25281L6.82291 13.8946C7.05903 14.1455 7.05903 14.5609 6.82291 14.8118C6.5868 15.0627 6.19599 15.0627 5.95987 14.8118L0.651352 9.17003C0.219831 8.71142 1.22525e-07 8.10571 1.49002e-07 7.5Z" fill="#565C63"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -545,5 +702,23 @@
     // Toggle the "show-dp" class on the profile dropdown content element
     profileDropdownContent.classList.toggle('show-dp');
   });
+
+  const basicState = document.querySelector('.state-basic')
+  const advancedState = document.querySelector('.state-advanced')
+  const roomsBasic = document.querySelector('.rooms-basic-section')
+  const roomsAdvanced = document.querySelector('.rooms-advanced-section')
+
+  basicState.addEventListener('click', () => {
+      advancedState.classList.remove('active-svg')
+      basicState.classList.add('active-svg')
+      roomsAdvanced.classList.remove('active-section')
+      roomsBasic.classList.add('active-section')
+  })
+  advancedState.addEventListener('click', () => {
+      advancedState.classList.add('active-svg')
+      basicState.classList.remove('active-svg')
+      roomsAdvanced.classList.add('active-section')
+      roomsBasic.classList.remove('active-section')
+  })
 </script>
 {% endblock %}
