@@ -457,6 +457,8 @@
     margin-bottom: 20px;
     padding-inline: 7px;
     padding-block: 11px;
+    max-height: 400px;
+    overflow-y: auto;
   }
 
   .hotel-facilities-header{
@@ -523,6 +525,7 @@
 
   .hotel-images{
     height: fit-content;
+    max-height: 700px;
     border: 0.5px solid #CED2D3;
     background: #FDFDFD;
     box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
@@ -530,6 +533,7 @@
     margin-right: 20px;
     padding-inline: 7px;
     padding-block: 11px;
+    overflow-y: auto;
   }
 
   .hotel-images-header{
@@ -1384,12 +1388,12 @@
           </div>
           <ul class="hotel-facilities-content">
             <hr style="margin: 0;">
-              {% for facility in myHotel.hotel.facilities.all %}
-              <li class="facility flaticon-{{ facility.name }}">
-                <span >{{facility.faname}}</span>
-              </li>
-              <hr style="margin: 0;">
-              {% endfor %}
+            {% for facility in myHotel.hotel.facilities.all %}
+            <li class="facility flaticon-{{ facility.name }}">
+              <span >{{facility.faname}}</span>
+            </li>
+            <hr style="margin: 0;">
+            {% endfor %}
             </ul>
           </div>
           <div class="hotel-images">
@@ -1411,7 +1415,7 @@
           <ul class="hotel-images-content">
             <hr>
 
-              {% for image in myHotel.hotel.gallery.all%}
+            {% for image in myHotel.hotel.gallery.all%}
               <li class="image">
                 <span>{{ forloop.counter }}</span>
                 <img src="{{ image.file.url }}" alt="">
