@@ -297,18 +297,20 @@
   }
 
   .rooms-basic-section{
+    display: none;
     opacity: 0;
     pointer-events: none;
   }
   
   .rooms-advanced-section{
-    display: grid;
+    display: none;
     grid-template-columns: repeat(3, 1fr);
     opacity: 0;
     pointer-events: none;
   }
 
   .active-section{
+    display: grid;
     opacity: 1;
     pointer-events: all;
     transition: opacity 1s ease 0s;  
@@ -702,8 +704,6 @@
               </div>
             </div>
           </div>
-          </div>
-          </div>
           <div class="rooms-basic-section">
             <div class="rooms-section-header">
               <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
@@ -757,6 +757,8 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </div>
