@@ -297,6 +297,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin: 0;
   }
 
   .hotel-details label{
@@ -310,6 +311,7 @@
   }
 
   .edit-btn{
+    display: none;
     border-radius: 5px;
     border: none;
     background-color: transparent;
@@ -916,6 +918,47 @@
         text-align: left;
         user-select: none;
       }
+
+      .active-edit{
+        display: block !important;
+      }
+
+      .action-cancel-edit{
+        padding-inline: 20px;
+        padding-block: 4.5px;
+        border-radius: 5px;
+        margin-left: 10px;
+        background-color: transparent;
+        box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+        color: #FFF;
+        font-size: 22px;
+        font-weight: 700;
+        border: 2px solid #FC0;
+        background: linear-gradient(117deg, #FC0 -114.34%, rgba(255, 140, 0, 0.00) 656.22%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .action-save-edit{
+        padding-inline: 28px;
+        padding-block: 6px;
+        border-radius: 5px;
+        background: linear-gradient(96deg, #FC0 -33.68%, #FF8C00 269.25%);
+        box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+        color: #FFF;
+        font-size: 22px;
+        font-weight: 700;
+        border: none;
+      }
+
+      .action-buttons-edit{
+        margin-top: 5px;
+        display: none;
+        overflow: hidden;
+        text-align: left;
+        user-select: none;
+      }
 </style>
 {% endblock %}
 {% block title %}پنل مدیریت هتل{% endblock %}
@@ -1257,7 +1300,7 @@
                 {% endfor %}
               </div>
             </div>
-            <div style="background: #FDFDFD; border: 1px solid #CED2D3;">
+            <div class="hotel-details-content" style="background: #FDFDFD; border: 1px solid #CED2D3;">
               <div class="hotel-details-header">
                 <h3 class="hotel-details-header-text">
                   <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
@@ -1265,15 +1308,19 @@
                   </svg>
                   عمومی
                 </h3>
-                <button id="editBtn" class="edit-btn">
+                <button id="editBtn" class="edit-btn active-edit">
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                     <path d="M26.25 27.5H3.75C3.2375 27.5 2.8125 27.075 2.8125 26.5625C2.8125 26.05 3.2375 25.625 3.75 25.625H26.25C26.7625 25.625 27.1875 26.05 27.1875 26.5625C27.1875 27.075 26.7625 27.5 26.25 27.5Z" fill="#565C63"/>
                     <path d="M23.775 4.35001C21.35 1.92501 18.975 1.86251 16.4875 4.35001L14.975 5.86251C14.85 5.98751 14.8 6.18751 14.85 6.36251C15.8 9.67501 18.45 12.325 21.7625 13.275C21.8125 13.2875 21.8625 13.3 21.9125 13.3C22.05 13.3 22.175 13.25 22.275 13.15L23.775 11.6375C25.0125 10.4125 25.6125 9.22501 25.6125 8.02501C25.625 6.78751 25.025 5.58751 23.775 4.35001Z" fill="#565C63"/>
                     <path d="M19.5125 14.4125C19.15 14.2375 18.8 14.0625 18.4625 13.8625C18.1875 13.7 17.925 13.525 17.6625 13.3375C17.45 13.2 17.2 13 16.9625 12.8C16.9375 12.7875 16.85 12.7125 16.75 12.6125C16.3375 12.2625 15.875 11.8125 15.4625 11.3125C15.425 11.2875 15.3625 11.2 15.275 11.0875C15.15 10.9375 14.9375 10.6875 14.75 10.4C14.6 10.2125 14.425 9.93747 14.2625 9.66247C14.0625 9.32497 13.8875 8.98747 13.7125 8.63747C13.6577 8.51999 13.6065 8.40374 13.5583 8.28911C13.4169 7.95311 12.9812 7.85624 12.7235 8.114L5.425 15.4125C5.2625 15.575 5.1125 15.8875 5.075 16.1L4.4 20.8875C4.275 21.7375 4.5125 22.5375 5.0375 23.075C5.4875 23.5125 6.1125 23.75 6.7875 23.75C6.9375 23.75 7.0875 23.7375 7.2375 23.7125L12.0375 23.0375C12.2625 23 12.575 22.85 12.725 22.6875L20.0163 15.3962C20.2759 15.1366 20.1775 14.6924 19.8387 14.5512C19.7324 14.507 19.6241 14.4608 19.5125 14.4125Z" fill="#565C63"/>
                   </svg>
                 </button>
+                <div class="action-buttons-edit">
+                  <button class="action-cancel-edit">انصراف</button>
+                  <button class="action-save-edit">ذخیره</button>
+                </div>
               </div>
-              <hr style="margin-inline: 20px;">
+              <hr style="margin-inline: 20px; margin-block: 10px;">
               <div class="main-details">
                 <div class="hotel-information">
                   <div class="hotel-name">
@@ -1458,6 +1505,63 @@
     document.querySelectorAll('.check-input-f').forEach(ci => {
       ci.checked = false
     })
+  })
+
+  const editBtn = document.querySelector('.edit-btn')
+  const actionBtns = document.querySelector('.action-buttons-edit')
+  const actionCancelEdit = document.querySelector('.action-cancel-edit')
+  const actionSaveEdit = document.querySelector('.action-save-edit')
+  const hotelInformation = document.querySelector('.hotel-details-content');
+  const inputs = hotelInformation.querySelectorAll('input');
+  const textareas = hotelInformation.querySelectorAll('textarea');
+  let initialState = Array.from(inputs).map(input => input.value);
+  let initialTextareas = Array.from(textareas).map(textarea => textarea.value);
+
+  editBtn.addEventListener('click', () => {
+    actionBtns.classList.add('active-edit')
+    editBtn.classList.remove('active-edit')
+    initialState = Array.from(inputs).map(input => input.value);
+    initialTextareas = Array.from(textareas).map(textarea => textarea.value);
+
+    inputs.forEach(input => {
+        input.disabled = !input.disabled;
+        input.style.color = '#2A2A2A'
+    })
+
+    textareas.forEach(textarea => {
+        textarea.disabled = !textarea.disabled;
+        textarea.style.color = '#2A2A2A'
+    });
+  })
+
+  actionSaveEdit.addEventListener('click', () => {
+    actionBtns.classList.remove('active-edit')
+    editBtn.classList.add('active-edit')
+
+    inputs.forEach(input => {
+      input.disabled = true;
+    });
+
+    textareas.forEach(textarea => {
+      textarea.disabled = true;
+    });
+  });
+
+  actionCancelEdit.addEventListener('click', () => {
+    actionBtns.classList.remove('active-edit')
+    editBtn.classList.add('active-edit')
+
+    inputs.forEach((input, index) => {
+        input.disabled = true;
+        input.value = initialState[index];
+        input.style.color = '#8F9092'
+    })
+
+    textareas.forEach((textarea, index) => {
+        textarea.disabled = true;
+        textarea.value = initialTextareas[index];
+        textarea.style.color = '#8F9092'
+    });
   })
 
   const imageSection = document.querySelector(".selected-images");
