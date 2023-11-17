@@ -820,6 +820,7 @@
       user-select: none;
       justify-items: center;
       height: 420px;
+      overflow-y: auto;
     }
 
     .image-btn{
@@ -1614,11 +1615,13 @@
     imagesOverlay.classList.remove('show-overlay')
     addImageSection.style.display = 'inline-block'
     removeImageSection.style.display = 'none'
+    imageName.value = 'هیچ فایلی انتخاب نشده'
   })
-
+  
   document.querySelector('.image-section').addEventListener('click', () => {
     imagesOverlay.classList.add('show-overlay')
     imageSection.innerHTML = imageHtml
+    imageHtml = ''
     deleteImage()
   })
 
@@ -1627,36 +1630,42 @@
     imageElementInput.forEach(ci => {
       ci.checked = false
     })
+    imageName.value = 'هیچ فایلی انتخاب نشده'
   })
 
   if (imageSection.scrollHeight > 420) {
     imageSection.style.overflowY = "scroll";
   }
+
   const facilitySection = document.querySelector(".selected-facilities");
+
   if (facilitySection.scrollHeight > 420) {
     facilitySection.style.overflowY = "scroll";
   }
-  
 
   let removeImages = []
   //دکمه حذف
+
   function deleteImage () {
+      const inputId = imageSection.querySelectorAll('input')
     document.querySelectorAll(".check-input-i")?.forEach(ci => {
     ci.addEventListener('change', () => {
-      let inputCounter = 0
       let checkedArr = []
       
-      // منطق نشان دادن دکمه حذف
-      while (document.getElementById('image-'+ (inputCounter + 1))) {
-        if(document.getElementById('image-'+ (inputCounter + 1)).checked){
-          checkedArr.push(true)
-        }else{
-          checkedArr.push(false)
-        }
-        inputCounter += 1
-        }
+       // منطق نشان دادن دکمه حذف
+      console.log(inputId)
+        inputId.forEach(input => {
+          if(document.getElementById(input.id).checked){
+            checkedArr.push(true)
+          }else{
+            checkedArr.push(false)
+          }
+        })
+
+
         if(ci.checked) removeImages.push(ci.id)
         if(!ci.checked) removeImages.splice(removeImages.indexOf(ci.id), 1)
+        console.log(removeImages)
       //نشان دادن دکمه حذف
         if(checkedArr.includes(true)){
           addImageSection.style.display = 'none'
@@ -1675,6 +1684,19 @@
   }
 
   deleteImage()
+  
+  removeImage.addEventListener('click', () => {
+    removeImages.forEach((ri) => {
+      if(document.getElementById('id-' + ri)){
+        document.getElementById('id-' + ri).remove()
+        removeImages.splice(removeImages.indexOf(ri.id), 1)
+        imageSection.innerHTML = imageSection.innerHTML.slice()
+        console.log(removeImages)
+      }
+    })
+    addImageSection.style.display = 'inline-block'
+    removeImageSection.style.display = 'none'
+  })
 
 </script>
 {% endblock %}
