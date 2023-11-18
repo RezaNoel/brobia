@@ -7,6 +7,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User,HotelManagerModel
+from hotels.models import Facility
 from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm
 import main
 
@@ -137,10 +138,25 @@ def UserProfileView(request):
 @login_required
 def HotelAdminView(request,page):
     myHotel = HotelManagerModel.objects.get(user=request.user)
-    template_name = f'accounts/hotel-panel/hotel_panel_{page}.html'
+    hotelFacilities = Facility.objects.filter(related='H')
+    facilities = myHotel.hotel.facilities.all()
+    if request.method == 'POST':
+        if 'hotelName' in request.POST:
+            pass
+        else:
+            for facility in hotelFacilities:
+                checkbox_name = f'facility_checkbox_{facility.id}'
+                if checkbox_name in request.POST:
+                    myHotel.hotel.facilities.add(facility)
+                else:
+                    myHotel.hotel.facilities.remove(facility)
 
+
+    template_name = f'accounts/hotel-panel/hotel_panel_{page}.html'
     context = {
-        'myHotel': myHotel
+        'myHotel': myHotel,
+        'hotelFacilities': hotelFacilities,
+        'facilities':facilities
     }
     return render(request, template_name, context)
 

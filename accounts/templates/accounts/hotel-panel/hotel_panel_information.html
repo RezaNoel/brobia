@@ -3,12 +3,13 @@
 {% block header %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Shabnam;
   }
+
 
   body{
     background-color: #dfe2e4;
@@ -258,7 +259,7 @@
 
   .hotel-stars span{
     color: #6C7680;
-    font-family: Shabnam;
+    
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -292,7 +293,7 @@
     align-items: center;
     gap: 10px;
     color: #000;
-    font-family: Shabnam;
+    
     font-size: 22px;
     font-style: normal;
     font-weight: 700;
@@ -302,7 +303,7 @@
 
   .hotel-details label{
     color: #6C7680;
-    font-family: Shabnam;
+    
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -476,7 +477,7 @@
   .hotel-facilities-header span{
     margin-right: 10px;
     color: #000;
-    font-family: Shabnam;
+    
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -551,7 +552,7 @@
   .hotel-images-header span{
     margin-right: 10px;
     color: #000;
-    font-family: Shabnam;
+    
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -646,7 +647,7 @@
   .change-facilities-header{
     margin-right: 10px;
     color: #000;
-    font-family: Shabnam;
+    
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -771,7 +772,7 @@
       align-items: center;
       margin-right: 10px;
       color: #000;
-      font-family: Shabnam;
+      
       font-size: 20px;
       font-style: normal;
       font-weight: 700;
@@ -1007,96 +1008,50 @@
 </div>
 <div class="facilities-overlay">
   <div class="change-facilities">
-    <span class="change-facilities-header">
-      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-        <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
-        <path d="M12.0313 17.5C12.0313 16.7708 11.4479 16.1875 10.7188 16.1875L3.9375 16.1875C3.20833 16.1875 2.625 16.7708 2.625 17.5C2.625 18.2292 3.20833 18.8125 3.9375 18.8125L10.7188 18.8125C11.4333 18.8125 12.0313 18.2292 12.0313 17.5Z" fill="#454545"/>
-        <path d="M22.9688 8.00626C22.9688 8.73542 23.5521 9.31876 24.2812 9.31876L31.0625 9.31876C31.7917 9.31876 32.375 8.73542 32.375 8.00626C32.375 7.27709 31.7917 6.69376 31.0625 6.69376L24.2812 6.69376C23.5667 6.69376 22.9688 7.27709 22.9688 8.00626Z" fill="#454545"/>
-        <path d="M20.1688 10.7188L20.1688 5.29376C20.1688 4.5646 19.5854 3.98126 18.8563 3.98126C18.1271 3.98126 17.5438 4.5646 17.5438 5.29376L17.5438 6.69376L3.93751 6.69376C3.20835 6.69376 2.62501 7.2771 2.62501 8.00626C2.62501 8.73543 3.20835 9.31876 3.93751 9.31876L17.5438 9.31876L17.5438 10.7188C17.5438 11.4479 18.1271 12.0313 18.8563 12.0313C19.5854 12.0313 20.1688 11.4333 20.1688 10.7188Z" fill="#454545"/>
-        <path d="M20.1688 29.7063L20.1688 24.2812C20.1688 23.5521 19.5854 22.9688 18.8563 22.9688C18.1271 22.9688 17.5438 23.5521 17.5438 24.2812L17.5438 25.6813L3.93751 25.6813C3.20835 25.6813 2.62501 26.2646 2.62501 26.9938C2.62501 27.7229 3.20835 28.3063 3.93751 28.3063L17.5438 28.3063L17.5438 29.7063C17.5438 30.4354 18.1271 31.0188 18.8563 31.0188C19.5854 31.0188 20.1688 30.4354 20.1688 29.7063Z" fill="#454545"/>
-        <path d="M17.4563 20.2125L17.4563 18.8125L31.0625 18.8125C31.7917 18.8125 32.375 18.2291 32.375 17.5C32.375 16.7708 31.7917 16.1875 31.0625 16.1875L17.4563 16.1875L17.4563 14.7875C17.4563 14.0583 16.8729 13.475 16.1438 13.475C15.4146 13.475 14.8313 14.0583 14.8313 14.7875L14.8313 20.2125C14.8313 20.9416 15.4146 21.525 16.1438 21.525C16.8729 21.525 17.4563 20.9416 17.4563 20.2125Z" fill="#454545"/>
-      </svg>
-      <span>امکانات</span>
-    </span>
-    <hr>
-    <div class="selected-facilities">
-      <div class="facility-btn">
-        <label for="input-1" class="facility-checkbox-text">اینترنت رایگان</label>
-        <input id="input-1" class="check-input-f" type="checkbox">
-        <label for="input-1" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
+      <form method="POST">
+        {% csrf_token %}
+        <span class="change-facilities-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+            <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
+            <path d="M12.0313 17.5C12.0313 16.7708 11.4479 16.1875 10.7188 16.1875L3.9375 16.1875C3.20833 16.1875 2.625 16.7708 2.625 17.5C2.625 18.2292 3.20833 18.8125 3.9375 18.8125L10.7188 18.8125C11.4333 18.8125 12.0313 18.2292 12.0313 17.5Z" fill="#454545"/>
+            <path d="M22.9688 8.00626C22.9688 8.73542 23.5521 9.31876 24.2812 9.31876L31.0625 9.31876C31.7917 9.31876 32.375 8.73542 32.375 8.00626C32.375 7.27709 31.7917 6.69376 31.0625 6.69376L24.2812 6.69376C23.5667 6.69376 22.9688 7.27709 22.9688 8.00626Z" fill="#454545"/>
+            <path d="M20.1688 10.7188L20.1688 5.29376C20.1688 4.5646 19.5854 3.98126 18.8563 3.98126C18.1271 3.98126 17.5438 4.5646 17.5438 5.29376L17.5438 6.69376L3.93751 6.69376C3.20835 6.69376 2.62501 7.2771 2.62501 8.00626C2.62501 8.73543 3.20835 9.31876 3.93751 9.31876L17.5438 9.31876L17.5438 10.7188C17.5438 11.4479 18.1271 12.0313 18.8563 12.0313C19.5854 12.0313 20.1688 11.4333 20.1688 10.7188Z" fill="#454545"/>
+            <path d="M20.1688 29.7063L20.1688 24.2812C20.1688 23.5521 19.5854 22.9688 18.8563 22.9688C18.1271 22.9688 17.5438 23.5521 17.5438 24.2812L17.5438 25.6813L3.93751 25.6813C3.20835 25.6813 2.62501 26.2646 2.62501 26.9938C2.62501 27.7229 3.20835 28.3063 3.93751 28.3063L17.5438 28.3063L17.5438 29.7063C17.5438 30.4354 18.1271 31.0188 18.8563 31.0188C19.5854 31.0188 20.1688 30.4354 20.1688 29.7063Z" fill="#454545"/>
+            <path d="M17.4563 20.2125L17.4563 18.8125L31.0625 18.8125C31.7917 18.8125 32.375 18.2291 32.375 17.5C32.375 16.7708 31.7917 16.1875 31.0625 16.1875L17.4563 16.1875L17.4563 14.7875C17.4563 14.0583 16.8729 13.475 16.1438 13.475C15.4146 13.475 14.8313 14.0583 14.8313 14.7875L14.8313 20.2125C14.8313 20.9416 15.4146 21.525 16.1438 21.525C16.8729 21.525 17.4563 20.9416 17.4563 20.2125Z" fill="#454545"/>
           </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <label for="input-2" class="facility-checkbox-text">رستوران</label>
-        <input id="input-2" class="check-input-f" type="checkbox">
-        <label for="input-2" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <label for="input-3" class="facility-checkbox-text">استخر</label>
-        <input id="input-3" class="check-input-f" type="checkbox">
-        <label for="input-3" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <label for="input-4" class="facility-checkbox-text">استخر</label>
-        <input id="input-4" class="check-input-f" type="checkbox">
-        <label for="input-4" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <label for="input-5" class="facility-checkbox-text">استخر</label>
-        <input id="input-5" class="check-input-f" type="checkbox">
-        <label for="input-5" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <label for="input-6" class="facility-checkbox-text">استخر</label>
-        <input id="input-6" class="check-input-f" type="checkbox">
-        <label for="input-6" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-      <div class="facility-btn">
-        <label for="input-7" class="facility-checkbox-text">استخر</label>
-        <input id="input-7" class="check-input-f" type="checkbox">
-        <label for="input-7" class="facility-checkbox">
-          <svg viewBox="0 0 22 16" fill="none">
-            <path d="M1 6.85L8.09677 14L21 1"/>
-          </svg>
-        </label>
-      </div>
-    </div>
-    <div class="action-buttons-fac">
-      <button class="action-cancel-fac">انصراف</button>
-      <button class="action-save-fac">ذخیره</button>
-    </div>
+          <span>امکانات</span>
+        </span>
+        <hr>
+        <div class="selected-facilities">
+
+          {% for facility in hotelFacilities.all %}
+          <div class="facility-btn">
+            <label for="input-{{ forloop.counter }}" class="facility-checkbox-text" >{{ facility.faname }}</label>
+            <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ forloop.counter }}">
+            <label for="input-{{ forloop.counter }}" class="facility-checkbox">
+              <svg viewBox="0 0 22 16" fill="none">
+                <path d="M1 6.85L8.09677 14L21 1"/>
+              </svg>
+            </label>
+          </div>
+              {% if facility in facilities %}
+                  <script >document.getElementById('input-{{ forloop.counter }}').setAttribute('checked', 'checked');</script>
+              {% endif %} 
+            {% endfor %}
+        </div>
+        <div class="action-buttons-fac">
+          <button type="button" class="action-cancel-fac">انصراف</button>
+          <button type="submit" class="action-save-fac">ذخیره</button>
+        </div>
+      </form>
   </div>
 </div>
     <div class="side-panel">
       <div class="logo">
-        <a href="/">
-          <h2 class="logo-text">برو بیا</h2>
+        <a href="{% url 'home' %}">
           <img
             class="logo-icon"
-            src="{% static 'img/logo/purelogo.png' %}"
+            src="{% static 'img/logo/boroobia.png' %}"
             alt="boroobia logo"
           />
         </a>
@@ -1302,6 +1257,7 @@
               </div>
             </div>
             <div class="hotel-details-content" style="background: #FDFDFD; border: 1px solid #CED2D3;">
+                <form method="POST">
               <div class="hotel-details-header">
                 <h3 class="hotel-details-header-text">
                   <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
@@ -1309,7 +1265,7 @@
                   </svg>
                   عمومی
                 </h3>
-                <button id="editBtn" class="edit-btn active-edit">
+                <button id="editBtn" type="button" class="edit-btn active-edit">
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                     <path d="M26.25 27.5H3.75C3.2375 27.5 2.8125 27.075 2.8125 26.5625C2.8125 26.05 3.2375 25.625 3.75 25.625H26.25C26.7625 25.625 27.1875 26.05 27.1875 26.5625C27.1875 27.075 26.7625 27.5 26.25 27.5Z" fill="#565C63"/>
                     <path d="M23.775 4.35001C21.35 1.92501 18.975 1.86251 16.4875 4.35001L14.975 5.86251C14.85 5.98751 14.8 6.18751 14.85 6.36251C15.8 9.67501 18.45 12.325 21.7625 13.275C21.8125 13.2875 21.8625 13.3 21.9125 13.3C22.05 13.3 22.175 13.25 22.275 13.15L23.775 11.6375C25.0125 10.4125 25.6125 9.22501 25.6125 8.02501C25.625 6.78751 25.025 5.58751 23.775 4.35001Z" fill="#565C63"/>
@@ -1317,8 +1273,8 @@
                   </svg>
                 </button>
                 <div class="action-buttons-edit">
-                  <button class="action-cancel-edit">انصراف</button>
-                  <button class="action-save-edit">ذخیره</button>
+                  <button type="submit" class="action-save-edit">ذخیره</button>
+                  <button type="button" class="action-cancel-edit">انصراف</button>
                 </div>
               </div>
               <hr style="margin-inline: 20px; margin-block: 10px;">
@@ -1326,19 +1282,19 @@
                 <div class="hotel-information">
                   <div class="hotel-name">
                     <label for="hotelName">نام هتل:</label>
-                    <input id="hotelName" disabled type="text" value="{{myHotel.hotel.faname}}"/>
+                    <input id="hotelName" name="hotelName" disabled type="text" value="{{myHotel.hotel.faname}}"/>
                   </div>
                   <div class="hotel-city">
                     <label for="hotelCity">شهر:</label>
-                    <input id="hotelCity"disabled value="{{myHotel.hotel.city}}" type="text" />
+                    <input id="hotelCity" name="hotelCity" disabled value="{{myHotel.hotel.city}}" type="text" />
                   </div>
                   <div class="hotel-floors-number">
                     <label for="hotelFloors">تعداد طبقه:</label>
-                    <input id="hotelFloors"disabled value="{{myHotel.hotel.floor}}" type="number" />
+                    <input id="hotelFloors"name="hotelFloors" disabled value="{{myHotel.hotel.floor}}" type="number" />
                   </div>
                   <div class="hotel-rooms-number">
                     <label for="hotelRooms">تعداد اتاق:</label>
-                    <input id="hotelRooms"disabled value="{{myHotel.hotel.rooms}}" type="number" />
+                    <input id="hotelRooms" name="hotelRooms" disabled value="{{myHotel.hotel.rooms}}" type="number" />
                   </div>
                   <div class="hotel-address">
                     <label for="hotelAddress">آدرس هتل:</label>
@@ -1412,7 +1368,7 @@
                   </div>
                 </div>
               </div>
-
+                </form>
             </div>
           </div>
           <div class="hotel-facilities">
@@ -1483,6 +1439,7 @@
 
 {% block footer %}
 <script>
+
   // Select the profile dropdown button element
   const profileDropdownButton = document.querySelector('.dropdown-profile-btn');
   

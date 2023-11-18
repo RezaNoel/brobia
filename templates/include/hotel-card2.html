@@ -3,7 +3,7 @@
                                 <div class="card transition-3d-hover shadow-hover-2 w-100 mt-2">
                                     <div class="position-relative">
                                         <a href="{% url 'hotel-single' city_slug=h.city.slug hotel_slug=h.slug %}" class="d-block hotel-link gradient-overlay-half-bg-gradient-v5">
-                                            <img class="card-img-top" src="{{ h.thumbnail.url }}" alt="توضیحات تصویر">
+                                            <img class="min-height-230 max-height-230 bg-img-hero card-img-top" src="{{ h.thumbnail.url }}" alt="توضیحات تصویر">
                                         </a>
                                          <form method="POST" action={% url 'likepk' h.pk %}>
                                             {% csrf_token %}
@@ -49,5 +49,8 @@
                                             <span class="font-size-14 text-gray-1">/ شب</span>
                                         </div>
                                     </div>
+                                {% if hotel.special_offer %}
+                                    <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
+                                {% endif %}
                                 </div>
                             </div>

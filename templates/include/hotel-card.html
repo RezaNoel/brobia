@@ -40,6 +40,7 @@
                         {% endfor %}
                     </div>
                 </div>
+
             </div>
             <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">هتل {{ hotel.faname}} {{ hotel.city }}</a>
             <div class="mt-2 mb-3">
@@ -50,6 +51,10 @@
                 <span class="font-weight-bold">{{ hotel.min_price }} تومان </span>
                 <span class="font-size-14 text-gray-1">/ شب</span>
             </div>
+
         </div>
+    {% if hotel.special_offer %}
+        <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
+    {% endif %}
     </div>
 </div>

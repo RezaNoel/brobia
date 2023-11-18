@@ -16,7 +16,7 @@ class HotelImageInline(admin.TabularInline):
 class RoomImageInline(admin.TabularInline):
     model = RoomImage
 class HotelAdmin(admin.ModelAdmin):
-    list_display = ['name', 'faname', 'address','likes', 'stars', 'city', 'facilities_list', 'slug']
+    list_display = ['faname','name',  'address','likes', 'stars', 'city', 'facilities_list', 'slug']
     list_display_links = ['name', 'faname']
     filter_horizontal = ['facilities']
 

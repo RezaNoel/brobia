@@ -3,11 +3,12 @@
 {% block header %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Shabnam;
+    
   }
 
   body{
@@ -403,7 +404,7 @@
           <h2 class="logo-text">برو بیا</h2>
           <img
             class="logo-icon"
-            src="/static/img/logo/purelogo.png"
+            src="/img/logo/boroobia.png"
             alt="boroobia logo"
           />
         </a>
@@ -613,7 +614,10 @@
                     </linearGradient>
                   </defs>
                 </svg>
-                <span class="special-offer">افر ویژه</span>
+                  {% if myHotel.hotel.special_offer %}
+                    <span class="special-offer">افر ویژه</span>
+                  {% endif %}
+
               </div>
             </div>
             <hr>
@@ -651,7 +655,7 @@
                   </defs>
                 </svg>
                 <span class="like-count">
-                  <span>50</span>
+                  <span>{{ myHotel.hotel.likes }}</span>
                   کاربر
                 </span>
               </div>
