@@ -1166,6 +1166,8 @@
     <div class="panel-admin">
     <div class="main-section">
       <div class="panels-context">
+      <form method="POST">
+        {% csrf_token %}
         <div style="text-align: left;">
           <div class="hotel-profile">
             <div class="hotel-profile-content">
@@ -1257,7 +1259,6 @@
               </div>
             </div>
             <div class="hotel-details-content" style="background: #FDFDFD; border: 1px solid #CED2D3;">
-                <form method="POST">
               <div class="hotel-details-header">
                 <h3 class="hotel-details-header-text">
                   <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
@@ -1430,6 +1431,7 @@
             </ul>
           </div>
         </div>
+      </form>
       </div>
     </div>
   </div>
