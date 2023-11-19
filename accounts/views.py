@@ -141,22 +141,19 @@ def HotelAdminView(request,page):
     hotelFacilities = Facility.objects.filter(related='H')
     facilities = myHotel.hotel.facilities.all()
     if request.method == 'POST':
-        myHotel.hotel.faname = request.POST.get('hotelName')
-        print()
-        # myHotel.hotel.city = request.POST.get('hotelCity')
-        # myHotel.hotel.floor = request.POST.get('hotelFloors')
-        # myHotel.hotel.rooms = request.POST.get('hotelRooms')
-        # myHotel.hotel.address = request.POST.get('hotelAddress')
-        # myHotel.hotel.description = request.POST.get('hotelShortAbout')
-        # myHotel.hotel.explanation = request.POST.get('hotelLongAbout')
-        # myHotel.hotel.terms = request.POST.get('hotelRules')
-        myHotel.hotel.save()
-        for facility in hotelFacilities:
-            checkbox_name = f'facility_checkbox_{facility.id}'
-            if checkbox_name in request.POST:
-                myHotel.hotel.facilities.add(facility)
-            else:
-                myHotel.hotel.facilities.remove(facility)
+        if 'hotelShortAbout' in request.POST:
+            myHotel.hotel.description = request.POST.get('hotelShortAbout')
+            myHotel.hotel.explanation = request.POST.get('hotelLongAbout')
+            myHotel.hotel.terms = request.POST.get('hotelRules')
+            myHotel.hotel.save()
+
+        else:
+            for facility in hotelFacilities:
+                checkbox_name = f'facility_checkbox_{facility.id}'
+                if checkbox_name in request.POST:
+                    myHotel.hotel.facilities.add(facility)
+                else:
+                    myHotel.hotel.facilities.remove(facility)
 
 
     template_name = f'accounts/hotel-panel/hotel_panel_{page}.html'

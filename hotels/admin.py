@@ -30,7 +30,7 @@ class HotelAdmin(admin.ModelAdmin):
     facilities_list.short_description = 'امکانات'
 
 class CityAdmin(admin.ModelAdmin):
-    list_display = ['name','faname','slug']
+    list_display = ['faname','name','slug']
 
 class RoomAdmin(admin.ModelAdmin):
     list_display = ['name','faname','price', 'hotel','facilities_list', 'bed','slug','image']
