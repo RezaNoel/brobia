@@ -14,7 +14,7 @@
     background-color: #dfe2e4;
     height: 100vh;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   ul{
@@ -276,7 +276,6 @@
 
   .add-room-btn{
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 56px;
     border-radius: 5px 5px 2px 2px;
@@ -290,6 +289,7 @@
     color: #4B5259;
     font-size: 20px;
     font-weight: 400;
+    margin-left: 10px;
   }
 
   .active-svg path{
@@ -431,6 +431,309 @@
     justify-content: space-between;
     color: #565C63;
   }
+
+  .add-room-overlay{
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    z-index: 1002;
+    transition: opacity 0.2s;
+    overflow-y: auto;
+  }
+
+  .open{
+    opacity: 1;
+    pointer-events: all;
+  }
+
+.add-room-content{
+  width: 800px;
+  height: fit-content;
+  margin-block: 30px;
+  background-color: #fff;
+  padding-top: 10px;
+  padding-inline: 20px;
+}
+
+.add-room-content hr{
+  margin: 0;
+}
+
+.add-room-headers{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.add-room-headers span{
+  padding-top: 6px;
+}
+
+.add-room-headers svg{
+  width: 35px;
+  height: 35px;
+}
+
+.room-datils{
+  display: grid;
+  grid-template-columns: 80px 1fr 80px 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+  margin-block: 20px;
+  align-items: center;
+}
+
+.room-datils label{
+  color: #4B5259;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.room-datils input{
+  height: 44px;
+  border-radius: 5px;
+  border: 1.5px solid #BEC6CC;
+  padding-inline: 10px;
+  text-align: center;
+}
+
+.price-info{
+  grid-area: 2 / 3 / 3 / 5;
+}
+
+ /* استایل دکمه امکانات */
+
+.facility-btn{
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  user-select: none;
+  margin-bottom: 20px;
+}
+
+.facility-checkbox-text{
+  font-size: 18px;
+}
+
+.check-input-f{
+  display: none;
+}
+
+.facility-checkbox{
+  width: 30px;
+  height: 30px;
+  border: solid #6C7680 2px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 3px;
+  transition: 0.3s all;
+  z-index: 1;
+}
+
+.facility-checkbox svg{
+  width: 20px;
+  height: 20px;
+}
+
+.check-input-f:checked + .facility-checkbox{
+  background-color: #fc3;
+  border: solid #fc3 2px;
+}
+
+.check-input-f:checked + .facility-checkbox svg path{
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  stroke: #006400;
+  stroke-width: 3;
+  animation: check 4s forwards;
+}
+
+
+.facility-checkbox::before {
+  content: "";
+  background: rgba(251, 218, 119, 0.481);
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  display: block;
+  width: 50px;
+  height: 50px;
+  z-index: -1;
+}
+
+.check-input-f:checked + .facility-checkbox::before{
+  animation: ripple 0.3s;
+}
+
+@keyframes check {
+  to {
+    stroke-dashoffset: 0;
+  }
+  
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    z-index: 0;
+  }
+}
+ /* پایان استایل دکمه امکانات */
+
+ /* استای بخش تصاویر */
+ .room-images-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 5px;
+ }
+
+ .add-image{
+  border-radius: 5px;
+  border: 2px solid #B4B4B4;
+  box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+  background-color: transparent;
+  padding: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+ }
+
+ .images{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  margin-top: 15px;
+  user-select: none;
+  justify-items: center;
+  overflow-y: auto;
+ }
+
+  .image-btn{
+    margin-bottom: 30px;
+  }
+
+  .image-checkbox{
+    position: relative;
+    cursor: pointer;
+  }
+
+  .image-checkbox .facility-checkbox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 8px;
+    background-color: #fff;
+  }
+
+  .facility-checkbox svg{
+    padding-bottom: 5px;
+  }
+
+  .image-checkbox img{
+    width: 230px;
+    height: 180px;
+    background-size: contain;
+    border-radius: 4px;
+  }
+
+  .uploaded-image:checked + .image-checkbox .image-tick{
+    background-color: #fc3 !important;
+    border: solid #fc3 2px;
+  }
+
+  .uploaded-image:checked ~ .image-checkbox svg path{
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    stroke: #006400;
+    stroke-width: 3;
+    animation: check 4s forwards;
+  }
+
+  .check-input-i:checked + .image-checkbox .image-tick::before{
+    animation: ripple 0.3s;
+  }
+
+  @keyframes check {
+    to {
+      stroke-dashoffset: 0;
+    }
+    
+  }
+
+  @keyframes ripple {
+    to {
+      transform: scale(1);
+      z-index: 0;
+    }
+  }
+ /* پایان بخش تصاویر */
+/* دکمه های تغییرات */
+.action-add-room{
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.save-btn{
+  padding-inline: 28px;
+  padding-block: 5px;
+  border-radius: 5px;
+  background: linear-gradient(96deg, #FC0 -33.68%, #FF8C00 269.25%);
+  box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+}
+
+.cancel-btn{
+  padding-inline: 20px;
+  padding-block: 4px;
+  border-radius: 5px;
+  margin-left: 10px;
+  background-color: transparent;
+  box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 700;
+  border: 2px solid #FC0;
+  background: linear-gradient(117deg, #FC0 -114.34%, rgba(255, 140, 0, 0.00) 656.22%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* پایان دکمه های تغییرات */
+
+
+/* Chrome, Safari, Edge, Opera */
+#roomPrice::-webkit-outer-spin-button,
+#roomPrice::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#roomPrice[type=number] {
+  -moz-appearance: textfield;
+}
 </style>
 {% endblock %}
 {% block title %}پنل مدیریت هتل{% endblock %}
@@ -553,6 +856,127 @@
             />
           </svg>
         </a>
+      </div>
+    </div>
+    <div class="add-room-overlay">
+      <div class="add-room-content">
+
+        <!-- عمومی -->
+        <div class="room-details">
+          <h3 class="add-room-headers">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+              <path d="M27.6208 7.90416L20.0812 3.54374C18.6375 2.71249 16.3771 2.71249 14.9333 3.54374L7.32083 7.93332C4.30208 9.97499 4.12708 10.2812 4.12708 13.5333V21.4521C4.12708 24.7042 4.30208 25.025 7.37916 27.0958L14.9187 31.4562C15.6479 31.8792 16.5812 32.0833 17.5 32.0833C18.4187 32.0833 19.3521 31.8792 20.0667 31.4562L27.6792 27.0667C30.6979 25.025 30.8729 24.7187 30.8729 21.4667V13.5333C30.8729 10.2812 30.6979 9.97499 27.6208 7.90416ZM17.5 22.2396C14.8896 22.2396 12.7604 20.1104 12.7604 17.5C12.7604 14.8896 14.8896 12.7604 17.5 12.7604C20.1104 12.7604 22.2396 14.8896 22.2396 17.5C22.2396 20.1104 20.1104 22.2396 17.5 22.2396Z" fill="#454545"/>
+            </svg>
+            <span>عمومی</span>
+          </h3>
+          <hr>
+          <div class="room-datils">
+            <label for="roomName">نام اتاق:</label>
+            <input id="roomName" name="roomName" type="text"/>
+            <label for="bedCounts">تعداد تخت:</label>
+            <input id="bedCounts" name="bedCounts" type="number" max="9" min="1"/>
+            <label for="roomPrice">قیمت اتاق:</label>
+            <input id="roomPrice"name="roomPrice" type="number" min="1" step="any"/>
+            <span class="price-info">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M18.1333 13.2666L12.8 3.66663C12.0833 2.37496 11.0916 1.66663 9.99998 1.66663C8.90831 1.66663 7.91665 2.37496 7.19998 3.66663L1.86665 13.2666C1.19165 14.4916 1.11665 15.6666 1.65831 16.5916C2.19998 17.5166 3.26665 18.025 4.66665 18.025H15.3333C16.7333 18.025 17.8 17.5166 18.3416 16.5916C18.8833 15.6666 18.8083 14.4833 18.1333 13.2666ZM9.37498 7.49996C9.37498 7.15829 9.65831 6.87496 9.99998 6.87496C10.3416 6.87496 10.625 7.15829 10.625 7.49996V11.6666C10.625 12.0083 10.3416 12.2916 9.99998 12.2916C9.65831 12.2916 9.37498 12.0083 9.37498 11.6666V7.49996ZM10.5916 14.7583C10.55 14.7916 10.5083 14.825 10.4666 14.8583C10.4166 14.8916 10.3666 14.9166 10.3166 14.9333C10.2666 14.9583 10.2166 14.975 10.1583 14.9833C10.1083 14.9916 10.05 15 9.99998 15C9.94998 15 9.89165 14.9916 9.83331 14.9833C9.78331 14.975 9.73331 14.9583 9.68331 14.9333C9.63331 14.9166 9.58331 14.8916 9.53331 14.8583C9.49165 14.825 9.44998 14.7916 9.40831 14.7583C9.25831 14.6 9.16665 14.3833 9.16665 14.1666C9.16665 13.95 9.25831 13.7333 9.40831 13.575C9.44998 13.5416 9.49165 13.5083 9.53331 13.475C9.58331 13.4416 9.63331 13.4166 9.68331 13.4C9.73331 13.375 9.78331 13.3583 9.83331 13.35C9.94165 13.325 10.0583 13.325 10.1583 13.35C10.2166 13.3583 10.2666 13.375 10.3166 13.4C10.3666 13.4166 10.4166 13.4416 10.4666 13.475C10.5083 13.5083 10.55 13.5416 10.5916 13.575C10.7416 13.7333 10.8333 13.95 10.8333 14.1666C10.8333 14.3833 10.7416 14.6 10.5916 14.7583Z" fill="#FFCC00"/>
+              </svg>
+              قیمت های به تومان می‌باشد.
+            </span>
+          </div>
+        </div>
+        <!-- پایان عمومی -->
+
+        <!-- امکانات -->
+        <div class="room-facilites">
+          <form method="POST">
+            {% csrf_token %}
+            <h3 class="add-room-headers">
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
+                <path d="M12.0313 17.5C12.0313 16.7708 11.4479 16.1875 10.7188 16.1875L3.9375 16.1875C3.20833 16.1875 2.625 16.7708 2.625 17.5C2.625 18.2292 3.20833 18.8125 3.9375 18.8125L10.7188 18.8125C11.4333 18.8125 12.0313 18.2292 12.0313 17.5Z" fill="#454545"/>
+                <path d="M22.9688 8.00626C22.9688 8.73542 23.5521 9.31876 24.2812 9.31876L31.0625 9.31876C31.7917 9.31876 32.375 8.73542 32.375 8.00626C32.375 7.27709 31.7917 6.69376 31.0625 6.69376L24.2812 6.69376C23.5667 6.69376 22.9688 7.27709 22.9688 8.00626Z" fill="#454545"/>
+                <path d="M20.1688 10.7188L20.1688 5.29376C20.1688 4.5646 19.5854 3.98126 18.8563 3.98126C18.1271 3.98126 17.5438 4.5646 17.5438 5.29376L17.5438 6.69376L3.93751 6.69376C3.20835 6.69376 2.62501 7.2771 2.62501 8.00626C2.62501 8.73543 3.20835 9.31876 3.93751 9.31876L17.5438 9.31876L17.5438 10.7188C17.5438 11.4479 18.1271 12.0313 18.8563 12.0313C19.5854 12.0313 20.1688 11.4333 20.1688 10.7188Z" fill="#454545"/>
+                <path d="M20.1688 29.7063L20.1688 24.2812C20.1688 23.5521 19.5854 22.9688 18.8563 22.9688C18.1271 22.9688 17.5438 23.5521 17.5438 24.2812L17.5438 25.6813L3.93751 25.6813C3.20835 25.6813 2.62501 26.2646 2.62501 26.9938C2.62501 27.7229 3.20835 28.3063 3.93751 28.3063L17.5438 28.3063L17.5438 29.7063C17.5438 30.4354 18.1271 31.0188 18.8563 31.0188C19.5854 31.0188 20.1688 30.4354 20.1688 29.7063Z" fill="#454545"/>
+                <path d="M17.4563 20.2125L17.4563 18.8125L31.0625 18.8125C31.7917 18.8125 32.375 18.2291 32.375 17.5C32.375 16.7708 31.7917 16.1875 31.0625 16.1875L17.4563 16.1875L17.4563 14.7875C17.4563 14.0583 16.8729 13.475 16.1438 13.475C15.4146 13.475 14.8313 14.0583 14.8313 14.7875L14.8313 20.2125C14.8313 20.9416 15.4146 21.525 16.1438 21.525C16.8729 21.525 17.4563 20.9416 17.4563 20.2125Z" fill="#454545"/>
+              </svg>
+              <span>امکانات</span>
+            </h3>
+            <hr>
+            <div class="selected-facilities">
+              {% for facility in hotelFacilities.all %}
+              <div class="facility-btn">
+                <label for="input-{{ forloop.counter }}" class="facility-checkbox-text" >{{ facility.faname }}</label>
+                <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ forloop.counter }}">
+                <label for="input-{{ forloop.counter }}" class="facility-checkbox">
+                  <svg viewBox="0 0 22 16" fill="none">
+                    <path d="M1 6.85L8.09677 14L21 1"/>
+                  </svg>
+                </label>
+              </div>
+                  {% if facility in facilities %}
+                      <script >document.getElementById('input-{{ forloop.counter }}').setAttribute('checked', 'checked');</script>
+                  {% endif %} 
+                {% endfor %}
+            </div>
+          </form>
+        </div>
+        <!-- پایان امکانات -->
+
+        <!-- تصاویر -->
+        <div class="room-images">
+          <div class="room-images-header">
+            <h3 class="add-room-headers">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                  <path d="M30.5813 1.45825H26.2938C25.025 1.45825 24.0917 1.98325 23.6688 2.91659C23.4355 3.3395 23.3334 3.83534 23.3334 4.41867V8.70617C23.3334 10.5583 24.4417 11.6666 26.2938 11.6666H30.5813C31.1646 11.6666 31.6605 11.5645 32.0834 11.3312C33.0167 10.9083 33.5417 9.97492 33.5417 8.70617V4.41867C33.5417 2.56659 32.4334 1.45825 30.5813 1.45825ZM31.9521 7.1895C31.8063 7.33533 31.5875 7.43742 31.3542 7.452H29.298V8.19575L29.3125 9.47908C29.298 9.727 29.2105 9.93117 29.0355 10.1062C28.8896 10.252 28.6709 10.3541 28.4375 10.3541C27.9563 10.3541 27.5625 9.96033 27.5625 9.47908V7.43742L25.5209 7.452C25.0396 7.452 24.6459 7.04367 24.6459 6.56242C24.6459 6.08117 25.0396 5.68742 25.5209 5.68742L26.8042 5.702H27.5625V3.66034C27.5625 3.17909 27.9563 2.77075 28.4375 2.77075C28.9188 2.77075 29.3125 3.17909 29.3125 3.66034L29.298 4.69575V5.68742H31.3542C31.8355 5.68742 32.2292 6.08117 32.2292 6.56242C32.2146 6.81034 32.1125 7.0145 31.9521 7.1895Z" fill="#454545"/>
+                  <path d="M13.125 15.1375C15.0419 15.1375 16.5958 13.5835 16.5958 11.6666C16.5958 9.74975 15.0419 8.1958 13.125 8.1958C11.2081 8.1958 9.65417 9.74975 9.65417 11.6666C9.65417 13.5835 11.2081 15.1375 13.125 15.1375Z" fill="#454545"/>
+                  <path d="M30.5812 11.6667H29.8958V18.3897L29.7062 18.2292C28.5687 17.2522 26.7312 17.2522 25.5937 18.2292L19.527 23.4355C18.3895 24.4126 16.552 24.4126 15.4145 23.4355L14.9187 23.0272C13.8833 22.123 12.2354 22.0355 11.0687 22.823L5.61454 26.4834C5.29371 25.6667 5.10413 24.7188 5.10413 23.6105V11.3897C5.10413 7.27716 7.27704 5.10425 11.3895 5.10425H23.3333V4.41883C23.3333 3.8355 23.4354 3.33966 23.6687 2.91675H11.3895C6.08121 2.91675 2.91663 6.08133 2.91663 11.3897V23.6105C2.91663 25.2001 3.19371 26.5855 3.73329 27.7522C4.98746 30.523 7.67079 32.0834 11.3895 32.0834H23.6104C28.9187 32.0834 32.0833 28.9188 32.0833 23.6105V11.3313C31.6604 11.5647 31.1645 11.6667 30.5812 11.6667Z" fill="#454545"/>
+                </svg>
+                <span>تصاویر</span>
+            </h3>
+            <div class="add-image-section">
+              <input type="file" id="add-image" accept="image/png, image/jpeg" hidden>
+              <label for="add-image" class="add-image">
+                <span>افزودن تصویر</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M15 10.625H5C4.65833 10.625 4.375 10.3417 4.375 10C4.375 9.65833 4.65833 9.375 5 9.375H15C15.3417 9.375 15.625 9.65833 15.625 10C15.625 10.3417 15.3417 10.625 15 10.625Z" fill="#454545"/>
+                  <path d="M10 15.625C9.65833 15.625 9.375 15.3417 9.375 15V5C9.375 4.65833 9.65833 4.375 10 4.375C10.3417 4.375 10.625 4.65833 10.625 5V15C10.625 15.3417 10.3417 15.625 10 15.625Z" fill="#454545"/>
+                </svg>
+              </label>
+            </div>
+          </div>
+          <hr>
+          <div class="images">
+            <div class="image-btn" id="id-image-1">
+              <input id="image-1" class="uploaded-image check-input-i" type="checkbox" hidden>
+              <label for="image-1" class="image-checkbox">
+                <img src="{% static 'img/300x230/img1.jpg' %}" alt="">
+                <i class="facility-checkbox image-tick">
+                  <svg viewBox="0 0 22 16" fill="none">
+                    <path d="M1 6.85L8.09677 14L21 1"/>
+                  </svg>
+                </i>
+              </label>
+            </div>
+            <div class="image-btn" id="id-image-1">
+              <input id="image-1" class="uploaded-image check-input-i" type="checkbox" hidden>
+              <label for="image-1" class="image-checkbox">
+                <img src="{% static 'img/300x230/img1.jpg' %}" alt="">
+                <i class="facility-checkbox image-tick">
+                  <svg viewBox="0 0 22 16" fill="none">
+                    <path d="M1 6.85L8.09677 14L21 1"/>
+                  </svg>
+                </i>
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- پایان تصاویر -->
+
+        <div class="action-add-room">
+          <button class="cancel-btn">لغو</button>
+          <button class="save-btn">ثبت اتاق</button>
+        </div>
       </div>
     </div>
     <div class="panel-admin">
@@ -798,5 +1222,31 @@
       roomsAdvanced.classList.add('active-section')
       roomsBasic.classList.remove('active-section')
   })
+
+  const addRoomOverlay = document.querySelector('.add-room-overlay')
+
+  document.querySelector('.add-room-btn').addEventListener('click', () => {
+    addRoomOverlay.classList.add('open')
+  })
+
+  document.querySelector('.cancel-btn').addEventListener('click', () => {
+    addRoomOverlay.classList.remove('open')
+  })
+
+  const bedCountsInput = document.getElementById("bedCounts");
+  bedCountsInput.addEventListener("input", function () {
+    if (this.value.length > 1) {
+      this.value = this.value.slice(0, 1);
+    }
+    this.value = this.value.replace(/[^0-9]/g, "");
+    const number = parseInt(this.value.replace(/[^0-9]/g, ""));
+    this.value = number.toLocaleString();
+  });
+
+  const roomPriceInput = document.getElementById("roomPrice");
+  roomPriceInput.addEventListener("input", function () {
+    this.value = this.value.replace(/[^0-9]/g, "");
+  });
+
 </script>
 {% endblock %}
