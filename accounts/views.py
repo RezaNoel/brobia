@@ -10,11 +10,24 @@ from .models import User,HotelManagerModel
 from hotels.models import Facility
 from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm
 import main
+# from kavenegar import KavenegarAPI,APIException,HTTPException
 
 
 
 # Create your views here.
-
+# def kave_negar_token_send(receptor, token):
+#     try:
+#         api = KavenegarAPI(API_KEY)
+#         params = {
+#             'receptor': receptor,
+#             'template': 'your_template',
+#             'token': token
+#         }
+#         response = api.verify_lookup(params)
+#     except APIException as e:
+#         print(e)
+#     except HTTPException as e:
+#         print(e)
 def RegisterView(request):
     if request.method =='POST':
         registerForm = RegisterForm(request.POST)
@@ -56,6 +69,12 @@ def LoginView(request):
     if request.method =='POST':
         loginForm = LoginForm(request.POST)
         if loginForm.is_valid():
+
+            # api = KavenegarAPI(
+            #     '736C5461342F426C7630656C346C38726D576E734D5A4536726F30773245546361693471632F682B2B316F3D')
+            # params = {'sender': '1000689696', 'receptor': '09129471382', 'message': '.'}
+            # response = api.sms_send(params)
+
             phone = request.POST.get('phone')
             password = request.POST.get('password')
             user = authenticate(request,username=phone,password=password)
