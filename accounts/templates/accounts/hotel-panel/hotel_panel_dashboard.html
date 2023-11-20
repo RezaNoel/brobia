@@ -393,11 +393,16 @@
   }
 
   .ad-tag-svg-container{
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-column-gap: 10px;
-    justify-items: center;
-    align-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .special-tags{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
 </style>
 {% endblock %}
@@ -620,11 +625,17 @@
                     </linearGradient>
                   </defs>
                 </svg>
-                  {% if myHotel.hotel.special_offer %}
-                    <span class="special-offer">افر ویژه</span>
-                    {% endif %}
-                      <span class="special-offer">افر ویژه</span>
-                      <span class="special-offer">پیشنهاد بروبیا</span>
+                      <div class="special-tags">
+                        {% if myHotel.hotel.special_offer %}
+                        <span class="special-offer">افر ویژه</span>
+                        {% endif %}
+                        {% if myHotel.hotel.boroobia_suggest %}
+                        <span class="special-offer">پیشنهاد بروبیا</span>
+                        {% endif %}
+                        {% if not myHotel.hotel.special_offer and not myHotel.hotel.boroobia_suggest %}
+                        <span class="special-offer">تگ تبلیغاتی ندارید</span>
+                        {% endif %}
+                      </div>
               </div>
             </div>
             <hr>
