@@ -141,8 +141,12 @@ def HotelAdminView(request,page):
     hotelFacilities = Facility.objects.filter(related='H')
     facilities = myHotel.hotel.facilities.all()
     if request.method == 'POST':
-        if 'hotelName' in request.POST:
-            pass
+        if 'hotelShortAbout' in request.POST:
+            myHotel.hotel.description = request.POST.get('hotelShortAbout')
+            myHotel.hotel.explanation = request.POST.get('hotelLongAbout')
+            myHotel.hotel.terms = request.POST.get('hotelRules')
+            myHotel.hotel.save()
+
         else:
             for facility in hotelFacilities:
                 checkbox_name = f'facility_checkbox_{facility.id}'

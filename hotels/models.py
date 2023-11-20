@@ -24,6 +24,8 @@ class City(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام اصلی')
     faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
     slug = models.SlugField(default="",null=False,blank=True,db_index=True,verbose_name='لینک')
+    location_distance = models.BooleanField(default=False, verbose_name='دارای مکان محبوب')
+    location_name = models.CharField(blank=True,max_length=75, verbose_name='نام مکان محبوب')
     def get_absolute_url(self):
         return reverse('hotel-list', args=(self.slug))
     def __str__(self):

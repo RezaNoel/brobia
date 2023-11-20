@@ -122,7 +122,6 @@ def HotelListView(request, city_slug):
 
         # سپس داده‌ها را بر اساس اولویت و سپس min_price مرتب می‌کنیم.
         hotels = hotels.order_by('suggest_priority')
-
     elif sort_type == 'cheapest':
         # مرتب سازی بر اساس قیمت کمترین به بیشترین
         hotels = hotels.annotate(min_price=Min('room__price'))
