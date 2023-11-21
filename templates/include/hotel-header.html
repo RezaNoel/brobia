@@ -6,7 +6,7 @@
         <header id="header" class="u-header u-header--abs-top-xl u-header--white-nav-links-xl u-header--bg-transparent-xl u-header--show-hide-xl" data-header-fix-moment="500" data-header-fix-effect="slide">
             <div class="u-header__section u-header__shadow-on-show-hide py-4 py-xl-0">
                 <!-- Topbar -->
-                <div class="container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-white">
+                <div class="header container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-white">
                     <div class="d-flex align-items-center">
                         <ul class="list-inline u-header__topbar-nav-divider mb-0">
                             <li class="list-inline-item mr-0"><a href="tel:(98)9200701700" class="u-header__navbar-link">09200701700</a></li>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <!-- End Topbar -->
-                <div id="logoAndNav"  class="container-fluid py-1">
+                <div id="logoAndNav"  class="logoNav container-fluid py-1">
                     <!-- Nav -->
                     <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space" >
                         <ul class="navbar-nav u-header__navbar-nav">
@@ -197,6 +197,10 @@
         </header>
 
         <style>
+            header {
+                backdrop-filter: blur(3px);
+            }
+
             .dropdown-more{
                 position: relative;
                 display: inline-block;
