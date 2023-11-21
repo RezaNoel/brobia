@@ -126,6 +126,8 @@ class Room(models.Model):
     image = models.ImageField(blank=True, verbose_name='عکس',upload_to=room_image_path_154)
     image_booking = models.ImageField(blank=True, verbose_name='عکس رزرو',upload_to=room_image_path_160)
     facilities = models.ManyToManyField(Facility, blank=True,verbose_name='امکانات')
+    is_reserve = models.BooleanField(default=False, verbose_name='خالی / پر')
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify_fa(self.name) + '-' + slugify(self.hotel.name)

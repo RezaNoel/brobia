@@ -245,6 +245,7 @@ def HotelSingleView(request, city_slug, hotel_slug):
     hotel = Hotel.objects.get(slug=hotel_slug)
     suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
     rooms = Room.objects.filter(hotel=hotel.id)
+    passengers = int(request.GET.get('passengers'))
     code = GenerateRandomStringEndPoint(10)
     canRequest = True
     if request.user.is_authenticated:
@@ -261,6 +262,7 @@ def HotelSingleView(request, city_slug, hotel_slug):
                'suggest_hotels': suggest_hotels,
                "rooms": rooms,
                'reserve_code':code,
+               'passengers':passengers,
                'canRequesr':canRequest
                }
 

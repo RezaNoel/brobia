@@ -200,3 +200,15 @@ def HotelAdminView(request,page):
     }
     return render(request, template_name, context)
 
+def RoomSingleView(request,page, room_slug):
+    myHotel = HotelManagerModel.objects.get(user=request.user)
+    room = Room.objects.get(slug=room_slug)
+
+    content = {"room": room,
+                "myHotel": myHotel
+               }
+
+    return render(request, 'accounts/hotel-panel/hotel_panel_room_single.html', content)
+
+
+
