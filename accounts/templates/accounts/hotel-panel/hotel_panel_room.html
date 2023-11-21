@@ -905,7 +905,7 @@
               {% for facility in roomFacilities.all %}
               <div class="facility-btn">
                 <label for="input-{{ forloop.counter }}" class="facility-checkbox-text" >{{ facility.faname }}</label>
-                <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ forloop.counter }}">
+                <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ facility.id }}">
                 <label for="input-{{ forloop.counter }}" class="facility-checkbox">
                   <svg viewBox="0 0 22 16" fill="none">
                     <path d="M1 6.85L8.09677 14L21 1"/>
