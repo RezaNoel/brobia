@@ -12,10 +12,12 @@
                 {% csrf_token %}
                 <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex justify-content-between align-items-center {% if room.hotel in user.hotel_likes.all %}like-btn{% endif %}" style="width: 100%;">
                     <div class="ml-2 align-items-center font-size-14 text-warning  bg-dark rounded">
-                        <span class="mx-2 d-flex justify-content-center align-items-center">
-                            <i class="flaticon-bell pr-1"></i>
-                            جدید
-                        </span>
+                        {% if room.hotel.online_reserve %}
+                    <span class="mx-2 d-flex justify-content-center align-items-center">
+                        <i class="flaticon-alarm pr-1"></i>
+                        رزرو آنلاین
+                    </span>
+                    {% endif %}
                     </div>
                     <div class="d-flex flex-column">
                         <button type="submit" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ room.hotel.id }}" name="like" value="like">

@@ -14,11 +14,13 @@
     </div>
     <div class="col-md-7 col-xl-5 col-wd-4gdot5 flex-horizontal-center">
         <div class="w-100 position-relative m-4 m-md-0">
-            <div class="mb-2 align-items-center font-size-14 text-warning bg-dark rounded" style="width: 80px;">
-                <span class="mx-2 d-flex justify-content-center align-items-center">
-                    <i class="flaticon-bell pr-1"></i>
-                    جدید
-                </span>
+            <div class="mb-2 align-items-center font-size-14 text-warning bg-dark rounded" style="width: 110px;">
+                {% if hotel.online_reserve %}
+                    <span class="mx-2 d-flex justify-content-center align-items-center">
+                        <i class="flaticon-alarm pr-1"></i>
+                        رزرو آنلاین
+                    </span>
+                    {% endif %}
             </div>
         <a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="text-dark hotel-link">
             <div class="mb-1 pb-1 text-warning">

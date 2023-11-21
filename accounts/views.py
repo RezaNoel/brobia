@@ -7,14 +7,27 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User,HotelManagerModel
-from hotels.models import Facility
+from hotels.models import Facility,Room
 from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm
 import main
+# from kavenegar import KavenegarAPI,APIException,HTTPException
 
 
 
 # Create your views here.
-
+# def kave_negar_token_send(receptor, token):
+#     try:
+#         api = KavenegarAPI(API_KEY)
+#         params = {
+#             'receptor': receptor,
+#             'template': 'your_template',
+#             'token': token
+#         }
+#         response = api.verify_lookup(params)
+#     except APIException as e:
+#         print(e)
+#     except HTTPException as e:
+#         print(e)
 def RegisterView(request):
     if request.method =='POST':
         registerForm = RegisterForm(request.POST)
@@ -56,6 +69,12 @@ def LoginView(request):
     if request.method =='POST':
         loginForm = LoginForm(request.POST)
         if loginForm.is_valid():
+
+            # api = KavenegarAPI(
+            #     '736C5461342F426C7630656C346C38726D576E734D5A4536726F30773245546361693471632F682B2B316F3D')
+            # params = {'sender': '1000689696', 'receptor': '09129471382', 'message': '.'}
+            # response = api.sms_send(params)
+
             phone = request.POST.get('phone')
             password = request.POST.get('password')
             user = authenticate(request,username=phone,password=password)
@@ -112,7 +131,7 @@ def UserProfileView(request):
     form = CustomPasswordChangeForm(request.user)
     updateProfileForm = UserProfileForm()
     if request.method == 'POST':
-        if 'phone' in request.POST:
+        if 'first_name' in request.POST:
             updateProfileForm = UserProfileForm(request.POST, request.FILES, instance=request.user)
             if updateProfileForm.is_valid():
                 updateProfileForm.save()
@@ -139,6 +158,8 @@ def UserProfileView(request):
 def HotelAdminView(request,page):
     myHotel = HotelManagerModel.objects.get(user=request.user)
     hotelFacilities = Facility.objects.filter(related='H')
+    roomFacilities = Facility.objects.filter(related='R')
+    rooms = Room.objects.filter(hotel=myHotel.hotel)
     facilities = myHotel.hotel.facilities.all()
     if request.method == 'POST':
         if 'hotelShortAbout' in request.POST:
@@ -146,6 +167,19 @@ def HotelAdminView(request,page):
             myHotel.hotel.explanation = request.POST.get('hotelLongAbout')
             myHotel.hotel.terms = request.POST.get('hotelRules')
             myHotel.hotel.save()
+        elif 'roomName' in request.POST:
+            room_name = request.POST.get('roomName')
+            bed_count = int(request.POST.get('bedCounts'))
+            room_price = int(request.POST.get('roomPrice'))
+
+            new_room = Room(name=room_name,faname=room_name,bed=bed_count,price=room_price, hotel=myHotel.hotel)
+            new_room.save()
+            for facility in roomFacilities:
+                checkbox_name = f'facility_checkbox_{facility.id}'
+                if checkbox_name in request.POST:
+                    new_room.facilities.add(facility)
+                else:
+                    new_room.facilities.remove(facility)
 
         else:
             for facility in hotelFacilities:
@@ -159,7 +193,9 @@ def HotelAdminView(request,page):
     template_name = f'accounts/hotel-panel/hotel_panel_{page}.html'
     context = {
         'myHotel': myHotel,
+        'rooms': rooms,
         'hotelFacilities': hotelFacilities,
+        'roomFacilities': roomFacilities,
         'facilities':facilities
     }
     return render(request, template_name, context)

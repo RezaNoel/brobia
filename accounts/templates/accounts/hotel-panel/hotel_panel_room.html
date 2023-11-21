@@ -858,7 +858,8 @@
     </div>
     <div class="add-room-overlay">
       <div class="add-room-content">
-
+        <form method="POST">
+            {% csrf_token %}
         <!-- عمومی -->
         <div class="room-details">
           <h3 class="add-room-headers">
@@ -887,8 +888,7 @@
 
         <!-- امکانات -->
         <div class="room-facilites">
-          <form method="POST">
-            {% csrf_token %}
+
             <h3 class="add-room-headers">
               <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
                 <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
@@ -902,7 +902,7 @@
             </h3>
             <hr>
             <div class="selected-facilities">
-              {% for facility in hotelFacilities.all %}
+              {% for facility in roomFacilities.all %}
               <div class="facility-btn">
                 <label for="input-{{ forloop.counter }}" class="facility-checkbox-text" >{{ facility.faname }}</label>
                 <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ forloop.counter }}">
@@ -912,12 +912,10 @@
                   </svg>
                 </label>
               </div>
-                  {% if facility in facilities %}
-                      <script >document.getElementById('input-{{ forloop.counter }}').setAttribute('checked', 'checked');</script>
-                  {% endif %} 
+
                 {% endfor %}
             </div>
-          </form>
+
         </div>
         <!-- پایان امکانات -->
 
@@ -975,6 +973,7 @@
           <button class="cancel-btn">لغو</button>
           <button class="save-btn">ثبت اتاق</button>
         </div>
+        </form>
       </div>
     </div>
     <div class="panel-admin">
@@ -1099,16 +1098,17 @@
             </button>
           </div>
           <div class="rooms-advanced-section active-section">
+          {% for room in rooms %}
             <div class="hotel-rooms-advanced">
               <svg class="advanced-svg" width="287" height="287" viewBox="0 0 287 287" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M85.3148 12.5968L10.4588 96.3416C2.02436 105.708 -1.60794 123.331 2.39877 135.488L17.8774 236.836C23.6048 254.463 42.6495 266.538 60.4466 263.82L231.743 237.659C249.417 234.96 264.093 217.604 264.317 199.199L248.839 97.8501C241.556 97.8501 219.245 69.3346 208.523 62.894L133.04 5.43833C118.144 -3.49173 96.7625 -0.2264 85.3148 12.5968Z" fill="#FFB500"/>
                 <path d="M128.994 34.4586L37.4412 108.056C27.1365 116.277 20.5308 133.649 22.7767 146.645V252.2C25.9473 271.03 43.9146 286.28 62.9386 286.28H246.045C264.937 286.28 283.036 270.897 286.207 252.2V146.645C288.32 133.649 281.715 116.277 271.542 108.056L179.989 34.5913C165.853 23.1871 142.998 23.1869 128.994 34.4586Z" fill="#FDFDFD"/>
               </svg>
               <div class="advanced-content">
-                <span class="room-number">اتاق شماره 126</span>
+                <span class="room-number">اتاق {{ room.faname }}</span>
                   <span class="bed-count">
-                    <span>تعداد تخت های اتاق:</span>
-                    2
+                    <span>تعداد تخت اتاق:</span>
+                    {{ room.bed }}
                   </span>
                   <span class="room-state empty">
                     <span>خالی</span>
@@ -1125,7 +1125,9 @@
                   </button>
               </div>
             </div>
+          {% endfor %}
           </div>
+
           <div class="rooms-basic-section">
             <div class="rooms-section-header">
               <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
@@ -1137,19 +1139,30 @@
               <span>وضعیت</span>
             </div>
             <div class="hotel-rooms-section">
-              <div class="hotel-rooms">
+                {% for room in rooms %}
+                <div class="hotel-rooms">
                 <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
                   <path d="M10.2925 3.1141L2.66532 11.647C1.80593 12.6013 1.43583 14.397 1.84408 15.6356L3.42121 25.9622C4.00479 27.7582 5.94528 28.9885 7.75864 28.7116L25.2123 26.0459C27.013 25.7709 28.5084 24.0025 28.5313 22.1272L26.9542 11.8007C26.2121 11.8007 23.9388 8.89518 22.8463 8.23894L15.1553 2.38471C13.6375 1.47481 11.4589 1.80752 10.2925 3.1141Z" fill="#FFB500"/>
                   <path d="M14.6542 4.8753L5.64659 12.5105C4.63275 13.3634 3.98282 15.1656 4.20379 16.5138V27.4644C4.51574 29.4179 6.28349 31 8.1552 31H26.1705C28.0292 31 29.8099 29.4042 30.1219 27.4644V16.5138C30.3298 15.1656 29.6799 13.3634 28.6791 12.5105L19.6714 4.88907C18.2807 3.70596 16.032 3.70594 14.6542 4.8753Z" fill="#292D32"/>
                 </svg>
-                <span>اتاق 126</span>
-                <span>2 تخت خواب</span>
-                <span class="room-state empty">
-                  <span>خالی</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
-                    <circle cx="7.40088" cy="6.5" r="6.5" fill="#00966D"/>
-                  </svg>
-                </span>
+                <span>اتاق {{room.faname}}</span>
+                <span>{{ room.bed }} تخته</span>
+                    {% if room %}
+                        <span class="room-state empty">
+                          <span>خالی</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
+                            <circle cx="7.40088" cy="6.5" r="6.5" fill="#00966D"/>
+                          </svg>
+                        </span>
+                    {% else %}
+                        <span class="room-state full">
+                          <span>پر شده</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                            <path d="M7.5 0C4.05625 0 1.25 2.80625 1.25 6.25C1.25 9.69375 4.05625 12.5 7.5 12.5C10.9438 12.5 13.75 9.69375 13.75 6.25C13.75 2.80625 10.9438 0 7.5 0ZM9.6 7.6875C9.78125 7.86875 9.78125 8.16875 9.6 8.35C9.50625 8.44375 9.3875 8.4875 9.26875 8.4875C9.15 8.4875 9.03125 8.44375 8.9375 8.35L7.5 6.9125L6.0625 8.35C5.96875 8.44375 5.85 8.4875 5.73125 8.4875C5.6125 8.4875 5.49375 8.44375 5.4 8.35C5.21875 8.16875 5.21875 7.86875 5.4 7.6875L6.8375 6.25L5.4 4.8125C5.21875 4.63125 5.21875 4.33125 5.4 4.15C5.58125 3.96875 5.88125 3.96875 6.0625 4.15L7.5 5.5875L8.9375 4.15C9.11875 3.96875 9.41875 3.96875 9.6 4.15C9.78125 4.33125 9.78125 4.63125 9.6 4.8125L8.1625 6.25L9.6 7.6875Z" fill="#C30000"/>
+                          </svg>
+                        </span>
+                    {% endif %}
+
                 <button class="more-details">
                   نمایش بیشتر
                   <svg xmlns="http://www.w3.org/2000/svg" width="7" height="15" viewBox="0 0 7 15" fill="none">
@@ -1157,25 +1170,9 @@
                   </svg>
                 </button>
               </div>
-              <div class="hotel-rooms">
-                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
-                  <path d="M10.2925 3.1141L2.66532 11.647C1.80593 12.6013 1.43583 14.397 1.84408 15.6356L3.42121 25.9622C4.00479 27.7582 5.94528 28.9885 7.75864 28.7116L25.2123 26.0459C27.013 25.7709 28.5084 24.0025 28.5313 22.1272L26.9542 11.8007C26.2121 11.8007 23.9388 8.89518 22.8463 8.23894L15.1553 2.38471C13.6375 1.47481 11.4589 1.80752 10.2925 3.1141Z" fill="#FFB500"/>
-                  <path d="M14.6542 4.8753L5.64659 12.5105C4.63275 13.3634 3.98282 15.1656 4.20379 16.5138V27.4644C4.51574 29.4179 6.28349 31 8.1552 31H26.1705C28.0292 31 29.8099 29.4042 30.1219 27.4644V16.5138C30.3298 15.1656 29.6799 13.3634 28.6791 12.5105L19.6714 4.88907C18.2807 3.70596 16.032 3.70594 14.6542 4.8753Z" fill="#292D32"/>
-                </svg>
-                <span>اتاق 132</span>
-                <span>3 تخت خواب</span>
-                <span class="room-state full">
-                  <span>پر شده</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                    <path d="M7.5 0C4.05625 0 1.25 2.80625 1.25 6.25C1.25 9.69375 4.05625 12.5 7.5 12.5C10.9438 12.5 13.75 9.69375 13.75 6.25C13.75 2.80625 10.9438 0 7.5 0ZM9.6 7.6875C9.78125 7.86875 9.78125 8.16875 9.6 8.35C9.50625 8.44375 9.3875 8.4875 9.26875 8.4875C9.15 8.4875 9.03125 8.44375 8.9375 8.35L7.5 6.9125L6.0625 8.35C5.96875 8.44375 5.85 8.4875 5.73125 8.4875C5.6125 8.4875 5.49375 8.44375 5.4 8.35C5.21875 8.16875 5.21875 7.86875 5.4 7.6875L6.8375 6.25L5.4 4.8125C5.21875 4.63125 5.21875 4.33125 5.4 4.15C5.58125 3.96875 5.88125 3.96875 6.0625 4.15L7.5 5.5875L8.9375 4.15C9.11875 3.96875 9.41875 3.96875 9.6 4.15C9.78125 4.33125 9.78125 4.63125 9.6 4.8125L8.1625 6.25L9.6 7.6875Z" fill="#C30000"/>
-                  </svg>
-                </span>
-                <button class="more-details">
-                  نمایش بیشتر
-                  <svg xmlns="http://www.w3.org/2000/svg" width="7" height="15" viewBox="0 0 7 15" fill="none">
-                    <path d="M1.49002e-07 7.5C1.75478e-07 6.89429 0.219831 6.28858 0.651352 5.82997L5.95987 0.188203C6.19599 -0.0627344 6.5868 -0.0627344 6.82291 0.188203C7.05903 0.439141 7.05903 0.854485 6.82291 1.10542L1.51439 6.74719C1.12358 7.16253 1.12358 7.83747 1.51439 8.25281L6.82291 13.8946C7.05903 14.1455 7.05903 14.5609 6.82291 14.8118C6.5868 15.0627 6.19599 15.0627 5.95987 14.8118L0.651352 9.17003C0.219831 8.71142 1.22525e-07 8.10571 1.49002e-07 7.5Z" fill="#565C63"/>
-                  </svg>
-                </button>
+                {% endfor %}
+
+
               </div>
             </div>
           </div>
