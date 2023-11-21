@@ -970,8 +970,8 @@
         <!-- پایان تصاویر -->
 
         <div class="action-add-room">
-          <button class="cancel-btn">لغو</button>
-          <button class="save-btn">ثبت اتاق</button>
+          <button type="button" class="cancel-btn">لغو</button>
+          <button type="submit" class="save-btn">ثبت اتاق</button>
         </div>
         </form>
       </div>
@@ -1110,19 +1110,28 @@
                     <span>تعداد تخت اتاق:</span>
                     {{ room.bed }}
                   </span>
-                  <span class="room-state empty">
-                    <span>خالی</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
-                      <circle cx="7.40088" cy="6.5" r="6.5" fill="#00966D"/>
-                    </svg>
-                  </span>
+                  {% if not room.is_reserve %}
+                        <span class="room-state empty">
+                          <span>خالی</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
+                            <circle cx="7.40088" cy="6.5" r="6.5" fill="#00966D"/>
+                          </svg>
+                        </span>
+                    {% else %}
+                        <span class="room-state full">
+                          <span>پر شده</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                            <path d="M7.5 0C4.05625 0 1.25 2.80625 1.25 6.25C1.25 9.69375 4.05625 12.5 7.5 12.5C10.9438 12.5 13.75 9.69375 13.75 6.25C13.75 2.80625 10.9438 0 7.5 0ZM9.6 7.6875C9.78125 7.86875 9.78125 8.16875 9.6 8.35C9.50625 8.44375 9.3875 8.4875 9.26875 8.4875C9.15 8.4875 9.03125 8.44375 8.9375 8.35L7.5 6.9125L6.0625 8.35C5.96875 8.44375 5.85 8.4875 5.73125 8.4875C5.6125 8.4875 5.49375 8.44375 5.4 8.35C5.21875 8.16875 5.21875 7.86875 5.4 7.6875L6.8375 6.25L5.4 4.8125C5.21875 4.63125 5.21875 4.33125 5.4 4.15C5.58125 3.96875 5.88125 3.96875 6.0625 4.15L7.5 5.5875L8.9375 4.15C9.11875 3.96875 9.41875 3.96875 9.6 4.15C9.78125 4.33125 9.78125 4.63125 9.6 4.8125L8.1625 6.25L9.6 7.6875Z" fill="#C30000"/>
+                          </svg>
+                        </span>
+                    {% endif %}
                   <hr>
-                  <button class="more-details">
+                  <a href="{% url 'room-single' page='room' room_slug=room.slug%}" class="more-details">
                     نمایش بیشتر
                     <svg xmlns="http://www.w3.org/2000/svg" width="7" height="15" viewBox="0 0 7 15" fill="none">
                       <path d="M1.49002e-07 7.5C1.75478e-07 6.89429 0.219831 6.28858 0.651352 5.82997L5.95987 0.188203C6.19599 -0.0627344 6.5868 -0.0627344 6.82291 0.188203C7.05903 0.439141 7.05903 0.854485 6.82291 1.10542L1.51439 6.74719C1.12358 7.16253 1.12358 7.83747 1.51439 8.25281L6.82291 13.8946C7.05903 14.1455 7.05903 14.5609 6.82291 14.8118C6.5868 15.0627 6.19599 15.0627 5.95987 14.8118L0.651352 9.17003C0.219831 8.71142 1.22525e-07 8.10571 1.49002e-07 7.5Z" fill="#565C63"/>
                     </svg>
-                  </button>
+                  </a>
               </div>
             </div>
           {% endfor %}
@@ -1147,7 +1156,7 @@
                 </svg>
                 <span>اتاق {{room.faname}}</span>
                 <span>{{ room.bed }} تخته</span>
-                    {% if room %}
+                    {% if not room.is_reserve %}
                         <span class="room-state empty">
                           <span>خالی</span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
@@ -1163,12 +1172,12 @@
                         </span>
                     {% endif %}
 
-                <button class="more-details">
+                <a href="{% url 'room-single' page='room' room_slug=room.slug%}" class="more-details">
                   نمایش بیشتر
                   <svg xmlns="http://www.w3.org/2000/svg" width="7" height="15" viewBox="0 0 7 15" fill="none">
                     <path d="M1.49002e-07 7.5C1.75478e-07 6.89429 0.219831 6.28858 0.651352 5.82997L5.95987 0.188203C6.19599 -0.0627344 6.5868 -0.0627344 6.82291 0.188203C7.05903 0.439141 7.05903 0.854485 6.82291 1.10542L1.51439 6.74719C1.12358 7.16253 1.12358 7.83747 1.51439 8.25281L6.82291 13.8946C7.05903 14.1455 7.05903 14.5609 6.82291 14.8118C6.5868 15.0627 6.19599 15.0627 5.95987 14.8118L0.651352 9.17003C0.219831 8.71142 1.22525e-07 8.10571 1.49002e-07 7.5Z" fill="#565C63"/>
                   </svg>
-                </button>
+                </a>
               </div>
                 {% endfor %}
 
