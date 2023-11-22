@@ -22,6 +22,11 @@
     padding: 0;
   }
 
+  svg{
+    display: block;
+    margin-block: 0;
+  }
+
   .panel-admin{
     transform: translateX(-130px);
     max-width: fit-content;
@@ -68,7 +73,7 @@
     font-size: 20px;
   }
 
-  .side-panel-pages li:nth-child(2):after {
+  .side-panel-pages li:nth-child(3):after {
     content: "";
     position: absolute;
     top: 0;
@@ -148,11 +153,8 @@
 
   /* Main Section Style */
 
-  .hotel-details-container{
-    display: grid;
-    grid-template-columns: auto 290px;
-    grid-template-rows: auto auto;
-    margin-top: 35px;
+  .edit-room-container{
+    margin-bottom: 20px;
   }
 
   .panels-context {
@@ -242,52 +244,95 @@
     color: #565C63;
   }
 
-  .hotel-stars{
+  /* اتمام پروفایل */
+
+  .rooms-header{
+    display: grid;
+    grid-template-columns: auto 130px;
+    grid-column-gap: 10px;
+    margin-top: 20px;
+  }
+
+  .room-state{
+    height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 30px;
-    padding-block: 15px;
+    padding-right: 20px;
+    padding-left: 10px;
     border-radius: 5px 5px 2px 2px;
     border: 1px solid #CED2D3;
     background: #FDFDFD;
     box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
     margin-bottom: 20px;
     border: 1px solid #CED2D3;
+    user-select: none;
   }
 
-  .hotel-stars span{
-    color: #6C7680;
-
+  
+  .room-state span{
+    color: #4B5259;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
   }
-
-  .hotel-stars svg{
-    fill: #FC0;
-    filter: drop-shadow(1px 1px 15px rgba(255, 204, 0, 0.55));
+  
+  .room-state-svg{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-inline: 10px;
+    border-radius: 5px;
+    background: #ffc8c8;
+    box-shadow: -2px 2px 15px 0px rgba(86, 92, 99, 0.07);
+  }
+  
+  .room-state-svg span{    
+    color: #C30000;
+    font-size: 16px;
   }
 
-  .hotel-details{
-    border-radius: 2px 2px 5px 5px;
-    box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
-    grid-row: span 2;
-    margin-bottom: 135px;
-    overflow: hidden;
+  .room-state-svg svg{
+    display: block;
+    margin: 0 auto;
   }
-
-  .hotel-details-header{
+  
+  .delete-room-btn{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 50px;
+    padding-inline: 15px;
+    border-radius: 5px 5px 2px 2px;
+    border: 0.5px solid #CED2D3;
+    box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+    background: #ffc8c8;
+    text-wrap: nowrap;
+  }
+
+  .delete-room-btn span{
+    color: #C30000;
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 10px;
+  }
+
+  .room-details-container{
+    background: #FDFDFD;
     padding-inline: 30px;
-    padding-block: 10px;
+    width: 772px;
+  }
+
+  .room-details-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
     background: #FDFDFD;
   }
 
-  .hotel-details-header-text{
+  .room-details-header-text{
     display: flex;
     align-items: center;
     gap: 10px;
@@ -297,16 +342,6 @@
     font-weight: 700;
     line-height: normal;
     margin: 0;
-  }
-
-  .hotel-details label{
-    color: #6C7680;
-
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-left: 20px;
   }
 
   .edit-btn{
@@ -323,727 +358,268 @@
     height: 25px;
   }
 
-  .main-details{
-    padding-block: 40px;
-    background: #FDFDFD;
+  .active-edit{
+    display: block !important;
   }
 
-  .hotel-information{
+  .action-cancel-edit{
+    padding-inline: 15px;
+    padding-block: 3px;
+    border-radius: 5px;
+    background-color: transparent;
+    box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    border: 2px solid #FC0;
+    background: linear-gradient(117deg, #FC0 -114.34%, rgba(255, 140, 0, 0.00) 656.22%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .action-save-edit{
+    padding-inline: 20px;
+    padding-block: 5px;
+    border-radius: 5px;
+    background: linear-gradient(96deg, #FC0 -33.68%, #FF8C00 269.25%);
+    box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    margin-left: 10px;
+  }
+
+  .action-buttons-edit{
+    margin-top: 5px;
+    display: none;
+    overflow: hidden;
+    text-align: left;
+    user-select: none;
+  }
+
+  .room-details{
     display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto ;
-    column-gap: 10px;
+    grid-template-columns: 80px 1fr 80px 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    margin-block: 20px;
     align-items: center;
-    padding-inline: 30px;
   }
 
-  .hotel-information div{
-    justify-self: end;
+  .room-details label{
+    color: #4B5259;
+    font-size: 16px;
+    font-weight: 400;
   }
 
-  .hotel-information input{
-    width: 200px;
+  .room-details input{
     height: 44px;
-    margin-bottom: 30px;
     border-radius: 5px;
     border: 1.5px solid #BEC6CC;
-    padding-inline: 15px;
-    font-size: 18px;
-    color: #8F9192;
+    padding-inline: 10px;
     text-align: center;
   }
 
-  #hotelAddress{
-    width: 525px;
-    border-radius: 5px;
-    border: 1.5px solid #BEC6CC;
-    padding-inline: 15px;
-    padding-block: 10px;
-    font-size: 18px;
-    color: #8F9192;
-  }
-
-  .hotel-address{
+  .price-info{
     display: flex;
     align-items: center;
-    margin-top: 35px;
-    margin-bottom: 35px;
-    grid-column: 1 / span 2;
-    text-wrap: nowrap;
+    gap: 5px;
+    grid-area: 2 / 3 / 3 / 5;
   }
 
-  .tac-header{
-    padding-inline: 30px;
-    margin-block: 10px;
-  }
+  /* پایان استایل بخش عمومی */
 
-  .tac-content{
-    padding-inline: 30px;
-  }
-
-  #hotelRules{
-    width: 525px;
-    height: 127px;
-    border-radius: 5px;
-    border: 1.5px solid #BEC6CC;
-    padding-inline: 15px;
-    padding-block: 10px;
-    font-size: 18px;
-    color: #8F9192;
-  }
-
-  .hotel-rules{
+  .room-facility-header{
     display: flex;
     align-items: center;
-    justify-content: end;
-    margin-top: 35px;
-    margin-bottom: 35px;
-    text-wrap: nowrap;
-  }
-
-  .about-header{
-    padding-inline: 30px;
-    margin-block: 10px;
-  }
-
-  .about-content{
-    padding-inline: 30px;
-  }
-
-  #hotelShortAbout{
-    width: 525px;
-    border-radius: 5px;
-    border: 1.5px solid #BEC6CC;
-    padding-inline: 15px;
-    padding-block: 10px;
-    font-size: 18px;
-    color: #8F9192;
-  }
-
-  .hotel-short-about{
-    margin-top: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    margin-top: 35px;
-    margin-bottom: 35px;
-    text-wrap: nowrap;
-  }
-
-  #hotelLongAbout{
-    width: 525px;
-    border-radius: 5px;
-    border: 1.5px solid #BEC6CC;
-    padding-inline: 15px;
-    padding-block: 10px;
-    font-size: 18px;
-    color: #8F9192;
-  }
-
-  .hotel-long-about{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    margin-top: 35px;
-    margin-bottom: 35px;
-    text-wrap: nowrap;
-  }
-
-  .hotel-facilities{
-    border: 0.5px solid #CED2D3;
-    background: #FDFDFD;
-    box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
-    border-radius: 5px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    padding-inline: 7px;
-    padding-block: 11px;
-    max-height: 400px;
-    overflow-y: auto;
-  }
-
-  .hotel-facilities-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 8px;
-    margin-bottom: 15px;
-    margin-inline: 8px;
-    color: #454545;
-  }
-
-  .hotel-facilities-header span{
-    margin-right: 10px;
+    gap: 10px;
     color: #000;
-
-    font-size: 20px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-  }
-
-  .hotel-facilities-header svg{
-    cursor: pointer;
-  }
-
-  .facilities-text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .facilities-text span{
-    color: #454545;
     margin: 0;
   }
 
-  .facilities-text svg{
-    width: 25px;
-    height: 25px;
+   /* استایل دکمه امکانات */
+
+.facility-btn{
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  user-select: none;
+  margin-bottom: 20px;
+}
+
+.facility-checkbox-text{
+  font-size: 18px;
+}
+
+.check-input-f{
+  display: none;
+}
+
+.facility-checkbox{
+  width: 30px;
+  height: 30px;
+  border: solid #6C7680 2px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 3px;
+  transition: 0.3s all;
+  z-index: 1;
+}
+
+.facility-checkbox svg{
+  width: 20px;
+  height: 20px;
+}
+
+.check-input-f:checked + .facility-checkbox{
+  background-color: #fc3;
+  border: solid #fc3 2px;
+}
+
+.check-input-f:checked + .facility-checkbox svg path{
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  stroke: #006400;
+  stroke-width: 3;
+  animation: check 4s forwards;
+}
+
+
+.facility-checkbox::before {
+  content: "";
+  background: rgba(251, 218, 119, 0.481);
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  display: block;
+  width: 50px;
+  height: 50px;
+  z-index: -1;
+}
+
+.check-input-f:checked + .facility-checkbox::before{
+  animation: ripple 0.3s;
+}
+
+@keyframes check {
+  to {
+    stroke-dashoffset: 0;
+  }
+  
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    z-index: 0;
+  }
+}
+ /* پایان استایل دکمه امکانات */
+
+  /* استای بخش تصاویر */
+  .room-images-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 5px;
+ }
+
+ .add-image{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  border: 2px solid #B4B4B4;
+  box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+  background-color: transparent;
+  padding: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+ }
+
+ .images{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  margin-top: 15px;
+  user-select: none;
+  justify-items: center;
+  overflow-y: auto;
+ }
+
+  .image-btn{
+    margin-bottom: 30px;
   }
 
-  .hotel-facilities-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    margin-block: 10px;
-    margin-inline: 10px;
-  }
-
-  .facility{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .facility span{
-    color: #8F9192;
-    font-size: 20px;
-  }
-
-  .hotel-images{
-    height: fit-content;
-    max-height: 700px;
-    border: 0.5px solid #CED2D3;
-    background: #FDFDFD;
-    box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
-    border-radius: 5px;
-    margin-right: 20px;
-    padding-inline: 7px;
-    padding-block: 11px;
-    overflow-y: auto;
-  }
-
-  .hotel-images-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 8px;
-    margin-bottom: 15px;
-    margin-inline: 8px;
-    color: #454545;
-  }
-
-  .hotel-images-header span{
-    margin-right: 10px;
-    color: #000;
-
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
-  .hotel-images-header svg{
+  .image-checkbox{
+    position: relative;
     cursor: pointer;
   }
 
-  .images-text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .images-text span{
-    color: #454545;
-    margin: 0;
-  }
-
-  .images-text svg{
-    width: 25px;
-    height: 25px;
-  }
-
-  .hotel-images-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    margin-block: 10px;
-    margin-inline: 10px;
-  }
-
-  .image{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    list-style: none;
-    width: 100%;
-    margin-block: 5px;
-  }
-
-  .image span{
-    color: #8F9192;
-    font-size: 20px;
-  }
-
-  .image img{
-    width: 190px;
-    height: 150px;
-  }
-
-  .facility-section{
-    border: none;
-    background-color: transparent;
-  }
-
-  .facilities-overlay{
-    opacity: 0;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    position: fixed;
+  .image-checkbox .facility-checkbox{
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 40px;
-    z-index: 1002;
-    transition: opacity 0.2s;
+    margin: 8px;
+    background-color: #fff;
   }
 
-  .show-overlay{
-    opacity: 1 !important;
-    pointer-events: all !important;
-  }
-
-  .change-facilities{
-    position: relative;
-    width: 980px;
-    height: 610px;
-    background-color: white;
+  .image-checkbox img{
+    width: 230px;
+    height: 180px;
+    background-size: contain;
     border-radius: 4px;
-    padding: 20px;
   }
 
-  .change-facilities-header{
-    margin-right: 10px;
-    color: #000;
+  .uploaded-image:checked + .image-checkbox .image-tick{
+    background-color: #fc3 !important;
+    border: solid #fc3 2px;
+  }
 
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+  .uploaded-image:checked ~ .image-checkbox svg path{
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    stroke: #006400;
+    stroke-width: 3;
+    animation: check 4s forwards;
+  }
+
+  .check-input-i:checked + .image-checkbox .image-tick::before{
+    animation: ripple 0.3s;
+  }
+
+  @keyframes check {
+    to {
+      stroke-dashoffset: 0;
     }
+    
+  }
 
-    .selected-facilities{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      height: 420px;
+  @keyframes ripple {
+    to {
+      transform: scale(1);
+      z-index: 0;
     }
-
-    .facility-btn{
-      width: 150px;
-      display: flex;
-      align-items: center;
-      justify-content: end;
-      gap: 10px;
-      user-select: none;
-      margin-bottom: 20px;
-    }
-
-    .facility-checkbox-text{
-      font-size: 18px;
-    }
-
-    .check-input-f{
-      display: none;
-    }
-
-    .facility-checkbox{
-      width: 30px;
-      height: 30px;
-      border: solid #6C7680 2px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      padding: 3px;
-      transition: 0.3s all;
-      z-index: 1;
-    }
-
-    .facility-checkbox svg{
-      width: 20px;
-      height: 20px;
-    }
-
-    .check-input-f:checked + .facility-checkbox{
-      background-color: #fc3;
-      border: solid #fc3 2px;
-    }
-
-    .check-input-f:checked + .facility-checkbox svg path{
-      stroke-dasharray: 500;
-      stroke-dashoffset: 500;
-      stroke: #006400;
-      stroke-width: 3;
-      animation: check 4s forwards;
-    }
-
-
-    .facility-checkbox::before {
-      content: "";
-      background: rgba(251, 218, 119, 0.481);
-      position: absolute;
-      border-radius: 50%;
-      transform: scale(0);
-      display: block;
-      width: 50px;
-      height: 50px;
-      z-index: -1;
-    }
-
-    .check-input-f:checked + .facility-checkbox::before{
-      animation: ripple 0.3s;
-    }
-
-    @keyframes check {
-      to {
-        stroke-dashoffset: 0;
-      }
-
-    }
-
-    @keyframes ripple {
-      to {
-        transform: scale(1);
-        z-index: 0;
-      }
-    }
-
-    .images-overlay{
-      opacity: 0;
-      pointer-events: none;
-      display: flex;
-      justify-content: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 40px;
-      z-index: 1002;
-      transition: opacity 0.2s;
-    }
-
-    .change-images{
-      position: relative;
-      width: 980px;
-      height: 610px;
-      background-color: white;
-      border-radius: 4px;
-      padding: 20px;
-    }
-
-    .change-images-header{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-right: 10px;
-      color: #000;
-
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-    }
-
-    .image-name{
-      font-size: 16px;
-      font-weight: normal;
-    }
-
-    .add-image-btn{
-      background-color: #fc3;
-      padding-inline: 20px;
-      padding-block: 10px;
-      border-radius: 5px;
-      color: #fff;
-      text-shadow: -2px 2px 10px rgba(0, 0, 0, 0.10);
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .remove-image-section{
-      display: none;
-      padding-inline: 40px;
-      padding-block: 10px;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 5px;
-      gap: 10px;
-      background: #FFF2F2;
-    }
-
-    .remove-image-btn{
-      border: none;
-      background-color: transparent;
-      color: #C30000;
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    .selected-images{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      user-select: none;
-      justify-items: center;
-      height: 420px;
-      overflow-y: auto;
-    }
-
-    .image-btn{
-      margin-bottom: 30px;
-    }
-
-    .image-checkbox{
-      position: relative;
-      cursor: pointer;
-    }
-
-    .image-checkbox .facility-checkbox{
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin: 8px;
-      background-color: #fff;
-    }
-
-    .image-checkbox img{
-      width: 250px;
-      height: 180px;
-      background-size: contain;
-      border-radius: 4px;
-    }
-
-    .uploaded-image:checked + .image-checkbox .image-tick{
-      background-color: #fc3 !important;
-      border: solid #fc3 2px;
-    }
-
-    .uploaded-image:checked ~ .image-checkbox svg path{
-      stroke-dasharray: 500;
-      stroke-dashoffset: 500;
-      stroke: #006400;
-      stroke-width: 3;
-      animation: check 4s forwards;
-    }
-
-    .check-input-i:checked + .image-checkbox .image-tick::before{
-      animation: ripple 0.3s;
-    }
-
-    @keyframes check {
-      to {
-        stroke-dashoffset: 0;
-      }
-
-    }
-
-    @keyframes ripple {
-      to {
-        transform: scale(1);
-        z-index: 0;
-      }
-    }
-
-    .image-section{
-      border: none;
-      background-color: transparent;
-    }
-
-    .action-save-image, .action-save-fac{
-      padding-inline: 32px;
-      padding-block: 6px;
-      border-radius: 5px;
-      background: linear-gradient(96deg, #FC0 -33.68%, #FF8C00 269.25%);
-      box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
-      color: #FFF;
-      font-size: 26px;
-      font-weight: 700;
-      border: none;
-    }
-
-    .action-cancel-image, .action-cancel-fac{
-      padding-inline: 24px;
-      padding-block: 4.5px;
-      border-radius: 5px;
-      margin-left: 10px;
-      background-color: transparent;
-      box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
-      color: #FFF;
-      font-size: 26px;
-      font-weight: 700;
-      border: 2px solid #FC0;
-      background: linear-gradient(117deg, #FC0 -114.34%, rgba(255, 140, 0, 0.00) 656.22%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      }
-
-      .action-buttons-image, .action-buttons-fac{
-        margin-block: 15px;
-        margin-inline: 15px;
-        overflow: hidden;
-        text-align: left;
-        user-select: none;
-      }
-
-      .active-edit{
-        display: block !important;
-      }
-
-      .action-cancel-edit{
-        padding-inline: 20px;
-        padding-block: 4.5px;
-        border-radius: 5px;
-        margin-left: 10px;
-        background-color: transparent;
-        box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
-        color: #FFF;
-        font-size: 22px;
-        font-weight: 700;
-        border: 2px solid #FC0;
-        background: linear-gradient(117deg, #FC0 -114.34%, rgba(255, 140, 0, 0.00) 656.22%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .action-save-edit{
-        padding-inline: 28px;
-        padding-block: 6px;
-        border-radius: 5px;
-        background: linear-gradient(96deg, #FC0 -33.68%, #FF8C00 269.25%);
-        box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
-        color: #FFF;
-        font-size: 22px;
-        font-weight: 700;
-        border: none;
-      }
-
-      .action-buttons-edit{
-        margin-top: 5px;
-        display: none;
-        overflow: hidden;
-        text-align: left;
-        user-select: none;
-      }
+  }
+ /* پایان بخش تصاویر */
 </style>
 {% endblock %}
 {% block title %}پنل مدیریت هتل{% endblock %}
 {% block content %}
 
-
-    <div class="images-overlay">
-      <div class="change-images">
-        <span class="change-images-header">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-              <path d="M30.5813 1.45825H26.2938C25.025 1.45825 24.0917 1.98325 23.6688 2.91659C23.4355 3.3395 23.3334 3.83534 23.3334 4.41867V8.70617C23.3334 10.5583 24.4417 11.6666 26.2938 11.6666H30.5813C31.1646 11.6666 31.6605 11.5645 32.0834 11.3312C33.0167 10.9083 33.5417 9.97492 33.5417 8.70617V4.41867C33.5417 2.56659 32.4334 1.45825 30.5813 1.45825ZM31.9521 7.1895C31.8063 7.33533 31.5875 7.43742 31.3542 7.452H29.298V8.19575L29.3125 9.47908C29.298 9.727 29.2105 9.93117 29.0355 10.1062C28.8896 10.252 28.6709 10.3541 28.4375 10.3541C27.9563 10.3541 27.5625 9.96033 27.5625 9.47908V7.43742L25.5209 7.452C25.0396 7.452 24.6459 7.04367 24.6459 6.56242C24.6459 6.08117 25.0396 5.68742 25.5209 5.68742L26.8042 5.702H27.5625V3.66034C27.5625 3.17909 27.9563 2.77075 28.4375 2.77075C28.9188 2.77075 29.3125 3.17909 29.3125 3.66034L29.298 4.69575V5.68742H31.3542C31.8355 5.68742 32.2292 6.08117 32.2292 6.56242C32.2146 6.81034 32.1125 7.0145 31.9521 7.1895Z" fill="#454545"/>
-              <path d="M13.125 15.1375C15.0419 15.1375 16.5958 13.5835 16.5958 11.6666C16.5958 9.74975 15.0419 8.1958 13.125 8.1958C11.2081 8.1958 9.65417 9.74975 9.65417 11.6666C9.65417 13.5835 11.2081 15.1375 13.125 15.1375Z" fill="#454545"/>
-              <path d="M30.5812 11.6667H29.8958V18.3897L29.7062 18.2292C28.5687 17.2522 26.7312 17.2522 25.5937 18.2292L19.527 23.4355C18.3895 24.4126 16.552 24.4126 15.4145 23.4355L14.9187 23.0272C13.8833 22.123 12.2354 22.0355 11.0687 22.823L5.61454 26.4834C5.29371 25.6667 5.10413 24.7188 5.10413 23.6105V11.3897C5.10413 7.27716 7.27704 5.10425 11.3895 5.10425H23.3333V4.41883C23.3333 3.8355 23.4354 3.33966 23.6687 2.91675H11.3895C6.08121 2.91675 2.91663 6.08133 2.91663 11.3897V23.6105C2.91663 25.2001 3.19371 26.5855 3.73329 27.7522C4.98746 30.523 7.67079 32.0834 11.3895 32.0834H23.6104C28.9187 32.0834 32.0833 28.9188 32.0833 23.6105V11.3313C31.6604 11.5647 31.1645 11.6667 30.5812 11.6667Z" fill="#454545"/>
-            </svg>
-            <span>تصاویر</span>
-          </div>
-          <div class="add-image-section">
-            <span class="image-name">هیچ فایلی انتخاب نشده</span>
-            <input id="add-image" class="add-image" type="file" accept="image/png, image/jpeg" hidden>
-            <label for="add-image" class="add-image-btn">
-              افزودن تصویر
-            </label>
-          </div>
-          <div class="remove-image-section">
-            <button class="remove-image-btn">حذف</button>
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-              <path d="M21.8751 7.01049C21.8542 7.01049 21.823 7.01049 21.7917 7.01049C16.2813 6.45841 10.7813 6.25008 5.3334 6.80216L3.2084 7.01049C2.7709 7.05216 2.38548 6.73966 2.34381 6.30216C2.30215 5.86466 2.61465 5.48966 3.04173 5.44799L5.16673 5.23966C10.7084 4.67716 16.323 4.89591 21.948 5.44799C22.3751 5.48966 22.6876 5.87508 22.6459 6.30216C22.6146 6.70841 22.2709 7.01049 21.8751 7.01049Z" fill="#C30000"/>
-              <path d="M8.85417 5.95825C8.8125 5.95825 8.77083 5.95825 8.71875 5.94783C8.30208 5.87492 8.01042 5.46867 8.08333 5.052L8.3125 3.68742C8.47917 2.68742 8.70833 1.302 11.1354 1.302H13.8646C16.3021 1.302 16.5312 2.7395 16.6875 3.69784L16.9167 5.052C16.9896 5.47908 16.6979 5.88533 16.2812 5.94783C15.8542 6.02075 15.4479 5.72908 15.3854 5.31242L15.1562 3.95825C15.0104 3.052 14.9792 2.87492 13.875 2.87492H11.1458C10.0417 2.87492 10.0208 3.02075 9.86458 3.94784L9.625 5.302C9.5625 5.68742 9.22917 5.95825 8.85417 5.95825Z" fill="#C30000"/>
-              <path d="M15.8437 23.6981H9.15625C5.52083 23.6981 5.375 21.6876 5.26041 20.0626L4.58333 9.57306C4.55208 9.14597 4.88541 8.77097 5.3125 8.73972C5.75 8.71889 6.11458 9.04181 6.14583 9.46889L6.82291 19.9585C6.9375 21.5418 6.97916 22.1356 9.15625 22.1356H15.8437C18.0312 22.1356 18.0729 21.5418 18.1771 19.9585L18.8542 9.46889C18.8854 9.04181 19.2604 8.71889 19.6875 8.73972C20.1146 8.77097 20.4479 9.13556 20.4167 9.57306L19.7396 20.0626C19.625 21.6876 19.4792 23.6981 15.8437 23.6981Z" fill="#C30000"/>
-              <path d="M14.2291 17.9688H10.7604C10.3333 17.9688 9.97913 17.6146 9.97913 17.1875C9.97913 16.7604 10.3333 16.4062 10.7604 16.4062H14.2291C14.6562 16.4062 15.0104 16.7604 15.0104 17.1875C15.0104 17.6146 14.6562 17.9688 14.2291 17.9688Z" fill="#C30000"/>
-              <path d="M15.1042 13.802H9.89587C9.46879 13.802 9.11462 13.4478 9.11462 13.0208C9.11462 12.5937 9.46879 12.2395 9.89587 12.2395H15.1042C15.5313 12.2395 15.8855 12.5937 15.8855 13.0208C15.8855 13.4478 15.5313 13.802 15.1042 13.802Z" fill="#C30000"/>
-            </svg>
-          </div>
-        </span>
-        <hr>
-        <div class="selected-images">
-
-        </div>
-        <div class="action-buttons-image">
-          <button class="action-cancel-image">انصراف</button>
-          <button class="action-save-image">ذخیره</button>
-        </div>
-      </div>
-    </div>
-    <div class="facilities-overlay">
-      <div class="change-facilities">
-          <form method="POST">
-            {% csrf_token %}
-            <span class="change-facilities-header">
-              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
-                <path d="M12.0313 17.5C12.0313 16.7708 11.4479 16.1875 10.7188 16.1875L3.9375 16.1875C3.20833 16.1875 2.625 16.7708 2.625 17.5C2.625 18.2292 3.20833 18.8125 3.9375 18.8125L10.7188 18.8125C11.4333 18.8125 12.0313 18.2292 12.0313 17.5Z" fill="#454545"/>
-                <path d="M22.9688 8.00626C22.9688 8.73542 23.5521 9.31876 24.2812 9.31876L31.0625 9.31876C31.7917 9.31876 32.375 8.73542 32.375 8.00626C32.375 7.27709 31.7917 6.69376 31.0625 6.69376L24.2812 6.69376C23.5667 6.69376 22.9688 7.27709 22.9688 8.00626Z" fill="#454545"/>
-                <path d="M20.1688 10.7188L20.1688 5.29376C20.1688 4.5646 19.5854 3.98126 18.8563 3.98126C18.1271 3.98126 17.5438 4.5646 17.5438 5.29376L17.5438 6.69376L3.93751 6.69376C3.20835 6.69376 2.62501 7.2771 2.62501 8.00626C2.62501 8.73543 3.20835 9.31876 3.93751 9.31876L17.5438 9.31876L17.5438 10.7188C17.5438 11.4479 18.1271 12.0313 18.8563 12.0313C19.5854 12.0313 20.1688 11.4333 20.1688 10.7188Z" fill="#454545"/>
-                <path d="M20.1688 29.7063L20.1688 24.2812C20.1688 23.5521 19.5854 22.9688 18.8563 22.9688C18.1271 22.9688 17.5438 23.5521 17.5438 24.2812L17.5438 25.6813L3.93751 25.6813C3.20835 25.6813 2.62501 26.2646 2.62501 26.9938C2.62501 27.7229 3.20835 28.3063 3.93751 28.3063L17.5438 28.3063L17.5438 29.7063C17.5438 30.4354 18.1271 31.0188 18.8563 31.0188C19.5854 31.0188 20.1688 30.4354 20.1688 29.7063Z" fill="#454545"/>
-                <path d="M17.4563 20.2125L17.4563 18.8125L31.0625 18.8125C31.7917 18.8125 32.375 18.2291 32.375 17.5C32.375 16.7708 31.7917 16.1875 31.0625 16.1875L17.4563 16.1875L17.4563 14.7875C17.4563 14.0583 16.8729 13.475 16.1438 13.475C15.4146 13.475 14.8313 14.0583 14.8313 14.7875L14.8313 20.2125C14.8313 20.9416 15.4146 21.525 16.1438 21.525C16.8729 21.525 17.4563 20.9416 17.4563 20.2125Z" fill="#454545"/>
-              </svg>
-              <span>امکانات</span>
-            </span>
-            <hr>
-            <div class="selected-facilities">
-
-              {% for facility in hotelFacilities.all %}
-              <div class="facility-btn">
-                <label for="input-{{ forloop.counter }}" class="facility-checkbox-text" >{{ facility.faname }}</label>
-                <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ forloop.counter }}">
-                <label for="input-{{ forloop.counter }}" class="facility-checkbox">
-                  <svg viewBox="0 0 22 16" fill="none">
-                    <path d="M1 6.85L8.09677 14L21 1"/>
-                  </svg>
-                </label>
-              </div>
-                  {% if facility in facilities %}
-                      <script >document.getElementById('input-{{ forloop.counter }}').setAttribute('checked', 'checked');</script>
-                  {% endif %}
-                {% endfor %}
-            </div>
-            <div class="action-buttons-fac">
-              <button type="button" class="action-cancel-fac">انصراف</button>
-              <button type="submit" class="action-save-fac">ذخیره</button>
-            </div>
-          </form>
-      </div>
-    </div>
     <div class="side-panel">
           <div class="logo">
             <a href="{% url 'home' %}">
@@ -1228,40 +804,62 @@
                 </div>
               </div>
             </div>
-            <div class="hotel-details-container">
-                <div class="hotel-details">
-                        <div class="hotel-details-content" style="background: #FDFDFD; border: 1px solid #CED2D3;">
-                              <div class="hotel-details-header">
-                                <h3 class="hotel-details-header-text">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                                    <path d="M27.6208 7.90416L20.0812 3.54374C18.6375 2.71249 16.3771 2.71249 14.9333 3.54374L7.32083 7.93332C4.30208 9.97499 4.12708 10.2812 4.12708 13.5333V21.4521C4.12708 24.7042 4.30208 25.025 7.37916 27.0958L14.9187 31.4562C15.6479 31.8792 16.5812 32.0833 17.5 32.0833C18.4187 32.0833 19.3521 31.8792 20.0667 31.4562L27.6792 27.0667C30.6979 25.025 30.8729 24.7187 30.8729 21.4667V13.5333C30.8729 10.2812 30.6979 9.97499 27.6208 7.90416ZM17.5 22.2396C14.8896 22.2396 12.7604 20.1104 12.7604 17.5C12.7604 14.8896 14.8896 12.7604 17.5 12.7604C20.1104 12.7604 22.2396 14.8896 22.2396 17.5C22.2396 20.1104 20.1104 22.2396 17.5 22.2396Z" fill="#454545"/>
-                                  </svg>
-                                  عمومی
-                                </h3>
-                              </div>
-                              <hr style="margin-inline: 20px; margin-block: 10px;">
-                              <div class="main-details">
-                                <div class="room-datils">
-                                <label for="roomName">نام اتاق:</label>
-                                <input id="roomName" disabled name="roomName" type="text" value="{{ room.faname }}"/>
-                                <label for="bedCounts">تعداد تخت:</label>
-                                <input id="bedCounts" disabled name="bedCounts" type="number" value="{{ room.bed }}"/>
-                                <label for="roomPrice">قیمت اتاق:</label>
-                                <input id="roomPrice" disabled name="roomPrice" type="number" value="{{ room.price }}"/>
-                                <span class="price-info">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M18.1333 13.2666L12.8 3.66663C12.0833 2.37496 11.0916 1.66663 9.99998 1.66663C8.90831 1.66663 7.91665 2.37496 7.19998 3.66663L1.86665 13.2666C1.19165 14.4916 1.11665 15.6666 1.65831 16.5916C2.19998 17.5166 3.26665 18.025 4.66665 18.025H15.3333C16.7333 18.025 17.8 17.5166 18.3416 16.5916C18.8833 15.6666 18.8083 14.4833 18.1333 13.2666ZM9.37498 7.49996C9.37498 7.15829 9.65831 6.87496 9.99998 6.87496C10.3416 6.87496 10.625 7.15829 10.625 7.49996V11.6666C10.625 12.0083 10.3416 12.2916 9.99998 12.2916C9.65831 12.2916 9.37498 12.0083 9.37498 11.6666V7.49996ZM10.5916 14.7583C10.55 14.7916 10.5083 14.825 10.4666 14.8583C10.4166 14.8916 10.3666 14.9166 10.3166 14.9333C10.2666 14.9583 10.2166 14.975 10.1583 14.9833C10.1083 14.9916 10.05 15 9.99998 15C9.94998 15 9.89165 14.9916 9.83331 14.9833C9.78331 14.975 9.73331 14.9583 9.68331 14.9333C9.63331 14.9166 9.58331 14.8916 9.53331 14.8583C9.49165 14.825 9.44998 14.7916 9.40831 14.7583C9.25831 14.6 9.16665 14.3833 9.16665 14.1666C9.16665 13.95 9.25831 13.7333 9.40831 13.575C9.44998 13.5416 9.49165 13.5083 9.53331 13.475C9.58331 13.4416 9.63331 13.4166 9.68331 13.4C9.73331 13.375 9.78331 13.3583 9.83331 13.35C9.94165 13.325 10.0583 13.325 10.1583 13.35C10.2166 13.3583 10.2666 13.375 10.3166 13.4C10.3666 13.4166 10.4166 13.4416 10.4666 13.475C10.5083 13.5083 10.55 13.5416 10.5916 13.575C10.7416 13.7333 10.8333 13.95 10.8333 14.1666C10.8333 14.3833 10.7416 14.6 10.5916 14.7583Z" fill="#FFCC00"/>
-                                  </svg>
-                                  قیمت های به تومان می‌باشد.
-                                </span>
-                              </div>
-                            </div>
-                        </div>
+            <div class="edit-room-container">
+              <div class="rooms-header">
+                <div class="room-state">
+                  <span>وضعیت:</span>
+                  <div class="room-state-svg">
+                    <span>پر شده</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+                        <path d="M6.5 0C3.05625 0 0.25 2.80625 0.25 6.25C0.25 9.69375 3.05625 12.5 6.5 12.5C9.94375 12.5 12.75 9.69375 12.75 6.25C12.75 2.80625 9.94375 0 6.5 0ZM8.6 7.6875C8.78125 7.86875 8.78125 8.16875 8.6 8.35C8.50625 8.44375 8.3875 8.4875 8.26875 8.4875C8.15 8.4875 8.03125 8.44375 7.9375 8.35L6.5 6.9125L5.0625 8.35C4.96875 8.44375 4.85 8.4875 4.73125 8.4875C4.6125 8.4875 4.49375 8.44375 4.4 8.35C4.21875 8.16875 4.21875 7.86875 4.4 7.6875L5.8375 6.25L4.4 4.8125C4.21875 4.63125 4.21875 4.33125 4.4 4.15C4.58125 3.96875 4.88125 3.96875 5.0625 4.15L6.5 5.5875L7.9375 4.15C8.11875 3.96875 8.41875 3.96875 8.6 4.15C8.78125 4.33125 8.78125 4.63125 8.6 4.8125L7.1625 6.25L8.6 7.6875Z" fill="#C30000"/>
+                      </svg>
+                  </div>
+                </div>
+                <button class="delete-room-btn">
+                  <span>حذف اتاق</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 30 30" fill="none">
+                    <path d="M26.3373 6.5375C24.3248 6.3375 22.3123 6.1875 20.2873 6.075V6.0625L20.0123 4.4375C19.8248 3.2875 19.5498 1.5625 16.6248 1.5625H13.3498C10.4373 1.5625 10.1623 3.2125 9.96233 4.425L9.69983 6.025C8.53733 6.1 7.37483 6.175 6.21233 6.2875L3.66233 6.5375C3.13733 6.5875 2.76233 7.05 2.81233 7.5625C2.86233 8.075 3.31233 8.45 3.83733 8.4L6.38733 8.15C12.9373 7.5 19.5373 7.75 26.1623 8.4125C26.1998 8.4125 26.2248 8.4125 26.2623 8.4125C26.7373 8.4125 27.1498 8.05 27.1998 7.5625C27.2373 7.05 26.8623 6.5875 26.3373 6.5375Z" fill="#C30000"/>
+                    <path d="M24.0374 10.175C23.7374 9.8625 23.3249 9.6875 22.8999 9.6875H7.09993C6.67493 9.6875 6.24993 9.8625 5.96243 10.175C5.67493 10.4875 5.51243 10.9125 5.53743 11.35L6.31243 24.175C6.44993 26.075 6.62493 28.45 10.9874 28.45H19.0124C23.3749 28.45 23.5499 26.0875 23.6874 24.175L24.4624 11.3625C24.4874 10.9125 24.3249 10.4875 24.0374 10.175ZM17.0749 22.1875H12.9124C12.3999 22.1875 11.9749 21.7625 11.9749 21.25C11.9749 20.7375 12.3999 20.3125 12.9124 20.3125H17.0749C17.5874 20.3125 18.0124 20.7375 18.0124 21.25C18.0124 21.7625 17.5874 22.1875 17.0749 22.1875ZM18.1249 17.1875H11.8749C11.3624 17.1875 10.9374 16.7625 10.9374 16.25C10.9374 15.7375 11.3624 15.3125 11.8749 15.3125H18.1249C18.6374 15.3125 19.0624 15.7375 19.0624 16.25C19.0624 16.7625 18.6374 17.1875 18.1249 17.1875Z" fill="#C30000"/>
+                  </svg>
+                </button>
               </div>
-
-              <div class="hotel-facilities">
-                <div class="hotel-facilities-header">
-                  <span class="facilities-text">
+              <div class="room-details-container">
+                <div class="room-details-header">
+                  <h3 class="room-details-header-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                      <path d="M27.6208 7.90416L20.0812 3.54374C18.6375 2.71249 16.3771 2.71249 14.9333 3.54374L7.32083 7.93332C4.30208 9.97499 4.12708 10.2812 4.12708 13.5333V21.4521C4.12708 24.7042 4.30208 25.025 7.37916 27.0958L14.9187 31.4562C15.6479 31.8792 16.5812 32.0833 17.5 32.0833C18.4187 32.0833 19.3521 31.8792 20.0667 31.4562L27.6792 27.0667C30.6979 25.025 30.8729 24.7187 30.8729 21.4667V13.5333C30.8729 10.2812 30.6979 9.97499 27.6208 7.90416ZM17.5 22.2396C14.8896 22.2396 12.7604 20.1104 12.7604 17.5C12.7604 14.8896 14.8896 12.7604 17.5 12.7604C20.1104 12.7604 22.2396 14.8896 22.2396 17.5C22.2396 20.1104 20.1104 22.2396 17.5 22.2396Z" fill="#454545"/>
+                    </svg>
+                    عمومی
+                  </h3>
+                  <button id="editBtn" type="button" class="edit-btn active-edit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                      <path d="M26.25 27.5H3.75C3.2375 27.5 2.8125 27.075 2.8125 26.5625C2.8125 26.05 3.2375 25.625 3.75 25.625H26.25C26.7625 25.625 27.1875 26.05 27.1875 26.5625C27.1875 27.075 26.7625 27.5 26.25 27.5Z" fill="#565C63"/>
+                      <path d="M23.775 4.35001C21.35 1.92501 18.975 1.86251 16.4875 4.35001L14.975 5.86251C14.85 5.98751 14.8 6.18751 14.85 6.36251C15.8 9.67501 18.45 12.325 21.7625 13.275C21.8125 13.2875 21.8625 13.3 21.9125 13.3C22.05 13.3 22.175 13.25 22.275 13.15L23.775 11.6375C25.0125 10.4125 25.6125 9.22501 25.6125 8.02501C25.625 6.78751 25.025 5.58751 23.775 4.35001Z" fill="#565C63"/>
+                      <path d="M19.5125 14.4125C19.15 14.2375 18.8 14.0625 18.4625 13.8625C18.1875 13.7 17.925 13.525 17.6625 13.3375C17.45 13.2 17.2 13 16.9625 12.8C16.9375 12.7875 16.85 12.7125 16.75 12.6125C16.3375 12.2625 15.875 11.8125 15.4625 11.3125C15.425 11.2875 15.3625 11.2 15.275 11.0875C15.15 10.9375 14.9375 10.6875 14.75 10.4C14.6 10.2125 14.425 9.93747 14.2625 9.66247C14.0625 9.32497 13.8875 8.98747 13.7125 8.63747C13.6577 8.51999 13.6065 8.40374 13.5583 8.28911C13.4169 7.95311 12.9812 7.85624 12.7235 8.114L5.425 15.4125C5.2625 15.575 5.1125 15.8875 5.075 16.1L4.4 20.8875C4.275 21.7375 4.5125 22.5375 5.0375 23.075C5.4875 23.5125 6.1125 23.75 6.7875 23.75C6.9375 23.75 7.0875 23.7375 7.2375 23.7125L12.0375 23.0375C12.2625 23 12.575 22.85 12.725 22.6875L20.0163 15.3962C20.2759 15.1366 20.1775 14.6924 19.8387 14.5512C19.7324 14.507 19.6241 14.4608 19.5125 14.4125Z" fill="#565C63"/>
+                    </svg>
+                  </button>
+                  <div class="action-buttons-edit">
+                    <button type="submit" class="action-save-edit">ذخیره</button>
+                    <button type="button" class="action-cancel-edit">انصراف</button>
+                  </div>
+                </div>
+                <hr>
+                <div class="room-details">
+                  <label for="roomName">نام اتاق:</label>
+                  <input id="roomName" name="roomName" type="text" disabled/>
+                  <label for="bedCounts">تعداد تخت:</label>
+                  <input id="bedCounts" name="bedCounts" type="number" max="9" min="1" disabled/>
+                  <label for="roomPrice">قیمت اتاق:</label>
+                  <input id="roomPrice"name="roomPrice" type="number" min="1" step="any" disabled/>
+                  <span class="price-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M18.1333 13.2666L12.8 3.66663C12.0833 2.37496 11.0916 1.66663 9.99998 1.66663C8.90831 1.66663 7.91665 2.37496 7.19998 3.66663L1.86665 13.2666C1.19165 14.4916 1.11665 15.6666 1.65831 16.5916C2.19998 17.5166 3.26665 18.025 4.66665 18.025H15.3333C16.7333 18.025 17.8 17.5166 18.3416 16.5916C18.8833 15.6666 18.8083 14.4833 18.1333 13.2666ZM9.37498 7.49996C9.37498 7.15829 9.65831 6.87496 9.99998 6.87496C10.3416 6.87496 10.625 7.15829 10.625 7.49996V11.6666C10.625 12.0083 10.3416 12.2916 9.99998 12.2916C9.65831 12.2916 9.37498 12.0083 9.37498 11.6666V7.49996ZM10.5916 14.7583C10.55 14.7916 10.5083 14.825 10.4666 14.8583C10.4166 14.8916 10.3666 14.9166 10.3166 14.9333C10.2666 14.9583 10.2166 14.975 10.1583 14.9833C10.1083 14.9916 10.05 15 9.99998 15C9.94998 15 9.89165 14.9916 9.83331 14.9833C9.78331 14.975 9.73331 14.9583 9.68331 14.9333C9.63331 14.9166 9.58331 14.8916 9.53331 14.8583C9.49165 14.825 9.44998 14.7916 9.40831 14.7583C9.25831 14.6 9.16665 14.3833 9.16665 14.1666C9.16665 13.95 9.25831 13.7333 9.40831 13.575C9.44998 13.5416 9.49165 13.5083 9.53331 13.475C9.58331 13.4416 9.63331 13.4166 9.68331 13.4C9.73331 13.375 9.78331 13.3583 9.83331 13.35C9.94165 13.325 10.0583 13.325 10.1583 13.35C10.2166 13.3583 10.2666 13.375 10.3166 13.4C10.3666 13.4166 10.4166 13.4416 10.4666 13.475C10.5083 13.5083 10.55 13.5416 10.5916 13.575C10.7416 13.7333 10.8333 13.95 10.8333 14.1666C10.8333 14.3833 10.7416 14.6 10.5916 14.7583Z" fill="#FFCC00"/>
+                    </svg>
+                    قیمت های به تومان می‌باشد.
+                  </span>
+                </div>
+                <div class="room-facilites">
+                  <h3 class="room-facility-header">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
                       <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
                       <path d="M12.0313 17.5C12.0313 16.7708 11.4479 16.1875 10.7188 16.1875L3.9375 16.1875C3.20833 16.1875 2.625 16.7708 2.625 17.5C2.625 18.2292 3.20833 18.8125 3.9375 18.8125L10.7188 18.8125C11.4333 18.8125 12.0313 18.2292 12.0313 17.5Z" fill="#454545"/>
@@ -1271,54 +869,60 @@
                       <path d="M17.4563 20.2125L17.4563 18.8125L31.0625 18.8125C31.7917 18.8125 32.375 18.2291 32.375 17.5C32.375 16.7708 31.7917 16.1875 31.0625 16.1875L17.4563 16.1875L17.4563 14.7875C17.4563 14.0583 16.8729 13.475 16.1438 13.475C15.4146 13.475 14.8313 14.0583 14.8313 14.7875L14.8313 20.2125C14.8313 20.9416 15.4146 21.525 16.1438 21.525C16.8729 21.525 17.4563 20.9416 17.4563 20.2125Z" fill="#454545"/>
                     </svg>
                     <span>امکانات</span>
-                  </span>
-                <button type="button" class="facility-section">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                    <path d="M7.49996 12.5C7.49996 11.7709 7.78121 11.0417 8.33329 10.4896L15.125 3.69794C15.427 3.39585 15.927 3.39585 16.2291 3.69794C16.5312 4.00002 16.5312 4.50002 16.2291 4.8021L9.43746 11.5938C8.93746 12.0938 8.93746 12.9063 9.43746 13.4063L16.2291 20.1979C16.5312 20.5 16.5312 21 16.2291 21.3021C15.927 21.6042 15.427 21.6042 15.125 21.3021L8.33329 14.5104C7.78121 13.9584 7.49996 13.2292 7.49996 12.5Z" fill="#292D32"/>
-                  </svg>
-                </button>
-              </div>
-              <ul class="hotel-facilities-content">
-                <hr style="margin: 0;">
-                {% for facility in room.facilities.all %}
-                <li class="facility flaticon-{{ facility.name }}">
-                  <span >{{facility.faname}}</span>
-                </li>
-                <hr style="margin: 0;">
-                {% endfor %}
-                </ul>
-              </div>
-              <div class="hotel-images">
-                <span class="hotel-images-header">
-                  <span class="images-text">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                      <path d="M30.5813 1.45834H26.2938C25.025 1.45834 24.0917 1.98334 23.6688 2.91668C23.4354 3.33959 23.3333 3.83543 23.3333 4.41876V8.70626C23.3333 10.5583 24.4417 11.6667 26.2938 11.6667H30.5813C31.1646 11.6667 31.6604 11.5646 32.0833 11.3313C33.0167 10.9083 33.5417 9.97501 33.5417 8.70626V4.41876C33.5417 2.56668 32.4333 1.45834 30.5813 1.45834ZM31.9521 7.18959C31.8063 7.33543 31.5875 7.43751 31.3542 7.45209H29.2979V8.19584L29.3125 9.47918C29.2979 9.72709 29.2104 9.93126 29.0354 10.1063C28.8896 10.2521 28.6708 10.3542 28.4375 10.3542C27.9563 10.3542 27.5625 9.96043 27.5625 9.47918V7.43751L25.5208 7.45209C25.0396 7.45209 24.6458 7.04376 24.6458 6.56251C24.6458 6.08126 25.0396 5.68751 25.5208 5.68751L26.8042 5.70209H27.5625V3.66043C27.5625 3.17918 27.9563 2.77084 28.4375 2.77084C28.9188 2.77084 29.3125 3.17918 29.3125 3.66043L29.2979 4.69584V5.68751H31.3542C31.8354 5.68751 32.2292 6.08126 32.2292 6.56251C32.2146 6.81043 32.1125 7.01459 31.9521 7.18959Z" fill="#454545"/>
-                      <path d="M13.125 15.1375C15.0419 15.1375 16.5958 13.5836 16.5958 11.6667C16.5958 9.74978 15.0419 8.19583 13.125 8.19583C11.2081 8.19583 9.65417 9.74978 9.65417 11.6667C9.65417 13.5836 11.2081 15.1375 13.125 15.1375Z" fill="#454545"/>
-                      <path d="M30.5812 11.6667H29.8958V18.3896L29.7062 18.2292C28.5687 17.2521 26.7312 17.2521 25.5937 18.2292L19.5271 23.4354C18.3896 24.4125 16.5521 24.4125 15.4146 23.4354L14.9187 23.0271C13.8833 22.1229 12.2354 22.0354 11.0687 22.8229L5.61457 26.4833C5.29374 25.6667 5.10416 24.7187 5.10416 23.6104V11.3896C5.10416 7.27707 7.27707 5.10416 11.3896 5.10416H23.3333V4.41874C23.3333 3.83541 23.4354 3.33957 23.6687 2.91666H11.3896C6.08124 2.91666 2.91666 6.08124 2.91666 11.3896V23.6104C2.91666 25.2 3.19374 26.5854 3.73332 27.7521C4.98749 30.5229 7.67082 32.0833 11.3896 32.0833H23.6104C28.9187 32.0833 32.0833 28.9187 32.0833 23.6104V11.3312C31.6604 11.5646 31.1646 11.6667 30.5812 11.6667Z" fill="#454545"/>
-                    </svg>
-                    <span>تصاویر</span>
-                  </span>
-                  <button class="image-section">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                      <path d="M7.49996 12.5C7.49996 11.7709 7.78121 11.0417 8.33329 10.4896L15.125 3.69794C15.427 3.39585 15.927 3.39585 16.2291 3.69794C16.5312 4.00002 16.5312 4.50002 16.2291 4.8021L9.43746 11.5938C8.93746 12.0938 8.93746 12.9063 9.43746 13.4063L16.2291 20.1979C16.5312 20.5 16.5312 21 16.2291 21.3021C15.927 21.6042 15.427 21.6042 15.125 21.3021L8.33329 14.5104C7.78121 13.9584 7.49996 13.2292 7.49996 12.5Z" fill="#292D32"/>
-                    </svg>
-                  </button>
-              </span>
-              <ul class="hotel-images-content">
-                <hr>
-
-                {% for image in room.gallery.all%}
-                  <li class="image">
-                    <span>{{ forloop.counter }}</span>
-                    <img src="{{ image.file.url }}" alt="">
-                  </li>
-                  <hr>
-                  {% endfor %}
-
-                </ul>
+                  </h3>
+                  <hr style="margin-block: 10px;">
+                  <div class="selected-facilities">
+                    <div class="facility-btn">
+                      <label for="input-{{ forloop.counter }}" class="facility-checkbox-text" >{{ facility.faname }}</label>
+                      <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ forloop.counter }}">
+                      <label for="input-{{ forloop.counter }}" class="facility-checkbox">
+                        <svg viewBox="0 0 22 16" fill="none">
+                          <path d="M1 6.85L8.09677 14L21 1"/>
+                        </svg>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- تصاویر -->
+                <div class="room-images">
+                  <div class="room-details-header">
+                    <h3 class="room-facility-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                          <path d="M30.5813 1.45825H26.2938C25.025 1.45825 24.0917 1.98325 23.6688 2.91659C23.4355 3.3395 23.3334 3.83534 23.3334 4.41867V8.70617C23.3334 10.5583 24.4417 11.6666 26.2938 11.6666H30.5813C31.1646 11.6666 31.6605 11.5645 32.0834 11.3312C33.0167 10.9083 33.5417 9.97492 33.5417 8.70617V4.41867C33.5417 2.56659 32.4334 1.45825 30.5813 1.45825ZM31.9521 7.1895C31.8063 7.33533 31.5875 7.43742 31.3542 7.452H29.298V8.19575L29.3125 9.47908C29.298 9.727 29.2105 9.93117 29.0355 10.1062C28.8896 10.252 28.6709 10.3541 28.4375 10.3541C27.9563 10.3541 27.5625 9.96033 27.5625 9.47908V7.43742L25.5209 7.452C25.0396 7.452 24.6459 7.04367 24.6459 6.56242C24.6459 6.08117 25.0396 5.68742 25.5209 5.68742L26.8042 5.702H27.5625V3.66034C27.5625 3.17909 27.9563 2.77075 28.4375 2.77075C28.9188 2.77075 29.3125 3.17909 29.3125 3.66034L29.298 4.69575V5.68742H31.3542C31.8355 5.68742 32.2292 6.08117 32.2292 6.56242C32.2146 6.81034 32.1125 7.0145 31.9521 7.1895Z" fill="#454545"/>
+                          <path d="M13.125 15.1375C15.0419 15.1375 16.5958 13.5835 16.5958 11.6666C16.5958 9.74975 15.0419 8.1958 13.125 8.1958C11.2081 8.1958 9.65417 9.74975 9.65417 11.6666C9.65417 13.5835 11.2081 15.1375 13.125 15.1375Z" fill="#454545"/>
+                          <path d="M30.5812 11.6667H29.8958V18.3897L29.7062 18.2292C28.5687 17.2522 26.7312 17.2522 25.5937 18.2292L19.527 23.4355C18.3895 24.4126 16.552 24.4126 15.4145 23.4355L14.9187 23.0272C13.8833 22.123 12.2354 22.0355 11.0687 22.823L5.61454 26.4834C5.29371 25.6667 5.10413 24.7188 5.10413 23.6105V11.3897C5.10413 7.27716 7.27704 5.10425 11.3895 5.10425H23.3333V4.41883C23.3333 3.8355 23.4354 3.33966 23.6687 2.91675H11.3895C6.08121 2.91675 2.91663 6.08133 2.91663 11.3897V23.6105C2.91663 25.2001 3.19371 26.5855 3.73329 27.7522C4.98746 30.523 7.67079 32.0834 11.3895 32.0834H23.6104C28.9187 32.0834 32.0833 28.9188 32.0833 23.6105V11.3313C31.6604 11.5647 31.1645 11.6667 30.5812 11.6667Z" fill="#454545"/>
+                        </svg>
+                        <span>تصاویر</span>
+                    </h3>
+                    <div class="add-image-section">
+                      <input type="file" id="add-image" accept="image/png, image/jpeg" hidden>
+                      <label for="add-image" class="add-image">
+                        <span>افزودن تصویر</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M15 10.625H5C4.65833 10.625 4.375 10.3417 4.375 10C4.375 9.65833 4.65833 9.375 5 9.375H15C15.3417 9.375 15.625 9.65833 15.625 10C15.625 10.3417 15.3417 10.625 15 10.625Z" fill="#454545"/>
+                          <path d="M10 15.625C9.65833 15.625 9.375 15.3417 9.375 15V5C9.375 4.65833 9.65833 4.375 10 4.375C10.3417 4.375 10.625 4.65833 10.625 5V15C10.625 15.3417 10.3417 15.625 10 15.625Z" fill="#454545"/>
+                        </svg>
+                      </label>
+                    </div>
+                  </div>
+                  <hr style="margin-block: 10px;">
+                  <div class="images">
+                    <div class="image-btn" id="id-image-1">
+                      <input id="image-1" class="uploaded-image check-input-i" type="checkbox" hidden>
+                      <label for="image-1" class="image-checkbox">
+                        <img src="{% static 'img/300x230/img1.jpg' %}" alt="">
+                        <i class="facility-checkbox image-tick">
+                          <svg viewBox="0 0 22 16" fill="none">
+                            <path d="M1 6.85L8.09677 14L21 1"/>
+                          </svg>
+                        </i>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- پایان تصاویر -->
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -1331,36 +935,22 @@
 
   // Select the profile dropdown button element
   const profileDropdownButton = document.querySelector('.dropdown-profile-btn');
-
+  
   // Select the profile dropdown content element
   const profileDropdownContent = document.querySelector('.dropdown-profile-content');
-
+  
   // Add event listener to the profile dropdown button
   profileDropdownButton.addEventListener('click', () => {
     // Toggle the "show-dp" class on the profile dropdown content element
     profileDropdownContent.classList.toggle('show-dp');
   });
 
-  const fOverlay = document.querySelector('.facilities-overlay')
-
-  document.querySelector('.facility-section').addEventListener('click', () => {
-    fOverlay.classList.add('show-overlay')
-  })
-
-  document.querySelector('.action-cancel-fac').addEventListener('click', () => {
-    fOverlay.classList.remove('show-overlay')
-    document.querySelectorAll('.check-input-f').forEach(ci => {
-      ci.checked = false
-    })
-  })
-
   const editBtn = document.querySelector('.edit-btn')
   const actionBtns = document.querySelector('.action-buttons-edit')
   const actionCancelEdit = document.querySelector('.action-cancel-edit')
-  {#const actionSaveEdit = document.querySelector('.action-save-edit')#}
-  const hotelInformation = document.querySelector('.hotel-details-content');
-  const inputs = hotelInformation.querySelectorAll('input');
-  const textareas = hotelInformation.querySelectorAll('textarea');
+  const roomInformation = document.querySelector('.room-details');
+  const inputs = roomInformation.querySelectorAll('input');
+  const textareas = roomInformation.querySelectorAll('textarea');
   let initialState = Array.from(inputs).map(input => input.value);
   let initialTextareas = Array.from(textareas).map(textarea => textarea.value);
 
@@ -1370,29 +960,11 @@
     initialState = Array.from(inputs).map(input => input.value);
     initialTextareas = Array.from(textareas).map(textarea => textarea.value);
 
-    {#inputs.forEach(input => {#}
-    {#    input.disabled = !input.disabled;#}
-    {#    input.style.color = '#2A2A2A'#}
-    {#})#}
-    {##}
-    {#textareas.forEach(textarea => {#}
-    {#    textarea.disabled = !textarea.disabled;#}
-    {#    textarea.style.color = '#2A2A2A'#}
-    {#});#}
+    //حذف کردن Attribute disabled از input ها
+    inputs.forEach(i => {
+      i.removeAttribute('disabled')
+    })
   })
-
-  {#actionSaveEdit.addEventListener('click', () => {#}
-  {#  actionBtns.classList.remove('active-edit')#}
-  {#  editBtn.classList.add('active-edit')#}
-  {##}
-  {#  inputs.forEach(input => {#}
-  {#    input.disabled = true;#}
-  {#  });#}
-  {##}
-  {#  textareas.forEach(textarea => {#}
-  {#    textarea.disabled = true;#}
-  {#  });#}
-  {#});#}
 
   actionCancelEdit.addEventListener('click', () => {
     actionBtns.classList.remove('active-edit')
@@ -1410,139 +982,5 @@
         textarea.style.color = '#8F9092'
     });
   })
-
-  const imageSection = document.querySelector(".selected-images");
-  const imageInput = document.querySelector('.add-image')
-  const imageName = document.querySelector('.image-name')
-  const saveImage = document.querySelector('.action-save-image')
-  const removeImage = document.querySelector('.remove-image-btn')
-  const img = document.querySelector('.img')
-  let imageHtml = ''
-  let imageId = 1
-  imageInput.addEventListener('change', () => {
-    if(imageInput.value){
-      imageName.innerHTML = imageInput.value
-
-      if (imageInput.files && imageInput.files[0]) {
-    const fileReader = new FileReader();
-    fileReader.onload = function(e) {
-      imageSection.innerHTML += `<div class="image-btn" id="id-image-${imageId}">
-        <input id="image-${imageId}" class="uploaded-image check-input-i" type="checkbox" hidden>
-        <label for="image-${imageId}" class="image-checkbox">
-          <img src="${e.target.result}" alt="">
-          <i class="facility-checkbox image-tick">
-            <svg viewBox="0 0 22 16" fill="none">
-              <path d="M1 6.85L8.09677 14L21 1"/>
-            </svg>
-          </i>
-        </label>
-      </div>`
-      img.src = e.target.result;
-    }
-    fileReader.readAsDataURL(imageInput.files[0]);
-    setTimeout(() => {
-      deleteImage()
-      imageId += 1
-    }, 1000)
-  }
-    }else{
-      imageName.innerHTML = 'هیچ فایلی انتخاب نشده'
-    }
-  })
-
-  const imagesOverlay = document.querySelector('.images-overlay')
-  const imageElementInput = document.querySelectorAll('.check-input-i')
-  const addImageSection = document.querySelector('.add-image-section')
-  const removeImageSection = document.querySelector('.remove-image-section')
-  const cancelImage = document.querySelector('.action-cancel-image')
-
-  saveImage.addEventListener('click', () => {
-    imageHtml += imageSection.innerHTML
-    imagesOverlay.classList.remove('show-overlay')
-    addImageSection.style.display = 'inline-block'
-    removeImageSection.style.display = 'none'
-    imageName.value = 'هیچ فایلی انتخاب نشده'
-  })
-
-  document.querySelector('.image-section').addEventListener('click', () => {
-    imagesOverlay.classList.add('show-overlay')
-    imageSection.innerHTML = imageHtml
-    imageHtml = ''
-    deleteImage()
-  })
-
-  cancelImage.addEventListener('click', () => {
-    imagesOverlay.classList.remove('show-overlay')
-    imageElementInput.forEach(ci => {
-      ci.checked = false
-    })
-    imageName.value = 'هیچ فایلی انتخاب نشده'
-  })
-
-  if (imageSection.scrollHeight > 420) {
-    imageSection.style.overflowY = "scroll";
-  }
-
-  const facilitySection = document.querySelector(".selected-facilities");
-
-  if (facilitySection.scrollHeight > 420) {
-    facilitySection.style.overflowY = "scroll";
-  }
-
-  let removeImages = []
-  //دکمه حذف
-
-  function deleteImage () {
-      const inputId = imageSection.querySelectorAll('input')
-    document.querySelectorAll(".check-input-i")?.forEach(ci => {
-    ci.addEventListener('change', () => {
-      let checkedArr = []
-
-       // منطق نشان دادن دکمه حذف
-      console.log(inputId)
-        inputId.forEach(input => {
-          if(document.getElementById(input.id).checked){
-            checkedArr.push(true)
-          }else{
-            checkedArr.push(false)
-          }
-        })
-
-
-        if(ci.checked) removeImages.push(ci.id)
-        if(!ci.checked) removeImages.splice(removeImages.indexOf(ci.id), 1)
-        console.log(removeImages)
-      //نشان دادن دکمه حذف
-        if(checkedArr.includes(true)){
-          addImageSection.style.display = 'none'
-          removeImageSection.style.display = 'flex'
-        }else{
-          addImageSection.style.display = 'inline-block'
-          removeImageSection.style.display = 'none'
-        }
-        checkedArr = []
-        cancelImage.addEventListener('click', () => {
-          addImageSection.style.display = 'inline-block'
-          removeImageSection.style.display = 'none'
-        })
-    })
-  })
-  }
-
-  deleteImage()
-
-  removeImage.addEventListener('click', () => {
-    removeImages.forEach((ri) => {
-      if(document.getElementById('id-' + ri)){
-        document.getElementById('id-' + ri).remove()
-        removeImages.splice(removeImages.indexOf(ri.id), 1)
-        imageSection.innerHTML = imageSection.innerHTML.slice()
-        console.log(removeImages)
-      }
-    })
-    addImageSection.style.display = 'inline-block'
-    removeImageSection.style.display = 'none'
-  })
-
 </script>
 {% endblock %}
