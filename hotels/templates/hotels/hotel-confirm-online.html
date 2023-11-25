@@ -9,122 +9,106 @@
 
 {% include 'include/list-header.html' %}
         <!-- ========== MAIN CONTENT ========== -->
-    <main id="content" class="bg-gray space-2">
-        <div class="mb-5 shadow-soft bg-white rounded-sm">
-            <div class="py-6 px-5 border-bottom">
-                <div class="flex-horizontal-center">
-                    <div class="height-50 width-50 flex-shrink-0 flex-content-center bg-primary rounded-circle">
-                        <i class="flaticon-tickets text-white font-size-24"></i>
-                    </div>
-                    <div class="ml-3">
-                        <h3 class="font-size-18 font-weight-bold text-dark mb-0 text-lh-sm">
-                            با تشکر. درخواست رزرو شما برای هتل {{ hotel.faname }} ارسال گردید.
-                        </h3>
-                        <p class="mb-0">پس از تایید درخواست ، به صفحه تکمیل اطلاعات مسافران منتقل می شوید.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-4 pb-5 px-5 border-bottom">
-                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
-                    اطلاعات رزرو
-                </h5>
-                <!-- Fact List -->
-                <ul class="list-unstyled font-size-1 mb-0 font-size-16">
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">شماره رزرو </span>
-                        <span class="text-secondary text-right">{{ reserve.reserve_code }}</span>
-                    </li>
+        <main id="content" class="bg-gray space-2">
+        <div style="background-color: #ffcc00; padding: 20px;">
+    <h4 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
+      اعتبار رزرو شما تا ساعت {{ end_time.time }}
+    </h4>
+  </div>
+           <div class="mb-5 shadow-soft bg-white rounded-sm">
+               <div class="py-3 px-4 px-xl-12 border-bottom">
+                                <ul class="list-group flex-nowrap overflow-auto overflow-md-visble list-group-horizontal list-group-borderless flex-center-between pt-1">
+                                    <li class="list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40 bg-primary border-width-2 border border-primary text-white mx-auto rounded-circle">
+                                            1
+                                        </div>
+                                        <div class="text-primary">تایید رزرو</div>
+                                    </li>
+                                    <li class="list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40 border  border-width-2 border-gray mx-auto rounded-circle">
+                                            2
+                                        </div>
+                                        <div class="text-gray-1">اطلاعات مسافران</div>
 
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">نام هتل </span>
-                        <span class="text-secondary text-right">{{ reserve.room.hotel.faname }}</span>
-                    </li>
+                                    </li>
+                                    <li class="list-group-item text-center flex-shrink-0 flex-md-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40 border  border-width-2 border-gray mx-auto rounded-circle">
+                                            3
+                                        </div>
+                                        <div class="text-gray-1">دریافت واچر هتل</div>
+                                    </li>
+                                </ul>
+                            </div>
 
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">نام اتاق </span>
-                        <span class="text-secondary text-right">{{ reserve.room.faname }}</span>
-                    </li>
+                            <div class="py-6 px-5 border-bottom">
+                                <div class="flex-horizontal-center">
+                                    <div class="height-50 width-50 flex-shrink-0 flex-content-center bg-primary rounded-circle">
+                                        <i class="flaticon-tickets text-white font-size-24"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h3 class="font-size-18 font-weight-bold text-dark mb-0 text-lh-sm">
+                                            اگر از اطلاعات رزرو مطمئن هستید دکمه تایید رو بزنید.
+                                        </h3>
+                                        <p class="mb-0">پس از تایید درخواست ، به صفحه تکمیل اطلاعات مسافران منتقل می شوید.</p>
+                                        <a href="{% url 'hotel-booking' reserve=reserve.reserve_code %}" class="btn btn-outline-success px-7 mt-5">تـایید</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-4 pb-5 px-5 border-bottom">
+                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
+                                    اطلاعات رزرو
+                                </h5>
+                                <!-- Fact List -->
+                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">شماره رزرو </span>
+                                        <span class="text-secondary text-right">{{ reserve.reserve_code }}</span>
+                                    </li>
 
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">مبلغ کل پرداختی </span>
-                        <span class="text-secondary text-right">{{ reserve.room.format_price}}</span>
-                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">نام هتل </span>
+                                        <span class="text-secondary text-right">{{ hotel.faname }}</span>
+                                    </li>
 
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">تاریخ ورود </span>
-                        <span class="text-secondary text-right">{{reserve.enter}}</span>
-                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">نام اتاق </span>
+                                        <span class="text-secondary text-right">{{ room.faname }}</span>
+                                    </li>
 
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">تاریخ خروج </span>
-                        <span class="text-secondary text-right">{{ reserve.exit}}</span>
-                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">مبلغ کل پرداختی </span>
+                                        <span class="text-secondary text-right">{{ room.format_price }}</span>
+                                    </li>
 
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">آدرس هتل </span>
-                        <span class="text-secondary text-right">{{ reserve.room.hotel.address}}</span>
-                    </li>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تاریخ ورود </span>
+                                        <span class="text-secondary text-right">{{ enter}}</span>
+                                    </li>
 
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">توضیحات هتل </span>
-                        <span class="text-secondary text-right">{{ reserve.room.hotel.explanation}}</span>
-                    </li>
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">شماره تماس سرگروه</span>
-                        <span class="text-secondary text-right">{{ passengers.first.phone}}
-                        </span>
-                    </li>
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">تعداد بزرگسال </span>
-                        <span class="text-secondary text-right">{{ reserve.passenger_count }}</span>
-                    </li>
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium">تعداد خردسال </span>
-                        <span class="text-secondary text-right">{{ reserve.child_count }}</span>
-                    </li>
-                    <li class="d-flex justify-content-between py-2">
-                        <span class="font-weight-medium"> نیازمندی های ویژه</span>
-                        <span class="text-secondary text-right">{% if reserve.needs %}
-                            {{reserve.needs}}
-                        {% else %}
-                            بدون نیازمندی
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تاریخ خروج </span>
+                                        <span class="text-secondary text-right">{{ exit}}</span>
+                                    </li>
 
-                        {% endif %}</span>
-                    </li>
-                </ul>
-                <!-- End Fact List -->
-            </div>
-            <div class="pt-4 pb-5 px-5 border-bottom">
-                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
-                    اطلاعات مسافران
-                </h5>
-                    <!-- Fact List -->
-                {% for passenger in passengers %}
-                    <ul class="list-unstyled font-size-1 mb-0 font-size-16">
-                        <li class="d-flex justify-content-between py-2">
-                            <span class="font-weight-medium">نام و نام خانوادگی </span>
-                            <span class="text-secondary text-right">{{ passenger.firstname}} {{ passenger.lastname}}</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2">
-                            <span class="font-weight-medium">کدملی</span>
-                            <span class="text-secondary text-right">
-                                {{ passenger.nid}}
-                            </span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2">
-                            <span class="font-weight-medium">تاریخ تولد</span>
-                            <span class="text-secondary text-right">{{ passenger.birthdate }}</span>
-                        </li>
-                     <hr>
-                    </ul>
-                {% endfor %}
-                    <!-- End Fact List -->
-                <div class="d-flex justify-content-center align-content-center ">
-                    <a href="{% url 'bankpayment' reserve=reserve.reserve_code %}" class="btn px-5 py-3 btn-success">پرداخت</a>
-                </div>
-            </div>
-        </div>
-    </main>
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">آدرس هتل </span>
+                                        <span class="text-secondary text-right">{{ hotel.address}}</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">توضیحات هتل </span>
+                                        <span class="text-secondary text-right">{{ hotel.explanation}}</span>
+                                    </li>
+                                </ul>
+                                <!-- End Fact List -->
+                            </div>
+
+
+
+
+
+                        </div>
+        </main>
         <!-- ========== END MAIN CONTENT ========== -->
 {% endblock %}
 {% block footer %}
@@ -144,6 +128,12 @@ if (savedEndTime) {
 }
 
 var isRequestButtonAdded = false; // تنها یکبار اضافه شود
+function clearLocalStorageOnUnload() {
+  localStorage.removeItem('end_time');
+}
+
+// ثبت رویداد قبل از خروج از صفحه
+window.addEventListener('beforeunload', clearLocalStorageOnUnload);
 
 function updateCountdown() {
   var now = new Date();

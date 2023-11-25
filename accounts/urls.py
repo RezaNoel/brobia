@@ -10,15 +10,11 @@ urlpatterns = [
     path('logout', views.LogoutView,name='logout'),
     path('register', views.RegisterView,name='register'),
     path('profile', views.UserProfileView,name='profile'),
+    path('kave', views.kave_negar_token_send,name='sms'),
     path('hotel-panel/<str:page>', views.HotelAdminView, name='hotel-panel'),
     path('hotel-panel/<str:page>/<slug:room_slug>', views.RoomSingleView, name='room-single'),
-    path('password_reset/', PasswordResetView.as_view(
-        template_name='registration/password_reset_form.html',
-        email_template_name='registration/password_reset_email.html',
-        success_url='/password_reset/done/',
-        form_class=CustomPasswordResetForm
-    ), name='password_reset'),
-    path('password_reset/done/', PasswordResetDoneView.as_view(
+    path('password_reset/', views.CustomPasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done', PasswordResetDoneView.as_view(
         template_name='registration/password_reset_done.html'
     ), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(

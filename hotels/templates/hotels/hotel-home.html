@@ -24,7 +24,7 @@
     <main id="content">
         <!-- ========== HERO ========== -->
         <div class="hero-block hero-v4 bg-img-hero-bottom text-center z-index-2"
-             style="background-image: url({% static 'img/1920x800/img2.jpg' %});">
+             style="background-image: url({% static 'img/1920x800/img2.jpg' %});background-size: cover;">
             <div class="container space-2 space-top-lg-4 space-top-xl-4">
                 <div class="row justify-content-md-center pb-xl-20">
                     <!-- Info -->
@@ -38,12 +38,12 @@
                     </div>
                     <!-- End Info -->
                 </div>
-                <div class="mb-lg-n16">
+                <div class="mb-lg-n16" id="card-body">
                     <!-- Search Jobs Form -->
-                    <div class="card border-0 tab-shadow">
-                        <div class="card-body">
-                            <form id="myForm" action="" method="GET" class="js-validate">
-                                <div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3">
+                    <div class="card border-0 tab-shadow" id="card-body">
+                        <div class="card-body" id="card-body">
+                            <form id="myForm" action="" id="card-body" method="GET" class="js-validate">
+                                <div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3" id="card-body" >
                                     <div class="col-sm-12 col-lg-3 col-xl-3 mb-4 mb-lg-0 ">
                                         <span class="d-block text-gray-1 font-weight-normal text-left mb-0">نام شهر مقصد</span>
                                         <!-- Select -->
@@ -664,6 +664,13 @@
                 .suggestion-mobile{
                     display: block;
                 }
+            }
+            @media screen and (max-width:800px) {
+               #card-body{
+                   opacity: 0.3 !important;
+
+                   {#background-color:blue;#}
+               }
             }
         </style>
 

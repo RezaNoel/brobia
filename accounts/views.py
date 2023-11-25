@@ -8,26 +8,43 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User,HotelManagerModel
 from hotels.models import Facility,Room
-from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm,CustomPasswordResetForm
 import main
-# from kavenegar import KavenegarAPI,APIException,HTTPException
+from kavenegar import KavenegarAPI,APIException,HTTPException
+from random import randint, randrange
 
 
 
 # Create your views here.
-# def kave_negar_token_send(receptor, token):
-#     try:
-#         api = KavenegarAPI(API_KEY)
-#         params = {
-#             'receptor': receptor,
-#             'template': 'your_template',
-#             'token': token
-#         }
-#         response = api.verify_lookup(params)
-#     except APIException as e:
-#         print(e)
-#     except HTTPException as e:
-#         print(e)
+
+class CustomPasswordResetView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'registration/password_reset_form.html'
+    email_template_name = 'registration/password_reset_email.html'
+    success_url = '/password_reset/done'
+    form_class = CustomPasswordResetForm
+    success_message = "لینک بازیابی رمز عبور به ایمیل شما ارسال شد."
+
+    def send_sms(self, code, receptor):
+        messages = f"{code} رمز یکبار مصرف ورود به بروبیا:"
+        api = KavenegarAPI('736C5461342F426C7630656C346C38726D576E734D5A4536726F30773245546361693471632F682B2B316F3D')
+        params = {'sender': '2000500666', 'receptor': receptor, 'message': messages}
+        response = api.sms_send(params)
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        # ارسال کد تایید به شماره تلفن
+        code = str(randrange(1000, 9999))
+        self.send_sms(code, form.cleaned_data['email'])
+        return response
+def kave_negar_token_send(request):
+    code =str( randrange(1000, 9999))
+    messages = code + " " + 'رمز یکبار مصرف ورود به بروبیا:'
+    api = KavenegarAPI('736C5461342F426C7630656C346C38726D576E734D5A4536726F30773245546361693471632F682B2B316F3D')
+    params = {'sender': '2000500666', 'receptor': '09129471382', 'message': messages}
+    response = api.sms_send(params)
+    return HttpResponseRedirect(reverse(LoginView))
 def RegisterView(request):
     if request.method =='POST':
         registerForm = RegisterForm(request.POST)

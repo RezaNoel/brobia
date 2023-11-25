@@ -420,32 +420,37 @@
                                 <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                                     <div id="hotel-list" class="row">
                                     {% if facilities|length > 0 %}
-                                    {% for facility in facilities %}
-                                        {% if facility.related == 'R' %}
-                                            {% for room in rooms %}
-                                                {% if not hotel_execution_status|get_execution_status:room.hotel %}
-                                                    {% if facility in room.facilities.all %}
-                                                        {% set_execution_status hotel_execution_status room.hotel %}
-                                                        {% include 'include/hotel-card-room.html' %}
+                                        {% for facility in facilities %}
+                                            {% if facility.related == 'R' %}
+                                                {% for room in rooms %}
+                                                    {% if  is_reserved|get_room_reserve_status:room %}
+                                                        {% if not hotel_execution_status|get_execution_status:room.hotel %}
+                                                            {% if facility in room.facilities.all %}
+                                                                {% set_execution_status hotel_execution_status room.hotel %}
+                                                                {% include 'include/hotel-card-room.html' %}
+                                                            {% endif %}
+                                                        {% endif %}
                                                     {% endif %}
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% elif facility.related == 'H' %}
-                                            {% for hotel in page %}
-                                                {% if not hotel_execution_status|get_execution_status:hotel %}
-                                                    {% if facility in hotel.facilities.all %}
-                                                        {% set_execution_status hotel_execution_status hotel %}
-                                                        {% include 'include/hotel-card.html' %}
+                                                {% endfor %}
+                                            {% elif facility.related == 'H' %}
+                                                {% for hotel in page %}
+                                                    {% if not hotel_execution_status|get_execution_status:hotel %}
+                                                        {% if facility in hotel.facilities.all and not is_reserved_value %}
+                                                            {% set_execution_status hotel_execution_status hotel %}
+                                                            {% include 'include/hotel-card.html' %}
+                                                        {% endif %}
                                                     {% endif %}
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endif %}
-                                    {% endfor %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
                                     {% else %}
-                                         {% for hotel in page %}
+                                        {% for hotel in hotels %}
+                                            {% if not hotel_execution_status|get_execution_status:hotel %}
                                                 {% include 'include/hotel-card.html' %}
+                                            {% endif %}
                                         {% endfor %}
                                     {% endif %}
+
                                 </div>
                                 <div id="no-result" class="no-result">
                                     <img class="no-result-img" src="{% static 'img\home\no-result.jpg' %}" alt="">
