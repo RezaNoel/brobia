@@ -484,7 +484,7 @@
   height: 35px;
 }
 
-.room-datils{
+.room-details{
   display: grid;
   grid-template-columns: 80px 1fr 80px 1fr;
   grid-template-rows: repeat(2, 1fr);
@@ -494,13 +494,13 @@
   align-items: center;
 }
 
-.room-datils label{
+.room-details label{
   color: #4B5259;
   font-size: 16px;
   font-weight: 400;
 }
 
-.room-datils input{
+.room-details input{
   height: 44px;
   border-radius: 5px;
   border: 1.5px solid #BEC6CC;
@@ -861,7 +861,7 @@
         <form method="POST">
             {% csrf_token %}
         <!-- عمومی -->
-        <div class="room-details">
+        <div class="room-details-container">
           <h3 class="add-room-headers">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
               <path d="M27.6208 7.90416L20.0812 3.54374C18.6375 2.71249 16.3771 2.71249 14.9333 3.54374L7.32083 7.93332C4.30208 9.97499 4.12708 10.2812 4.12708 13.5333V21.4521C4.12708 24.7042 4.30208 25.025 7.37916 27.0958L14.9187 31.4562C15.6479 31.8792 16.5812 32.0833 17.5 32.0833C18.4187 32.0833 19.3521 31.8792 20.0667 31.4562L27.6792 27.0667C30.6979 25.025 30.8729 24.7187 30.8729 21.4667V13.5333C30.8729 10.2812 30.6979 9.97499 27.6208 7.90416ZM17.5 22.2396C14.8896 22.2396 12.7604 20.1104 12.7604 17.5C12.7604 14.8896 14.8896 12.7604 17.5 12.7604C20.1104 12.7604 22.2396 14.8896 22.2396 17.5C22.2396 20.1104 20.1104 22.2396 17.5 22.2396Z" fill="#454545"/>
@@ -869,7 +869,7 @@
             <span>عمومی</span>
           </h3>
           <hr>
-          <div class="room-datils">
+          <div class="room-details">
             <label for="roomName">نام اتاق:</label>
             <input id="roomName" name="roomName" type="text"/>
             <label for="bedCounts">تعداد تخت:</label>
