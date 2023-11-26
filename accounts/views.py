@@ -147,12 +147,21 @@ def UserProfileView(request):
         isHotelManager = False
     form = CustomPasswordChangeForm(request.user)
     updateProfileForm = UserProfileForm()
+    myProfileForm = ProfileForm()
     if request.method == 'POST':
         if 'first_name' in request.POST:
             updateProfileForm = UserProfileForm(request.POST, request.FILES, instance=request.user)
             if updateProfileForm.is_valid():
                 updateProfileForm.save()
-
+        if 'profile' in request.POST:
+            print('profile')
+            print(request.POST)
+            print(request.FILES)
+            myProfileForm = ProfileForm(request.POST,request.FILES)
+            if myProfileForm.is_valid():
+                print('profile is valid')
+                profile = UserProfileForm(profile=request.FILES["profile"])
+                profile.save()
         elif 'old_password' in request.POST:
             form = CustomPasswordChangeForm(request.user, request.POST)
             if form.is_valid():
@@ -167,6 +176,7 @@ def UserProfileView(request):
     context = {
         'form': form,
         'updateProfileForm':updateProfileForm,
+        'myProfileForm':myProfileForm,
         'isHotelManager': isHotelManager
     }
     return render(request, 'accounts/user_profile.html', context)
