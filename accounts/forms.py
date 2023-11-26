@@ -30,8 +30,8 @@ class UserProfileForm(UserChangeForm):
     # مثلا اگر یک فیلد جدید به نام "address" دارید:
     # address = forms.CharField(max_length=255, required=False, label='آدرس')
 class CustomPasswordResetForm(PasswordResetForm):
-    email = forms.EmailField(label="آدرس ایمیل", max_length=254, widget=forms.EmailInput(
-        attrs={'class': 'form-control', 'placeholder': 'آدرس ایمیل خود را وارد کنید'}
+    phone = forms.CharField(label="آدرس ایمیل", max_length=254, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': '09XXXXXXXXX'}
     ))
 
 class CustomPasswordChangeForm(PasswordChangeForm):

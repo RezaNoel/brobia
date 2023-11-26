@@ -6,7 +6,7 @@
         <header id="header" class="u-header u-header--abs-top-xl u-header--white-nav-links-xl u-header--bg-transparent-xl u-header--show-hide-xl" data-header-fix-moment="500" data-header-fix-effect="slide">
             <div class="u-header__section u-header__shadow-on-show-hide py-4 py-xl-0">
                 <!-- Topbar -->
-                <div class="container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-white">
+                <div class="header container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-white">
                     <div class="d-flex align-items-center">
                         <ul class="list-inline u-header__topbar-nav-divider mb-0">
                             <li class="list-inline-item mr-0"><a href="tel:(98)9200701700" class="u-header__navbar-link">09200701700</a></li>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <!-- End Topbar -->
-                <div id="logoAndNav"  class="container-fluid py-1">
+                <div id="logoAndNav"  class="logoNav container-fluid py-1">
                     <!-- Nav -->
                     <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space" >
                         <ul class="navbar-nav u-header__navbar-nav">
@@ -102,14 +102,14 @@
                             <ul class="navbar-nav u-header__navbar-nav d-flex justify-content-between ml-0" style="width: 100%;">
                                     <div class="dropdown-more d-flex justify-content-center font-size-16">
                                         <div class="d-flex justify-content-center align-items-center ml-3 more-btn-section">
-                                            <button class="btn btn-bg-transparent more-btn nav-link u-header__nav-link u-header__nav-link-border">
+                                            <button class="btn  btn-bg-transparent more-btn nav-link u-header__nav-link u-header__nav-link-border">
                                                 <span>بیشتر</span>
                                                 <i class="bi bi-chevron-down"></i>
                                             </button>
                                         </div>
                                         <div class="dropdown-more-content dropdown-menu dropdown-unfold m-0 u-unfold--css-animation slideInUp">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'blog-list' %}">وبلاگ</a>
+                                                <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'blog-list' %}">مجله</a>
                                             </div>
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <a id="nav-item-hover" class="nav-link text-warning" href="{% url 'contact-us' %}">ارتباط با ما</a>
@@ -123,14 +123,14 @@
                                             <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="{% url 'home' %}#boroobia-suggestions">پیشنهاد بروبیا</a>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center ml-3 font-size-12">
-                                            <a id="nav-item-hover" class="btn disabled u-header__nav-link u-header__nav-link-border px-0" href="#" >لحظه آخری</a>
+                                            <a id="nav-item-hover" class="btn disabled u-header__nav-link u-header__nav-link-border  px-0" href="#" >لحظه آخری</a>
                                             <span class="text-warning d-flex justify-content-center align-items-center px-1 user-select-none">به زودی</span>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <!-- Hotel -->
                                         <div class="d-flex justify-content-center align-items-center ml-3">
-                                            <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-hotel-1 mr-2 ml-1 airplane"></i> هتل</a>
+                                            <a id="nav-item-hover" class="nav-link u-header__nav-link u-header__nav-link-border" href="/"><i class="flaticon-hotel-1 mr-2 ml-1"></i> هتل</a>
                                         </div>
                                         <!-- End Hotel -->
                                         
@@ -147,6 +147,17 @@
                                             <span class="text-warning d-flex justify-content-center align-items-center px-1 user-select-none">به زودی</span>
                                         </div>
                                         <!-- End Taxi -->
+                                        <div id="second-profile" class="d-flex justify-content-center align-items-center ml-3 position-relative px-3 u-header__topbar-divider scroll-hide">                                                {% if user.is_authenticated %}
+                                            <a id="nav-item-hover" href="{% url 'profile' %}" class="d-flex align-items-center nav-link u-header__nav-link u-header__nav-link-border">
+                                                <span class="d-inline-block font-size-14 mr-1" id="user_name"><i class="flaticon-user mr-2 ml-1"></i>{{ user.first_name }} {{ user.last_name }}</span>
+                                            </a>
+                                            {% else %}
+                                            <a id="nav-item-hover" href="{% url 'login' %}" class="d-flex align-items-center text-white">
+                                                <i class="flaticon-user mr-2 ml-1"></i>
+                                                <span class="d-inline-block font-size-14 mr-1">ورود به حساب کاربری</span>
+                                            </a>
+                                            {% endif %}
+                                        </div>
                                     </div>
                             </ul>
                         </div>
@@ -186,6 +197,10 @@
         </header>
 
         <style>
+            header {
+                backdrop-filter: blur(3px);
+            }
+
             .dropdown-more{
                 position: relative;
                 display: inline-block;
@@ -241,10 +256,33 @@
                     color: #ffce21 !important;
                 }
             }
+            .scroll-hide {
+                display: none !important;
+            }
+
+            .scroll-show {
+                display: flex !important;
+            }
                 </style>
         <!-- ========== End HEADER ========== -->
-
         <script>
+            window.addEventListener("scroll", () => {
+            const scroll = window.pageYOffset;
+            const threshold = 100; // تعیین نقطه‌ای که می‌خواهید دکمه نمایش داده شود
+            const secondProfile = document.getElementById("second-profile");
+            console.log(secondProfile)
+
+            if (scroll >= threshold) {
+                secondProfile.classList.remove("scroll-hide");
+                secondProfile.classList.add("scroll-show");
+                console.log('testif')
+            } else {
+                secondProfile.classList.add("scroll-hide");
+                secondProfile.classList.remove("scroll-show");
+                console.log('testifelse')
+            }
+            });
+
             const usersName = document.getElementById('user_name')
             if(usersName?.innerHTML === ' ') usersName.innerHTML = 'پروفایل'
 

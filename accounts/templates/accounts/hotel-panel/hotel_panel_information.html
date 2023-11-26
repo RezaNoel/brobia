@@ -4,6 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
 
+  html{
+      font-size: 62.5%;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -12,22 +16,136 @@
 
 
   body{
+    display: grid;
+    grid-template-columns: 260px auto;
     background-color: #dfe2e4;
     height: 100vh;
-    overflow: hidden;
-    overflow-y: scroll;
   }
 
   ul{
     padding: 0;
   }
 
+  svg{
+    display: block;
+    margin-block: 0;
+  }
+
   .panel-admin{
-    transform: translateX(-130px);
-    max-width: fit-content;
     margin: auto;
     overflow: hidden;
   }
+
+    /*  استایل ساید بار موبایل */
+
+    .mobile-side-panel {
+    position: relative;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffcc00;
+    box-shadow: -2px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100px;
+    padding-inline: 30px;
+    padding-bottom: 10px;
+  }
+
+  .mobile-side-panel-options {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mobile-side-panel-pages {
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 30%);
+    list-style: none;
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    padding-block: 25px;
+    background: #FFFEF8;
+    border-radius: 12px;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.20);
+    margin: 0;
+    z-index: 1;
+  }
+
+  .mobile-side-panel-pages a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-decoration: none;
+    color: #6c7680;
+    font-size: 2rem;
+  }
+
+  .mobile-side-panel-pages li:nth-child(2):after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    border-radius: 40px 40px 0 0px;
+    background: #fc0;
+  }
+
+  .mobile-side-panel-pages li {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding-block: 10px;
+    padding-inline: 10px;
+  }
+
+  .mobile-side-panel-pages svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mobile-back-home-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 21px;
+    background-color: unset;
+    border: none;
+    margin-block: 50px;
+    text-decoration: none;
+  }
+
+  .mobile-back-home-btn svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo a {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .mobile-profile{
+    border: none;
+    border-radius: 5px;
+  }
+
+  .mobile-profile svg{
+    width: 30px;
+    height: 30px;
+  }
+  /* پایان استایل ساید بار موبایل */
 
   .side-panel {
     position: fixed;
@@ -65,7 +183,7 @@
     gap: 20px;
     text-decoration: none;
     color: #6c7680;
-    font-size: 20px;
+    font-size: 2rem;
   }
 
   .side-panel-pages li:nth-child(2):after {
@@ -116,13 +234,12 @@
   }
 
   .logo-icon {
-    width: 35px;
-    height: 35px;
+    width: 100px;
   }
 
   .logo-text {
     color: #fc3;
-    font-size: 30px;
+    font-size: 3rem;
   }
 
   .back-home-btn {
@@ -137,7 +254,7 @@
   }
 
   .back-home-btn span {
-    font-size: 20px;
+    font-size: 2rem;
     color: #6c7680;
   }
 
@@ -151,7 +268,7 @@
 
   .hotel-details-container{
     display: grid;
-    grid-template-columns: auto 290px;
+    grid-template-columns: 710px auto;
     grid-template-rows: auto auto;
     margin-top: 35px;
   }
@@ -177,23 +294,19 @@
     justify-content: space-between;
     padding-inline: 6px;
     padding-right: 13px;
-    padding-bottom: 5px;
-  }
-
-  .hotel-profile-image{
-    padding-top: 5px;
+    padding-block: 5px;
   }
 
   .hotel-profile-details {
     display: flex;
     flex-direction: column;
     text-align: right;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
   }
 
   .hotel-profile-city {
-    font-size: 14px;
+    font-size: 1.4rem;
   }
 
   .dropdown-profile-btn{
@@ -243,12 +356,15 @@
     color: #565C63;
   }
 
+  .dropdown-options span{
+    font-size: 1.4rem;
+  }
+
   .hotel-stars{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 30px;
-    padding-block: 15px;
+    padding-inline: 20px;
     border-radius: 5px 5px 2px 2px;
     border: 1px solid #CED2D3;
     background: #FDFDFD;
@@ -259,14 +375,19 @@
 
   .hotel-stars span{
     color: #6C7680;
-    
-    font-size: 20px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
   }
 
+  .hotel-stars div {
+    display: flex;
+  }
+
   .hotel-stars svg{
+    width: 50px;
+    height: 50px;
     fill: #FC0;
     filter: drop-shadow(1px 1px 15px rgba(255, 204, 0, 0.55));
   }
@@ -284,7 +405,7 @@
     align-items: center;
     justify-content: space-between;
     padding-inline: 30px;
-    padding-block: 10px;
+    padding-top: 10px;
     background: #FDFDFD;
   }
 
@@ -293,8 +414,7 @@
     align-items: center;
     gap: 10px;
     color: #000;
-    
-    font-size: 22px;
+    font-size: 2.2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -304,7 +424,7 @@
   .hotel-details label{
     color: #6C7680;
     
-    font-size: 20px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -317,7 +437,6 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    padding-top: 5px;
   }
 
   .edit-btn svg{
@@ -339,10 +458,6 @@
     padding-inline: 30px;
   }
 
-  .hotel-information div{
-    justify-self: end;
-  }
-
   .hotel-information input{
     width: 200px;
     height: 44px;
@@ -350,7 +465,7 @@
     border-radius: 5px;
     border: 1.5px solid #BEC6CC;
     padding-inline: 15px;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #8F9192;
     text-align: center;
   }
@@ -361,7 +476,7 @@
     border: 1.5px solid #BEC6CC;
     padding-inline: 15px;
     padding-block: 10px;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #8F9192;
   }
 
@@ -390,7 +505,7 @@
     border: 1.5px solid #BEC6CC;
     padding-inline: 15px;
     padding-block: 10px;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #8F9192;
   }
 
@@ -418,7 +533,7 @@
     border: 1.5px solid #BEC6CC;
     padding-inline: 15px;
     padding-block: 10px;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #8F9192;
   }
 
@@ -438,7 +553,7 @@
     border: 1.5px solid #BEC6CC;
     padding-inline: 15px;
     padding-block: 10px;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #8F9192;
   }
 
@@ -478,7 +593,7 @@
     margin-right: 10px;
     color: #000;
     
-    font-size: 20px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -523,7 +638,7 @@
 
   .facility span{
     color: #8F9192;
-    font-size: 20px;
+    font-size: 2rem;
   }
 
   .hotel-images{
@@ -544,7 +659,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     margin-inline: 8px;
     color: #454545;
   }
@@ -553,7 +668,7 @@
     margin-right: 10px;
     color: #000;
     
-    font-size: 20px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -585,7 +700,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    margin-block: 10px;
+    margin-bottom: 10px;
     margin-inline: 10px;
   }
 
@@ -601,7 +716,7 @@
 
   .image span{
     color: #8F9192;
-    font-size: 20px;
+    font-size: 2rem;
   }
 
   .image img{
@@ -636,19 +751,25 @@
   }
 
   .change-facilities{
-    position: relative;
-    width: 980px;
-    height: 610px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
     background-color: white;
     border-radius: 4px;
     padding: 20px;
+    max-height: 550px;
+    overflow-y: auto;
   }
 
   .change-facilities-header{
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-right: 10px;
     color: #000;
-    
-    font-size: 20px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -657,21 +778,18 @@
     .selected-facilities{
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      height: 420px;
     }
 
     .facility-btn{
       width: 150px;
       display: flex;
-      align-items: center;
-      justify-content: end;
       gap: 10px;
       user-select: none;
-      margin-bottom: 20px;
+      margin-block: 20px;
     }
 
     .facility-checkbox-text{
-      font-size: 18px;
+      font-size: 1.8rem;
     }
 
     .check-input-f{
@@ -772,15 +890,20 @@
       align-items: center;
       margin-right: 10px;
       color: #000;
-      
-      font-size: 20px;
+      font-size: 2rem;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
     }
 
+    .image-header-text{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .image-name{
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: normal;
     }
 
@@ -791,7 +914,7 @@
       border-radius: 5px;
       color: #fff;
       text-shadow: -2px 2px 10px rgba(0, 0, 0, 0.10);
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 700;
       cursor: pointer;
     }
@@ -811,7 +934,7 @@
       border: none;
       background-color: transparent;
       color: #C30000;
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 700;
     }
 
@@ -891,7 +1014,7 @@
       background: linear-gradient(96deg, #FC0 -33.68%, #FF8C00 269.25%);
       box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
       color: #FFF;
-      font-size: 26px;
+      font-size: 2.6rem;
       font-weight: 700;
       border: none;
     }
@@ -904,7 +1027,7 @@
       background-color: transparent;
       box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
       color: #FFF;
-      font-size: 26px;
+      font-size: 2.6rem;
       font-weight: 700;
       border: 2px solid #FC0;
       background: linear-gradient(117deg, #FC0 -114.34%, rgba(255, 140, 0, 0.00) 656.22%);
@@ -914,7 +1037,6 @@
       }
 
       .action-buttons-image, .action-buttons-fac{
-        margin-block: 15px;
         margin-inline: 15px;
         overflow: hidden;
         text-align: left;
@@ -922,18 +1044,17 @@
       }
 
       .active-edit{
-        display: block !important;
+        display: flex !important;
       }
 
       .action-cancel-edit{
         padding-inline: 20px;
         padding-block: 4.5px;
         border-radius: 5px;
-        margin-left: 10px;
         background-color: transparent;
         box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
         color: #FFF;
-        font-size: 22px;
+        font-size: 2.2rem;
         font-weight: 700;
         border: 2px solid #FC0;
         background: linear-gradient(117deg, #FC0 -114.34%, rgba(255, 140, 0, 0.00) 656.22%);
@@ -949,17 +1070,615 @@
         background: linear-gradient(96deg, #FC0 -33.68%, #FF8C00 269.25%);
         box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
         color: #FFF;
-        font-size: 22px;
+        font-size: 2.2rem;
         font-weight: 700;
         border: none;
+        margin-left: 10px;
       }
 
       .action-buttons-edit{
-        margin-top: 5px;
         display: none;
         overflow: hidden;
         text-align: left;
         user-select: none;
+      }
+
+      @media screen and (max-width: 1325px) {
+        .side-panel-pages a, .back-home-btn span,
+        .hotel-stars span, .hotel-information label,
+        .about-content label, .facilities-text span,
+        .images-text span, .hotel-facilities-content span,
+        .change-facilities-header, .hotel-details label,
+        .image span{
+          font-size: 1.8rem;
+        }
+
+        .side-panel-pages svg, .back-home-btn svg{
+          width: 30px;
+          height: 30px;
+        }
+
+        .hotel-details-container{
+          grid-template-columns: 680px auto;
+        }
+
+        .hotel-stars svg{
+          width: 47.5px;
+          height: 47.5px;
+        }
+
+        .hotel-details-header-text, .action-save-edit,
+        .action-cancel-edit, .action-cancel-fac, .action-save-fac{
+          font-size: 2rem;
+        }
+
+        .hotel-details-header-text svg{
+          width: 30px;
+          height: 30px;
+        }
+
+        .edit-btn svg{
+          width: 25px;
+          height: 25px;
+        }
+        
+        .hotel-information input{
+          width: 170px;
+          font-size: 1.6rem;
+        }
+
+        .facility-checkbox-text{
+          font-size: 1.6rem;
+        }
+
+        .facility-checkbox{
+          width: 27.5px;
+          height: 27.5px;
+        }
+
+        .facility-checkbox svg{
+          width: 19px;
+          height: 19px;
+        }
+
+        #hotelAddress , #hotelShortAbout, #hotelLongAbout, #hotelRules{
+          width: 480px;
+          font-size: 1.6rem;
+        }
+      }
+
+      @media screen and (max-width: 1265px) {
+        body{
+          grid-template-columns: 220px auto;
+        }
+
+        .side-panel{
+          width: 220px;
+        }
+
+        .side-panel-pages a, .back-home-btn span,
+        .hotel-stars span, .hotel-information label,
+        .about-content label, .facilities-text span,
+        .images-text span, .hotel-facilities-content span,
+        .change-facilities-header, .hotel-details label,
+        .image span{
+          font-size: 1.7rem;
+        }
+
+        .side-panel-pages svg, .back-home-btn svg{
+          width: 28px;
+          height: 28px;
+        }
+
+        .hotel-details-container{
+          grid-template-columns: 600px auto;
+        }
+
+        .hotel-stars svg{
+          width: 45px;
+          height: 45px;
+        }
+
+        .hotel-details-header-text, .action-save-edit,
+        .action-cancel-edit, .action-cancel-fac, .action-save-fac{
+          font-size: 1.8rem;
+        }
+
+        .hotel-details-header-text svg{
+          width: 25px;
+          height: 25px;
+        }
+
+        .edit-btn svg{
+          width: 20px;
+          height: 20px;
+        }
+
+        .hotel-information input{
+          width: 150px;
+          font-size: 1.5rem;
+        }
+
+        .facility-checkbox-text{
+          font-size: 1.4rem;
+        }
+
+        .facility-checkbox{
+          width: 25px;
+          height: 25px;
+        }
+
+        .facility-checkbox svg{
+          width: 18px;
+          height: 18px;
+        }
+
+        #hotelAddress , #hotelShortAbout, #hotelLongAbout, #hotelRules{
+          width: 420px;
+          font-size: 1.5rem;
+        }
+      }
+
+      @media screen and (max-width: 1150px) {
+        body{
+          grid-template-columns: 200px auto;
+        }
+
+        .side-panel{
+          width: 200px;
+        }
+
+        .side-panel-pages a, .back-home-btn span,
+        .hotel-stars span, .hotel-information label,
+        .about-content label, .facilities-text span,
+        .images-text span, .hotel-facilities-content span,
+        .change-facilities-header, .hotel-details label,
+        .image span{
+          font-size: 1.6rem;
+        }
+
+        .side-panel-pages svg, .back-home-btn svg{
+          width: 26px;
+          height: 26px;
+        }
+
+        .hotel-details-container{
+          grid-template-columns: 550px 220px;
+        }
+
+        .hotel-profile{
+          width: 220px;
+        }
+
+        .hotel-profile-image svg{
+          width: 40px;
+          height: 40px;
+        }
+
+        .hotel-profile-details{
+          font-size: 1.4rem;
+        }
+
+        .hotel-profile-city{
+          font-size: 1.2rem;
+        }
+
+        .dropdown-options svg{
+          width: 20px;
+          height: 20px;
+        }
+
+        .dropdown-options span{
+          font-size: 1.2rem;
+        }
+
+        .hotel-stars svg{
+          width: 42.5px;
+          height: 42.5px;
+        }
+
+        .hotel-details-header-text, .action-save-edit,
+        .action-cancel-edit, .action-cancel-fac, .action-save-fac{
+          font-size: 1.7rem;
+        }
+
+        .hotel-details-header-text svg{
+          width: 22.5px;
+          height: 22.5px;
+        }
+
+        .edit-btn svg{
+          width: 17.5px;
+          height: 17.5px;
+        }
+
+        .hotel-information input{
+          width: 135px;
+          font-size: 1.4rem;
+        }
+
+        #hotelAddress , #hotelShortAbout, #hotelLongAbout, #hotelRules{
+          width: 380px;
+          font-size: 1.4rem;
+        }
+
+        .selected-facilities{
+          grid-template-columns: repeat(3,1fr);
+        }
+
+        .facilities-text svg{
+          width: 22.5px;
+          height: 22.5px;
+        }
+
+        .facility-section svg{
+          width: 22.5px;
+          height: 22.5px;
+        }
+
+        .image img {
+            width: 150px;
+            height: 110px;
+        }
+      }
+
+      @media screen and (max-width: 1050px) {
+        body{
+          grid-template-columns: 170px auto;
+        }
+
+        .side-panel{
+          width: 170px;
+        }
+
+        .side-panel-pages a, .back-home-btn span,
+        .hotel-stars span, .hotel-information label,
+        .about-content label, .facilities-text span,
+        .images-text span, .hotel-facilities-content span,
+        .change-facilities-header, .hotel-details label,
+        .image span{
+          font-size: 1.5rem;
+        }
+
+        .side-panel-pages svg, .back-home-btn svg{
+          width: 24px;
+          height: 24px;
+        }
+
+        .hotel-details-container{
+          grid-template-columns: 500px 200px;
+        }
+
+        .hotel-profile{
+          width: 220px;
+        }
+
+        .hotel-profile-image svg{
+          width: 40px;
+          height: 40px;
+        }
+
+        .hotel-profile-details{
+          font-size: 1.4rem;
+        }
+
+        .hotel-profile-city{
+          font-size: 1.2rem;
+        }
+
+        .dropdown-options svg{
+          width: 20px;
+          height: 20px;
+        }
+
+        .dropdown-options span{
+          font-size: 1.2rem;
+        }
+
+        .hotel-stars svg{
+          width: 42.5px;
+          height: 42.5px;
+        }
+
+        .hotel-details-header-text, .action-save-edit,
+        .action-cancel-edit, .action-cancel-fac, .action-save-fac{
+          font-size: 1.7rem;
+        }
+
+        .hotel-details-header-text svg{
+          width: 22.5px;
+          height: 22.5px;
+        }
+
+        .edit-btn svg{
+          width: 17.5px;
+          height: 17.5px;
+        }
+
+        .hotel-information input{
+          width: 110px;
+          font-size: 1.4rem;
+        }
+
+        #hotelAddress , #hotelShortAbout, #hotelLongAbout, #hotelRules{
+          width: 330px;
+          font-size: 1.4rem;
+        }
+
+        .facilities-text svg{
+          width: 22.5px;
+          height: 22.5px;
+        }
+
+        .facility-section svg{
+          width: 22.5px;
+          height: 22.5px;
+        }
+
+        .image img {
+            width: 130px;
+            height: 95px;
+        }
+
+        .change-facilities-header svg{
+          width: 25px;
+          height: 25px;
+        }
+      }
+      @media screen and (max-width: 900px) {
+        body{
+          grid-template-columns: 185px auto;
+        }
+
+        .side-panel{
+          width: 185px;
+        }
+
+        .hotel-details-container{
+          grid-template-columns: auto;
+        }
+
+        .hotel-information input{
+          width: 130px;
+          font-size: 1.4rem;
+        }
+
+        #hotelAddress , #hotelShortAbout, #hotelLongAbout, #hotelRules{
+          width: 365px;
+          font-size: 1.4rem;
+        }
+        
+        .hotel-details{
+          margin-bottom: 20px;
+        }
+
+        .hotel-facilities, .hotel-images{
+          margin-right: 0;
+        }
+        
+        .hotel-facilities-content hr{
+          display: none;
+        }
+
+        .hotel-facilities-content{
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .facilities-text svg{
+          width: 22.5px;
+          height: 22.5px;
+        }
+
+        .facility-section svg, .image-section svg{
+          width: 22.5px;
+          height: 22.5px;
+        }
+
+        .hotel-images{
+          margin-bottom: 50px;
+        }
+
+        .image img {
+            width: 130px;
+            height: 95px;
+        }
+
+        .images-text svg{
+          width: 25px;
+          height: 25px;
+        }
+
+        .hotel-images-content{
+          max-width: 490px;
+          flex-direction: row;
+          overflow: auto;
+        }
+
+        .action-cancel-fac, .action-save-fac{
+          font-size: 1.5rem;
+        }
+      }
+
+      @media screen and (max-width:750px) {
+        body{
+          grid-template-columns: 1fr;
+        }
+
+        .side-panel-container{
+          position: relative;
+        }
+
+        .mobile-side-panel-pages{
+          display: flex;
+        }
+
+        .side-panel{
+          display: none;
+        }
+        
+        .mobile-side-panel{
+          display: flex;
+        }
+
+        .hotel-profile{
+          display: none;
+        }
+
+        .facility-btn{
+          width: 100px;
+        }
+
+        .selected-facilities{
+          grid-template-columns: repeat(3, 1fr);
+          overflow-y: auto;
+        }
+
+        .facility-checkbox{
+          width: 22.5px;
+          height: 22.5px;
+        }
+
+        .facility-checkbox svg{
+          width: 16px;
+          height: 16px;
+        }
+
+        .action-cancel-fac, .action-save-fac{
+          font-size: 1.3rem;
+        }
+
+        .action-buttons-image, .action-buttons-fac{
+          margin-inline: 0;
+        }
+        
+        .action-save-edit,
+        .action-cancel-edit{
+          font-size: 1.3rem;
+        }
+      }
+
+      @media screen and (max-width: 580px) {
+        .hotel-details-container{
+          grid-template-columns: 420px;
+        }
+
+        .hotel-details label{
+          width: 70px;
+          margin: 5px;
+        }
+
+        .about-content label{
+          width: 80px;
+        }
+
+        .hotel-information input{
+          width: 270px;
+          font-size: 1.4rem;
+        }
+
+        #hotelAddress , #hotelShortAbout, #hotelLongAbout, #hotelRules{
+          width: 270px;
+          font-size: 1.4rem;
+        }
+        
+        .hotel-information{
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+        }
+
+        .action-buttons-fac{
+          display: flex;
+          justify-content: end;
+          gap: 10px;
+        }
+
+        .action-cancel-fac{
+          margin: 0;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .hotel-details-container{
+          grid-template-columns: 350px;
+        }
+
+        .hotel-details label{
+          margin-left: 2px;
+        }
+
+        .hotel-information input{
+          width: 190px;
+          font-size: 1.4rem;
+        }
+
+        #hotelAddress , #hotelShortAbout, #hotelLongAbout, #hotelRules{
+          width: 220px;
+          font-size: 1.4rem;
+        }
+
+        .action-buttons-fac{
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .selected-facilities{
+          grid-template-columns: 1fr;
+          max-height: 330px;
+          overflow: auto;
+        }
+      }
+
+      @media screen and (max-width: 370px) {
+
+        .hotel-stars div{
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .hotel-details-container{
+          grid-template-columns: 290px;
+        }
+
+        .hotel-details label{
+          margin-left: 2px;
+        }
+
+        .hotel-information input{
+          width: 100%;
+          font-size: 1.4rem;
+        }
+
+        #hotelAddress , #hotelShortAbout, #hotelLongAbout, #hotelRules{
+          width: 100%;
+          font-size: 1.4rem;
+        }
+
+        .hotel-address, .hotel-short-about, .hotel-long-about, .hotel-rules{
+          flex-direction: column;
+          align-items: start;
+        }
+
+        .action-save-edit,
+        .action-cancel-edit{
+          font-size: 1.1rem;
+        }
+
+        .active-edit{
+          gap: 10px;
+        }
+
+        .action-save-edit{
+          margin: 0;
+          padding-inline: 25px;
+        }
+
+        .hotel-details-header{
+          padding-inline: 20px;
+        }
       }
 </style>
 {% endblock %}
@@ -970,7 +1689,7 @@
     <div class="images-overlay">
       <div class="change-images">
         <span class="change-images-header">
-          <div>
+          <div class="image-header-text">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
               <path d="M30.5813 1.45825H26.2938C25.025 1.45825 24.0917 1.98325 23.6688 2.91659C23.4355 3.3395 23.3334 3.83534 23.3334 4.41867V8.70617C23.3334 10.5583 24.4417 11.6666 26.2938 11.6666H30.5813C31.1646 11.6666 31.6605 11.5645 32.0834 11.3312C33.0167 10.9083 33.5417 9.97492 33.5417 8.70617V4.41867C33.5417 2.56659 32.4334 1.45825 30.5813 1.45825ZM31.9521 7.1895C31.8063 7.33533 31.5875 7.43742 31.3542 7.452H29.298V8.19575L29.3125 9.47908C29.298 9.727 29.2105 9.93117 29.0355 10.1062C28.8896 10.252 28.6709 10.3541 28.4375 10.3541C27.9563 10.3541 27.5625 9.96033 27.5625 9.47908V7.43742L25.5209 7.452C25.0396 7.452 24.6459 7.04367 24.6459 6.56242C24.6459 6.08117 25.0396 5.68742 25.5209 5.68742L26.8042 5.702H27.5625V3.66034C27.5625 3.17909 27.9563 2.77075 28.4375 2.77075C28.9188 2.77075 29.3125 3.17909 29.3125 3.66034L29.298 4.69575V5.68742H31.3542C31.8355 5.68742 32.2292 6.08117 32.2292 6.56242C32.2146 6.81034 32.1125 7.0145 31.9521 7.1895Z" fill="#454545"/>
               <path d="M13.125 15.1375C15.0419 15.1375 16.5958 13.5835 16.5958 11.6666C16.5958 9.74975 15.0419 8.1958 13.125 8.1958C11.2081 8.1958 9.65417 9.74975 9.65417 11.6666C9.65417 13.5835 11.2081 15.1375 13.125 15.1375Z" fill="#454545"/>
@@ -1007,11 +1726,11 @@
       </div>
     </div>
     <div class="facilities-overlay">
+      <form method="POST">
+        {% csrf_token %}
       <div class="change-facilities">
-          <form method="POST">
-            {% csrf_token %}
             <span class="change-facilities-header">
-              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
                 <path d="M22.9688 26.9937C22.9688 27.7229 23.5521 28.3062 24.2812 28.3062L31.0625 28.3062C31.7917 28.3062 32.375 27.7229 32.375 26.9937C32.375 26.2646 31.7917 25.6812 31.0625 25.6812L24.2812 25.6812C23.5667 25.6812 22.9688 26.2792 22.9688 26.9937Z" fill="#454545"/>
                 <path d="M12.0313 17.5C12.0313 16.7708 11.4479 16.1875 10.7188 16.1875L3.9375 16.1875C3.20833 16.1875 2.625 16.7708 2.625 17.5C2.625 18.2292 3.20833 18.8125 3.9375 18.8125L10.7188 18.8125C11.4333 18.8125 12.0313 18.2292 12.0313 17.5Z" fill="#454545"/>
                 <path d="M22.9688 8.00626C22.9688 8.73542 23.5521 9.31876 24.2812 9.31876L31.0625 9.31876C31.7917 9.31876 32.375 8.73542 32.375 8.00626C32.375 7.27709 31.7917 6.69376 31.0625 6.69376L24.2812 6.69376C23.5667 6.69376 22.9688 7.27709 22.9688 8.00626Z" fill="#454545"/>
@@ -1027,7 +1746,7 @@
               {% for facility in hotelFacilities.all %}
               <div class="facility-btn">
                 <label for="input-{{ forloop.counter }}" class="facility-checkbox-text" >{{ facility.faname }}</label>
-                <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ forloop.counter }}">
+                <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ facility.id }}">
                 <label for="input-{{ forloop.counter }}" class="facility-checkbox">
                   <svg viewBox="0 0 22 16" fill="none">
                     <path d="M1 6.85L8.09677 14L21 1"/>
@@ -1043,126 +1762,246 @@
               <button type="button" class="action-cancel-fac">انصراف</button>
               <button type="submit" class="action-save-fac">ذخیره</button>
             </div>
-          </form>
+          </div>
+        </form>
+    </div>
+    <div class="side-panel-container">
+      <ul class="mobile-side-panel-pages">
+        <li>
+          <a id="dashboard" href="{% url 'hotel-panel' page='dashboard' %}">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+            >
+              <path
+                d="M31.9 33.75C31.5833 33.75 31.2666 33.6333 31.0166 33.4C30.5166 32.9167 30.5166 32.1333 31 31.6333C33.85 28.7333 35.4166 24.9 35.4166 20.8333C35.4166 12.3333 28.5 5.41666 20 5.41666C11.5 5.41666 4.58331 12.3333 4.58331 20.8333C4.58331 24.8833 6.13331 28.7 8.96665 31.6C9.44998 32.1 9.43331 32.8833 8.94998 33.3667C8.44998 33.85 7.66665 33.8333 7.18331 33.35C3.89998 29.9833 2.08331 25.5333 2.08331 20.8333C2.08331 10.95 10.1166 2.91666 20 2.91666C29.8833 2.91666 37.9166 10.95 37.9166 20.8333C37.9166 25.55 36.1 30.0167 32.7833 33.3833C32.55 33.6333 32.2166 33.75 31.9 33.75Z"
+                fill="#6C7680"
+              />
+              <path
+                d="M20 36.6666C23.5714 36.6666 26.4667 33.7714 26.4667 30.2C26.4667 26.6285 23.5714 23.7333 20 23.7333C16.4286 23.7333 13.5333 26.6285 13.5333 30.2C13.5333 33.7714 16.4286 36.6666 20 36.6666Z"
+                fill="#6C7680"
+              />
+              <path
+                d="M26.6666 14.1667C24.8333 14.1667 23.3333 15.6667 23.3333 17.5V18.75C23.3333 19.9 24.2666 20.8333 25.4166 20.8333H26.6666C28.5 20.8333 30 19.3333 30 17.5C30 15.6667 28.5 14.1667 26.6666 14.1667Z"
+                fill="#6C7680"
+              />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a id="information" href="{% url 'hotel-panel' page='information' %}">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+            >
+              <path
+                d="M12.6333 4.49999L12.6333 13.8C12.6333 14.45 12.1167 14.9667 11.4667 14.9667C10.8167 14.9667 10.3 14.45 10.3 13.8L10.3 4.49999C10.3 3.84999 10.8167 3.33333 11.4667 3.33333C12.1167 3.33333 12.6333 3.84999 12.6333 4.49999Z"
+                fill="#6C7680"
+              />
+              <path
+                d="M12.6333 29.3L12.6333 35.5C12.6333 36.15 12.1167 36.6667 11.4667 36.6667C10.8167 36.6667 10.3 36.15 10.3 35.5L10.3 29.3C10.3 28.65 10.8167 28.1333 11.4667 28.1333C12.1167 28.1333 12.6333 28.6667 12.6333 29.3Z"
+                fill="#6C7680"
+              />
+              <path
+                d="M18.05 23.1C18.05 19.4641 15.1026 16.5167 11.4667 16.5167C7.83082 16.5167 4.88336 19.4641 4.88336 23.1C4.88336 26.7359 7.83082 29.6833 11.4667 29.6833C15.1026 29.6833 18.05 26.7359 18.05 23.1Z"
+                fill="#6C7680"
+              />
+              <path
+                d="M29.6833 4.5L29.6833 10.7C29.6833 11.35 29.1666 11.8667 28.5166 11.8667C27.8666 11.8667 27.35 11.35 27.35 10.7L27.35 4.5C27.35 3.85 27.8666 3.33333 28.5166 3.33333C29.1666 3.33333 29.6833 3.85 29.6833 4.5Z"
+                fill="#6C7680"
+              />
+              <path
+                d="M29.6833 26.2L29.6833 35.5C29.6833 36.15 29.1666 36.6667 28.5166 36.6667C27.8666 36.6667 27.35 36.15 27.35 35.5L27.35 26.2C27.35 25.55 27.8666 25.0333 28.5166 25.0333C29.1666 25.0333 29.6833 25.5667 29.6833 26.2Z"
+                fill="#6C7680"
+              />
+              <path
+                d="M35.1167 16.9C35.1167 13.2641 32.1692 10.3167 28.5333 10.3167C24.8975 10.3167 21.95 13.2641 21.95 16.9C21.95 20.5359 24.8975 23.4833 28.5333 23.4833C32.1692 23.4833 35.1167 20.5359 35.1167 16.9Z"
+                fill="#6C7680"
+              />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a id="rooms" href="{% url 'hotel-panel' page='room' %}">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+            >
+              <path
+                d="M38.3333 25.6167V29.2667C38.3333 33.3333 35.3667 37.1667 31.3333 38.2833C31.05 38.35 30.75 38.35 30.4833 38.2833C28.5167 37.75 26.7833 36.55 25.5667 35C24.25 33.3667 23.4833 31.35 23.4833 29.2667V25.6167C23.4833 24.9167 24 24.15 24.6333 23.8833L29.2667 21.9833C30.3167 21.5667 31.4833 21.5667 32.5333 21.9833L34.2 22.6667L37.1833 23.8833C37.8167 24.15 38.3333 24.9167 38.3333 25.6167Z"
+                fill="#6C7680"
+              />
+              <path
+                d="M34.9167 18.35L34.6167 20.1333L33.45 19.6667C31.8 19 30 19 28.3167 19.6667L23.6667 21.5833C22.0833 22.25 20.9833 23.9 20.9833 25.6167V29.2667C20.9833 31.25 21.5333 33.2333 22.55 35H10.3C8.01666 35 5.86667 33.1833 5.48333 30.9333L3.38333 18.35C3.11667 16.8 3.9 14.7167 5.13333 13.7333L16.1 4.96666C17.7833 3.61666 20.5167 3.61666 22.2 4.98333L33.1667 13.7333C34.3833 14.7167 35.1833 16.8 34.9167 18.35Z"
+                fill="#6C7680"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
+      <div class="mobile-side-panel">
+        <a href="{% url 'home' %}" class="mobile-back-home-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            fill="none"
+          >
+            <path
+              d="M13.1333 20.1167C13.1333 19.4333 13.7 18.8667 14.3833 18.8667H23.5166V4.76668C23.5 3.96668 22.8666 3.33334 22.0666 3.33334C12.25 3.33334 5.39996 10.1833 5.39996 20C5.39996 29.8167 12.25 36.6667 22.0666 36.6667C22.85 36.6667 23.5 36.0333 23.5 35.2333V21.35H14.3833C13.6833 21.3667 13.1333 20.8 13.1333 20.1167Z"
+              fill="#6C7680"
+            />
+            <path
+              d="M34.2333 19.2334L29.5 14.4833C29.0167 14 28.2167 14 27.7333 14.4833C27.25 14.9667 27.25 15.7667 27.7333 16.25L30.3333 18.85H23.5V21.35H30.3167L27.7167 23.95C27.2333 24.4334 27.2333 25.2334 27.7167 25.7167C27.9667 25.9667 28.2833 26.0834 28.6 26.0834C28.9167 26.0834 29.2333 25.9667 29.4833 25.7167L34.2167 20.9667C34.7167 20.5 34.7167 19.7167 34.2333 19.2334Z"
+              fill="#6C7680"
+            />
+          </svg>
+        </a>
+        <div class="mobile-logo">
+          <a href="{% url 'home' %}">
+            <img
+              class="mobile-logo-icon"
+              src="{% static 'img/logo/dark-boroobia.png' %}"
+              alt="boroobia logo"
+            />
+          </a>
+        </div>
+        <button class="mobile-profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect width="24" height="24" rx="3" fill="#FFFEF8"/>
+            <path d="M12 12C13.841 12 15.3333 10.5076 15.3333 8.66668C15.3333 6.82573 13.841 5.33334 12 5.33334C10.1591 5.33334 8.66667 6.82573 8.66667 8.66668C8.66667 10.5076 10.1591 12 12 12Z" fill="#565C63"/>
+            <path d="M12 13.6667C8.66 13.6667 5.94 15.9067 5.94 18.6667C5.94 18.8533 6.08667 19 6.27334 19H17.7267C17.9133 19 18.06 18.8533 18.06 18.6667C18.06 15.9067 15.34 13.6667 12 13.6667Z" fill="#565C63"/>
+          </svg>
+        </button>
+      </div>
+      <div class="side-panel">
+        <div class="logo">
+          <a href="{% url 'home' %}">
+            <img
+              class="logo-icon"
+              src="{% static 'img/logo/boroobia.png' %}"
+              alt="boroobia logo"
+            />
+          </a>
+        </div>
+        <div class="side-panel-options">
+          <ul class="side-panel-pages">
+            <li>
+              <a id="dashboard" href="{% url 'hotel-panel' page='dashboard' %}">
+                <span>داشبورد</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                >
+                  <path
+                    d="M31.9 33.75C31.5833 33.75 31.2666 33.6333 31.0166 33.4C30.5166 32.9167 30.5166 32.1333 31 31.6333C33.85 28.7333 35.4166 24.9 35.4166 20.8333C35.4166 12.3333 28.5 5.41666 20 5.41666C11.5 5.41666 4.58331 12.3333 4.58331 20.8333C4.58331 24.8833 6.13331 28.7 8.96665 31.6C9.44998 32.1 9.43331 32.8833 8.94998 33.3667C8.44998 33.85 7.66665 33.8333 7.18331 33.35C3.89998 29.9833 2.08331 25.5333 2.08331 20.8333C2.08331 10.95 10.1166 2.91666 20 2.91666C29.8833 2.91666 37.9166 10.95 37.9166 20.8333C37.9166 25.55 36.1 30.0167 32.7833 33.3833C32.55 33.6333 32.2166 33.75 31.9 33.75Z"
+                    fill="#6C7680"
+                  />
+                  <path
+                    d="M20 36.6666C23.5714 36.6666 26.4667 33.7714 26.4667 30.2C26.4667 26.6285 23.5714 23.7333 20 23.7333C16.4286 23.7333 13.5333 26.6285 13.5333 30.2C13.5333 33.7714 16.4286 36.6666 20 36.6666Z"
+                    fill="#6C7680"
+                  />
+                  <path
+                    d="M26.6666 14.1667C24.8333 14.1667 23.3333 15.6667 23.3333 17.5V18.75C23.3333 19.9 24.2666 20.8333 25.4166 20.8333H26.6666C28.5 20.8333 30 19.3333 30 17.5C30 15.6667 28.5 14.1667 26.6666 14.1667Z"
+                    fill="#6C7680"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a id="information" href="{% url 'hotel-panel' page='information' %}">
+                <span>اطلاعات</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                >
+                  <path
+                    d="M12.6333 4.49999L12.6333 13.8C12.6333 14.45 12.1167 14.9667 11.4667 14.9667C10.8167 14.9667 10.3 14.45 10.3 13.8L10.3 4.49999C10.3 3.84999 10.8167 3.33333 11.4667 3.33333C12.1167 3.33333 12.6333 3.84999 12.6333 4.49999Z"
+                    fill="#6C7680"
+                  />
+                  <path
+                    d="M12.6333 29.3L12.6333 35.5C12.6333 36.15 12.1167 36.6667 11.4667 36.6667C10.8167 36.6667 10.3 36.15 10.3 35.5L10.3 29.3C10.3 28.65 10.8167 28.1333 11.4667 28.1333C12.1167 28.1333 12.6333 28.6667 12.6333 29.3Z"
+                    fill="#6C7680"
+                  />
+                  <path
+                    d="M18.05 23.1C18.05 19.4641 15.1026 16.5167 11.4667 16.5167C7.83082 16.5167 4.88336 19.4641 4.88336 23.1C4.88336 26.7359 7.83082 29.6833 11.4667 29.6833C15.1026 29.6833 18.05 26.7359 18.05 23.1Z"
+                    fill="#6C7680"
+                  />
+                  <path
+                    d="M29.6833 4.5L29.6833 10.7C29.6833 11.35 29.1666 11.8667 28.5166 11.8667C27.8666 11.8667 27.35 11.35 27.35 10.7L27.35 4.5C27.35 3.85 27.8666 3.33333 28.5166 3.33333C29.1666 3.33333 29.6833 3.85 29.6833 4.5Z"
+                    fill="#6C7680"
+                  />
+                  <path
+                    d="M29.6833 26.2L29.6833 35.5C29.6833 36.15 29.1666 36.6667 28.5166 36.6667C27.8666 36.6667 27.35 36.15 27.35 35.5L27.35 26.2C27.35 25.55 27.8666 25.0333 28.5166 25.0333C29.1666 25.0333 29.6833 25.5667 29.6833 26.2Z"
+                    fill="#6C7680"
+                  />
+                  <path
+                    d="M35.1167 16.9C35.1167 13.2641 32.1692 10.3167 28.5333 10.3167C24.8975 10.3167 21.95 13.2641 21.95 16.9C21.95 20.5359 24.8975 23.4833 28.5333 23.4833C32.1692 23.4833 35.1167 20.5359 35.1167 16.9Z"
+                    fill="#6C7680"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a id="rooms" href="{% url 'hotel-panel' page='room' %}">
+                <span>اتاق ها</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                >
+                  <path
+                    d="M38.3333 25.6167V29.2667C38.3333 33.3333 35.3667 37.1667 31.3333 38.2833C31.05 38.35 30.75 38.35 30.4833 38.2833C28.5167 37.75 26.7833 36.55 25.5667 35C24.25 33.3667 23.4833 31.35 23.4833 29.2667V25.6167C23.4833 24.9167 24 24.15 24.6333 23.8833L29.2667 21.9833C30.3167 21.5667 31.4833 21.5667 32.5333 21.9833L34.2 22.6667L37.1833 23.8833C37.8167 24.15 38.3333 24.9167 38.3333 25.6167Z"
+                    fill="#6C7680"
+                  />
+                  <path
+                    d="M34.9167 18.35L34.6167 20.1333L33.45 19.6667C31.8 19 30 19 28.3167 19.6667L23.6667 21.5833C22.0833 22.25 20.9833 23.9 20.9833 25.6167V29.2667C20.9833 31.25 21.5333 33.2333 22.55 35H10.3C8.01666 35 5.86667 33.1833 5.48333 30.9333L3.38333 18.35C3.11667 16.8 3.9 14.7167 5.13333 13.7333L16.1 4.96666C17.7833 3.61666 20.5167 3.61666 22.2 4.98333L33.1667 13.7333C34.3833 14.7167 35.1833 16.8 34.9167 18.35Z"
+                    fill="#6C7680"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <a href="{% url 'home' %}" class="back-home-btn">
+            <span>بازگشت به خانه</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+            >
+              <path
+                d="M13.1333 20.1167C13.1333 19.4333 13.7 18.8667 14.3833 18.8667H23.5166V4.76668C23.5 3.96668 22.8666 3.33334 22.0666 3.33334C12.25 3.33334 5.39996 10.1833 5.39996 20C5.39996 29.8167 12.25 36.6667 22.0666 36.6667C22.85 36.6667 23.5 36.0333 23.5 35.2333V21.35H14.3833C13.6833 21.3667 13.1333 20.8 13.1333 20.1167Z"
+                fill="#6C7680"
+              />
+              <path
+                d="M34.2333 19.2334L29.5 14.4833C29.0167 14 28.2167 14 27.7333 14.4833C27.25 14.9667 27.25 15.7667 27.7333 16.25L30.3333 18.85H23.5V21.35H30.3167L27.7167 23.95C27.2333 24.4334 27.2333 25.2334 27.7167 25.7167C27.9667 25.9667 28.2833 26.0834 28.6 26.0834C28.9167 26.0834 29.2333 25.9667 29.4833 25.7167L34.2167 20.9667C34.7167 20.5 34.7167 19.7167 34.2333 19.2334Z"
+                fill="#6C7680"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="side-panel">
-          <div class="logo">
-            <a href="{% url 'home' %}">
-              <img
-                class="logo-icon"
-                src="{% static 'img/logo/boroobia.png' %}"
-                alt="boroobia logo"
-              />
-            </a>
-          </div>
-          <div class="side-panel-options">
-            <ul class="side-panel-pages">
-              <li>
-                <a id="dashboard" href="{% url 'hotel-panel' page='dashboard' %}">
-                  <span>داشبورد</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="40"
-                    height="40"
-                    viewBox="0 0 40 40"
-                    fill="none"
-                  >
-                    <path
-                      d="M31.9 33.75C31.5833 33.75 31.2666 33.6333 31.0166 33.4C30.5166 32.9167 30.5166 32.1333 31 31.6333C33.85 28.7333 35.4166 24.9 35.4166 20.8333C35.4166 12.3333 28.5 5.41666 20 5.41666C11.5 5.41666 4.58331 12.3333 4.58331 20.8333C4.58331 24.8833 6.13331 28.7 8.96665 31.6C9.44998 32.1 9.43331 32.8833 8.94998 33.3667C8.44998 33.85 7.66665 33.8333 7.18331 33.35C3.89998 29.9833 2.08331 25.5333 2.08331 20.8333C2.08331 10.95 10.1166 2.91666 20 2.91666C29.8833 2.91666 37.9166 10.95 37.9166 20.8333C37.9166 25.55 36.1 30.0167 32.7833 33.3833C32.55 33.6333 32.2166 33.75 31.9 33.75Z"
-                      fill="#6C7680"
-                    />
-                    <path
-                      d="M20 36.6666C23.5714 36.6666 26.4667 33.7714 26.4667 30.2C26.4667 26.6285 23.5714 23.7333 20 23.7333C16.4286 23.7333 13.5333 26.6285 13.5333 30.2C13.5333 33.7714 16.4286 36.6666 20 36.6666Z"
-                      fill="#6C7680"
-                    />
-                    <path
-                      d="M26.6666 14.1667C24.8333 14.1667 23.3333 15.6667 23.3333 17.5V18.75C23.3333 19.9 24.2666 20.8333 25.4166 20.8333H26.6666C28.5 20.8333 30 19.3333 30 17.5C30 15.6667 28.5 14.1667 26.6666 14.1667Z"
-                      fill="#6C7680"
-                    />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a id="information" href="{% url 'hotel-panel' page='information' %}">
-                  <span>اطلاعات</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="40"
-                    height="40"
-                    viewBox="0 0 40 40"
-                    fill="none"
-                  >
-                    <path
-                      d="M12.6333 4.49999L12.6333 13.8C12.6333 14.45 12.1167 14.9667 11.4667 14.9667C10.8167 14.9667 10.3 14.45 10.3 13.8L10.3 4.49999C10.3 3.84999 10.8167 3.33333 11.4667 3.33333C12.1167 3.33333 12.6333 3.84999 12.6333 4.49999Z"
-                      fill="#6C7680"
-                    />
-                    <path
-                      d="M12.6333 29.3L12.6333 35.5C12.6333 36.15 12.1167 36.6667 11.4667 36.6667C10.8167 36.6667 10.3 36.15 10.3 35.5L10.3 29.3C10.3 28.65 10.8167 28.1333 11.4667 28.1333C12.1167 28.1333 12.6333 28.6667 12.6333 29.3Z"
-                      fill="#6C7680"
-                    />
-                    <path
-                      d="M18.05 23.1C18.05 19.4641 15.1026 16.5167 11.4667 16.5167C7.83082 16.5167 4.88336 19.4641 4.88336 23.1C4.88336 26.7359 7.83082 29.6833 11.4667 29.6833C15.1026 29.6833 18.05 26.7359 18.05 23.1Z"
-                      fill="#6C7680"
-                    />
-                    <path
-                      d="M29.6833 4.5L29.6833 10.7C29.6833 11.35 29.1666 11.8667 28.5166 11.8667C27.8666 11.8667 27.35 11.35 27.35 10.7L27.35 4.5C27.35 3.85 27.8666 3.33333 28.5166 3.33333C29.1666 3.33333 29.6833 3.85 29.6833 4.5Z"
-                      fill="#6C7680"
-                    />
-                    <path
-                      d="M29.6833 26.2L29.6833 35.5C29.6833 36.15 29.1666 36.6667 28.5166 36.6667C27.8666 36.6667 27.35 36.15 27.35 35.5L27.35 26.2C27.35 25.55 27.8666 25.0333 28.5166 25.0333C29.1666 25.0333 29.6833 25.5667 29.6833 26.2Z"
-                      fill="#6C7680"
-                    />
-                    <path
-                      d="M35.1167 16.9C35.1167 13.2641 32.1692 10.3167 28.5333 10.3167C24.8975 10.3167 21.95 13.2641 21.95 16.9C21.95 20.5359 24.8975 23.4833 28.5333 23.4833C32.1692 23.4833 35.1167 20.5359 35.1167 16.9Z"
-                      fill="#6C7680"
-                    />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a id="rooms" href="{% url 'hotel-panel' page='room' %}">
-                  <span>اتاق ها</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="40"
-                    height="40"
-                    viewBox="0 0 40 40"
-                    fill="none"
-                  >
-                    <path
-                      d="M38.3333 25.6167V29.2667C38.3333 33.3333 35.3667 37.1667 31.3333 38.2833C31.05 38.35 30.75 38.35 30.4833 38.2833C28.5167 37.75 26.7833 36.55 25.5667 35C24.25 33.3667 23.4833 31.35 23.4833 29.2667V25.6167C23.4833 24.9167 24 24.15 24.6333 23.8833L29.2667 21.9833C30.3167 21.5667 31.4833 21.5667 32.5333 21.9833L34.2 22.6667L37.1833 23.8833C37.8167 24.15 38.3333 24.9167 38.3333 25.6167Z"
-                      fill="#6C7680"
-                    />
-                    <path
-                      d="M34.9167 18.35L34.6167 20.1333L33.45 19.6667C31.8 19 30 19 28.3167 19.6667L23.6667 21.5833C22.0833 22.25 20.9833 23.9 20.9833 25.6167V29.2667C20.9833 31.25 21.5333 33.2333 22.55 35H10.3C8.01666 35 5.86667 33.1833 5.48333 30.9333L3.38333 18.35C3.11667 16.8 3.9 14.7167 5.13333 13.7333L16.1 4.96666C17.7833 3.61666 20.5167 3.61666 22.2 4.98333L33.1667 13.7333C34.3833 14.7167 35.1833 16.8 34.9167 18.35Z"
-                      fill="#6C7680"
-                    />
-                  </svg>
-                </a>
-              </li>
-            </ul>
-            <a href="{% url 'home' %}" class="back-home-btn">
-              <span>بازگشت به خانه</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-              >
-                <path
-                  d="M13.1333 20.1167C13.1333 19.4333 13.7 18.8667 14.3833 18.8667H23.5166V4.76668C23.5 3.96668 22.8666 3.33334 22.0666 3.33334C12.25 3.33334 5.39996 10.1833 5.39996 20C5.39996 29.8167 12.25 36.6667 22.0666 36.6667C22.85 36.6667 23.5 36.0333 23.5 35.2333V21.35H14.3833C13.6833 21.3667 13.1333 20.8 13.1333 20.1167Z"
-                  fill="#6C7680"
-                />
-                <path
-                  d="M34.2333 19.2334L29.5 14.4833C29.0167 14 28.2167 14 27.7333 14.4833C27.25 14.9667 27.25 15.7667 27.7333 16.25L30.3333 18.85H23.5V21.35H30.3167L27.7167 23.95C27.2333 24.4334 27.2333 25.2334 27.7167 25.7167C27.9667 25.9667 28.2833 26.0834 28.6 26.0834C28.9167 26.0834 29.2333 25.9667 29.4833 25.7167L34.2167 20.9667C34.7167 20.5 34.7167 19.7167 34.2333 19.2334Z"
-                  fill="#6C7680"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
     <div class="panel-admin">
         <div class="main-section">
           <div class="panels-context">
@@ -1317,7 +2156,7 @@
                         <div class="about-header">
                           <h3 class="hotel-details-header-text">
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                              <path d="M27.6208 7.90416L20.0812 3.54374C18.6375 2.71249 16.3771 2.71249 14.9333 3.54374L7.32083 7.93332C4.30208 9.97499 4.12708 10.2812 4.12708 13.5333V21.4521C4.12708 24.7042 4.30208 25.025 7.37916 27.0958L14.9187 31.4562C15.6479 31.8792 16.5812 32.0833 17.5 32.0833C18.4187 32.0833 19.3521 31.8792 20.0667 31.4562L27.6792 27.0667C30.6979 25.025 30.8729 24.7187 30.8729 21.4667V13.5333C30.8729 10.2812 30.6979 9.97499 27.6208 7.90416ZM17.5 22.2396C14.8896 22.2396 12.7604 20.1104 12.7604 17.5C12.7604 14.8896 14.8896 12.7604 17.5 12.7604C20.1104 12.7604 22.2396 14.8896 22.2396 17.5C22.2396 20.1104 20.1104 22.2396 17.5 22.2396Z" fill="#454545"/>
+                              <path d="M17.5 32.0833C25.5355 32.0833 32.0834 25.5354 32.0834 17.5C32.0834 9.46459 25.5355 2.91668 17.5 2.91668C9.46462 2.91668 2.91671 9.4646 2.91671 17.5C2.91671 25.5354 9.46462 32.0833 17.5 32.0833ZM18.5938 23.3333C18.5938 23.9313 18.098 24.4271 17.5 24.4271C16.9021 24.4271 16.4063 23.9313 16.4063 23.3333L16.4063 16.0417C16.4063 15.4438 16.9021 14.9479 17.5 14.9479C18.098 14.9479 18.5938 15.4438 18.5938 16.0417L18.5938 23.3333ZM16.1584 11.1125C16.2313 10.9229 16.3334 10.7771 16.4646 10.6313C16.6105 10.5 16.7709 10.3979 16.9459 10.325C17.1209 10.2521 17.3105 10.2083 17.5 10.2083C17.6896 10.2083 17.8792 10.2521 18.0542 10.325C18.2292 10.3979 18.3896 10.5 18.5355 10.6313C18.6667 10.7771 18.7688 10.9229 18.8417 11.1125C18.9146 11.2875 18.9584 11.4771 18.9584 11.6667C18.9584 11.8563 18.9146 12.0458 18.8417 12.2208C18.7688 12.3958 18.6667 12.5563 18.5355 12.7021C18.3896 12.8333 18.2292 12.9354 18.0542 13.0083C17.7042 13.1542 17.2959 13.1542 16.9459 13.0083C16.7709 12.9354 16.6105 12.8333 16.4646 12.7021C16.3334 12.5563 16.2313 12.3958 16.1584 12.2208C16.0855 12.0458 16.0417 11.8563 16.0417 11.6667C16.0417 11.4771 16.0855 11.2875 16.1584 11.1125Z" fill="#454545"/>
                             </svg>
                             درباره
                           </h3>
@@ -1350,7 +2189,7 @@
                         <div class="tac-header">
                           <h3 class="hotel-details-header-text">
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                              <path d="M27.6208 7.90416L20.0812 3.54374C18.6375 2.71249 16.3771 2.71249 14.9333 3.54374L7.32083 7.93332C4.30208 9.97499 4.12708 10.2812 4.12708 13.5333V21.4521C4.12708 24.7042 4.30208 25.025 7.37916 27.0958L14.9187 31.4562C15.6479 31.8792 16.5812 32.0833 17.5 32.0833C18.4187 32.0833 19.3521 31.8792 20.0667 31.4562L27.6792 27.0667C30.6979 25.025 30.8729 24.7187 30.8729 21.4667V13.5333C30.8729 10.2812 30.6979 9.97499 27.6208 7.90416ZM17.5 22.2396C14.8896 22.2396 12.7604 20.1104 12.7604 17.5C12.7604 14.8896 14.8896 12.7604 17.5 12.7604C20.1104 12.7604 22.2396 14.8896 22.2396 17.5C22.2396 20.1104 20.1104 22.2396 17.5 22.2396Z" fill="#454545"/>
+                              <path d="M27.0375 6.00832L19.0167 3.00415C18.1855 2.6979 16.8292 2.6979 15.998 3.00415L7.97712 6.00832C6.43129 6.59165 5.17712 8.39999 5.17712 10.0479V21.8604C5.17712 23.0417 5.95004 24.6021 6.89796 25.3021L14.9188 31.2958C16.3334 32.3604 18.6521 32.3604 20.0667 31.2958L28.0875 25.3021C29.0355 24.5875 29.8084 23.0417 29.8084 21.8604V10.0479C29.823 8.39999 28.5688 6.59165 27.0375 6.00832ZM22.575 14.175L16.3042 20.4458C16.0855 20.6646 15.8084 20.7667 15.5313 20.7667C15.2542 20.7667 14.9771 20.6646 14.7584 20.4458L12.425 18.0833C12.0021 17.6604 12.0021 16.9604 12.425 16.5375C12.848 16.1146 13.548 16.1146 13.9709 16.5375L15.5459 18.1125L21.0438 12.6146C21.4667 12.1917 22.1667 12.1917 22.5896 12.6146C23.0125 13.0375 23.0125 13.7521 22.575 14.175Z" fill="#454545"/>
                             </svg>
                             قوانین و مقررات
                           </h3>
@@ -1393,8 +2232,8 @@
                   </svg>
                 </button>
               </div>
+              <hr style="margin-inline: 5px;">
               <ul class="hotel-facilities-content">
-                <hr style="margin: 0;">
                 {% for facility in myHotel.hotel.facilities.all %}
                 <li class="facility flaticon-{{ facility.name }}">
                   <span >{{facility.faname}}</span>
@@ -1419,8 +2258,8 @@
                     </svg>
                   </button>
               </span>
+              <hr>
               <ul class="hotel-images-content">
-                <hr>
 
                 {% for image in myHotel.hotel.gallery.all%}
                   <li class="image">
@@ -1472,7 +2311,6 @@
   const editBtn = document.querySelector('.edit-btn')
   const actionBtns = document.querySelector('.action-buttons-edit')
   const actionCancelEdit = document.querySelector('.action-cancel-edit')
-  {#const actionSaveEdit = document.querySelector('.action-save-edit')#}
   const hotelInformation = document.querySelector('.hotel-details-content');
   const inputs = hotelInformation.querySelectorAll('input');
   const textareas = hotelInformation.querySelectorAll('textarea');
@@ -1484,30 +2322,7 @@
     editBtn.classList.remove('active-edit')
     initialState = Array.from(inputs).map(input => input.value);
     initialTextareas = Array.from(textareas).map(textarea => textarea.value);
-
-    {#inputs.forEach(input => {#}
-    {#    input.disabled = !input.disabled;#}
-    {#    input.style.color = '#2A2A2A'#}
-    {#})#}
-    {##}
-    {#textareas.forEach(textarea => {#}
-    {#    textarea.disabled = !textarea.disabled;#}
-    {#    textarea.style.color = '#2A2A2A'#}
-    {#});#}
   })
-
-  {#actionSaveEdit.addEventListener('click', () => {#}
-  {#  actionBtns.classList.remove('active-edit')#}
-  {#  editBtn.classList.add('active-edit')#}
-  {##}
-  {#  inputs.forEach(input => {#}
-  {#    input.disabled = true;#}
-  {#  });#}
-  {##}
-  {#  textareas.forEach(textarea => {#}
-  {#    textarea.disabled = true;#}
-  {#  });#}
-  {#});#}
 
   actionCancelEdit.addEventListener('click', () => {
     actionBtns.classList.remove('active-edit')
@@ -1531,7 +2346,6 @@
   const imageName = document.querySelector('.image-name')
   const saveImage = document.querySelector('.action-save-image')
   const removeImage = document.querySelector('.remove-image-btn')
-  const img = document.querySelector('.img')
   let imageHtml = ''
   let imageId = 1
   imageInput.addEventListener('change', () => {
@@ -1552,7 +2366,6 @@
           </i>
         </label>
       </div>`
-      img.src = e.target.result;
     }
     fileReader.readAsDataURL(imageInput.files[0]);
     setTimeout(() => {
@@ -1614,7 +2427,6 @@
       let checkedArr = []
       
        // منطق نشان دادن دکمه حذف
-      console.log(inputId)
         inputId.forEach(input => {
           if(document.getElementById(input.id).checked){
             checkedArr.push(true)

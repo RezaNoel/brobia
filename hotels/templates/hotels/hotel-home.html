@@ -24,24 +24,26 @@
     <main id="content">
         <!-- ========== HERO ========== -->
         <div class="hero-block hero-v4 bg-img-hero-bottom text-center z-index-2"
-             style="background-image: url({% static 'img/1920x800/img6.jpg' %});">
+             style="background-image: url({% static 'img/1920x800/img2.jpg' %});background-size: cover;">
             <div class="container space-2 space-top-lg-4 space-top-xl-4">
                 <div class="row justify-content-md-center pb-xl-20">
                     <!-- Info -->
                     <div class="mb-wd-11 pb-5 py-lg-5 mt-lg-4 pt-lg-4">
-                        <h1 class="font-size-50 font-size-xs-30 text-white font-weight-bold">هتل ایده آل خود را پیدا
+                        {% comment %}
+                        <h1 class="font-size-50 font-size-xs-30  text-white font-weight-bold" >هتل ایده آل خود را پیدا
                             کنید و قیمت ها را مقایسه کنید</h1>
-                        <p class="font-size-20 font-weight-normal text-white">دقیق ترین ویژگی ها را در بیش از 1000 هتل
+                        <p class="font-size-20 font-weight-normal text-white" >دقیق ترین ویژگی ها را در بیش از 1000 هتل
                             در سراسر ایران بررسی کنید</p>
+                        {% endcomment %}
                     </div>
                     <!-- End Info -->
                 </div>
-                <div class="mb-lg-n16">
+                <div class="mb-lg-n16" id="card-body">
                     <!-- Search Jobs Form -->
-                    <div class="card border-0 tab-shadow">
-                        <div class="card-body">
-                            <form id="myForm" action="" method="GET" class="js-validate">
-                                <div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3">
+                    <div class="card border-0 tab-shadow" id="card-body">
+                        <div class="card-body" id="card-body">
+                            <form id="myForm" action="" id="card-body" method="GET" class="js-validate">
+                                <div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3" id="card-body" >
                                     <div class="col-sm-12 col-lg-3 col-xl-3 mb-4 mb-lg-0 ">
                                         <span class="d-block text-gray-1 font-weight-normal text-left mb-0">نام شهر مقصد</span>
                                         <!-- Select -->
@@ -595,8 +597,10 @@
                                 <div class="position-relative">
                                     <div class="position-absolute top-0 left-0 pt-3 pl-3 rtl">
                                         <div class="d-flex align-items-center font-size-14 text-warning  bg-dark rounded">
-                                            <span class="mx-2 d-flex justify-content-center align-items-center"><div
-                                                    class="flaticon-bell pr-1"></div>جدید</span>
+                                            <span class="mx-2 d-flex justify-content-center align-items-center">
+                                                <i class="flaticon-bell pr-1"></i>
+                                                جدید
+                                            </span>
                                         </div>
                                     </div>
                                     <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}"
@@ -660,6 +664,13 @@
                 .suggestion-mobile{
                     display: block;
                 }
+            }
+            @media screen and (max-width:800px) {
+               #card-body{
+                   opacity: 0.3 !important;
+
+                   {#background-color:blue;#}
+               }
             }
         </style>
 

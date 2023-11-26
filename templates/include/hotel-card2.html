@@ -1,56 +1,67 @@
 {% load static %}
-<div class="js-slide py-3">
-                                <div class="card transition-3d-hover shadow-hover-2 w-100 mt-2">
-                                    <div class="position-relative">
-                                        <a href="{% url 'hotel-single' city_slug=h.city.slug hotel_slug=h.slug %}" class="d-block hotel-link gradient-overlay-half-bg-gradient-v5">
-                                            <img class="min-height-230 max-height-230 bg-img-hero card-img-top" src="{{ h.thumbnail.url }}" alt="توضیحات تصویر">
-                                        </a>
-                                         <form method="POST" action={% url 'likepk' h.pk %}>
-                                            {% csrf_token %}
 
-                                            <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex flex-column justify-content-center align-items-center {% if h in user.hotel_likes.all %}like-btn{% endif %}">
-                                                <button type="submit" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ h.id }}" name="like" value="like">
-                                                    <span class="font-size-20">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                                        </svg>
-                                                    </span>
-                                                </button>
-                                                <span id="like-counter-{{ h.id }}" class="text-warning bg-dark p-1 rounded font-size-13">{{ h.likes }}</span>
-                                            </div>
-                                        </form>
-                                       <div class="position-absolute bottom-0 left-0 right-0 rtl">
-                                            <div class="px-4 pb-3">
-                                                <a href="{% url 'hotel-single' city_slug=h.city.slug hotel_slug=h.slug %}" class="hotel-link d-block">
-                                                    <div class="d-flex align-items-center font-size-14 text-white">
-                                                        <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ h.address }}
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body px-4 pt-2 pb-3">
-                                        <div class="mb-2">
-                                            <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
-                                                <div class="lighter">
-                                                     {% for _ in "x"|rjust:h.stars %}
-                                                         <small class="fas fa-star"></small>
-                                                     {% endfor %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="{% url 'hotel-single' city_slug=h.city.slug hotel_slug=h.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">هتل {{ h.faname}} {{ h.city }}</a>
-                                        <div class="mt-2 mb-3">
-                                            <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ h.stars }}ستاره </span>
-                                        </div>
-                                        <div class="mb-0">
-                                            <span class="mr-1 font-size-14 text-gray-1">از </span>
-                                            <span class="font-weight-bold">{{ h.min_price }} تومان </span>
-                                            <span class="font-size-14 text-gray-1">/ شب</span>
-                                        </div>
-                                    </div>
-                                {% if h.special_offer %}
-                                    <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
-                                {% endif %}
-                                </div>
-                            </div>
+<div class="js-slide py-3">
+    <div class="card transition-3d-hover shadow-hover-2 w-100 mt-2">
+        <div class="position-relative">
+            <a href="{% url 'hotel-single' city_slug=h.city.slug hotel_slug=h.slug %}" class="d-block hotel-link gradient-overlay-half-bg-gradient-v5">
+                <img class="min-height-230 max-height-230 bg-img-hero card-img-top" src="{{ h.thumbnail.url }}" alt="توضیحات تصویر">
+            </a>
+                <form method="POST" action={% url 'likepk' h.pk %}>
+                {% csrf_token %}
+
+                <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex justify-content-between align-items-center {% if h in user.hotel_likes.all %}like-btn{% endif %}" style="width: 100%;">
+                    <div class="ml-2 align-items-center font-size-14 text-warning  bg-dark rounded">
+                        {% if h.online_reserve %}
+                    <span class="mx-2 d-flex justify-content-center align-items-center">
+                        <i class="flaticon-alarm pr-1"></i>
+                        رزرو آنلاین
+                    </span>
+                    {% endif %}
+                    </div>
+                    <div class="d-flex flex-column">
+                        <button type="submit" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ h.id }}" name="like" value="like">
+                            <span class="font-size-20">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                </svg>
+                            </span>
+                        </button>
+                        <span id="like-counter-{{ h.id }}" class="text-warning text-center bg-dark rounded font-size-13">{{ h.likes }}</span>
+                    </div>
+                </div>
+            </form>
+            <div class="position-absolute bottom-0 left-0 right-0 rtl">
+                <div class="px-4 pb-3">
+                    <a href="{% url 'hotel-single' city_slug=h.city.slug hotel_slug=h.slug %}" class="hotel-link d-block">
+                        <div class="d-flex align-items-center font-size-14 text-white">
+                            <i class="icon flaticon-placeholder mr-2 font-size-20"></i>{{ h.address }}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body px-4 pt-2 pb-3">
+            <div class="mb-2">
+                <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
+                    <div class="lighter">
+                            {% for _ in "x"|rjust:h.stars %}
+                                <small class="fas fa-star"></small>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'hotel-single' city_slug=h.city.slug hotel_slug=h.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">هتل {{ h.faname}} {{ h.city }}</a>
+            <div class="mt-2 mb-3">
+                <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ h.stars }}ستاره </span>
+            </div>
+            <div class="mb-0">
+                <span class="mr-1 font-size-14 text-gray-1">از </span>
+                <span class="font-weight-bold">{{ h.min_price }} تومان </span>
+                <span class="font-size-14 text-gray-1">/ شب</span>
+            </div>
+        </div>
+    {% if h.special_offer %}
+        <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
+    {% endif %}
+    </div>
+</div>

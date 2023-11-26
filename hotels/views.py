@@ -1,3 +1,4 @@
+import accounts.views
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Min, Max, F, Case, When, IntegerField
 from django.core.paginator import Paginator
@@ -106,7 +107,7 @@ def HotelListView(request, city_slug):
     hotels = Hotel.objects.filter(city=city.id)
     hotels_count = Hotel.objects.filter(city=city.id).count()
     rooms = Room.objects.filter(hotel__in=hotels)
-
+    requests = Request.objects.all()
     # دریافت نوع مرتب سازی از پارامتر درخواست کاربر
     sort_type = request.GET.get('sort_select')
 
@@ -154,8 +155,23 @@ def HotelListView(request, city_slug):
 
     hotel_execution_status = {}
     for hotel in page:
-        hotel_execution_status[hotel] = False  # همه هتل‌ها در ابتدا به عنوان False تعریف می‌شوند
+        hotel_execution_status[hotel] = False
 
+    date = request.GET.get('date')
+    date_list = date.split(" - ")
+    enter_date = date_list[0]
+    exit_date = date_list[1]
+
+    is_reserved = {}
+    for room in rooms:
+        is_reserved[room] = False
+
+    for room in rooms:
+        for my_request in requests:
+            if my_request.room == room:
+                if my_request.is_overlapping(enter_date, exit_date):
+                    print("Error")
+                    is_reserved[room] = True
 
     content = {
         "city": city,
@@ -166,12 +182,61 @@ def HotelListView(request, city_slug):
         "page": page,
         "sort_type": sort_type,
         "facilities": facilities,
+        "is_reserved": is_reserved,
         "hotel_execution_status": hotel_execution_status  # اضافه کردن دیکشنری به context
 
     }
 
     return render(request, 'hotels/hotel-list.html', content)
 
+def HotelSingleView(request, city_slug, hotel_slug):
+
+    city = City.objects.get(slug=city_slug)
+    hotels = Hotel.objects.filter(city=city.id)
+    hotel = Hotel.objects.get(slug=hotel_slug)
+    suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
+    rooms = Room.objects.filter(hotel=hotel.id)
+    requests = Request.objects.all()
+    passengers = int(request.GET.get('passengers'))
+    code = GenerateRandomStringEndPoint(10)
+    canRequest = True
+    if request.user.is_authenticated:
+        res=request.user.reserves.all()
+
+        for r in res:
+            if r.confirm == 'W':
+                canRequest = False
+
+
+    date = request.GET.get('date')
+    date_list = date.split(" - ")
+    enter_date = date_list[0]
+    exit_date = date_list[1]
+
+    is_reserved = {}
+    for room in rooms:
+        is_reserved[room] = False
+
+    for room in rooms:
+        for my_request in requests:
+            if my_request.room == room:
+                if my_request.is_overlapping(enter_date, exit_date):
+                    print("Error")
+                    is_reserved[room] = True
+
+
+    content = {"city": city,
+               "hotel": hotel,
+               "hotels": hotels,
+               'suggest_hotels': suggest_hotels,
+               "rooms": rooms,
+               'reserve_code':code,
+               'passengers':passengers,
+               "is_reserved": is_reserved,
+               'canRequesr':canRequest
+               }
+
+    return render(request, 'hotels/hotel-single.html', content)
 
 @login_required
 def RequestConfirmView(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
@@ -227,6 +292,59 @@ def RequestConfirmView(request,room_slug,confirm_city_slug,hotel_slug,reserve_co
     }
     return render(request, 'hotels/hotel-confirm.html', context)
 
+@login_required
+def OnlineReserveView(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
+
+    city = City.objects.get(slug=confirm_city_slug)
+    hotels = Hotel.objects.filter(city=city.id)
+    hotel = Hotel.objects.get(slug=hotel_slug)
+    rooms = Room.objects.get(slug=room_slug)
+
+    date = request.GET.get('date')
+    date_list = date.split(" - ")
+    enter = date_list[0]
+    exit = date_list[1]
+    passengers = int(request.GET.get('passengers'))
+    children = int(request.GET.get('children'))
+    room_count = request.GET.get('room')
+
+    start_time = datetime.now()
+    reserve_code_status = ''
+    try:
+        reserve_code_status = Request.objects.get(reserve_code=reserve_confirm)
+    except Request.DoesNotExist:
+
+        reserve_code_status = Request.objects.create(
+            room=rooms,
+            room_count=room_count,
+            enter=enter,
+            exit=exit,
+            passenger_count=passengers,
+            child_count=children,
+            reserve_code=reserve_confirm,
+            reserve_time = start_time.strftime('%H:%M')
+        )
+        request.user.reserves.add(reserve_code_status)
+
+    date_time_object = datetime.strptime(reserve_code_status.reserve_time, '%H:%M')
+
+
+    countdown_duration = timedelta(minutes=20)
+    end_time = date_time_object + countdown_duration
+
+
+
+    context = {
+        'end_time': end_time,
+        'room':rooms,
+        'reserve':reserve_code_status,
+        'enter':enter,
+        'exit':exit,
+        'hotel':hotel,
+        'city':city,
+
+    }
+    return render(request, 'hotels/hotel-confirm-online.html', context)
 
 def RequestCheckView(request,reserve):
     my_reserve = Request.objects.get(reserve_code=reserve)
@@ -237,38 +355,11 @@ def RequestCheckView(request,reserve):
     context = {'reserve': my_reserve, 'passengers': passengers}
     return render(request,'hotels/hotel-check.html',context)
 
-
-def HotelSingleView(request, city_slug, hotel_slug):
-
-    city = City.objects.get(slug=city_slug)
-    hotels = Hotel.objects.filter(city=city.id)
-    hotel = Hotel.objects.get(slug=hotel_slug)
-    suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
-    rooms = Room.objects.filter(hotel=hotel.id)
-    code = GenerateRandomStringEndPoint(10)
-    canRequest = True
-    if request.user.is_authenticated:
-        res=request.user.reserves.all()
-
-        for r in res:
-            if r.confirm == 'W':
-                canRequest = False
-
-
-    content = {"city": city,
-               "hotel": hotel,
-               "hotels": hotels,
-               'suggest_hotels': suggest_hotels,
-               "rooms": rooms,
-               'reserve_code':code,
-               'canRequesr':canRequest
-               }
-
-    return render(request, 'hotels/hotel-single.html', content)
-
-
 def HotelBookingView(request,reserve):
     my_reserve = Request.objects.get(reserve_code=reserve)
+    if my_reserve.room.hotel.online_reserve:
+        my_reserve.confirm = "A"
+
     if (my_reserve.reserve_status =="WC" or my_reserve.reserve_status=="WI") and (my_reserve.confirm == "A"):
         number_of_forms = int(my_reserve.passenger_count) + int(my_reserve.child_count)-1
         myBookingForm = []
@@ -334,11 +425,7 @@ def HotelBookingView(request,reserve):
 
                     reserve = get_object_or_404(Request, reserve_code=reserve)
                     passenger.reserves.add(reserve)
-
-            return redirect(
-                        reverse('hotel-check', kwargs={'reserve': reserve}))  # به عنوان مثال، ریدایرکت در اینجا
-
-
+            return redirect(reverse('hotel-check', kwargs={'reserve': reserve}))
         else:
             myBookingForm = [BookingForm() for _ in range(number_of_forms)]
             headMyBookingForm = BookingForm()

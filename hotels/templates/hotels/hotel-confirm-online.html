@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+        <!-- Title -->
+{% block title %}برو بیا | چه برو بیا ایه{% endblock %}
+{% block header %}{% endblock %}
+{% block content %}
+
+{% include 'include/list-header.html' %}
+        <!-- ========== MAIN CONTENT ========== -->
+        <main id="content" class="bg-gray space-2">
+        <div style="background-color: #ffcc00; padding: 20px;">
+    <h4 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
+      اعتبار رزرو شما تا ساعت {{ end_time.time }}
+    </h4>
+  </div>
+           <div class="mb-5 shadow-soft bg-white rounded-sm">
+               <div class="py-3 px-4 px-xl-12 border-bottom">
+                                <ul class="list-group flex-nowrap overflow-auto overflow-md-visble list-group-horizontal list-group-borderless flex-center-between pt-1">
+                                    <li class="list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40 bg-primary border-width-2 border border-primary text-white mx-auto rounded-circle">
+                                            1
+                                        </div>
+                                        <div class="text-primary">تایید رزرو</div>
+                                    </li>
+                                    <li class="list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40 border  border-width-2 border-gray mx-auto rounded-circle">
+                                            2
+                                        </div>
+                                        <div class="text-gray-1">اطلاعات مسافران</div>
+
+                                    </li>
+                                    <li class="list-group-item text-center flex-shrink-0 flex-md-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40 border  border-width-2 border-gray mx-auto rounded-circle">
+                                            3
+                                        </div>
+                                        <div class="text-gray-1">دریافت واچر هتل</div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="py-6 px-5 border-bottom">
+                                <div class="flex-horizontal-center">
+                                    <div class="height-50 width-50 flex-shrink-0 flex-content-center bg-primary rounded-circle">
+                                        <i class="flaticon-tickets text-white font-size-24"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h3 class="font-size-18 font-weight-bold text-dark mb-0 text-lh-sm">
+                                            اگر از اطلاعات رزرو مطمئن هستید دکمه تایید رو بزنید.
+                                        </h3>
+                                        <p class="mb-0">پس از تایید درخواست ، به صفحه تکمیل اطلاعات مسافران منتقل می شوید.</p>
+                                        <a href="{% url 'hotel-booking' reserve=reserve.reserve_code %}" class="btn btn-outline-success px-7 mt-5">تـایید</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-4 pb-5 px-5 border-bottom">
+                                <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark mb-2">
+                                    اطلاعات رزرو
+                                </h5>
+                                <!-- Fact List -->
+                                <ul class="list-unstyled font-size-1 mb-0 font-size-16">
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">شماره رزرو </span>
+                                        <span class="text-secondary text-right">{{ reserve.reserve_code }}</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">نام هتل </span>
+                                        <span class="text-secondary text-right">{{ hotel.faname }}</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">نام اتاق </span>
+                                        <span class="text-secondary text-right">{{ room.faname }}</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">مبلغ کل پرداختی </span>
+                                        <span class="text-secondary text-right">{{ room.format_price }}</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تاریخ ورود </span>
+                                        <span class="text-secondary text-right">{{ enter}}</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">تاریخ خروج </span>
+                                        <span class="text-secondary text-right">{{ exit}}</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">آدرس هتل </span>
+                                        <span class="text-secondary text-right">{{ hotel.address}}</span>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between py-2">
+                                        <span class="font-weight-medium">توضیحات هتل </span>
+                                        <span class="text-secondary text-right">{{ hotel.explanation}}</span>
+                                    </li>
+                                </ul>
+                                <!-- End Fact List -->
+                            </div>
+
+
+
+
+
+                        </div>
+        </main>
+        <!-- ========== END MAIN CONTENT ========== -->
+{% endblock %}
+{% block footer %}
+    {% include 'include/hotel-footer.html' %}
+{% endblock %}
+{% block javascript %}
+     <script>
+    var savedEndTime = localStorage.getItem('end_time');
+var endDateTime;
+
+if (savedEndTime) {
+  endDateTime = new Date(savedEndTime);
+} else {
+
+  endDateTime = new Date('{{ end_time|date:"c" }}');
+  localStorage.setItem('end_time', endDateTime);
+}
+
+var isRequestButtonAdded = false; // تنها یکبار اضافه شود
+function clearLocalStorageOnUnload() {
+  localStorage.removeItem('end_time');
+}
+
+// ثبت رویداد قبل از خروج از صفحه
+window.addEventListener('beforeunload', clearLocalStorageOnUnload);
+
+function updateCountdown() {
+  var now = new Date();
+  var timeLeft = endDateTime - now;
+
+  var countdownElement = document.getElementById('countdown');
+
+  if (timeLeft <= 0) {
+    countdownElement.textContent = 'منقضی شده!  مجدد درخواست کنید';
+    countdownElement.style.color = 'red'; // تغییر رنگ به قرمز
+
+    if (!isRequestButtonAdded) {
+  // اضافه کردن تگ <a> برای درخواست مجدد
+  var returnLink = document.createElement('a');
+  returnLink.href = '/';
+  returnLink.textContent = 'درخواست مجدد';
+  returnLink.className = 'btn btn-primary mt-2';
+  countdownElement.parentElement.appendChild(returnLink);
+
+  isRequestButtonAdded = true; // تگ اضافه شد
+
+  // حذف اطلاعات از حافظه مرورگر
+  localStorage.removeItem('end_time');
+}
+  } else {
+    var minutes = Math.floor(timeLeft / 60000);
+    var seconds = Math.floor((timeLeft % 60000) / 1000);
+
+    countdownElement.textContent = minutes + ':' + seconds.toString().padStart(2, '0');
+    countdownElement.style.color = ''; // بازگردانی رنگ به حالت اصلی
+  }
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+  </script>
+
+
+        <!-- Page Preloader -->
+        <!-- <div id="jsPreloader" class="page-preloader">
+            <div class="page-preloader__content-centered">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div> -->
+        <!-- End Page Preloader -->
+
+        <!-- Go to Top -->
+        <a class="js-go-to u-go-to-modern" href="#" data-position='{"bottom": 15, "right": 15 }' data-type="fixed" data-offset-top="400" data-compensation="#header" data-show-effect="slideInUp" data-hide-effect="slideOutDown">
+            <span class="flaticon-arrow u-go-to-modern__inner"></span>
+        </a>
+        <!-- End Go to Top -->
+
+        <!-- JS Global Compulsory -->
+        <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
+        <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+
+        <!-- JS Implementing Plugins -->
+        <script src="{% static 'vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
+        <script src="{% static 'vendor/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'vendor/flatpickr/dist/flatpickr.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+        <script src="{% static 'vendor/slick-carousel/slick/slick.js' %}"></script>
+        <script src="{% static 'vendor/gmaps/gmaps.min.js' %}"></script>
+        <script src="{% static 'vendor/fancybox/jquery.fancybox.min.js' %}"></script>
+        <script src="{% static 'vendor/appear.js' %}"></script>
+
+
+        <!-- JS MyTravel -->
+        <script src="{% static 'js/hs.core.js' %}"></script>
+        <script src="{% static 'js/components/hs.header.js' %}"></script>
+        <script src="{% static 'js/components/hs.unfold.js' %}"></script>
+        <script src="{% static 'js/components/hs.validation.js' %}"></script>
+        <script src="{% static 'js/components/hs.show-animation.js' %}"></script>
+        <script src="{% static 'js/components/hs.range-datepicker.js' %}"></script>
+        <script src="{% static 'js/components/hs.selectpicker.js' %}"></script>
+        <script src="{% static 'js/components/hs.go-to.js' %}"></script>
+        <script src="{% static 'js/components/hs.slick-carousel.js' %}"></script>
+        <script src="{% static 'js/components/hs.quantity-counter.js' %}"></script>
+        <script src="{% static 'js/components/hs.g-map.js' %}"></script>
+        <script src="{% static 'js/components/hs.fancybox.js' %}"></script>
+        <script src="{% static 'js/components/hs.scroll-nav.js' %}"></script>
+        <script src="{% static 'js/components/hs.sticky-block.js' %}"></script>
+        <script src="{% static 'js/components/hs.focus-state.js' %}"></script>
+
+        <!-- JS Plugins Init. -->
+        <script>
+            $(window).on('load', function () {
+
+                // initialization of HSMegaMenu component
+                $('.js-mega-menu').HSMegaMenu({
+                    event: 'hover',
+                    pageContainer: $('.container'),
+                    breakpoint: 1199.98,
+                    hideTimeOut: 0
+                });
+
+                // Page preloader
+                setTimeout(function() {
+                  $('#jsPreloader').fadeOut(500)
+                }, 800);
+            });
+
+            $(document).on('ready', function () {
+                // initialization of header
+                $.HSCore.components.HSHeader.init($('#header'));
+
+                // initialization of google map
+                function initMap() {
+                    $.HSCore.components.HSGMap.init('.js-g-map');
+                }
+
+                // initialization of unfold component
+                $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
+
+                // initialization of form validation
+                $.HSCore.components.HSValidation.init('.js-validate', {
+                    rules: {
+                        confirmPassword: {
+                            equalTo: '#signupPassword'
+                        }
+                    }
+                });
+
+                // initialization of show animations
+                $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+                // initialization of forms
+                $.HSCore.components.HSFocusState.init();
+
+                // initialization of show animations
+                $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+                // initialization of popups
+                $.HSCore.components.HSFancyBox.init('.js-fancybox');
+
+                // initialization of datepicker
+                $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+                // initialization of select
+                $.HSCore.components.HSSelectPicker.init('.js-select');
+
+                // initialization of sticky blocks
+                $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+
+                // initialization of quantity counter
+                $.HSCore.components.HSQantityCounter.init('.js-quantity');
+
+                // initialization of slick carousel
+                $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+
+                // initialization of form validation
+                $.HSCore.components.HSValidation.init('.js-validate');
+
+                // initialization of go to
+                $.HSCore.components.HSGoTo.init('.js-go-to');
+
+                // initialization of HSScrollNav component
+                $.HSCore.components.HSScrollNav.init($('.js-scroll-nav'), {
+                    duration: 700
+                });
+            });
+
+
+        </script>
+
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCuY6I4hZQvxo5RqCH7kogGKzcrjetRKQI&amp;callback=initMap" async defer></script>
+ {% endblock %}

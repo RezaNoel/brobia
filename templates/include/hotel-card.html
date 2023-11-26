@@ -3,22 +3,31 @@
 <div class="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1 my-3 ">
     <div class="card transition-3d-hover shadow-hover-2 h-100 w-100">
         <div class="position-relative">
-
             <a href="{% url 'hotel-single' city_slug=hotel.city.slug hotel_slug=hotel.slug %}" class="d-block gradient-overlay-half-bg-gradient-v5 hotel-link">
                 <img class="min-height-230 max-height-230 bg-img-hero card-img-top" src="{{ hotel.thumbnail.url }}" alt="{{ hotel.name }}">
             </a>
             <form method="POST" action={% url 'likepk' hotel.pk %}>
                 {% csrf_token %}
 
-            <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex flex-column justify-content-center align-items-center {% if hotel in user.hotel_likes.all %}like-btn{% endif %}">
-                <button type="submit" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ hotel.id }}" name="like" value="like">
-                    <span class="font-size-20">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                        </svg>
+            <div class="position-absolute top-0 right-0 pt-2 pr-2 d-flex justify-content-between align-items-center {% if hotel in user.hotel_likes.all %}like-btn{% endif %}" style="width: 100%;">
+                <div class="ml-2 align-items-center font-size-14 text-warning  bg-dark rounded">
+                    {% if hotel.online_reserve %}
+                    <span class="mx-2 d-flex justify-content-center align-items-center">
+                        <i class="flaticon-alarm pr-1"></i>
+                        رزرو آنلاین
                     </span>
-                </button>
-                <span id="like-counter-{{ hotel.id }}" class="text-warning bg-dark p-1 rounded font-size-13">{{ hotel.likes }}</span>
+                    {% endif %}
+                </div>
+                <div class="d-flex flex-column">
+                    <button type="submit" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ hotel.id }}" name="like" value="like">
+                        <span class="font-size-20">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                        </span>
+                    </button>
+                    <span id="like-counter-{{ hotel.id }}" class="text-warning text-center bg-dark rounded font-size-13">{{ hotel.likes }}</span>
+                </div>
             </div>
             </form>
            <div class="position-absolute bottom-0 left-0 right-0 rtl">

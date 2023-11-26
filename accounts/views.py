@@ -7,14 +7,49 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User,HotelManagerModel
+<<<<<<< HEAD
 from hotels.models import Facility
 from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm,ProfileForm
+=======
+from hotels.models import Facility,Room
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm,CustomPasswordResetForm
+>>>>>>> a393bb56586e2e25107b14ce3d224fc2b765bef2
 import main
+from kavenegar import KavenegarAPI,APIException,HTTPException
+from random import randint, randrange
 
 
 
 # Create your views here.
 
+class CustomPasswordResetView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'registration/password_reset_form.html'
+    email_template_name = 'registration/password_reset_email.html'
+    success_url = '/password_reset/done'
+    form_class = CustomPasswordResetForm
+    success_message = "لینک بازیابی رمز عبور به ایمیل شما ارسال شد."
+
+    def send_sms(self, code, receptor):
+        messages = f"{code} رمز یکبار مصرف ورود به بروبیا:"
+        api = KavenegarAPI('736C5461342F426C7630656C346C38726D576E734D5A4536726F30773245546361693471632F682B2B316F3D')
+        params = {'sender': '2000500666', 'receptor': receptor, 'message': messages}
+        response = api.sms_send(params)
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        # ارسال کد تایید به شماره تلفن
+        code = str(randrange(1000, 9999))
+        self.send_sms(code, form.cleaned_data['email'])
+        return response
+def kave_negar_token_send(request):
+    code =str( randrange(1000, 9999))
+    messages = code + " " + 'رمز یکبار مصرف ورود به بروبیا:'
+    api = KavenegarAPI('736C5461342F426C7630656C346C38726D576E734D5A4536726F30773245546361693471632F682B2B316F3D')
+    params = {'sender': '2000500666', 'receptor': '09129471382', 'message': messages}
+    response = api.sms_send(params)
+    return HttpResponseRedirect(reverse(LoginView))
 def RegisterView(request):
     if request.method =='POST':
         registerForm = RegisterForm(request.POST)
@@ -56,6 +91,12 @@ def LoginView(request):
     if request.method =='POST':
         loginForm = LoginForm(request.POST)
         if loginForm.is_valid():
+
+            # api = KavenegarAPI(
+            #     '736C5461342F426C7630656C346C38726D576E734D5A4536726F30773245546361693471632F682B2B316F3D')
+            # params = {'sender': '1000689696', 'receptor': '09129471382', 'message': '.'}
+            # response = api.sms_send(params)
+
             phone = request.POST.get('phone')
             password = request.POST.get('password')
             user = authenticate(request,username=phone,password=password)
@@ -114,8 +155,12 @@ def UserProfileView(request):
     myProfileForm = ProfileForm()
     if request.method == 'POST':
         if 'first_name' in request.POST:
+<<<<<<< HEAD
             print('Firstname')
             updateProfileForm = UserProfileForm(request.POST, instance=request.user)
+=======
+            updateProfileForm = UserProfileForm(request.POST, request.FILES, instance=request.user)
+>>>>>>> a393bb56586e2e25107b14ce3d224fc2b765bef2
             if updateProfileForm.is_valid():
                 updateProfileForm.save()
         if 'profile' in request.POST:
@@ -150,6 +195,8 @@ def UserProfileView(request):
 def HotelAdminView(request,page):
     myHotel = HotelManagerModel.objects.get(user=request.user)
     hotelFacilities = Facility.objects.filter(related='H')
+    roomFacilities = Facility.objects.filter(related='R')
+    rooms = Room.objects.filter(hotel=myHotel.hotel)
     facilities = myHotel.hotel.facilities.all()
     if request.method == 'POST':
         if 'hotelShortAbout' in request.POST:
@@ -157,6 +204,19 @@ def HotelAdminView(request,page):
             myHotel.hotel.explanation = request.POST.get('hotelLongAbout')
             myHotel.hotel.terms = request.POST.get('hotelRules')
             myHotel.hotel.save()
+        elif 'roomName' in request.POST:
+            room_name = request.POST.get('roomName')
+            bed_count = int(request.POST.get('bedCounts'))
+            room_price = int(request.POST.get('roomPrice'))
+
+            new_room = Room(name=room_name,faname=room_name,bed=bed_count,price=room_price, hotel=myHotel.hotel)
+            new_room.save()
+            for facility in roomFacilities:
+                checkbox_name = f'facility_checkbox_{facility.id}'
+                if checkbox_name in request.POST:
+                    new_room.facilities.add(facility)
+                else:
+                    new_room.facilities.remove(facility)
 
         else:
             for facility in hotelFacilities:
@@ -170,8 +230,22 @@ def HotelAdminView(request,page):
     template_name = f'accounts/hotel-panel/hotel_panel_{page}.html'
     context = {
         'myHotel': myHotel,
+        'rooms': rooms,
         'hotelFacilities': hotelFacilities,
+        'roomFacilities': roomFacilities,
         'facilities':facilities
     }
     return render(request, template_name, context)
+
+def RoomSingleView(request,page, room_slug):
+    myHotel = HotelManagerModel.objects.get(user=request.user)
+    room = Room.objects.get(slug=room_slug)
+
+    content = {"room": room,
+                "myHotel": myHotel
+               }
+
+    return render(request, 'accounts/hotel-panel/hotel_panel_room_single.html', content)
+
+
 

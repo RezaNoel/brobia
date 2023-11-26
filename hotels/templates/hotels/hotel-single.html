@@ -2,6 +2,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% load hotels_tags %}
+
 
         <!-- Title -->
 {% block title %}برو بیا | هتل {{ hotel.faname }} {{ city.faname }}{% endblock %}
@@ -142,7 +144,9 @@
                                 اتاق خود را انتخاب کنید
                             </h5>
                         {% for room in rooms %}
-                        <div class="card border-color-7 mb-5 overflow-hidden">
+                            {% if not is_reserved|get_room_reserve_status:room %}
+                                {% if room.bed == passengers%}
+                                    <div class="card border-color-7 mb-5 overflow-hidden">
                                 <div class="product-item__outer w-100">
                                     <div class="row">
                                         <div class="col-md-5 col-lg-5 col-xl-3dot5">
@@ -157,8 +161,9 @@
                                         </div>
                                         <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">
                                             <div class="w-100 position-relative m-4 m-md-0">
-                                                <a href="{% url 'hotel-confirm' reserve_confirm=reserve_code  confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}" class="mb-2 d-inline-block hotel-link">
-                                                    <span class="font-weight-bold font-size-17 text-dark text-dark">{{ room.faname }}</span>
+                                                <a href="{% if not hotel.online_reserve %}
+                                                     {% url 'hotel-confirm' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% else %}{% url 'hotel-confirm-online' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% endif %}" class="mb-2 d-inline-block hotel-link">
+                                                    <span class="font-weight-bold font-size-17 text-dark text-dark">اتاق {{ room.faname }}</span>
                                                 </a>
                                                 <div class="mt-1 pt-2">
                                                     <div class="d-flex mb-1">
@@ -262,16 +267,24 @@
                                                         <span class="font-weight-bold font-size-22 ml-1">{{ room.format_price }} تومان</span>
                                                         <span class="font-size-14">/ شب</span>
                                                     </div>
-                                                    <a href="{% if canRequesr %}
-                                                     {% url 'hotel-confirm' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% endif %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">
-                                                     اکنون ثبت کن
+                                                {% if canRequesr %}
+                                                    <a href="{% if not hotel.online_reserve %}
+                                                     {% url 'hotel-confirm' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% else %}{% url 'hotel-confirm-online' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% endif %}" class="btn btn-outline-warning border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">
+                                                     اکنون رزرو کن
                                                     </a>
+                                                {% else %}
+                                                    <a  class="btn btn-outline-danger border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg hotel-link">
+                                                     یک رزرو درحال بررسی دارید
+                                                    </a>
+                                                {% endif %}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                                {% endif %}
+                            {% endif %}
                         {% endfor %}
                             <h5 id="scroll-amenities" class="font-size-21 font-weight-bold text-dark mb-4">
                                 امکانات رفاهی
@@ -428,7 +441,7 @@
             </div>
 
             <div class="sh-toast-container" id="shToastContainerBottom"></div>
-            <button class="btn btn-danger" id="locationDanger">دکمه ارور یک هتل در حال بررسی</button>
+
 
         </main>
 
