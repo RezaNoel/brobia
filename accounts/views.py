@@ -7,15 +7,10 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import User,HotelManagerModel
-<<<<<<< HEAD
-from hotels.models import Facility
-from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm,ProfileForm
-=======
 from hotels.models import Facility,Room
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm,CustomPasswordResetForm
->>>>>>> a393bb56586e2e25107b14ce3d224fc2b765bef2
 import main
 from kavenegar import KavenegarAPI,APIException,HTTPException
 from random import randint, randrange
@@ -155,12 +150,7 @@ def UserProfileView(request):
     myProfileForm = ProfileForm()
     if request.method == 'POST':
         if 'first_name' in request.POST:
-<<<<<<< HEAD
-            print('Firstname')
-            updateProfileForm = UserProfileForm(request.POST, instance=request.user)
-=======
             updateProfileForm = UserProfileForm(request.POST, request.FILES, instance=request.user)
->>>>>>> a393bb56586e2e25107b14ce3d224fc2b765bef2
             if updateProfileForm.is_valid():
                 updateProfileForm.save()
         if 'profile' in request.POST:
