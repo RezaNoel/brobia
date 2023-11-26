@@ -3,13 +3,13 @@ from .models import User
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm,PasswordChangeForm,UserChangeForm
 
+class ProfileForm(forms.Form):
+    profile = forms.ImageField()
 class UserProfileForm(UserChangeForm):
     class Meta:
         model = User  # شما باید مدل پروفایل خود را جایگزین کنید
-        fields = ['first_name', 'last_name','profile',  'nid', 'birthdate', 'email']
+        fields = ['first_name', 'last_name',  'nid', 'birthdate', 'email']
 
-    profile = forms.ImageField(required=False,
-                                       widget=forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*'}))
 
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('نام خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off','id': 'first_name'})
