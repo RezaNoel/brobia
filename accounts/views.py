@@ -10,7 +10,7 @@ from .models import User,HotelManagerModel
 from hotels.models import Facility,Room
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
-from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm,CustomPasswordResetForm
+from .forms import LoginForm,RegisterForm,CustomPasswordChangeForm,UserProfileForm,CustomPasswordResetForm,ProfileForm
 import main
 from kavenegar import KavenegarAPI,APIException,HTTPException
 from random import randint, randrange

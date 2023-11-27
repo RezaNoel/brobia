@@ -536,11 +536,11 @@
 
   @media screen and (max-width: 1305px) {
     body{
-      grid-template-columns: 230px auto;
+      grid-template-columns: 260px auto;
     }
 
     .side-panel{
-      width: 230px;
+      width: 260px;
     }
 
     .side-panel a {
@@ -646,6 +646,11 @@
     .hotel-room-situation-section{
       width: 640px;
     }
+
+    .side-panel-pages svg, .back-home-btn svg{
+      width: 28px;
+      height: 28px;
+    }
   }
 
   @media screen and (max-width: 950px) {
@@ -655,6 +660,11 @@
 
     .side-panel{
       width: 190px;
+    }
+
+    .logo-icon{
+      width: 75px;
+      height: 40px;
     }
     
     .side-panel a {
@@ -692,9 +702,10 @@
     }
   }
 
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 800px) {
     body{
       grid-template-columns: 1fr;
+      grid-template-rows: 100px auto;
     }
 
     .side-panel-container{
@@ -990,6 +1001,43 @@
       width: 100%;
     }
   }
+
+    /* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #397524 #DFE9EB;
+    }
+
+    /* Chrome, Edge and Safari */
+    *::-webkit-scrollbar {
+      height: 10px;
+      width: 10px;
+    }
+    *::-webkit-scrollbar-track {
+      border-radius: 5px;
+      background-color: #DFE9EB;
+    }
+
+    *::-webkit-scrollbar-track:hover {
+      background-color: #B8C0C2;
+    }
+
+    *::-webkit-scrollbar-track:active {
+      background-color: #B8C0C2;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #fc0;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+      background-color: #ffe066;
+    }
+
+    *::-webkit-scrollbar-thumb:active {
+      background-color: #ffe066;
+    }
 </style>
 {% endblock %}
 {% block title %}پنل مدیریت هتل{% endblock %}
