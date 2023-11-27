@@ -4,12 +4,13 @@ from django.contrib.auth.models import User,AbstractUser
 import os
 # Create your models here.
 def profile_path(instance, filename):
-    return os.path.join('static\img','profiles',  filename)
+    return os.path.join('img', 'profiles', filename)
+
 class User(AbstractUser):
 
 
     phone = models.CharField(max_length=11, verbose_name='شماره همراه', blank=True)
-    profile = models.ImageField(blank=True, verbose_name='عکس پروفایل', upload_to=profile_path)
+    profile = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     nid = models.CharField(max_length=10, blank=True,verbose_name='کد ملی')
     birthdate = models.CharField(max_length=15,blank=True, verbose_name='تاریخ تولد')
     reserves = models.ManyToManyField(Request, blank=True, verbose_name='رزرو ها')
