@@ -189,6 +189,8 @@ class Request(models.Model):
     def is_overlapping(self, start_date, end_date):
         return (self.enter < end_date and self.exit > start_date)
 
+    def date_concat(self):
+        return f'{self.enter} {self.exit}'
     def reserve_date_shamsi(self):
         jalali_date = jalali_datetime.fromgregorian(datetime=self.reserve_date)
 

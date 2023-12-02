@@ -33,7 +33,7 @@ def CheckReservationStatusEndPoint(request, reserve_confirm):
         reserve_code_status = Request.objects.get(reserve_code=reserve_confirm)
         data = {'confirm': reserve_code_status.confirm}
     except Request.DoesNotExist:
-        data = {'confirm': 'W'}  # یا مقدار دلخواه دیگری
+        data = {'confirm': 'W'}
 
     return JsonResponse(data)
 
@@ -238,6 +238,27 @@ def HotelSingleView(request, city_slug, hotel_slug):
 
     return render(request, 'hotels/hotel-single.html', content)
 
+@login_required
+def ShowRequestConfirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
+
+    city = City.objects.get(slug=confirm_city_slug)
+    hotels = Hotel.objects.filter(city=city.id)
+    hotel = Hotel.objects.get(slug=hotel_slug)
+    rooms = Room.objects.get(slug=room_slug)
+    reserve = Request.objects.get(reserve_code=reserve_confirm)
+    end_time = datetime.strptime(reserve.reserve_time, '%H:%M')
+    enter= reserve.enter
+    exit= reserve.exit
+    context = {
+        'enter' : enter,
+        'exit' : exit,
+        'room' : rooms,
+        'reserve' : reserve,
+        'hotel': hotel,
+        'city': city,
+        'end_time': end_time,
+    }
+    return render(request, 'hotels/hotel-confirm.html',context)
 @login_required
 def RequestConfirmView(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
 

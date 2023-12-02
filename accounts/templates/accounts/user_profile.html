@@ -166,7 +166,7 @@
                           </td>
                         </td>
                           {% endif %}
-                        <td><a class="text-underline" href="#">{{ reserve.reserve_code }}</a></td>
+                        <td><a class="text-underline" href="{% url 'show-hotel-confirm' reserve_confirm=reserve.reserve_code confirm_city_slug=reserve.room.hotel.city.slug hotel_slug=reserve.room.hotel.slug room_slug=reserve.room.slug %}">{{ reserve.reserve_code }}</a></td>
                         <td>{{ reserve.reserve_date_shamsi }}</td>
                         <td>{{ reserve.room.format_price}}</td>
                         <td>{{reserve.room.hotel.faname}}</td>
