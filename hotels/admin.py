@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hotel, Room,City,Facility,Request,Passenger,HotelImage,Image,RoomImage
+from .models import Hotel, Room,City,Facility,Request,Passenger,HotelImage,Image,RoomImage,ReservasionNumber
 from django.db import models
 
 # Register your models here.
@@ -89,3 +89,4 @@ admin.site.register(City, CityAdmin)
 admin.site.register(Room, RoomAdmin)
 admin.site.register(Request,RequestAdmin)
 admin.site.register(Passenger,PassengerAdmin)
+admin.site.register(ReservasionNumber)

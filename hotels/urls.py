@@ -4,10 +4,13 @@ from . import views
 urlpatterns = [
 
     path('', views.HotelHomeView, name='home'),
+    path('voucher', views.HotelVoucherView, name='voucher'),
     path('rL7mikP8JFv66LjYtNq2/<int:pk>',views.HotelLikeEndPoint,name='likepk'),
     path('bankpage/<str:reserve>',views.BankPaymentEndPoint,name='bankpayment'),
     path('<str:reserve>/informations', views.HotelBookingView, name='hotel-booking'),
     path('<str:reserve>/confirm', views.RequestCheckView, name='hotel-check'),
+    path('<slug:confirm_city_slug>/<slug:hotel_slug>/<slug:room_slug>/<str:reserve_confirm>?v=profile', views.ShowRequestConfirm,
+         name='show-hotel-confirm'),
     path('<slug:confirm_city_slug>/<slug:hotel_slug>/<slug:room_slug>/<str:reserve_confirm>', views.RequestConfirmView,
          name='hotel-confirm'),
     path('<slug:confirm_city_slug>/<slug:hotel_slug>/<slug:room_slug>/<str:reserve_confirm>/online', views.OnlineReserveView,

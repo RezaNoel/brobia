@@ -1,0 +1,861 @@
+{% load static %}
+{% block header %}
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        html{
+            direction: rtl;
+            font-size: 62.5%;
+            font-size: 1rem;
+        }
+        body{
+            width: 100%;
+            background: #FFB500;
+            font-family: Shabnam;
+            overflow-x: hidden;
+        }
+
+        svg{
+            display: block;
+            margin-block: 0;
+        }
+
+        hr{
+            margin-block: 0.8rem;
+        }
+
+        .voucher-container{
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .voucher-tag{
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            color: #F5F7F9;
+            font-family: Shabnam;
+            font-weight: 700;
+            font-size: 1.6rem;
+            padding-block: 2rem;
+        }
+
+        /* واجر */
+
+        .voucher{
+            width: 1440px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header{
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .label{
+            color: #86898B;
+            text-align: right;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .all-text{
+            color: #000;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        
+        .other-text{
+            color: #000;
+            font-size: 1rem;
+        }
+
+        .voucher-header{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-radius: 2.5rem 2.5rem 0px 0px;
+            background: #F5F7F9;
+            font-size: 1.3rem;
+        }
+
+        .voucher-header svg{
+            padding-right: 2rem;
+            padding-block: 1rem;
+        }
+
+        /* بخش اطلاعات رزرو */
+        
+        .ticket-info{
+            display: grid;
+            grid-template-columns: 480px 960px;
+            background-color: #ffffff;
+        }
+
+        /* بخش اطلاعات سرپرست */
+
+        .leader-info{
+            margin-inline: 2rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .person-info{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 2rem;
+        }
+        
+        .name, .nid, .bday, .phone{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ticket-important-info{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            background: #f5f7f9;
+            padding-block: 1rem;
+            border-radius: 10px;
+            grid-area: 3 / 1 / 4 / 3;
+        }
+
+        .reserve-issue-tracker, .reserve-submit-day{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-wrap: nowrap;
+        }
+
+        .reserve-issue-tracker{
+            border-left: #86898B solid 1px;
+        }
+
+
+        /* پایان بخش اطالاعت سرپرست */
+
+        /* بخش اطلاعات هتل */
+
+        .hotel-info{
+            margin-inline: 2rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hotel-name{
+            display: flex;
+            align-items: center;
+        }
+
+        .hotel-stars{
+            display: flex;
+        }
+
+        .hotel-info-content{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: 2.5rem;
+        }
+
+        .enter-exit{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .enter-date, .exit-date{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ex-text, .ed-text{
+                text-wrap: nowrap;
+        }
+
+        .arriving-time{
+            width: 50%;
+            border: #FFB500 dashed 0.1rem;
+            position: relative;
+        }
+
+        .start-time-svg{
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        
+        .end-time-svg{
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translate(50%,-50%);
+            box-shadow: 0px 0px 5px 10px #FFFFFF;
+        }
+
+        .arriving-time-text{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFF5CF;
+            color: #FFB500;
+            padding: 0.5rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 14px 25px white;
+            text-wrap: nowrap;
+        }
+
+        .hotel-important-info{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            background-color: #f5f7f9;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .hotel-address, .hotel-phone{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #86898B;
+            gap: 0.5rem;
+        }
+
+        .hotel-address{
+            border-left: #86898B solid 1px;
+            margin-block: 1rem;
+        }
+
+        .hotel-phone{
+            padding-block: 1.5rem;
+        }
+
+        /* پایان بخش اطلاعات هتل */
+
+        /* پایان بخش اطلاعات رزرو */
+
+        /* بخش اطلاعات قیمت و درخواست اضافه */
+
+        .room-info{
+            display: grid;
+            grid-template-columns: 480px 960px;
+            background-color: #ffffff;
+            border-top: #ffb500 solid 5px;
+            padding-top: 1.5rem;
+        }
+
+        .price-section, .additional-info {
+            margin-inline: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* بخش قیمت */
+
+        .price-info{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+        }
+
+        .total-price, .discount{
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* پایان بخش قیمت */
+
+        /* بخش درخواست اضافه */
+        
+        .ar-items-conatiner{
+            padding: 1.5rem;
+            background-color: #f5f7f9;
+            min-height: 5rem;
+            max-height: 7rem;
+            border-radius: 10px;
+        }
+
+        /* پایان بخش درخواست اضافه */
+
+        /* پایان بخش اطلاعات قیمت و درخواست اضافه */
+
+        /* بخش اطلاعات همراهان */
+
+        .companions-section{
+            width: 100%;
+            background-color: #ffffff;
+            border-top: #ffb500 solid 5px;
+            padding-top: 1.5rem;
+        }
+
+        .companions-info li{
+            display: grid;
+            grid-template-columns:repeat(5, auto);
+            background-color: #ebeff3;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            list-style: none;
+        }
+
+        .c-count{
+            color: #8F9092;
+        }
+
+        /* پایان بخش اطلاعات همراهان */
+
+        /* پایان واچر */
+
+
+        /* دکمه های صفحه */
+        .voucher-actions{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-block: 2rem;
+        }
+
+        .voucher-actions button{
+            padding-inline: 10rem;
+            padding-block: 0.5rem;
+            font-size: 1.6rem;
+            font-weight: 400;
+            border-radius: 0.2rem;
+            cursor: pointer;
+        }
+
+        .download{
+            background: #F5F7F9;
+            border: none;
+            color: #FFB500;
+        }
+
+        .share{
+            background-color: transparent;
+            border: 0.2px solid #F5F7F9;
+            color: #F5F7F9;
+        }
+        /* پایان دکمه های صفحه */
+
+
+        @media screen and (max-width: 1470px) {
+            .voucher{
+                width: 1100px;
+            }
+            
+            .ticket-info, .room-info{
+                grid-template-columns: 350px 750px;
+            }
+            
+            .ticket-important-info{
+                grid-template-columns: 55% 45%;
+            }
+
+            .reserve-issue-tracker{
+                padding-inline: 1.5rem;
+            }
+
+            .price-info{
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+        @media screen and (max-width: 1200px) {
+            .voucher{
+                width: 900px;
+            }
+            
+            .ticket-info, .room-info{
+                grid-template-columns: 300px 600px;
+            }
+
+            .voucher-tag{
+                font-size: 1.4rem;
+            }
+            
+            .voucher-header{
+                font-size: 1.2rem;
+            }
+
+            .header{
+                font-size: 1rem;
+            }
+
+            .label{
+                font-size: 0.9rem;
+            }
+
+            .all-text, .other-text, .arriving-time-text{
+                font-size: 0.8rem;
+            }
+
+            .hotel-important-info{
+                margin-top: 1.7rem;
+            }
+
+            .hotel-important-info svg{
+                width: 25px;
+                height: 25px;
+            }
+        }
+        @media screen and (max-width: 970px) {
+            .voucher{
+                width: 700px;
+            }
+            
+            .ticket-info, .room-info{
+                grid-template-columns: 250px 450px;
+            }
+
+            .voucher-tag{
+                font-size: 1.2rem;
+            }
+            
+            .voucher-header{
+                font-size: 1.0rem;
+            }
+
+            .header{
+                font-size: 0.8rem;
+            }
+
+            .label{
+                font-size: 0.7rem;
+            }
+
+            .all-text, .other-text, .arriving-time-text{
+                font-size: 0.6rem;
+            }
+
+            .hotel-important-info{
+                margin-top: 1.3rem;
+                grid-template-columns: 55% 45%;
+            }
+
+            .hotel-important-info svg{
+                width: 20px;
+                height: 20px;
+            }
+        }
+        @media screen and (max-width: 760px) {
+            .voucher{
+                width: 500px;
+            }
+            
+            .ticket-info, .room-info{
+                grid-template-columns: 500px;
+            }
+
+            .voucher-tag{
+                font-size: 1.2rem;
+            }
+            
+            .voucher-header{
+                font-size: 1rem;
+            }
+
+            .header{
+                font-size: 0.9rem;
+            }
+
+            .label{
+                font-size: 0.8rem;
+            }
+
+            .all-text, .other-text, .arriving-time-text{
+                font-size: 0.7rem;
+            }
+
+            .hotel-important-info svg{
+                width: 20px;
+                height: 20px;
+            }
+        }
+        @media screen and (max-width: 550px) {
+            .voucher{
+                width: 380px;
+            }
+            
+            .ticket-info, .room-info{
+                grid-template-columns: 380px;
+            }
+
+            .voucher-tag{
+                font-size: 1.2rem;
+            }
+            
+            .voucher-header{
+                font-size: 1rem;
+            }
+
+            .header{
+                font-size: 0.9rem;
+            }
+
+            .label{
+                font-size: 0.8rem;
+            }
+
+            .all-text, .other-text, .arriving-time-text{
+                font-size: 0.7rem;
+            }
+
+            .hotel-important-info svg{
+                width: 20px;
+                height: 20px;
+            }
+        }
+        @media screen and (max-width: 400px) {
+            .voucher{
+                width: 280px;
+            }
+            
+            .ticket-info, .room-info{
+                grid-template-columns: 280px;
+            }
+
+            .voucher-tag{
+                font-size: 1rem;
+            }
+            
+            .voucher-header{
+                font-size: 0.8rem;
+            }
+
+            .header{
+                font-size: 0.6rem;
+            }
+
+            .label{
+                font-size: 0.6rem;
+            }
+
+            .all-text, .other-text, .arriving-time-text{
+                font-size: 0.5rem;
+            }
+
+            .hotel-important-info svg{
+                width: 15px;
+                height: 15px;
+            }
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
+                color-adjust: exact !important;                 /* Firefox 48 – 96 */
+                print-color-adjust: exact !important;           /* Firefox 97+, Safari 15.4+ */
+            }
+
+            .voucher-container{
+                background-color: transparent;
+            }
+
+            .no-print{
+                display:none;
+            }
+
+            .voucher-container{
+                print-color-adjust: exact;
+            }
+            
+            .voucher{
+                width: 800px;
+            }
+            
+            .ticket-info, .room-info{
+                grid-template-columns: 380px 460px;
+                print-color-adjust: red;
+            }
+            
+            .ar-items-conatiner{
+                grid-template-columns: repeat(3,auto);
+                padding: 0.5rem;
+                column-gap: 0;
+            }
+
+            .hotel-phone svg{
+                width: 25px;
+                height: 25px;
+            }
+
+            .arriving-time-text{
+                font-size: 0.6rem;
+                box-shadow: 0px 0px 6px 6px white;
+            }
+
+            .price-info{
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hotel-important-info{
+                margin-top: 0.6rem;
+            }
+
+            .hotel-address{
+                padding-inline: 1rem;
+            }
+
+            .reserve-issue-tracker{
+                padding-left: 1rem;
+            }
+        }
+        </style>
+{% endblock %}
+{% block content %}
+    <div class="voucher-container">
+        <div class="voucher-tag no-print">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 123 123" fill="none">
+                <g filter="url(#filter0_d_612_70)">
+                  <path opacity="0.4" d="M66.0747 96.3098L89.1917 82.9631C98.6835 77.4831 101.94 65.3285 96.471 55.7965L83.5369 33.3939C78.0568 23.9021 65.9022 20.6453 56.3702 26.1146L33.2826 39.5122C28.4347 42.3112 24.9693 47.0336 23.806 52.5021L19.3799 72.8844C17.5853 81.0308 22.2698 89.1448 30.1711 91.6933L50.0358 98.0513C55.4044 99.7486 61.2267 99.1087 66.0747 96.3098Z" fill="url(#paint0_linear_612_70)"/>
+                  <path d="M60.0708 71.7083C61.7861 65.3067 57.9871 58.7266 51.5855 57.0113C45.1839 55.296 38.6038 59.095 36.8885 65.4966C35.1732 71.8982 38.9722 78.4783 45.3738 80.1936C51.7754 81.9089 58.3555 78.1099 60.0708 71.7083Z" fill="url(#paint1_linear_612_70)"/>
+                  <path d="M85.4577 63.4137C85.2528 64.1784 84.7662 64.8676 84.0007 65.3095C82.5208 66.1639 80.589 65.6463 79.7346 64.1664L67.9495 43.754C67.095 42.2741 67.6127 40.3422 69.0926 39.4878C70.5725 38.6334 72.5043 39.151 73.3587 40.6309L85.1439 61.0433C85.5858 61.8088 85.6626 62.649 85.4577 63.4137Z" fill="url(#paint2_linear_612_70)"/>
+                </g>
+                <defs>
+                  <filter id="filter0_d_612_70" x="6.99805" y="15.4612" width="100.126" height="95.5232" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dx="-2" dy="2"/>
+                    <feGaussianBlur stdDeviation="5"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_612_70"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_612_70" result="shape"/>
+                  </filter>
+                  <linearGradient id="paint0_linear_612_70" x1="7.00001" y1="37" x2="257.5" y2="212" gradientUnits="userSpaceOnUse">
+                    <stop offset="0.0738702" stop-color="white"/>
+                    <stop offset="0.368602" stop-color="#F5F7F9" stop-opacity="0.7"/>
+                  </linearGradient>
+                  <linearGradient id="paint1_linear_612_70" x1="36.8885" y1="65.4966" x2="60.0708" y2="71.7083" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F5F7F9"/>
+                    <stop offset="0.96875" stop-color="#F5F7F9" stop-opacity="0.47"/>
+                  </linearGradient>
+                  <linearGradient id="paint2_linear_612_70" x1="65.4888" y1="49.4357" x2="87.6146" y2="55.3643" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F5F7F9"/>
+                    <stop offset="0.96875" stop-color="#F5F7F9" stop-opacity="0.47"/>
+                  </linearGradient>
+                </defs>
+            </svg>
+            <h1>واچر شما آمادس!</h1>
+        </div>
+        <div class="voucher">
+            <div class="voucher-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 50 50" fill="none">
+                    <path d="M22.3966 9.6667L13.1675 5.1042C8.18831 2.6667 4.10498 5.14586 4.10498 10.6042V41.5209C4.10498 43.8959 6.08415 45.8334 8.50081 45.8334H23.9591C25.105 45.8334 26.0425 44.8959 26.0425 43.75V15.4375C26.0425 13.25 24.3966 10.6459 22.3966 9.6667ZM18.6883 28.6459H11.4591C10.605 28.6459 9.89665 27.9375 9.89665 27.0834C9.89665 26.2292 10.605 25.5209 11.4591 25.5209H18.6883C19.5425 25.5209 20.2508 26.2292 20.2508 27.0834C20.2508 27.9375 19.5633 28.6459 18.6883 28.6459ZM18.6883 20.3125H11.4591C10.605 20.3125 9.89665 19.6042 9.89665 18.75C9.89665 17.8959 10.605 17.1875 11.4591 17.1875H18.6883C19.5425 17.1875 20.2508 17.8959 20.2508 18.75C20.2508 19.6042 19.5633 20.3125 18.6883 20.3125Z" fill="#292D32"/>
+                    <path d="M45.8332 37.5833V40.625C45.8332 43.5 43.4998 45.8333 40.6248 45.8333H31.1873C30.0623 45.8333 29.1665 44.9375 29.1665 43.8125V39.3125C31.3957 39.5833 33.7498 38.9375 35.4373 37.5833C36.854 38.7292 38.6665 39.4167 40.6457 39.4167C42.5832 39.4167 44.3957 38.7292 45.8332 37.5833Z" fill="#292D32"/>
+                    <path d="M45.8332 31.3541V31.375C45.6665 34.1041 43.4373 36.2916 40.6457 36.2916C37.7498 36.2916 35.4373 33.9375 35.4373 31.0833C35.4373 34.2708 32.4998 36.8333 29.1665 36.1875V25C29.1665 23.6666 30.3957 22.6666 31.7082 22.9583L35.4373 23.7916L36.4373 24.0208L40.6873 24.9791C41.7082 25.1875 42.6457 25.5416 43.4582 26.0625C43.4582 26.0833 43.479 26.0833 43.479 26.0833C43.6873 26.2291 43.8957 26.3958 44.0832 26.5833C45.0415 27.5416 45.6665 28.9375 45.8123 30.9791C45.8123 31.1041 45.8332 31.2291 45.8332 31.3541Z" fill="#292D32"/>
+                </svg>
+                <h2>بروبیا</h2>
+            </div>
+            <div class="ticket-info">
+                <div class="leader-info">
+                    <span class="person-info-header header">مشخصات سرپرست</span>
+                    <hr>
+                    <div class="person-info">
+                        <div class="name">
+                            <span class="name-label label">نام کامل</span>
+                            <span class="name-text all-text">ابوالفضل عدالتی</span>
+                        </div>
+                        <div class="nid">
+                            <span class="nid-label label">کد ملی</span>
+                            <span class="nid-text all-text">0850292050</span>
+                        </div>
+                        <div class="bday">
+                            <span class="bday-label label">تاریخ تولد</span>
+                            <span class="bday-text all-text">1383/01/06</span>
+                        </div>
+                        <div class="phone">
+                            <span class="phone-label label">شماره تماس</span>
+                            <span class="phone-text all-text">09381750345</span>
+                        </div>
+                        <div class="ticket-important-info">
+                            <div class="reserve-issue-tracker">
+                                <span class="rit-label label">شماره پیگیری رزرو</span>
+                                <span class="rit-text all-text">158648</span>
+                            </div>
+                            <div class="reserve-submit-day">
+                                <span class="rsd-label label">زمان ثبت رزرو</span>
+                                <span class="rsd-text all-text">1402/08/25</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel-info">
+                    <span class="hotel-name header">
+                        هتل الماس مشهد
+                        <!-- <span class="hotel-stars">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <g filter="url(#filter0_d_644_10)">
+                                  <path d="M21.0913 16.1005C21.6765 14.2301 24.3235 14.2301 24.9088 16.1005L25.4798 17.9255C25.7409 18.7601 26.514 19.3283 27.3885 19.3283H29.3923C31.3114 19.3283 32.1288 21.769 30.5968 22.9248L28.8475 24.2447C28.1729 24.7537 27.891 25.6319 28.1434 26.4384L28.7806 28.4752C29.3613 30.3312 27.2197 31.8403 25.6673 30.669L24.2046 29.5654C23.4916 29.0275 22.5084 29.0275 21.7954 29.5654L20.3327 30.669C18.7803 31.8403 16.6387 30.3312 17.2194 28.4752L17.8566 26.4384C18.109 25.6318 17.8271 24.7537 17.1525 24.2447L15.4032 22.9248C13.8712 21.769 14.6886 19.3283 16.6077 19.3283H18.6115C19.486 19.3283 20.2591 18.7601 20.5202 17.9255L21.0913 16.1005Z" fill="#FFCC00"/>
+                                </g>
+                                <defs>
+                                  <filter id="filter0_d_644_10" x="0.604004" y="0.697693" width="46.792" height="46.3838" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                    <feOffset dx="1" dy="1"/>
+                                    <feGaussianBlur stdDeviation="7.5"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.8 0 0 0 0 0 0 0 0 0.55 0"/>
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_644_10"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_644_10" result="shape"/>
+                                  </filter>
+                                </defs>
+                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <g filter="url(#filter0_d_644_10)">
+                                  <path d="M21.0913 16.1005C21.6765 14.2301 24.3235 14.2301 24.9088 16.1005L25.4798 17.9255C25.7409 18.7601 26.514 19.3283 27.3885 19.3283H29.3923C31.3114 19.3283 32.1288 21.769 30.5968 22.9248L28.8475 24.2447C28.1729 24.7537 27.891 25.6319 28.1434 26.4384L28.7806 28.4752C29.3613 30.3312 27.2197 31.8403 25.6673 30.669L24.2046 29.5654C23.4916 29.0275 22.5084 29.0275 21.7954 29.5654L20.3327 30.669C18.7803 31.8403 16.6387 30.3312 17.2194 28.4752L17.8566 26.4384C18.109 25.6318 17.8271 24.7537 17.1525 24.2447L15.4032 22.9248C13.8712 21.769 14.6886 19.3283 16.6077 19.3283H18.6115C19.486 19.3283 20.2591 18.7601 20.5202 17.9255L21.0913 16.1005Z" fill="#FFCC00"/>
+                                </g>
+                                <defs>
+                                  <filter id="filter0_d_644_10" x="0.604004" y="0.697693" width="46.792" height="46.3838" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                    <feOffset dx="1" dy="1"/>
+                                    <feGaussianBlur stdDeviation="7.5"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.8 0 0 0 0 0 0 0 0 0.55 0"/>
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_644_10"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_644_10" result="shape"/>
+                                  </filter>
+                                </defs>
+                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <g filter="url(#filter0_d_644_10)">
+                                  <path d="M21.0913 16.1005C21.6765 14.2301 24.3235 14.2301 24.9088 16.1005L25.4798 17.9255C25.7409 18.7601 26.514 19.3283 27.3885 19.3283H29.3923C31.3114 19.3283 32.1288 21.769 30.5968 22.9248L28.8475 24.2447C28.1729 24.7537 27.891 25.6319 28.1434 26.4384L28.7806 28.4752C29.3613 30.3312 27.2197 31.8403 25.6673 30.669L24.2046 29.5654C23.4916 29.0275 22.5084 29.0275 21.7954 29.5654L20.3327 30.669C18.7803 31.8403 16.6387 30.3312 17.2194 28.4752L17.8566 26.4384C18.109 25.6318 17.8271 24.7537 17.1525 24.2447L15.4032 22.9248C13.8712 21.769 14.6886 19.3283 16.6077 19.3283H18.6115C19.486 19.3283 20.2591 18.7601 20.5202 17.9255L21.0913 16.1005Z" fill="#FFCC00"/>
+                                </g>
+                                <defs>
+                                  <filter id="filter0_d_644_10" x="0.604004" y="0.697693" width="46.792" height="46.3838" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                    <feOffset dx="1" dy="1"/>
+                                    <feGaussianBlur stdDeviation="7.5"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.8 0 0 0 0 0 0 0 0 0.55 0"/>
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_644_10"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_644_10" result="shape"/>
+                                  </filter>
+                                </defs>
+                              </svg>
+                        </span> -->
+                    </span>
+                    <hr>
+                    <div class="hotel-info-content">
+                        <div class="enter-exit">
+                            <div class="enter-date">
+                                <span class="ed-label label">زمان ورود</span>
+                                <span class="ed-time all-text">12:00</span>
+                                <span class="ed-text other-text">
+                                    <span class="ed-text-day">5</span>
+                                    <span class="ed-text-month">فروردین</span>
+                                    <span class="ed-text-year">1403</span>
+                                </span>
+                            </div>
+                            <div class="arriving-time">
+                                <svg class="start-time-svg" xmlns="http://www.w3.org/2000/svg" width="5" height="4" viewBox="0 0 5 4" fill="none">
+                                    <circle cx="2" cy="2" r="2" transform="matrix(1 0 0 -1 0.577148 4)" fill="#FFB500"/>
+                                </svg>
+                                <span class="arriving-time-text">3 ساعت و 20دقیقه</span>
+                                <svg class="end-time-svg" xmlns="http://www.w3.org/2000/svg" width="5" height="4" viewBox="0 0 5 4" fill="none">
+                                    <circle cx="2" cy="2" r="2" transform="matrix(1 0 0 -1 0.577148 4)" fill="#FFB500"/>
+                                </svg>
+                            </div>
+                            <div class="exit-date">
+                                <span class="ex-label label">زمان خروج</span>
+                                <span class="ex-time all-text">22:00</span>
+                                <span class="ex-text other-text">
+                                    <span class="ex-text-day">8</span>
+                                    <span class="ex-text-month">فروردین</span>
+                                    <span class="ex-text-year">1403</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="hotel-important-info label">
+                            <div class="hotel-address">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    <path d="M25.7754 9.875C24.4629 4.1 19.4254 1.5 15.0004 1.5C15.0004 1.5 15.0004 1.5 14.9879 1.5C10.5754 1.5 5.52536 4.0875 4.21286 9.8625C2.75036 16.3125 6.70036 21.775 10.2754 25.2125C11.6004 26.4875 13.3004 27.125 15.0004 27.125C16.7004 27.125 18.4004 26.4875 19.7129 25.2125C23.2879 21.775 27.2379 16.325 25.7754 9.875ZM15.0004 16.1375C12.8254 16.1375 11.0629 14.375 11.0629 12.2C11.0629 10.025 12.8254 8.2625 15.0004 8.2625C17.1754 8.2625 18.9379 10.025 18.9379 12.2C18.9379 14.375 17.1754 16.1375 15.0004 16.1375Z" fill="#86898B"/>
+                                </svg>
+                                <span>مشهد، خیابان امام رضا، امام رضا 20</span>
+                            </div>
+                            <div class="hotel-phone">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    <path d="M22.0255 13.4375C21.488 13.4375 21.063 13 21.063 12.475C21.063 12.0125 20.6005 11.05 19.8255 10.2125C19.063 9.4 18.2255 8.925 17.5255 8.925C16.988 8.925 16.563 8.4875 16.563 7.9625C16.563 7.4375 17.0005 7 17.5255 7C18.7755 7 20.088 7.675 21.238 8.8875C22.313 10.025 23.0005 11.4375 23.0005 12.4625C23.0005 13 22.563 13.4375 22.0255 13.4375Z" fill="#949799"/>
+                                    <path d="M26.5372 13.4375C25.9997 13.4375 25.5747 13 25.5747 12.475C25.5747 8.03751 21.9622 4.43751 17.5372 4.43751C16.9997 4.43751 16.5747 4.00001 16.5747 3.47501C16.5747 2.95001 16.9997 2.50001 17.5247 2.50001C23.0247 2.50001 27.4997 6.97501 27.4997 12.475C27.4997 13 27.0622 13.4375 26.5372 13.4375Z" fill="#949799"/>
+                                    <path d="M13.813 18.6875L11.5005 21C11.013 21.4875 10.238 21.4875 9.73799 21.0125C9.60049 20.875 9.46299 20.75 9.32549 20.6125C8.03799 19.3125 6.87549 17.95 5.83799 16.525C4.81299 15.1 3.98799 13.675 3.38799 12.2625C2.80049 10.8375 2.50049 9.47501 2.50049 8.17501C2.50049 7.32501 2.65049 6.51251 2.95049 5.76251C3.25049 5.00001 3.72549 4.30001 4.38799 3.67501C5.18799 2.88751 6.06299 2.50001 6.98799 2.50001C7.33799 2.50001 7.68799 2.57501 8.00049 2.72501C8.32549 2.87501 8.61299 3.10001 8.83799 3.42501L11.738 7.51251C11.963 7.82501 12.1255 8.11251 12.238 8.38751C12.3505 8.65001 12.413 8.91251 12.413 9.15001C12.413 9.45001 12.3255 9.75001 12.1505 10.0375C11.988 10.325 11.7505 10.625 11.4505 10.925L10.5005 11.9125C10.363 12.05 10.3005 12.2125 10.3005 12.4125C10.3005 12.5125 10.313 12.6 10.338 12.7C10.3755 12.8 10.413 12.875 10.438 12.95C10.663 13.3625 11.0505 13.9 11.6005 14.55C12.163 15.2 12.763 15.8625 13.413 16.525C13.538 16.65 13.6755 16.775 13.8005 16.9C14.3005 17.3875 14.313 18.1875 13.813 18.6875Z" fill="#949799"/>
+                                    <path d="M27.4625 22.9125C27.4625 23.2625 27.4 23.625 27.275 23.975C27.2375 24.075 27.2 24.175 27.15 24.275C26.9375 24.725 26.6625 25.15 26.3 25.55C25.6875 26.225 25.0125 26.7125 24.25 27.025C24.2375 27.025 24.225 27.0375 24.2125 27.0375C23.475 27.3375 22.675 27.5 21.8125 27.5C20.5375 27.5 19.175 27.2 17.7375 26.5875C16.3 25.975 14.8625 25.15 13.4375 24.1125C12.95 23.75 12.4625 23.3875 12 23L16.0875 18.9125C16.4375 19.175 16.75 19.375 17.0125 19.5125C17.075 19.5375 17.15 19.575 17.2375 19.6125C17.3375 19.65 17.4375 19.6625 17.55 19.6625C17.7625 19.6625 17.925 19.5875 18.0625 19.45L19.0125 18.5125C19.325 18.2 19.625 17.9625 19.9125 17.8125C20.2 17.6375 20.4875 17.55 20.8 17.55C21.0375 17.55 21.2875 17.6 21.5625 17.7125C21.8375 17.825 22.125 17.9875 22.4375 18.2L26.575 21.1375C26.9 21.3625 27.125 21.625 27.2625 21.9375C27.3875 22.25 27.4625 22.5625 27.4625 22.9125Z" fill="#949799"/>
+                                </svg>
+                                <span>026-36678365</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="room-info">
+                <div class="price-section">
+                    <span class="room-number header">اتاق شماره 126</span>
+                    <hr>
+                    <div class="price-info">
+                        <div class="total-price">
+                            <span class="tp-label label">مبلغ کل</span>
+                            <span class="tp-text all-text">
+                                <span class="price-number">10,000,000</span>
+                                تومان
+                            </span>
+                        </div>
+                        <div class="discount">
+                            <span class="discount-label label">مبلغ پرداختی با اعمال تخفیف</span>
+                            <span class="discount-text all-text">
+                                <span class="price-number">8,500,000</span>
+                                تومان
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="additional-info">
+                    <span class="additional-request header">درخواست اضافه</span>
+                    <hr>
+                    <p class="ar-items-conatiner other-text">
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و 
+                    </p>
+                </div>
+            </div>
+            <div class="companions-section">
+                <div style="padding-inline: 2rem;">
+                    <span class="companions-header header">مشخصات همراهان</span>
+                    <hr>
+                    <ul class="companions-info">
+                        <li class="other-text">
+                            <span class="c-count">1</span>
+                            <span class="c-name">رضا</span>
+                            <span class="c-lastname">توانگر</span>
+                            <span class="c-nid">1710410914</span>
+                            <span class="c-bday">1382/05/28</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="voucher-actions no-print">
+            <button class="download" onclick="window.print()">دانلود</button>
+            <button class="share">اشتراک گذاری</button>
+        </div>
+    </div>
+{% endblock %}

@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from urllib.parse import urlencode
 from datetime import datetime, timedelta
 from jdatetime import date as jalali_date, timedelta as jalali_timedelta
-from .models import City, Hotel, Room, Request, Passenger, Facility
+from .models import City, Hotel, Room, Request, Passenger, Facility,ReservasionNumber
 from blogs.models import BlogModel
 from .forms import BookingForm, BookingModelForm
 from .serializer import HotelSerializer, HotelViewSet
@@ -33,7 +33,7 @@ def CheckReservationStatusEndPoint(request, reserve_confirm):
         reserve_code_status = Request.objects.get(reserve_code=reserve_confirm)
         data = {'confirm': reserve_code_status.confirm}
     except Request.DoesNotExist:
-        data = {'confirm': 'W'}  # یا مقدار دلخواه دیگری
+        data = {'confirm': 'W'}
 
     return JsonResponse(data)
 
@@ -239,6 +239,27 @@ def HotelSingleView(request, city_slug, hotel_slug):
     return render(request, 'hotels/hotel-single.html', content)
 
 @login_required
+def ShowRequestConfirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
+
+    city = City.objects.get(slug=confirm_city_slug)
+    hotels = Hotel.objects.filter(city=city.id)
+    hotel = Hotel.objects.get(slug=hotel_slug)
+    rooms = Room.objects.get(slug=room_slug)
+    reserve = Request.objects.get(reserve_code=reserve_confirm)
+    end_time = datetime.strptime(reserve.reserve_time, '%H:%M')
+    enter= reserve.enter
+    exit= reserve.exit
+    context = {
+        'enter' : enter,
+        'exit' : exit,
+        'room' : rooms,
+        'reserve' : reserve,
+        'hotel': hotel,
+        'city': city,
+        'end_time': end_time,
+    }
+    return render(request, 'hotels/hotel-confirm.html',context)
+@login_required
 def RequestConfirmView(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
 
     city = City.objects.get(slug=confirm_city_slug)
@@ -253,7 +274,7 @@ def RequestConfirmView(request,room_slug,confirm_city_slug,hotel_slug,reserve_co
     passengers = int(request.GET.get('passengers'))
     children = int(request.GET.get('children'))
     room_count = request.GET.get('room')
-
+    reservasionnumber = ReservasionNumber.objects.get(hotel=rooms.hotel)
     start_time = datetime.now()
     reserve_code_status = ''
     try:
@@ -268,6 +289,7 @@ def RequestConfirmView(request,room_slug,confirm_city_slug,hotel_slug,reserve_co
             passenger_count=passengers,
             child_count=children,
             reserve_code=reserve_confirm,
+            reservasion_number=reservasionnumber,
             reserve_time = start_time.strftime('%H:%M')
         )
         request.user.reserves.add(reserve_code_status)
@@ -307,7 +329,7 @@ def OnlineReserveView(request,room_slug,confirm_city_slug,hotel_slug,reserve_con
     passengers = int(request.GET.get('passengers'))
     children = int(request.GET.get('children'))
     room_count = request.GET.get('room')
-
+    reservasionnumber = ReservasionNumber.objects.get(hotel=rooms.hotel)
     start_time = datetime.now()
     reserve_code_status = ''
     try:
@@ -322,6 +344,7 @@ def OnlineReserveView(request,room_slug,confirm_city_slug,hotel_slug,reserve_con
             passenger_count=passengers,
             child_count=children,
             reserve_code=reserve_confirm,
+            reservasion_number=reservasionnumber,
             reserve_time = start_time.strftime('%H:%M')
         )
         request.user.reserves.add(reserve_code_status)
@@ -460,3 +483,6 @@ def HotelBookingView(request,reserve):
     else:
         raise Http404()
 
+
+def HotelVoucherView(request):
+    return render(request, 'hotels/hotel-voucher.html')

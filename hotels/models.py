@@ -146,6 +146,15 @@ class Room(models.Model):
 class RoomImage(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
+
+class ReservasionNumber(models.Model):
+    number = models.CharField(max_length=15,verbose_name='شماره رزرواسیون')
+    hotel = models.ForeignKey(Hotel,on_delete=models.CASCADE,verbose_name='شماره رزرواسیون')
+    class Meta:
+        verbose_name = ("شماره رزرواسیون")
+        verbose_name_plural = ("شماره رزرواسیون ها")
+    def __str__(self):
+        return self.number
 class Request(models.Model):
     CONFIRM_CHOICES = (
         ('W', 'در انتظار تایید'),
@@ -161,7 +170,8 @@ class Request(models.Model):
     )
     reserve_code = models.CharField(max_length=10, default='xxxxxxxxxx',verbose_name='کد رزرو')
     room = models.ForeignKey(Room, blank=True,on_delete=models.CASCADE, verbose_name='اتاق')
-    enter = models.CharField(max_length=20,verbose_name='ورود')
+    reservasion_number = models.ForeignKey(ReservasionNumber, default='',on_delete=models.CASCADE,verbose_name='شماره رزرواسیون')
+    enter = models.CharField(max_length=15,verbose_name='ورود')
     exit = models.CharField(max_length=20,verbose_name='خروج')
     room_count = models.IntegerField(verbose_name='تعداد اتاق')
     passenger_count = models.IntegerField(verbose_name='تعداد بزرگسال')
@@ -179,6 +189,8 @@ class Request(models.Model):
     def is_overlapping(self, start_date, end_date):
         return (self.enter < end_date and self.exit > start_date)
 
+    def date_concat(self):
+        return f'{self.enter} {self.exit}'
     def reserve_date_shamsi(self):
         jalali_date = jalali_datetime.fromgregorian(datetime=self.reserve_date)
 

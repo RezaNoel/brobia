@@ -54,7 +54,7 @@
           <div class="card">
             <div class="card-body pt-3">
               <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
+              <ul class="nav nav-tabs nav-tabs-bordered justify-content-center" style="gap: 10px;">
 
                 <li class="nav-item">
                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">اطلاعات</button>
@@ -166,7 +166,7 @@
                           </td>
                         </td>
                           {% endif %}
-                        <td><a class="text-underline" href="#">{{ reserve.reserve_code }}</a></td>
+                        <td><a class="text-underline" href="{% url 'show-hotel-confirm' reserve_confirm=reserve.reserve_code confirm_city_slug=reserve.room.hotel.city.slug hotel_slug=reserve.room.hotel.slug room_slug=reserve.room.slug %}">{{ reserve.reserve_code }}</a></td>
                         <td>{{ reserve.reserve_date_shamsi }}</td>
                         <td>{{ reserve.room.format_price}}</td>
                         <td>{{reserve.room.hotel.faname}}</td>
