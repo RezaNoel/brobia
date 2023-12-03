@@ -149,19 +149,17 @@ def UserProfileView(request):
     updateProfileForm = UserProfileForm()
     myProfileForm = ProfileForm()
     if request.method == 'POST':
-        if 'first_name' in request.POST:
+        if 'profile' in request.POST:
             updateProfileForm = UserProfileForm(request.POST, request.FILES, instance=request.user)
             if updateProfileForm.is_valid():
+                print(updateProfileForm)
                 updateProfileForm.save()
-        if 'profile' in request.POST:
-            print('profile')
-            print(request.POST)
-            print(request.FILES)
-            myProfileForm = ProfileForm(request.POST,request.FILES)
-            if myProfileForm.is_valid():
-                print('profile is valid')
-                profile = UserProfileForm(profile=request.FILES["profile"])
-                profile.save()
+        # if 'profile' in request.POST:
+        #     myProfileForm = ProfileForm(request.POST,request.FILES)
+        #     if myProfileForm.is_valid():
+        #         print('profile is valid')
+        #         profile = UserProfileForm(profile=request.FILES["profile"])
+        #         profile.save()
         elif 'old_password' in request.POST:
             form = CustomPasswordChangeForm(request.user, request.POST)
             if form.is_valid():
@@ -230,9 +228,12 @@ def HotelAdminView(request,page):
 def RoomSingleView(request,page, room_slug):
     myHotel = HotelManagerModel.objects.get(user=request.user)
     room = Room.objects.get(slug=room_slug)
-
+    facilities = room.facilities.all()
+    roomFacilities = Facility.objects.filter(related='R')
     content = {"room": room,
-                "myHotel": myHotel
+                "myHotel": myHotel,
+               'roomFacilities': roomFacilities,
+               'facilities': facilities
                }
 
     return render(request, 'accounts/hotel-panel/hotel_panel_room_single.html', content)

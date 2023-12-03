@@ -4,6 +4,8 @@ from . import views
 urlpatterns = [
 
     path('', views.HotelHomeView, name='home'),
+    path('request/', views.send_request, name='request'),
+    path('verify/', views.verify, name='verify'),
     path('voucher', views.HotelVoucherView, name='voucher'),
     path('rL7mikP8JFv66LjYtNq2/<int:pk>',views.HotelLikeEndPoint,name='likepk'),
     path('bankpage/<str:reserve>',views.BankPaymentEndPoint,name='bankpayment'),

@@ -6,7 +6,6 @@ register = template.Library()
 @register.filter
 def get_room_reserve_status(is_reserved, room):
     gt=is_reserved.get(room, False)
-    print(gt)
     return gt
 
 @register.simple_tag
