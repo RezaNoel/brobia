@@ -26,15 +26,13 @@ SECRET_KEY = 'django-insecure-vj0b9d(zbezo_a*qvd@f@ezz-piva@bm(k!0#76m$1_bu2mtoz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
 ALLOWED_HOSTS = []
-=======
-ALLOWED_HOSTS = ['192.168.43.70', '127.0.0.1']
->>>>>>> 3b294b02703993056533172a60d0167e5fa576c5
+
 
 DEFAULT_CHARSET = 'utf-8'
 
-
+SANDBOX = True
+MERCHANT = '1ddba139-c163-47a4-a2b0-5e0f575e9396'
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,7 +48,7 @@ INSTALLED_APPS = [
     'accounts',
     'hotels',
     'taxirents',
-    'blogs',
+
 
 
     "bootstrap5",
@@ -166,8 +164,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'profile'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR  # مسیر فایل‌های ایمیل

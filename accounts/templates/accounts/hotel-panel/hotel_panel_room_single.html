@@ -846,11 +846,11 @@
                 <hr>
                 <div class="room-details">
                   <label for="roomName">نام اتاق:</label>
-                  <input id="roomName" name="roomName" type="text" disabled/>
+                  <input id="roomName" name="roomName" value="{{ room.faname }}" type="text" disabled />
                   <label for="bedCounts">تعداد تخت:</label>
-                  <input id="bedCounts" name="bedCounts" type="number" max="9" min="1" disabled/>
+                  <input id="bedCounts" name="bedCounts" type="number" max="9" min="1" value="{{ room.bed }}" disabled/>
                   <label for="roomPrice">قیمت اتاق:</label>
-                  <input id="roomPrice"name="roomPrice" type="number" min="1" step="any" disabled/>
+                  <input id="roomPrice"name="roomPrice" type="number" min="1" step="any" value="{{ room.price }}" disabled/>
                   <span class="price-info">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <path d="M18.1333 13.2666L12.8 3.66663C12.0833 2.37496 11.0916 1.66663 9.99998 1.66663C8.90831 1.66663 7.91665 2.37496 7.19998 3.66663L1.86665 13.2666C1.19165 14.4916 1.11665 15.6666 1.65831 16.5916C2.19998 17.5166 3.26665 18.025 4.66665 18.025H15.3333C16.7333 18.025 17.8 17.5166 18.3416 16.5916C18.8833 15.6666 18.8083 14.4833 18.1333 13.2666ZM9.37498 7.49996C9.37498 7.15829 9.65831 6.87496 9.99998 6.87496C10.3416 6.87496 10.625 7.15829 10.625 7.49996V11.6666C10.625 12.0083 10.3416 12.2916 9.99998 12.2916C9.65831 12.2916 9.37498 12.0083 9.37498 11.6666V7.49996ZM10.5916 14.7583C10.55 14.7916 10.5083 14.825 10.4666 14.8583C10.4166 14.8916 10.3666 14.9166 10.3166 14.9333C10.2666 14.9583 10.2166 14.975 10.1583 14.9833C10.1083 14.9916 10.05 15 9.99998 15C9.94998 15 9.89165 14.9916 9.83331 14.9833C9.78331 14.975 9.73331 14.9583 9.68331 14.9333C9.63331 14.9166 9.58331 14.8916 9.53331 14.8583C9.49165 14.825 9.44998 14.7916 9.40831 14.7583C9.25831 14.6 9.16665 14.3833 9.16665 14.1666C9.16665 13.95 9.25831 13.7333 9.40831 13.575C9.44998 13.5416 9.49165 13.5083 9.53331 13.475C9.58331 13.4416 9.63331 13.4166 9.68331 13.4C9.73331 13.375 9.78331 13.3583 9.83331 13.35C9.94165 13.325 10.0583 13.325 10.1583 13.35C10.2166 13.3583 10.2666 13.375 10.3166 13.4C10.3666 13.4166 10.4166 13.4416 10.4666 13.475C10.5083 13.5083 10.55 13.5416 10.5916 13.575C10.7416 13.7333 10.8333 13.95 10.8333 14.1666C10.8333 14.3833 10.7416 14.6 10.5916 14.7583Z" fill="#FFCC00"/>
@@ -872,18 +872,24 @@
                   </h3>
                   <hr style="margin-block: 10px;">
                   <div class="selected-facilities">
-                    <div class="facility-btn">
-                      <label for="input-{{ forloop.counter }}" class="facility-checkbox-text" >{{ facility.faname }}</label>
-                      <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ forloop.counter }}">
-                      <label for="input-{{ forloop.counter }}" class="facility-checkbox">
-                        <svg viewBox="0 0 22 16" fill="none">
-                          <path d="M1 6.85L8.09677 14L21 1"/>
-                        </svg>
-                      </label>
-                    </div>
+                    {% for facility in roomFacilities.all %}
+                        <div class="facility-btn">
+                          <label for="input-{{ forloop.counter }}" class="facility-checkbox-text" >{{ facility.faname }}</label>
+                          <input id="input-{{ forloop.counter }}" class="check-input-f" type="checkbox" name="facility_checkbox_{{ forloop.counter }}">
+                          <label for="input-{{ forloop.counter }}" class="facility-checkbox">
+                            <svg viewBox="0 0 22 16" fill="none">
+                              <path d="M1 6.85L8.09677 14L21 1"/>
+                            </svg>
+                          </label>
+                        </div>
+                       {% if facility in facilities %}
+                          <script >document.getElementById('input-{{ forloop.counter }}').setAttribute('checked', 'checked');</script>
+                      {% endif %}
+                    {% endfor %}
                   </div>
                 </div>
                 <!-- تصاویر -->
+                  {% comment %}
                 <div class="room-images">
                   <div class="room-details-header">
                     <h3 class="room-facility-header">
@@ -920,6 +926,7 @@
                     </div>
                   </div>
                 </div>
+                  {% endcomment %}
                 <!-- پایان تصاویر -->
               </div>
             </div>
