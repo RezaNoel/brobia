@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-vj0b9d(zbezo_a*qvd@f@ezz-piva@bm(k!0#76m$1_bu2mtoz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = []
+=======
+ALLOWED_HOSTS = ['192.168.43.70', '127.0.0.1']
+>>>>>>> 3b294b02703993056533172a60d0167e5fa576c5
 
 DEFAULT_CHARSET = 'utf-8'
 

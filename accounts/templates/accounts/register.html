@@ -69,7 +69,12 @@
                     <div class="form-outline">
                         <a title="اجباری"><span class="text-danger font-size-1 fas fa-asterisk"></span> {{registerForm.password.label_tag}}</a>
                         {{registerForm.password}}
-                        <p class="font-size-14 mt-2" style="color: #f08c00;">رمز عبور باید حداقل 8 کاراکتر باشد</p>
+                        <p class="font-size-14 mt-2 pass-info d-flex align-items-center justify-content-center">
+                          <svg class="d-none mr-1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 48 48">
+                            <path fill="#c8e6c9" d="M36,42H12c-3.314,0-6-2.686-6-6V12c0-3.314,2.686-6,6-6h24c3.314,0,6,2.686,6,6v24C42,39.314,39.314,42,36,42z"></path><path fill="#4caf50" d="M34.585 14.586L21.014 28.172 15.413 22.584 12.587 25.416 21.019 33.828 37.415 17.414z"></path>
+                          </svg>
+                          رمز عبور باید حداقل 8 کاراکتر باشد
+                        </p>
                         {{registerForm.password.errors}}
                     </div>
                 </div>
@@ -137,6 +142,15 @@
 <!-- Section: Design Block -->
 
 <style>
+  svg{
+    display: block;
+    margin-block: 0;
+  }
+
+  .pass-info{
+    color: #f03e3e;
+  }
+
   .invalid{
     border-color: #f03e3e;
     color: #f03e3e;
@@ -211,14 +225,22 @@
   })
 
   const passInput = document.getElementById('id_password')
+  const passInputCondition = document.querySelector('.pass-info')
+  const tickSvg = passInputCondition.querySelector('svg')
   passInput.addEventListener('input', (e) => {
     if(e.target.value.length < 8) {
       passInput.classList.add('invalid')
       passInput.classList.remove('valid')
+      passInputCondition.classList.remove('valid')
+      tickSvg.classList.add('d-none')
+      tickSvg.classList.remove('d-block')
     }
     else {
       passInput.classList.remove('invalid')
       passInput.classList.add('valid')
+      passInputCondition.classList.add('valid')
+      tickSvg.classList.add('d-block')
+      tickSvg.classList.remove('d-none')
     }
   })
 

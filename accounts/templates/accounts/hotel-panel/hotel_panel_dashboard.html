@@ -332,18 +332,64 @@
     z-index: 1000;
   }
 
+  .mobile-profile-container{
+    position: relative;
+  }
+
+  .mobile-dropdown-profile-content{
+    width: fit-content;
+    display: none;
+    position: absolute;
+    left: 0;
+    border-radius: 5px;
+    border: 0.5px solid #CED2D3;
+    background: #FDFDFD;
+    box-shadow: -2px 2px 15px 0px rgba(0, 0, 0, 0.07);
+    z-index: 1000;
+  }
+
+  .mdp-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .mdp-header svg{
+    width: 20px;
+    height: 20px;
+  }
+
+  .mdp-info{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-block: 1rem;
+  }
+
+  .mdp-hotel-name{
+    color: #363636;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .mdp-hotel-city{
+    color: #363636;
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
   .hr{
     width: 100%;
     height: 2px;
     background-color: #c6c7c8;
   }
 
-  .dropdown-profile-content ul{
+  .dropdown-profile-content ul, .mobile-dropdown-profile-content > *{
     margin-inline: 30px;
     list-style: none;
   }
 
-  .dropdown-profile-content li{
+  .dropdown-profile-content li, .mobile-dropdown-profile-content li{
     margin-block: 10px;
   }
 
@@ -1155,13 +1201,64 @@
             />
           </a>
         </div>
-        <button class="mobile-profile">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <rect width="24" height="24" rx="3" fill="#FFFEF8"/>
-            <path d="M12 12C13.841 12 15.3333 10.5076 15.3333 8.66668C15.3333 6.82573 13.841 5.33334 12 5.33334C10.1591 5.33334 8.66667 6.82573 8.66667 8.66668C8.66667 10.5076 10.1591 12 12 12Z" fill="#565C63"/>
-            <path d="M12 13.6667C8.66 13.6667 5.94 15.9067 5.94 18.6667C5.94 18.8533 6.08667 19 6.27334 19H17.7267C17.9133 19 18.06 18.8533 18.06 18.6667C18.06 15.9067 15.34 13.6667 12 13.6667Z" fill="#565C63"/>
-          </svg>
-        </button>
+        <div class="mobile-profile-container">
+          <button class="mobile-profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect width="24" height="24" rx="3" fill="#FFFEF8"/>
+              <path d="M12 12C13.841 12 15.3333 10.5076 15.3333 8.66668C15.3333 6.82573 13.841 5.33334 12 5.33334C10.1591 5.33334 8.66667 6.82573 8.66667 8.66668C8.66667 10.5076 10.1591 12 12 12Z" fill="#565C63"/>
+              <path d="M12 13.6667C8.66 13.6667 5.94 15.9067 5.94 18.6667C5.94 18.8533 6.08667 19 6.27334 19H17.7267C17.9133 19 18.06 18.8533 18.06 18.6667C18.06 15.9067 15.34 13.6667 12 13.6667Z" fill="#565C63"/>
+            </svg>
+          </button>
+          <div class="mobile-dropdown-profile-content">
+            <div class="mdp-header">
+              <span class="mdp-info">
+                <span class="mdp-hotel-name">هتل {{myHotel.hotel.faname}}</span>
+                <span class="mdp-hotel-city">{{myHotel.hotel.city}}</span>
+              </span>
+            </div>
+            <ul>
+              <li>
+                <a class="dropdown-options" href="/accounts/profile">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                    <path d="M19.7292 5.64583L14.3438 2.53125C13.3125 1.9375 11.6979 1.9375 10.6667 2.53125L5.22919 5.66667C3.07294 7.125 2.94794 7.34375 2.94794 9.66667V15.3229C2.94794 17.6458 3.07294 17.875 5.27085 19.3542L10.6563 22.4687C11.1771 22.7708 11.8438 22.9167 12.5 22.9167C13.1563 22.9167 13.8229 22.7708 14.3334 22.4687L19.7709 19.3333C21.9271 17.875 22.0521 17.6562 22.0521 15.3333V9.66667C22.0521 7.34375 21.9271 7.125 19.7292 5.64583ZM12.5 15.8854C10.6354 15.8854 9.1146 14.3646 9.1146 12.5C9.1146 10.6354 10.6354 9.11458 12.5 9.11458C14.3646 9.11458 15.8854 10.6354 15.8854 12.5C15.8854 14.3646 14.3646 15.8854 12.5 15.8854Z" fill="#565C63"></path>
+                  </svg>
+                  <span>تنظیمات پروفایل</span>
+                </a>
+              </li>
+              <div class="hr"></div>
+              <li>
+                <a class="dropdown-options" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                    <path d="M20.1459 15.0938L19.1042 13.3646C18.8854 12.9792 18.6875 12.25 18.6875 11.8229V9.18751C18.6875 6.73959 17.25 4.62501 15.1771 3.63543C14.6354 2.67709 13.6354 2.08334 12.4896 2.08334C11.3542 2.08334 10.3334 2.69793 9.79169 3.66668C7.76044 4.67709 6.35419 6.77084 6.35419 9.18751V11.8229C6.35419 12.25 6.15627 12.9792 5.93752 13.3542L4.88544 15.0938C4.46877 15.7917 4.37502 16.5625 4.63544 17.2708C4.88544 17.9688 5.47919 18.5104 6.25002 18.7708C8.27086 19.4583 10.3959 19.7917 12.5209 19.7917C14.6459 19.7917 16.7709 19.4583 18.7917 18.7813C19.5209 18.5417 20.0834 17.9896 20.3542 17.2708C20.625 16.5521 20.5521 15.7604 20.1459 15.0938Z" fill="#565C63"></path>
+                    <path d="M15.4479 20.8438C15.0104 22.0521 13.8542 22.9167 12.5 22.9167C11.6771 22.9167 10.8646 22.5833 10.2917 21.9896C9.95833 21.6771 9.70833 21.2604 9.5625 20.8333C9.69792 20.8542 9.83333 20.8646 9.97917 20.8854C10.2187 20.9167 10.4687 20.9479 10.7187 20.9688C11.3125 21.0208 11.9167 21.0521 12.5208 21.0521C13.1146 21.0521 13.7083 21.0208 14.2917 20.9688C14.5104 20.9479 14.7292 20.9375 14.9375 20.9063C15.1042 20.8854 15.2708 20.8646 15.4479 20.8438Z" fill="#565C63"></path>
+                  </svg>
+                  <span>اعلان ها</span>
+                </a>
+              </li>
+              <div class="hr"></div>
+              <li>
+                <a class="dropdown-options" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                    <path d="M2.86458 19.4271C2.43749 19.4271 2.08333 19.0729 2.08333 18.6458V12.7083C2.03124 9.88541 3.08333 7.21874 5.04166 5.21874C6.99999 3.22916 9.62499 2.13541 12.4479 2.13541C18.2187 2.13541 22.9167 6.83332 22.9167 12.6042V18.5417C22.9167 18.9687 22.5625 19.3229 22.1354 19.3229C21.7083 19.3229 21.3542 18.9687 21.3542 18.5417V12.6042C21.3542 7.69791 17.3646 3.69791 12.4479 3.69791C10.0417 3.69791 7.81249 4.62499 6.15624 6.31249C4.48958 8.01041 3.60416 10.2708 3.64583 12.6875V18.6354C3.64583 19.0729 3.30208 19.4271 2.86458 19.4271Z" fill="#565C63"></path>
+                    <path d="M6.18748 12.9688H6.05206C3.86456 12.9688 2.08331 14.75 2.08331 16.9375V18.8958C2.08331 21.0833 3.86456 22.8646 6.05206 22.8646H6.18748C8.37498 22.8646 10.1562 21.0833 10.1562 18.8958V16.9375C10.1562 14.75 8.37498 12.9688 6.18748 12.9688Z" fill="#565C63"></path>
+                    <path d="M18.9479 12.9688H18.8125C16.625 12.9688 14.8438 14.75 14.8438 16.9375V18.8958C14.8438 21.0833 16.625 22.8646 18.8125 22.8646H18.9479C21.1354 22.8646 22.9167 21.0833 22.9167 18.8958V16.9375C22.9167 14.75 21.1354 12.9688 18.9479 12.9688Z" fill="#565C63"></path>
+                  </svg>
+                  <span>درخواست پشتیبانی</span>
+                </a>
+              </li>
+              <div class="hr"></div>
+              <li>
+                <a class="dropdown-options" href="/accounts/logout">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                    <path d="M8.20827 12.5729C8.20827 12.1458 8.56244 11.7917 8.98952 11.7917H14.6979V2.97918C14.6874 2.47918 14.2916 2.08334 13.7916 2.08334C7.65619 2.08334 3.37494 6.36459 3.37494 12.5C3.37494 18.6354 7.65619 22.9167 13.7916 22.9167C14.2812 22.9167 14.6874 22.5208 14.6874 22.0208V13.3438H8.98952C8.55202 13.3542 8.20827 13 8.20827 12.5729Z" fill="#565C63"></path>
+                    <path d="M21.3958 12.0209L18.4375 9.05211C18.1354 8.75003 17.6354 8.75003 17.3333 9.05211C17.0312 9.35419 17.0312 9.85419 17.3333 10.1563L18.9583 11.7813H14.6875V13.3438H18.9479L17.3229 14.9688C17.0208 15.2709 17.0208 15.7709 17.3229 16.0729C17.4792 16.2292 17.6771 16.3021 17.875 16.3021C18.0729 16.3021 18.2708 16.2292 18.4271 16.0729L21.3854 13.1042C21.6979 12.8125 21.6979 12.3229 21.3958 12.0209Z" fill="#565C63"></path>
+                  </svg>
+                  <span>خروج از حساب کاربری</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="side-panel">
         <div class="logo">
@@ -1468,5 +1565,11 @@
     // Toggle the "show-dp" class on the profile dropdown content element
     profileDropdownContent.classList.toggle('show-dp');
   });
+  
+  const mobileProfileDropdownButton = document.querySelector('.mobile-dropdown-profile-content');
+  const mobileProfile = document.querySelector('.mobile-profile')
+  mobileProfile.addEventListener('click', () => {
+    mobileProfileDropdownButton.classList.toggle('show-dp');
+  })
 </script>
 {% endblock %}
