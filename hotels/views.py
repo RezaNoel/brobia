@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Min, Max, F, Case, When, IntegerField
 from django.core.paginator import Paginator
 from django.urls import reverse
-from django.http import JsonResponse, Http404, HttpResponseNotFound
+from django.http import JsonResponse, Http404, HttpResponseNotFound,HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -11,12 +11,12 @@ from urllib.parse import urlencode
 from datetime import datetime, timedelta
 from jdatetime import date as jalali_date, timedelta as jalali_timedelta
 from .models import City, Hotel, Room, Request, Passenger, Facility,ReservasionNumber
-from blogs.models import BlogModel
 from .forms import BookingForm, BookingModelForm
 from .serializer import HotelSerializer, HotelViewSet
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+<<<<<<< HEAD
 import random, string, time,json,requests
 
 
@@ -32,6 +32,10 @@ phone = ''  # Optional
 CallbackURL = 'http://127.0.0.1:8080/verify'
 
 
+=======
+import random, string, time,requests,json
+from django.conf import settings
+>>>>>>> 2ff6ca0154fa154d21c70f62c21ce5abb4b9b4f6
 
 
 # Create your views here.
@@ -49,6 +53,41 @@ def send_request(request):
     try:
         response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
 
+<<<<<<< HEAD
+=======
+
+# ? sandbox merchant
+if settings.SANDBOX:
+    sandbox = 'sandbox'
+else:
+    sandbox = 'www'
+
+ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
+ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
+ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
+
+amount = 1000  # Rial / Required
+description = "توضیحات مربوط به تراکنش را در این قسمت وارد کنید"  # Required
+phone = '09129471382'  # Optional
+# Important: need to edit for realy server.
+CallbackURL = 'http://127.0.0.1:8000/verify/'
+
+
+def send_request(request):
+    data = {
+        "MerchantID": settings.MERCHANT,
+        "Amount": amount,
+        "Description": description,
+        "Phone": phone,
+        "CallbackURL": CallbackURL,
+    }
+    data = json.dumps(data)
+    # set content length by data
+    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
+    try:
+        response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
+
+>>>>>>> 2ff6ca0154fa154d21c70f62c21ce5abb4b9b4f6
         if response.status_code == 200:
             response = response.json()
             if response['Status'] == 100:
@@ -72,8 +111,13 @@ def verify(authority):
     }
     data = json.dumps(data)
     # set content length by data
+<<<<<<< HEAD
     headers = {'content-type': 'application/json', 'content-length': str(len(data)) }
     response = requests.post(ZP_API_VERIFY, data=data,headers=headers)
+=======
+    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
+    response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
+>>>>>>> 2ff6ca0154fa154d21c70f62c21ce5abb4b9b4f6
 
     if response.status_code == 200:
         response = response.json()
@@ -129,7 +173,6 @@ def HotelHomeView(request):
     formatted_current_date = current_date.strftime('%Y/%m/%d')
     cities = City.objects.all()
     hotels = Hotel.objects.all()
-    blogs = BlogModel.objects.all()
     suggest_hotels = Hotel.objects.filter(boroobia_suggest=True).all()
     online_reserves_hotels = Hotel.objects.filter(online_reserve=True).all()
     online_reserves_hotels_city = set()
@@ -145,7 +188,6 @@ def HotelHomeView(request):
     # hotel = Hotel.objects.get(slug=hotels.slug)
     content = {'cities': cities,
                'hotels':hotels,
-               'blogs':blogs,
                'suggest_hotels':suggest_hotels,
                'online_reserves_hotels':online_reserves_hotels,
                'online_reserves_hotels_city':online_reserves_hotels_city,
@@ -162,92 +204,98 @@ def HotelHomeView(request):
 
 
 def HotelListView(request, city_slug):
-    city = City.objects.get(slug=city_slug)
-    cities = City.objects.all()
-    hotels = Hotel.objects.filter(city=city.id)
-    hotels_count = Hotel.objects.filter(city=city.id).count()
-    rooms = Room.objects.filter(hotel__in=hotels)
-    requests = Request.objects.all()
-    # دریافت نوع مرتب سازی از پارامتر درخواست کاربر
-    sort_type = request.GET.get('sort_select')
+    allcities = City.objects.all()
+    for city in allcities:
+        if city.slug == city_slug:
+            city = City.objects.get(slug=city_slug)
+            cities = City.objects.all()
+            hotels = Hotel.objects.filter(city=city.id)
+            hotels_count = Hotel.objects.filter(city=city.id).count()
+            rooms = Room.objects.filter(hotel__in=hotels)
+            requests = Request.objects.all()
+            # دریافت نوع مرتب سازی از پارامتر درخواست کاربر
+            sort_type = request.GET.get('sort_select')
 
-    if sort_type == 'suggest':
-        # ابتدا برای هتل‌هایی که فیلد boroobia_suggest برابر با True است یک اولویت اعطا می‌کنیم.
-        hotels = hotels.annotate(
-            suggest_priority=Case(
-                When(boroobia_suggest=True, then=1),
-                default=2,
-                output_field=IntegerField()
-            )
-        )
+            if sort_type == 'suggest':
+                # ابتدا برای هتل‌هایی که فیلد boroobia_suggest برابر با True است یک اولویت اعطا می‌کنیم.
+                hotels = hotels.annotate(
+                    suggest_priority=Case(
+                        When(boroobia_suggest=True, then=1),
+                        default=2,
+                        output_field=IntegerField()
+                    )
+                )
 
-        # سپس داده‌ها را بر اساس اولویت و سپس min_price مرتب می‌کنیم.
-        hotels = hotels.order_by('suggest_priority')
-    elif sort_type == 'cheapest':
-        # مرتب سازی بر اساس قیمت کمترین به بیشترین
-        hotels = hotels.annotate(min_price=Min('room__price'))
-        hotels = hotels.order_by('min_price')
-    elif sort_type == 'expensive':
-        # مرتب سازی بر اساس قیمت بیشترین به کمترین
-        hotels = hotels.annotate(max_price=Max('room__price'))
-        hotels = hotels.order_by('-max_price')
-    elif sort_type == 'stars':
-        # مرتب سازی بر اساس تعداد ستاره ها
-        hotels = hotels.order_by('-stars')
-    elif sort_type == 'alphabetical':
-        # مرتب سازی بر اساس الفبا (نام هتل)
-        hotels = hotels.order_by('name')
-    elif sort_type == 'distance':
-        # مرتب سازی بر اساس الفبا (نام هتل)
-        hotels = hotels.order_by('distance')
-    hotels_per_page = 15
-    paginator = Paginator(hotels, hotels_per_page)
+                # سپس داده‌ها را بر اساس اولویت و سپس min_price مرتب می‌کنیم.
+                hotels = hotels.order_by('suggest_priority')
+            elif sort_type == 'cheapest':
+                # مرتب سازی بر اساس قیمت کمترین به بیشترین
+                hotels = hotels.annotate(min_price=Min('room__price'))
+                hotels = hotels.order_by('min_price')
+            elif sort_type == 'expensive':
+                # مرتب سازی بر اساس قیمت بیشترین به کمترین
+                hotels = hotels.annotate(max_price=Max('room__price'))
+                hotels = hotels.order_by('-max_price')
+            elif sort_type == 'stars':
+                # مرتب سازی بر اساس تعداد ستاره ها
+                hotels = hotels.order_by('-stars')
+            elif sort_type == 'distance':
+                # مرتب سازی بر اساس الفبا (نام هتل)
+                hotels = hotels.order_by('distance')
+            elif sort_type == 'alphabetical':
+                # مرتب سازی بر اساس الفبا (نام هتل)
+                hotels = hotels.order_by('name')
+            else:
+                hotels = hotels.order_by('name')
+            hotels_per_page = 3
+            paginator = Paginator(hotels, hotels_per_page)
 
-    page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
+            page_number = request.GET.get('page')
+            page = paginator.get_page(page_number)
 
-    facilities_url = request.GET.get('facilities')
-    if facilities_url:
-        facilities_url_split = facilities_url.split(',')
-        facilities = Facility.objects.filter(name__in=facilities_url_split)
-    else:
-        facilities=[]
+            facilities_url = request.GET.get('facilities')
+            if facilities_url:
+                facilities_url_split = facilities_url.split(',')
+                facilities = Facility.objects.filter(name__in=facilities_url_split)
+            else:
+                facilities=[]
 
-    hotel_execution_status = {}
-    for hotel in page:
-        hotel_execution_status[hotel] = False
+            hotel_execution_status = {}
+            for hotel in page:
+                hotel_execution_status[hotel] = False
 
-    date = request.GET.get('date')
-    date_list = date.split(" - ")
-    enter_date = date_list[0]
-    exit_date = date_list[1]
+            date = request.GET.get('date')
+            date_list = date.split(" - ")
+            enter_date = date_list[0]
+            exit_date = date_list[1]
 
-    is_reserved = {}
-    for room in rooms:
-        is_reserved[room] = False
+            is_reserved = {}
+            for room in rooms:
+                is_reserved[room] = False
 
-    for room in rooms:
-        for my_request in requests:
-            if my_request.room == room:
-                if my_request.is_overlapping(enter_date, exit_date):
-                    print("Error")
-                    is_reserved[room] = True
+            for room in rooms:
+                for my_request in requests:
+                    if my_request.room == room:
+                        if my_request.is_overlapping(enter_date, exit_date):
+                            print("Error")
+                            is_reserved[room] = True
 
-    content = {
-        "city": city,
-        "cities": cities,
-        "hotels": hotels,
-        "hotel_count": hotels_count,
-        "rooms": rooms,
-        "page": page,
-        "sort_type": sort_type,
-        "facilities": facilities,
-        "is_reserved": is_reserved,
-        "hotel_execution_status": hotel_execution_status  # اضافه کردن دیکشنری به context
+            content = {
+                "city": city,
+                "cities": cities,
+                "hotels": hotels,
+                "hotel_count": hotels_count,
+                "rooms": rooms,
+                "page": page,
+                "sort_type": sort_type,
+                "facilities": facilities,
+                "is_reserved": is_reserved,
+                "hotel_execution_status": hotel_execution_status  # اضافه کردن دیکشنری به context
 
-    }
+            }
 
-    return render(request, 'hotels/hotel-list.html', content)
+            return render(request, 'hotels/hotel-list.html', content)
+    return HttpResponse("عملیات با موفقیت انجام شد!")
 
 def HotelSingleView(request, city_slug, hotel_slug):
 
@@ -321,59 +369,61 @@ def ShowRequestConfirm(request,room_slug,confirm_city_slug,hotel_slug,reserve_co
     return render(request, 'hotels/hotel-confirm.html',context)
 @login_required
 def RequestConfirmView(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
+    allcities = City.objects.all()
+    for city in allcities:
+        if city.slug ==confirm_city_slug:
+            city = City.objects.get(slug=confirm_city_slug)
+            hotels = Hotel.objects.filter(city=city.id)
+            hotel = Hotel.objects.get(slug=hotel_slug)
+            room = Room.objects.get(slug=room_slug)
 
-    city = City.objects.get(slug=confirm_city_slug)
-    hotels = Hotel.objects.filter(city=city.id)
-    hotel = Hotel.objects.get(slug=hotel_slug)
-    rooms = Room.objects.get(slug=room_slug)
+            date = request.GET.get('date')
+            date_list = date.split(" - ")
+            enter = date_list[0]
+            exit = date_list[1]
+            passengers = int(request.GET.get('passengers'))
+            children = int(request.GET.get('children'))
+            room_count = request.GET.get('room')
+            reservasionnumber = ReservasionNumber.objects.get(hotel=room.hotel)
+            start_time = datetime.now()
+            reserve_code_status = ''
+            try:
+                reserve_code_status = Request.objects.get(reserve_code=reserve_confirm)
+            except Request.DoesNotExist:
 
-    date = request.GET.get('date')
-    date_list = date.split(" - ")
-    enter = date_list[0]
-    exit = date_list[1]
-    passengers = int(request.GET.get('passengers'))
-    children = int(request.GET.get('children'))
-    room_count = request.GET.get('room')
-    reservasionnumber = ReservasionNumber.objects.get(hotel=rooms.hotel)
-    start_time = datetime.now()
-    reserve_code_status = ''
-    try:
-        reserve_code_status = Request.objects.get(reserve_code=reserve_confirm)
-    except Request.DoesNotExist:
+                reserve_code_status = Request.objects.create(
+                    room=room,
+                    room_count=room_count,
+                    enter=enter,
+                    exit=exit,
+                    passenger_count=passengers,
+                    child_count=children,
+                    reserve_code=reserve_confirm,
+                    reservasion_number=reservasionnumber,
+                    reserve_time = start_time.strftime('%H:%M')
+                )
+                request.user.reserves.add(reserve_code_status)
 
-        reserve_code_status = Request.objects.create(
-            room=rooms,
-            room_count=room_count,
-            enter=enter,
-            exit=exit,
-            passenger_count=passengers,
-            child_count=children,
-            reserve_code=reserve_confirm,
-            reservasion_number=reservasionnumber,
-            reserve_time = start_time.strftime('%H:%M')
-        )
-        request.user.reserves.add(reserve_code_status)
-
-    date_time_object = datetime.strptime(reserve_code_status.reserve_time, '%H:%M')
-
-
-    countdown_duration = timedelta(minutes=20)
-    end_time = date_time_object + countdown_duration
+            date_time_object = datetime.strptime(reserve_code_status.reserve_time, '%H:%M')
 
 
+            countdown_duration = timedelta(minutes=20)
+            end_time = date_time_object + countdown_duration
 
-    context = {
-        'end_time': end_time,
-        'room':rooms,
-        'reserve':reserve_code_status,
-        'enter':enter,
-        'exit':exit,
-        'hotel':hotel,
-        'city':city,
 
-    }
-    return render(request, 'hotels/hotel-confirm.html', context)
 
+            context = {
+                'end_time': end_time,
+                'room':rooms,
+                'reserve':reserve_code_status,
+                'enter':enter,
+                'exit':exit,
+                'hotel':hotel,
+                'city':city,
+
+            }
+            return render(request, 'hotels/hotel-confirm.html', context)
+    return HttpResponse("عملیات با موفقیت انجام شد!")
 @login_required
 def OnlineReserveView(request,room_slug,confirm_city_slug,hotel_slug,reserve_confirm):
 
