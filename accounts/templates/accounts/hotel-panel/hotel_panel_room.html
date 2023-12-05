@@ -532,26 +532,6 @@
     font-weight: 300;
   }
 
-  .room-state{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    border-radius: 5px;
-    box-shadow: -2px 2px 15px 0px rgba(86, 92, 99, 0.07);
-    padding-inline: 10px;
-  }
-
-  .full{
-    color: #C30000;
-    background: #fdd2d2;
-  }
-
-  .empty{
-    color: #00966D;
-    background: #d0fff1;
-  }
-
   .more-details{
     display: flex;
     align-items: center;
@@ -2228,17 +2208,17 @@
                   </span>
                   {% if not room.is_reserve %}
                         <span class="room-state empty">
-                          <span>خالی</span>
+                          <!-- <span>خالی</span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
                             <circle cx="7.40088" cy="6.5" r="6.5" fill="#00966D"/>
-                          </svg>
+                          </svg> -->
                         </span>
                     {% else %}
                         <span class="room-state full">
-                          <span>پر شده</span>
+                          <!-- <span>پر شده</span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
                             <path d="M7.5 0C4.05625 0 1.25 2.80625 1.25 6.25C1.25 9.69375 4.05625 12.5 7.5 12.5C10.9438 12.5 13.75 9.69375 13.75 6.25C13.75 2.80625 10.9438 0 7.5 0ZM9.6 7.6875C9.78125 7.86875 9.78125 8.16875 9.6 8.35C9.50625 8.44375 9.3875 8.4875 9.26875 8.4875C9.15 8.4875 9.03125 8.44375 8.9375 8.35L7.5 6.9125L6.0625 8.35C5.96875 8.44375 5.85 8.4875 5.73125 8.4875C5.6125 8.4875 5.49375 8.44375 5.4 8.35C5.21875 8.16875 5.21875 7.86875 5.4 7.6875L6.8375 6.25L5.4 4.8125C5.21875 4.63125 5.21875 4.33125 5.4 4.15C5.58125 3.96875 5.88125 3.96875 6.0625 4.15L7.5 5.5875L8.9375 4.15C9.11875 3.96875 9.41875 3.96875 9.6 4.15C9.78125 4.33125 9.78125 4.63125 9.6 4.8125L8.1625 6.25L9.6 7.6875Z" fill="#C30000"/>
-                          </svg>
+                          </svg> -->
                         </span>
                     {% endif %}
                   <hr>
@@ -2274,17 +2254,17 @@
                 <span>{{ room.bed }} تخته</span>
                     {% if not room.is_reserve %}
                         <span class="room-state empty">
-                          <span>خالی</span>
+                          <!-- <span>خالی</span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
                             <circle cx="7.40088" cy="6.5" r="6.5" fill="#00966D"/>
-                          </svg>
+                          </svg> -->
                         </span>
                     {% else %}
                         <span class="room-state full">
-                          <span>پر شده</span>
+                          <!-- <span>پر شده</span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
                             <path d="M7.5 0C4.05625 0 1.25 2.80625 1.25 6.25C1.25 9.69375 4.05625 12.5 7.5 12.5C10.9438 12.5 13.75 9.69375 13.75 6.25C13.75 2.80625 10.9438 0 7.5 0ZM9.6 7.6875C9.78125 7.86875 9.78125 8.16875 9.6 8.35C9.50625 8.44375 9.3875 8.4875 9.26875 8.4875C9.15 8.4875 9.03125 8.44375 8.9375 8.35L7.5 6.9125L6.0625 8.35C5.96875 8.44375 5.85 8.4875 5.73125 8.4875C5.6125 8.4875 5.49375 8.44375 5.4 8.35C5.21875 8.16875 5.21875 7.86875 5.4 7.6875L6.8375 6.25L5.4 4.8125C5.21875 4.63125 5.21875 4.33125 5.4 4.15C5.58125 3.96875 5.88125 3.96875 6.0625 4.15L7.5 5.5875L8.9375 4.15C9.11875 3.96875 9.41875 3.96875 9.6 4.15C9.78125 4.33125 9.78125 4.63125 9.6 4.8125L8.1625 6.25L9.6 7.6875Z" fill="#C30000"/>
-                          </svg>
+                          </svg> -->
                         </span>
                     {% endif %}
 
