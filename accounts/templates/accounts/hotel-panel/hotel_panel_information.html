@@ -2478,135 +2478,135 @@
     });
   })
 
-  const imageSection = document.querySelector(".selected-images");
-  const imageInput = document.querySelector('.add-image')
-  const imageName = document.querySelector('.image-name')
-  const saveImage = document.querySelector('.action-save-image')
-  const removeImage = document.querySelector('.remove-image-btn')
-  let imageHtml = ''
-  let imageId = 1
-  imageInput.addEventListener('change', () => {
-    if(imageInput.value){
-      imageName.innerHTML = imageInput.value
+  // const imageSection = document.querySelector(".selected-images");
+  // const imageInput = document.querySelector('.add-image')
+  // const imageName = document.querySelector('.image-name')
+  // const saveImage = document.querySelector('.action-save-image')
+  // const removeImage = document.querySelector('.remove-image-btn')
+  // let imageHtml = ''
+  // let imageId = 1
+  // imageInput.addEventListener('change', () => {
+  //   if(imageInput.value){
+  //     imageName.innerHTML = imageInput.value
     
-      if (imageInput.files && imageInput.files[0]) {
-    const fileReader = new FileReader();
-    fileReader.onload = function(e) {
-      imageSection.innerHTML += `<div class="image-btn" id="id-image-${imageId}">
-        <input id="image-${imageId}" class="uploaded-image check-input-i" type="checkbox" hidden>
-        <label for="image-${imageId}" class="image-checkbox">
-          <img src="${e.target.result}" alt="">
-          <i class="facility-checkbox image-tick">
-            <svg viewBox="0 0 22 16" fill="none">
-              <path d="M1 6.85L8.09677 14L21 1"/>
-            </svg>
-          </i>
-        </label>
-      </div>`
-    }
-    fileReader.readAsDataURL(imageInput.files[0]);
-    setTimeout(() => {
-      deleteImage()
-      imageId += 1
-    }, 1000)
-  }
-    }else{
-      imageName.innerHTML = 'هیچ فایلی انتخاب نشده'
-    }
-  })
+  //     if (imageInput.files && imageInput.files[0]) {
+  //   const fileReader = new FileReader();
+  //   fileReader.onload = function(e) {
+  //     imageSection.innerHTML += `<div class="image-btn" id="id-image-${imageId}">
+  //       <input id="image-${imageId}" class="uploaded-image check-input-i" type="checkbox" hidden>
+  //       <label for="image-${imageId}" class="image-checkbox">
+  //         <img src="${e.target.result}" alt="">
+  //         <i class="facility-checkbox image-tick">
+  //           <svg viewBox="0 0 22 16" fill="none">
+  //             <path d="M1 6.85L8.09677 14L21 1"/>
+  //           </svg>
+  //         </i>
+  //       </label>
+  //     </div>`
+  //   }
+  //   fileReader.readAsDataURL(imageInput.files[0]);
+  //   setTimeout(() => {
+  //     deleteImage()
+  //     imageId += 1
+  //   }, 1000)
+  // }
+  //   }else{
+  //     imageName.innerHTML = 'هیچ فایلی انتخاب نشده'
+  //   }
+  // })
   
-  const imagesOverlay = document.querySelector('.images-overlay')
-  const imageElementInput = document.querySelectorAll('.check-input-i')
-  const addImageSection = document.querySelector('.add-image-section')
-  const removeImageSection = document.querySelector('.remove-image-section')
-  const cancelImage = document.querySelector('.action-cancel-image')
+  // const imagesOverlay = document.querySelector('.images-overlay')
+  // const imageElementInput = document.querySelectorAll('.check-input-i')
+  // const addImageSection = document.querySelector('.add-image-section')
+  // const removeImageSection = document.querySelector('.remove-image-section')
+  // const cancelImage = document.querySelector('.action-cancel-image')
 
-  saveImage.addEventListener('click', () => {
-    imageHtml += imageSection.innerHTML
-    imagesOverlay.classList.remove('show-overlay')
-    addImageSection.style.display = 'inline-block'
-    removeImageSection.style.display = 'none'
-    imageName.value = 'هیچ فایلی انتخاب نشده'
-  })
+  // saveImage.addEventListener('click', () => {
+  //   imageHtml += imageSection.innerHTML
+  //   imagesOverlay.classList.remove('show-overlay')
+  //   addImageSection.style.display = 'inline-block'
+  //   removeImageSection.style.display = 'none'
+  //   imageName.value = 'هیچ فایلی انتخاب نشده'
+  // })
   
-  document.querySelector('.image-section').addEventListener('click', () => {
-    imagesOverlay.classList.add('show-overlay')
-    imageSection.innerHTML = imageHtml
-    imageHtml = ''
-    deleteImage()
-  })
+  // document.querySelector('.image-section').addEventListener('click', () => {
+  //   imagesOverlay.classList.add('show-overlay')
+  //   imageSection.innerHTML = imageHtml
+  //   imageHtml = ''
+  //   deleteImage()
+  // })
 
-  cancelImage.addEventListener('click', () => {
-    imagesOverlay.classList.remove('show-overlay')
-    imageElementInput.forEach(ci => {
-      ci.checked = false
-    })
-    imageName.value = 'هیچ فایلی انتخاب نشده'
-  })
+  // cancelImage.addEventListener('click', () => {
+  //   imagesOverlay.classList.remove('show-overlay')
+  //   imageElementInput.forEach(ci => {
+  //     ci.checked = false
+  //   })
+  //   imageName.value = 'هیچ فایلی انتخاب نشده'
+  // })
 
-  if (imageSection.scrollHeight > 420) {
-    imageSection.style.overflowY = "scroll";
-  }
+  // if (imageSection.scrollHeight > 420) {
+  //   imageSection.style.overflowY = "scroll";
+  // }
 
-  const facilitySection = document.querySelector(".selected-facilities");
+  // const facilitySection = document.querySelector(".selected-facilities");
 
-  if (facilitySection.scrollHeight > 420) {
-    facilitySection.style.overflowY = "scroll";
-  }
+  // if (facilitySection.scrollHeight > 420) {
+  //   facilitySection.style.overflowY = "scroll";
+  // }
 
-  let removeImages = []
-  //دکمه حذف
+  // let removeImages = []
+  // //دکمه حذف
 
-  function deleteImage () {
-      const inputId = imageSection.querySelectorAll('input')
-    document.querySelectorAll(".check-input-i")?.forEach(ci => {
-    ci.addEventListener('change', () => {
-      let checkedArr = []
+  // function deleteImage () {
+  //     const inputId = imageSection.querySelectorAll('input')
+  //   document.querySelectorAll(".check-input-i")?.forEach(ci => {
+  //   ci.addEventListener('change', () => {
+  //     let checkedArr = []
       
-       // منطق نشان دادن دکمه حذف
-        inputId.forEach(input => {
-          if(document.getElementById(input.id).checked){
-            checkedArr.push(true)
-          }else{
-            checkedArr.push(false)
-          }
-        })
+  //      // منطق نشان دادن دکمه حذف
+  //       inputId.forEach(input => {
+  //         if(document.getElementById(input.id).checked){
+  //           checkedArr.push(true)
+  //         }else{
+  //           checkedArr.push(false)
+  //         }
+  //       })
 
 
-        if(ci.checked) removeImages.push(ci.id)
-        if(!ci.checked) removeImages.splice(removeImages.indexOf(ci.id), 1)
-        console.log(removeImages)
-      //نشان دادن دکمه حذف
-        if(checkedArr.includes(true)){
-          addImageSection.style.display = 'none'
-          removeImageSection.style.display = 'flex'
-        }else{
-          addImageSection.style.display = 'inline-block'
-          removeImageSection.style.display = 'none'
-        }
-        checkedArr = []
-        cancelImage.addEventListener('click', () => {
-          addImageSection.style.display = 'inline-block'
-          removeImageSection.style.display = 'none'
-        })
-    })
-  })
-  }
+  //       if(ci.checked) removeImages.push(ci.id)
+  //       if(!ci.checked) removeImages.splice(removeImages.indexOf(ci.id), 1)
+  //       console.log(removeImages)
+  //     //نشان دادن دکمه حذف
+  //       if(checkedArr.includes(true)){
+  //         addImageSection.style.display = 'none'
+  //         removeImageSection.style.display = 'flex'
+  //       }else{
+  //         addImageSection.style.display = 'inline-block'
+  //         removeImageSection.style.display = 'none'
+  //       }
+  //       checkedArr = []
+  //       cancelImage.addEventListener('click', () => {
+  //         addImageSection.style.display = 'inline-block'
+  //         removeImageSection.style.display = 'none'
+  //       })
+  //   })
+  // })
+  // }
 
-  deleteImage()
+  // deleteImage()
   
-  removeImage.addEventListener('click', () => {
-    removeImages.forEach((ri) => {
-      if(document.getElementById('id-' + ri)){
-        document.getElementById('id-' + ri).remove()
-        removeImages.splice(removeImages.indexOf(ri.id), 1)
-        imageSection.innerHTML = imageSection.innerHTML.slice()
-        console.log(removeImages)
-      }
-    })
-    addImageSection.style.display = 'inline-block'
-    removeImageSection.style.display = 'none'
-  })
+  // removeImage.addEventListener('click', () => {
+  //   removeImages.forEach((ri) => {
+  //     if(document.getElementById('id-' + ri)){
+  //       document.getElementById('id-' + ri).remove()
+  //       removeImages.splice(removeImages.indexOf(ri.id), 1)
+  //       imageSection.innerHTML = imageSection.innerHTML.slice()
+  //       console.log(removeImages)
+  //     }
+  //   })
+  //   addImageSection.style.display = 'inline-block'
+  //   removeImageSection.style.display = 'none'
+  // })
 
     
   const mobileProfileDropdownButton = document.querySelector('.mobile-dropdown-profile-content');

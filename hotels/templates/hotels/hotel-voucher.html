@@ -1,6 +1,10 @@
 {% load static %}
 {% block header %}
     <style>
+        :root {
+            color-scheme: only light;
+        }
+
         *{
             margin: 0;
             padding: 0;
@@ -560,6 +564,10 @@
         }
 
         @media print {
+            :root {
+                color-scheme: only light;
+            }
+
             * {
                 -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
                 color-adjust: exact !important;                 /* Firefox 48 – 96 */
