@@ -7,10 +7,16 @@ urlpatterns = [
     path('request/', views.send_request, name='request'),
     path('verify/', views.verify, name='verify'),
     path('rL7mikP8JFv66LjYtNq2/<int:pk>',views.HotelLikeEndPoint,name='likepk'),
+<<<<<<< HEAD
     path('bankpage/<str:reserve>',views.BankPaymentEndPoint,name='bankpayment'),
     path('<str:reserve>/paycheck',views.PayCheckView,name='paycheck'),
     path('<str:reserve>/voucher', views.HotelVoucherView, name='voucher'),
     path('<str:reserve>/payment/', views.PaymentView, name='payment'),
+=======
+    # path('bankpage/<str:reserve>',views.BankPaymentEndPoint,name='bankpayment'),
+    path('request', views.send_request, name='bankpayment'),
+    path('verify', views.verify , name='verify'),
+>>>>>>> dd1d42399e13490884c52fdac2c9f063d91f2d65
     path('<str:reserve>/informations', views.HotelBookingView, name='hotel-booking'),
     path('<str:reserve>/confirm', views.RequestCheckView, name='hotel-check'),
     path('<slug:confirm_city_slug>/<slug:hotel_slug>/<slug:room_slug>/<str:reserve_confirm>?v=profile', views.ShowRequestConfirm,
