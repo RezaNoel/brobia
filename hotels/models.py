@@ -16,10 +16,14 @@ from jdatetime import datetime as jalali_datetime
 # Create your models here.
 def room_image_path_154(instance, filename):
     return os.path.join('static\img','200x154',  filename)
-def room_image_path_160(instance, filename):
-    return os.path.join('static\img','240x160',  filename)
 def room_image_path_550(instance, filename):
     return os.path.join('static\img','820x550',  filename)
+class Receipt(models.Model):
+    name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='receipt_images/')
+    class Meta:
+        verbose_name = ("رسید پرداخت")
+        verbose_name_plural = ("رسید پرداخت ها")
 class City(models.Model):
     name = models.CharField(max_length=75,verbose_name='نام اصلی')
     faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
@@ -60,8 +64,8 @@ class Image(models.Model):
         verbose_name = ("تصویر")
         verbose_name_plural = ("تصاویر")
 class Hotel(models.Model):
-    name = models.CharField(max_length=75,verbose_name='نام اصلی')
-    faname = models.CharField(default="",max_length=75,verbose_name='نام فارسی')
+    name = models.CharField(max_length=75,db_index=True,verbose_name='نام اصلی')
+    faname = models.CharField(default="",db_index=True,max_length=75,verbose_name='نام فارسی')
     address = models.CharField(max_length=75,verbose_name='آدرس')
     stars = models.IntegerField(verbose_name="ستاره")
     likes = models.IntegerField(default=0 ,verbose_name="لایک ها")
@@ -110,23 +114,32 @@ class Hotel(models.Model):
     class Meta:
         verbose_name = ("هتل")
         verbose_name_plural = ("هتل ها")
-
 class HotelImage(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
-
 class Room(models.Model):
-    name = models.CharField(max_length=75,verbose_name='نام')
-    faname = models.CharField(default="",max_length=75,verbose_name='نام نمایشی')
-    price = models.IntegerField(verbose_name='قیمت',default=0)
+    TYPE_CHOICES = (
+        ('R', 'اتاق'),
+        ('S', 'سوئیت'),
+        ('SR','سوئیت رویال'),
+        ('A1','آپارتمان یک خوابه'),
+        ('A2','آپارتمان دو خوابه')
+    )
+
+    name = models.CharField(max_length=75,db_index=True,verbose_name='نام')
+    faname = models.CharField(default="",max_length=75,db_index=True,verbose_name='نام نمایشی')
+    type = models.CharField(max_length=2, choices=TYPE_CHOICES, default='R', verbose_name='تایپ')
+    price = models.IntegerField(verbose_name='قیمت', default=0)
+    high_price = models.IntegerField(verbose_name='قیمت پیک', default=0)
+    low_price = models.IntegerField(verbose_name='قیمت غیر پیک', default=0)
+    count = models.IntegerField(verbose_name='تعداد اتاق', default=1)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE,verbose_name='هتل')
     bed = models.IntegerField(verbose_name='تعداد تخت')
     slug = models.SlugField(default="",null=False,blank=True,db_index=True,verbose_name='لینک')
     gallery = models.ManyToManyField(Image, through='RoomImage')
     image = models.ImageField(blank=True, verbose_name='عکس',upload_to=room_image_path_154)
-    image_booking = models.ImageField(blank=True, verbose_name='عکس رزرو',upload_to=room_image_path_160)
     facilities = models.ManyToManyField(Facility, blank=True,verbose_name='امکانات')
-    is_reserve = models.BooleanField(default=False, verbose_name='خالی / پر')
+
 
 
     def save(self, *args, **kwargs):
@@ -136,17 +149,14 @@ class Room(models.Model):
     def __str__(self):
         return self.faname+" "+self.hotel.faname
 
-    def format_price(self):
-        return '{:,.0f}'.format(self.price)
+
 
     class Meta:
         verbose_name = ("اتاق")
         verbose_name_plural = ("اتاق ها")
-
 class RoomImage(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
-
 class ReservasionNumber(models.Model):
     number = models.CharField(max_length=15,verbose_name='شماره رزرواسیون')
     hotel = models.ForeignKey(Hotel,on_delete=models.CASCADE,verbose_name='شماره رزرواسیون')
@@ -189,6 +199,8 @@ class Request(models.Model):
     def is_overlapping(self, start_date, end_date):
         return (self.enter < end_date and self.exit > start_date)
 
+
+
     def date_concat(self):
         return f'{self.enter} {self.exit}'
     def reserve_date_shamsi(self):
@@ -206,7 +218,6 @@ class Request(models.Model):
         return Room.objects.filter(hotel=self).aggregate(min_price=Min('price'))['min_price']
     def __str__(self):
         return self.reserve_code
-
 class Passenger(models.Model):
     firstname = models.CharField(max_length=75,verbose_name='نام')
     lastname = models.CharField(max_length=75,verbose_name='نام خانوادگی')
@@ -222,3 +233,17 @@ class Passenger(models.Model):
 
     def __str__(self):
         return self.firstname+" "+self.lastname
+class SeasonPrice(models.Model):
+    CHOICES = (
+        ('H', 'High Season'),
+        ('L', 'Low Season'),
+    )
+    city = models.ForeignKey(City, verbose_name='شهر',on_delete=models.CASCADE)
+    start_date = models.CharField(max_length=10,verbose_name='تاریخ شروع')
+    end_date = models.CharField(max_length=10,verbose_name='تاریخ پایان')
+    season_status = models.CharField(max_length=1, choices=CHOICES, default='H', verbose_name='وضعیت')
+    def __str__(self):
+        return f'{self.city} - {self.season_status}'
+    class Meta:
+        verbose_name = ("ایام پیک")
+        verbose_name_plural = ("ایام پیک")

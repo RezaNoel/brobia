@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% load hotels_tags %}
 
         <!-- Title -->
 {% block title %}برو بیا | چه برو بیا ایه{% endblock %}
@@ -180,7 +181,11 @@
                         <div class="shadow-soft bg-white rounded-sm">
                             <div class="pt-5 pb-3 px-5 border-bottom">
                                 <a href="#" class="d-block mb-3">
-                                    <img class="img-fluid rounded-xs" src="{{ room.image_booking.url}}" alt="{{ room.image_booking.url}}">
+                                    {% if room.image %}
+                                        <img class="img-fluid rounded-xs" src="{{ room.image.url}}" alt="{{ room.image.url}}">
+                                    {% else %}
+                                        <img class="img-fluid rounded-xs" src="{% static 'img/200x154/imagenotfound.jpg' %}" alt="Image Not Found">
+                                    {% endif %}
                                 </a>
                                 <a href="#" class="text-dark font-weight-bold pr-xl-1">هتل {{ hotel.faname}} اتاق {{ room.faname }}</a>
                                 <div class="my-1 flex-horizontal-center text-gray-1">
@@ -277,7 +282,7 @@
                                             <ul class="list-unstyled font-size-1 mb-0 font-size-16">
                                                 <li class="d-flex justify-content-between py-2">
                                                     <span class="font-weight-medium">مبلغ کل </span>
-                                                    <span class="text-secondary">{{ room.format_price }} تومان</span>
+                                                    <span class="text-secondary">{{format_price|get_room_price:room }} تومان</span>
                                                 </li>
 
                                                 <li class="d-flex justify-content-between py-2">
@@ -292,7 +297,7 @@
 
                                                 <li class="d-flex justify-content-between py-2 font-size-17 font-weight-bold">
                                                     <span class="font-weight-bold">مبلغ </span>
-                                                    <span class="">{{ room.format_price }} تومان پرداخت کنید</span>
+                                                    <span class="">{{format_price|get_room_price:room }} تومان پرداخت کنید</span>
                                                 </li>
                                             </ul>
                                             <!-- End Fact List -->

@@ -21,7 +21,7 @@ class UserProfileForm(UserChangeForm):
         widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('کدملی خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off','id': 'nid'})
     )
     birthdate = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('تاریخ تولد خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off','id': 'birthdate'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('تاریخ تولد خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false','placeholder':'1370/01/01', 'autocorrect': 'off','id': 'birthdate'})
     )
     email = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'oninvalid': "setCustomValidity('ایمیل خود را وارد کنید')",'onchange': "try{setCustomValidity('')}catch(e){}", 'spellcheck': 'false', 'autocorrect': 'off','id': 'email'})
@@ -91,6 +91,9 @@ class RegisterForm(forms.ModelForm):
         MinLengthValidator(limit_value=10, message="کدملی باید حداقل 10 کاراکتر داشته باشد."),
         MaxLengthValidator(limit_value=10, message="کدملی نمی‌تواند بیش از 10 کاراکتر داشته باشد.")
     ])
+    birthdate = forms.CharField(label="تاریخ تولد",widget=forms.TextInput(
+        attrs={'class': 'form-control jalali-datepicker', 'placeholder': '1402/04/15'}
+    ))
     phone = forms.CharField(label="شماره همراه",validators=[
         MinLengthValidator(limit_value=11, message="شماره همراه باید حداقل 11 کاراکتر داشته باشد."),
         MaxLengthValidator(limit_value=11, message="شماره همراه نمی‌تواند بیش از 11 کاراکتر داشته باشد.")
@@ -104,7 +107,7 @@ class RegisterForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['phone'].widget.attrs.update({'class': 'form-control', 'placeholder': '09XXXXXXXXX'})
         self.fields['nid'].widget.attrs.update({'class': 'form-control', 'placeholder': 'کد ملی خود را وارد کنید'})
-        self.fields['birthdate'].widget.attrs.update({'class': 'form-control', 'placeholder': 'تاریخ تولد خود را وارد کنید'})
+        # self.fields['birthdate'].widget.attrs.update({'class': 'form-control jalali-datepicker', 'placeholder': '1402/04/15'})
 
     # def clean_phone(self):
     #     phone = self.cleaned_data.get('phone')

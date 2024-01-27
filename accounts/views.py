@@ -149,10 +149,10 @@ def UserProfileView(request):
     updateProfileForm = UserProfileForm()
     myProfileForm = ProfileForm()
     if request.method == 'POST':
-        if 'profile' in request.POST:
+        if 'first_name' in request.POST:
             updateProfileForm = UserProfileForm(request.POST, request.FILES, instance=request.user)
             if updateProfileForm.is_valid():
-                print(updateProfileForm)
+                # print(updateProfileForm)
                 updateProfileForm.save()
         # if 'profile' in request.POST:
         #     myProfileForm = ProfileForm(request.POST,request.FILES)
@@ -165,7 +165,9 @@ def UserProfileView(request):
             if form.is_valid():
                 user = form.save()
                 update_session_auth_hash(request, user)
-                updateProfileForm = YourUpdateProfileForm()
+                if user is not None:
+                    login(request, user)
+                updateProfileForm = UserProfileForm()
 
     else:
         form = CustomPasswordChangeForm(request.user)
@@ -196,8 +198,11 @@ def HotelAdminView(request,page):
             room_name = request.POST.get('roomName')
             bed_count = int(request.POST.get('bedCounts'))
             room_price = int(request.POST.get('roomPrice'))
-
-            new_room = Room(name=room_name,faname=room_name,bed=bed_count,price=room_price, hotel=myHotel.hotel)
+            high_price = int(request.POST.get('roomHPrice'))
+            low_price = int(request.POST.get('roomLPrice'))
+            room_type = request.POST.get('roomType')
+            room_count = int(request.POST.get('roomCount'))
+            new_room = Room(name=room_name,faname=room_name,count=room_count,price=room_price,high_price=high_price,low_price=low_price,bed=bed_count,type=room_type, hotel=myHotel.hotel)
             new_room.save()
             for facility in roomFacilities:
                 checkbox_name = f'facility_checkbox_{facility.id}'
@@ -205,7 +210,6 @@ def HotelAdminView(request,page):
                     new_room.facilities.add(facility)
                 else:
                     new_room.facilities.remove(facility)
-
         else:
             for facility in hotelFacilities:
                 checkbox_name = f'facility_checkbox_{facility.id}'
@@ -230,6 +234,31 @@ def RoomSingleView(request,page, room_slug):
     room = Room.objects.get(slug=room_slug)
     facilities = room.facilities.all()
     roomFacilities = Facility.objects.filter(related='R')
+    if request.method == 'POST':
+        if 'roomName' in request.POST:
+            room.name = request.POST.get('roomName')
+            room.faname = request.POST.get('roomName')
+            room.bed = int(request.POST.get('bedCounts'))
+            room.price = int(request.POST.get('roomPrice'))
+            room.high_price = int(request.POST.get('roomHPrice'))
+            room.low_price = int(request.POST.get('roomLPrice'))
+            room.count = int(request.POST.get('roomCount'))
+            room.type = request.POST.get('roomType')
+            room.save()
+            for facility in roomFacilities:
+                checkbox_name = f'facility_checkbox_{facility.id}'
+                if checkbox_name in request.POST:
+                    room.facilities.add(facility)
+                else:
+                    room.facilities.remove(facility)
+
+        else:
+            for facility in hotelFacilities:
+                checkbox_name = f'facility_checkbox_{facility.id}'
+                if checkbox_name in request.POST:
+                    myHotel.hotel.facilities.add(facility)
+                else:
+                    myHotel.hotel.facilities.remove(facility)
     content = {"room": room,
                 "myHotel": myHotel,
                'roomFacilities': roomFacilities,
@@ -237,6 +266,15 @@ def RoomSingleView(request,page, room_slug):
                }
 
     return render(request, 'accounts/hotel-panel/hotel_panel_room_single.html', content)
+
+def DeleteRoomEndPoint(request,room_slug):
+    room = Room.objects.get(slug=room_slug)
+    room.delete()
+    reversed_url = reverse('hotel-panel', args=['room'])  # /another-url/123/
+    return HttpResponseRedirect(reversed_url)
+
+
+
 
 
 

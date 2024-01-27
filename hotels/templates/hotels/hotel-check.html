@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% load hotels_tags %}
 
         <!-- Title -->
 {% block title %}برو بیا | چه برو بیا ایه{% endblock %}
@@ -10,7 +11,31 @@
 {% include 'include/list-header.html' %}
         <!-- ========== MAIN CONTENT ========== -->
     <main id="content" class="bg-gray space-2">
+
         <div class="mb-5 shadow-soft bg-white rounded-sm">
+        <div class="py-3 px-4 px-xl-12 border-bottom">
+                                <ul class="list-group flex-nowrap overflow-auto overflow-md-visble list-group-horizontal list-group-borderless flex-center-between pt-1">
+                                    <li class="list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40  border-width-2 border border-gray  mx-auto rounded-circle">
+                                            1
+                                        </div>
+                                        <div class="text-gray-1">تایید رزرو</div>
+                                    </li>
+                                    <li class="list-group-item text-center flex-shrink-0 flex-xl-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40 border  border-width-2 border-gray mx-auto rounded-circle">
+                                            2
+                                        </div>
+                                        <div class="text-gray-1">اطلاعات مسافران</div>
+
+                                    </li>
+                                    <li class="list-group-item text-center flex-shrink-0 flex-md-shrink-1">
+                                        <div class="flex-content-center mb-3 width-40 height-40 border bg-primary border-width-2 border-primary text-white mx-auto rounded-circle">
+                                            3
+                                        </div>
+                                        <div class="text-primary">دریافت واچر هتل</div>
+                                    </li>
+                                </ul>
+                            </div>
             <div class="py-6 px-5 border-bottom">
                 <div class="flex-horizontal-center">
                     <div class="height-50 width-50 flex-shrink-0 flex-content-center bg-primary rounded-circle">
@@ -18,9 +43,9 @@
                     </div>
                     <div class="ml-3">
                         <h3 class="font-size-18 font-weight-bold text-dark mb-0 text-lh-sm">
-                            با تشکر. درخواست رزرو شما برای هتل {{ hotel.faname }} ارسال گردید.
+                            اطلاعات مسافران در سامانه ثبت شد.
                         </h3>
-                        <p class="mb-0">پس از تایید درخواست ، به صفحه تکمیل اطلاعات مسافران منتقل می شوید.</p>
+                        <p class="mb-0">پس از تایید اطلاعات زیر برای دریافت واچر دکمه پرداخت را فشار دهید.</p>
                     </div>
                 </div>
             </div>
@@ -47,7 +72,7 @@
 
                     <li class="d-flex justify-content-between py-2">
                         <span class="font-weight-medium">مبلغ کل پرداختی </span>
-                        <span class="text-secondary text-right">{{ reserve.room.format_price}}</span>
+                        <span class="text-secondary text-right">{{format_price|get_room_price:room }}</span>
                     </li>
 
                     <li class="d-flex justify-content-between py-2">
@@ -120,7 +145,7 @@
                 {% endfor %}
                     <!-- End Fact List -->
                 <div class="d-flex justify-content-center align-content-center ">
-                    <a href="{% url 'request' %}" class="btn px-5 py-3 btn-success">پرداخت</a>
+                    <a href="{% url 'payment' reserve=reserve %}" class="btn px-5 py-3 btn-success">پرداخت</a>
                 </div>
             </div>
         </div>

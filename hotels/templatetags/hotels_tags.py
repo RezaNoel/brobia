@@ -7,6 +7,19 @@ register = template.Library()
 def get_room_reserve_status(is_reserved, room):
     gt=is_reserved.get(room, False)
     return gt
+@register.filter
+def get_room_count_status(is_reserved, room):
+    gt=is_reserved.get(room.count)
+    if gt > 2:
+        return True
+    else:
+        return False
+
+@register.filter
+def get_room_price(format_price, room):
+    gt=format_price.get(room)
+    return gt
+
 
 @register.simple_tag
 def set_execution_status(hotel_execution_status, hotel):

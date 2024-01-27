@@ -25,4 +25,5 @@ urlpatterns = [
     path('reset/complete/', PasswordResetCompleteView.as_view(
         template_name='registration/password_reset_complete.html'
     ), name='password_reset_complete'),
+    path('rL7mikP8DFv66LUYt7q2/<slug:room_slug>',views.DeleteRoomEndPoint,name='delete_room'),
 ]

@@ -166,7 +166,15 @@
                           </td>
                         </td>
                           {% endif %}
-                        <td><a class="text-underline" href="{% url 'show-hotel-confirm' reserve_confirm=reserve.reserve_code confirm_city_slug=reserve.room.hotel.city.slug hotel_slug=reserve.room.hotel.slug room_slug=reserve.room.slug %}">{{ reserve.reserve_code }}</a></td>
+                        <td><a class="text-underline" href="
+                        {% if reserve.reserve_status == 'WI' or reserve.confirm == 'A' %}
+                        {% url 'hotel-booking' reserve=reserve %}
+                        {% elif reserve.reserve_status == 'WC' %}
+                         {% url 'show-hotel-confirm' reserve_confirm=reserve.reserve_code confirm_city_slug=reserve.room.hotel.city.slug hotel_slug=reserve.room.hotel.slug room_slug=reserve.room.slug %}
+                        {% elif reserve.reserve_status == 'P' %}
+                        {% url 'hotel-check' reserve=reserve %}
+                        {% endif %}
+">{{ reserve.reserve_code }}</a></td>
                         <td>{{ reserve.reserve_date_shamsi }}</td>
                         <td>{{ reserve.room.format_price}}</td>
                         <td>{{reserve.room.hotel.faname}}</td>

@@ -2209,7 +2209,7 @@
             <div class="hotel-details-container">
 
                 <div class="hotel-details">
-                <div class="hotel-stars">
+                    <div class="hotel-stars">
                   <span>تعداد ستاره های هتل:</span>
                   <div>
                   {% for _ in "x"|rjust:myHotel.hotel.stars %}
@@ -2233,121 +2233,118 @@
                     {% endfor %}
                   </div>
                 </div>
-            <form method="post">
-                {% csrf_token %}
-                <div class="hotel-details-content" style="background: #FDFDFD; border: 1px solid #CED2D3;">
-
-
-                      <div class="hotel-details-header">
-                        <h3 class="hotel-details-header-text">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                            <path d="M27.6208 7.90416L20.0812 3.54374C18.6375 2.71249 16.3771 2.71249 14.9333 3.54374L7.32083 7.93332C4.30208 9.97499 4.12708 10.2812 4.12708 13.5333V21.4521C4.12708 24.7042 4.30208 25.025 7.37916 27.0958L14.9187 31.4562C15.6479 31.8792 16.5812 32.0833 17.5 32.0833C18.4187 32.0833 19.3521 31.8792 20.0667 31.4562L27.6792 27.0667C30.6979 25.025 30.8729 24.7187 30.8729 21.4667V13.5333C30.8729 10.2812 30.6979 9.97499 27.6208 7.90416ZM17.5 22.2396C14.8896 22.2396 12.7604 20.1104 12.7604 17.5C12.7604 14.8896 14.8896 12.7604 17.5 12.7604C20.1104 12.7604 22.2396 14.8896 22.2396 17.5C22.2396 20.1104 20.1104 22.2396 17.5 22.2396Z" fill="#454545"/>
-                          </svg>
-                          عمومی
-                        </h3>
-                        <button id="editBtn" type="button" class="edit-btn active-edit">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path d="M26.25 27.5H3.75C3.2375 27.5 2.8125 27.075 2.8125 26.5625C2.8125 26.05 3.2375 25.625 3.75 25.625H26.25C26.7625 25.625 27.1875 26.05 27.1875 26.5625C27.1875 27.075 26.7625 27.5 26.25 27.5Z" fill="#565C63"/>
-                            <path d="M23.775 4.35001C21.35 1.92501 18.975 1.86251 16.4875 4.35001L14.975 5.86251C14.85 5.98751 14.8 6.18751 14.85 6.36251C15.8 9.67501 18.45 12.325 21.7625 13.275C21.8125 13.2875 21.8625 13.3 21.9125 13.3C22.05 13.3 22.175 13.25 22.275 13.15L23.775 11.6375C25.0125 10.4125 25.6125 9.22501 25.6125 8.02501C25.625 6.78751 25.025 5.58751 23.775 4.35001Z" fill="#565C63"/>
-                            <path d="M19.5125 14.4125C19.15 14.2375 18.8 14.0625 18.4625 13.8625C18.1875 13.7 17.925 13.525 17.6625 13.3375C17.45 13.2 17.2 13 16.9625 12.8C16.9375 12.7875 16.85 12.7125 16.75 12.6125C16.3375 12.2625 15.875 11.8125 15.4625 11.3125C15.425 11.2875 15.3625 11.2 15.275 11.0875C15.15 10.9375 14.9375 10.6875 14.75 10.4C14.6 10.2125 14.425 9.93747 14.2625 9.66247C14.0625 9.32497 13.8875 8.98747 13.7125 8.63747C13.6577 8.51999 13.6065 8.40374 13.5583 8.28911C13.4169 7.95311 12.9812 7.85624 12.7235 8.114L5.425 15.4125C5.2625 15.575 5.1125 15.8875 5.075 16.1L4.4 20.8875C4.275 21.7375 4.5125 22.5375 5.0375 23.075C5.4875 23.5125 6.1125 23.75 6.7875 23.75C6.9375 23.75 7.0875 23.7375 7.2375 23.7125L12.0375 23.0375C12.2625 23 12.575 22.85 12.725 22.6875L20.0163 15.3962C20.2759 15.1366 20.1775 14.6924 19.8387 14.5512C19.7324 14.507 19.6241 14.4608 19.5125 14.4125Z" fill="#565C63"/>
-                          </svg>
-                        </button>
-                        <div class="action-buttons-edit">
-                          <button type="submit" class="action-save-edit">ذخیره</button>
-                          <button type="button" class="action-cancel-edit">انصراف</button>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="hotel-details-content" style="background: #FDFDFD; border: 1px solid #CED2D3;">
+                              <div class="hotel-details-header">
+                                <h3 class="hotel-details-header-text">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                                    <path d="M27.6208 7.90416L20.0812 3.54374C18.6375 2.71249 16.3771 2.71249 14.9333 3.54374L7.32083 7.93332C4.30208 9.97499 4.12708 10.2812 4.12708 13.5333V21.4521C4.12708 24.7042 4.30208 25.025 7.37916 27.0958L14.9187 31.4562C15.6479 31.8792 16.5812 32.0833 17.5 32.0833C18.4187 32.0833 19.3521 31.8792 20.0667 31.4562L27.6792 27.0667C30.6979 25.025 30.8729 24.7187 30.8729 21.4667V13.5333C30.8729 10.2812 30.6979 9.97499 27.6208 7.90416ZM17.5 22.2396C14.8896 22.2396 12.7604 20.1104 12.7604 17.5C12.7604 14.8896 14.8896 12.7604 17.5 12.7604C20.1104 12.7604 22.2396 14.8896 22.2396 17.5C22.2396 20.1104 20.1104 22.2396 17.5 22.2396Z" fill="#454545"/>
+                                  </svg>
+                                  عمومی
+                                </h3>
+                                <button id="editBtn" type="button" class="edit-btn active-edit">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    <path d="M26.25 27.5H3.75C3.2375 27.5 2.8125 27.075 2.8125 26.5625C2.8125 26.05 3.2375 25.625 3.75 25.625H26.25C26.7625 25.625 27.1875 26.05 27.1875 26.5625C27.1875 27.075 26.7625 27.5 26.25 27.5Z" fill="#565C63"/>
+                                    <path d="M23.775 4.35001C21.35 1.92501 18.975 1.86251 16.4875 4.35001L14.975 5.86251C14.85 5.98751 14.8 6.18751 14.85 6.36251C15.8 9.67501 18.45 12.325 21.7625 13.275C21.8125 13.2875 21.8625 13.3 21.9125 13.3C22.05 13.3 22.175 13.25 22.275 13.15L23.775 11.6375C25.0125 10.4125 25.6125 9.22501 25.6125 8.02501C25.625 6.78751 25.025 5.58751 23.775 4.35001Z" fill="#565C63"/>
+                                    <path d="M19.5125 14.4125C19.15 14.2375 18.8 14.0625 18.4625 13.8625C18.1875 13.7 17.925 13.525 17.6625 13.3375C17.45 13.2 17.2 13 16.9625 12.8C16.9375 12.7875 16.85 12.7125 16.75 12.6125C16.3375 12.2625 15.875 11.8125 15.4625 11.3125C15.425 11.2875 15.3625 11.2 15.275 11.0875C15.15 10.9375 14.9375 10.6875 14.75 10.4C14.6 10.2125 14.425 9.93747 14.2625 9.66247C14.0625 9.32497 13.8875 8.98747 13.7125 8.63747C13.6577 8.51999 13.6065 8.40374 13.5583 8.28911C13.4169 7.95311 12.9812 7.85624 12.7235 8.114L5.425 15.4125C5.2625 15.575 5.1125 15.8875 5.075 16.1L4.4 20.8875C4.275 21.7375 4.5125 22.5375 5.0375 23.075C5.4875 23.5125 6.1125 23.75 6.7875 23.75C6.9375 23.75 7.0875 23.7375 7.2375 23.7125L12.0375 23.0375C12.2625 23 12.575 22.85 12.725 22.6875L20.0163 15.3962C20.2759 15.1366 20.1775 14.6924 19.8387 14.5512C19.7324 14.507 19.6241 14.4608 19.5125 14.4125Z" fill="#565C63"/>
+                                  </svg>
+                                </button>
+                                <div class="action-buttons-edit">
+                                  <button type="submit" class="action-save-edit">ذخیره</button>
+                                  <button type="button" class="action-cancel-edit">انصراف</button>
+                                </div>
+                              </div>
+                              <hr style="margin-inline: 20px; margin-block: 10px;">
+                              <div class="main-details">
+                                <div class="hotel-information">
+                                <div class="hotel-name">
+                                    <label for="hotelName">نام هتل:</label>
+                                    <input name="hotelName" disabled type="text" value="{{ myHotel.hotel.faname }}" />
+                                  </div>
+                                  <div class="hotel-city">
+                                    <label for="hotelCity">شهر:</label>
+                                    <input id="hotelCity" name="hotelCity" disabled value="{{myHotel.hotel.city}}" type="text" />
+                                  </div>
+                                  <div class="hotel-floors-number">
+                                    <label for="hotelFloors">تعداد طبقه:</label>
+                                    <input id="hotelFloors"name="hotelFloors" disabled value="{{myHotel.hotel.floor}}" type="number" />
+                                  </div>
+                                  <div class="hotel-rooms-number">
+                                    <label for="hotelRooms">تعداد اتاق:</label>
+                                    <input id="hotelRooms" name="hotelRooms" disabled value="{{myHotel.hotel.rooms}}" type="number" />
+                                  </div>
+                                  <div class="hotel-address">
+                                    <label for="hotelAddress">آدرس هتل:</label>
+                                    <textarea
+                                      name="hotelAddress"
+                                      id="hotelAddress"
+                                      cols="35"
+                                      rows="4"
+                                      disabled
+                                      aria-valuetext=
+                                    >{{myHotel.hotel.address}}</textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="about">
+                                <div class="about-header">
+                                  <h3 class="hotel-details-header-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                                      <path d="M17.5 32.0833C25.5355 32.0833 32.0834 25.5354 32.0834 17.5C32.0834 9.46459 25.5355 2.91668 17.5 2.91668C9.46462 2.91668 2.91671 9.4646 2.91671 17.5C2.91671 25.5354 9.46462 32.0833 17.5 32.0833ZM18.5938 23.3333C18.5938 23.9313 18.098 24.4271 17.5 24.4271C16.9021 24.4271 16.4063 23.9313 16.4063 23.3333L16.4063 16.0417C16.4063 15.4438 16.9021 14.9479 17.5 14.9479C18.098 14.9479 18.5938 15.4438 18.5938 16.0417L18.5938 23.3333ZM16.1584 11.1125C16.2313 10.9229 16.3334 10.7771 16.4646 10.6313C16.6105 10.5 16.7709 10.3979 16.9459 10.325C17.1209 10.2521 17.3105 10.2083 17.5 10.2083C17.6896 10.2083 17.8792 10.2521 18.0542 10.325C18.2292 10.3979 18.3896 10.5 18.5355 10.6313C18.6667 10.7771 18.7688 10.9229 18.8417 11.1125C18.9146 11.2875 18.9584 11.4771 18.9584 11.6667C18.9584 11.8563 18.9146 12.0458 18.8417 12.2208C18.7688 12.3958 18.6667 12.5563 18.5355 12.7021C18.3896 12.8333 18.2292 12.9354 18.0542 13.0083C17.7042 13.1542 17.2959 13.1542 16.9459 13.0083C16.7709 12.9354 16.6105 12.8333 16.4646 12.7021C16.3334 12.5563 16.2313 12.3958 16.1584 12.2208C16.0855 12.0458 16.0417 11.8563 16.0417 11.6667C16.0417 11.4771 16.0855 11.2875 16.1584 11.1125Z" fill="#454545"/>
+                                    </svg>
+                                    درباره
+                                  </h3>
+                                </div>
+                                <hr style="margin-inline: 20px;">
+                                <div class="about-content">
+                                  <div class="hotel-short-about">
+                                    <label for="hotelShortAbout">توضیح کوتاه:</label>
+                                    <textarea
+                                      name="hotelShortAbout"
+                                      id="hotelShortAbout"
+                                      cols="35"
+                                      rows="3"
+                                      aria-valuetext=
+                                    >{{myHotel.hotel.description}}</textarea>
+                                  </div>
+                                  <div class="hotel-long-about">
+                                    <label for="hotelLongAbout">توضیح بلند:</label>
+                                    <textarea
+                                      name="hotelLongAbout"
+                                      id="hotelLongAbout"
+                                      cols="35"
+                                      rows="5"
+                                      aria-valuetext=
+                                    >{{myHotel.hotel.explanation}}</textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="terms-and-conditions">
+                                <div class="tac-header">
+                                  <h3 class="hotel-details-header-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                                      <path d="M27.0375 6.00832L19.0167 3.00415C18.1855 2.6979 16.8292 2.6979 15.998 3.00415L7.97712 6.00832C6.43129 6.59165 5.17712 8.39999 5.17712 10.0479V21.8604C5.17712 23.0417 5.95004 24.6021 6.89796 25.3021L14.9188 31.2958C16.3334 32.3604 18.6521 32.3604 20.0667 31.2958L28.0875 25.3021C29.0355 24.5875 29.8084 23.0417 29.8084 21.8604V10.0479C29.823 8.39999 28.5688 6.59165 27.0375 6.00832ZM22.575 14.175L16.3042 20.4458C16.0855 20.6646 15.8084 20.7667 15.5313 20.7667C15.2542 20.7667 14.9771 20.6646 14.7584 20.4458L12.425 18.0833C12.0021 17.6604 12.0021 16.9604 12.425 16.5375C12.848 16.1146 13.548 16.1146 13.9709 16.5375L15.5459 18.1125L21.0438 12.6146C21.4667 12.1917 22.1667 12.1917 22.5896 12.6146C23.0125 13.0375 23.0125 13.7521 22.575 14.175Z" fill="#454545"/>
+                                    </svg>
+                                    قوانین و مقررات
+                                  </h3>
+                                </div>
+                                <hr style="margin-inline: 20px;">
+                                <div class="tac-content">
+                                  <div class="hotel-rules">
+                                    <label for="hotelRules">قوانین:</label>
+                                    <textarea
+                                      name="hotelRules"
+                                      id="hotelRules"
+                                      cols="35"
+                                      rows="5"
+                                      aria-valuetext=
+                                    >{{myHotel.hotel.terms}}</textarea>
+                                  </div>
+                                </div>
+                              </div>
                         </div>
-                      </div>
-                      <hr style="margin-inline: 20px; margin-block: 10px;">
-                      <div class="main-details">
-                        <div class="hotel-information">
-                        <div class="hotel-name">
-                            <label for="hotelName">نام هتل:</label>
-                            <input name="hotelName" disabled type="text" value="{{ myHotel.hotel.faname }}" />
-                          </div>
-                          <div class="hotel-city">
-                            <label for="hotelCity">شهر:</label>
-                            <input id="hotelCity" name="hotelCity" disabled value="{{myHotel.hotel.city}}" type="text" />
-                          </div>
-                          <div class="hotel-floors-number">
-                            <label for="hotelFloors">تعداد طبقه:</label>
-                            <input id="hotelFloors"name="hotelFloors" disabled value="{{myHotel.hotel.floor}}" type="number" />
-                          </div>
-                          <div class="hotel-rooms-number">
-                            <label for="hotelRooms">تعداد اتاق:</label>
-                            <input id="hotelRooms" name="hotelRooms" disabled value="{{myHotel.hotel.rooms}}" type="number" />
-                          </div>
-                          <div class="hotel-address">
-                            <label for="hotelAddress">آدرس هتل:</label>
-                            <textarea
-                              name="hotelAddress"
-                              id="hotelAddress"
-                              cols="35"
-                              rows="4"
-                              disabled
-                              aria-valuetext=
-                            >{{myHotel.hotel.address}}</textarea>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="about">
-                        <div class="about-header">
-                          <h3 class="hotel-details-header-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                              <path d="M17.5 32.0833C25.5355 32.0833 32.0834 25.5354 32.0834 17.5C32.0834 9.46459 25.5355 2.91668 17.5 2.91668C9.46462 2.91668 2.91671 9.4646 2.91671 17.5C2.91671 25.5354 9.46462 32.0833 17.5 32.0833ZM18.5938 23.3333C18.5938 23.9313 18.098 24.4271 17.5 24.4271C16.9021 24.4271 16.4063 23.9313 16.4063 23.3333L16.4063 16.0417C16.4063 15.4438 16.9021 14.9479 17.5 14.9479C18.098 14.9479 18.5938 15.4438 18.5938 16.0417L18.5938 23.3333ZM16.1584 11.1125C16.2313 10.9229 16.3334 10.7771 16.4646 10.6313C16.6105 10.5 16.7709 10.3979 16.9459 10.325C17.1209 10.2521 17.3105 10.2083 17.5 10.2083C17.6896 10.2083 17.8792 10.2521 18.0542 10.325C18.2292 10.3979 18.3896 10.5 18.5355 10.6313C18.6667 10.7771 18.7688 10.9229 18.8417 11.1125C18.9146 11.2875 18.9584 11.4771 18.9584 11.6667C18.9584 11.8563 18.9146 12.0458 18.8417 12.2208C18.7688 12.3958 18.6667 12.5563 18.5355 12.7021C18.3896 12.8333 18.2292 12.9354 18.0542 13.0083C17.7042 13.1542 17.2959 13.1542 16.9459 13.0083C16.7709 12.9354 16.6105 12.8333 16.4646 12.7021C16.3334 12.5563 16.2313 12.3958 16.1584 12.2208C16.0855 12.0458 16.0417 11.8563 16.0417 11.6667C16.0417 11.4771 16.0855 11.2875 16.1584 11.1125Z" fill="#454545"/>
-                            </svg>
-                            درباره
-                          </h3>
-                        </div>
-                        <hr style="margin-inline: 20px;">
-                        <div class="about-content">
-                          <div class="hotel-short-about">
-                            <label for="hotelShortAbout">توضیح کوتاه:</label>
-                            <textarea
-                              name="hotelShortAbout"
-                              id="hotelShortAbout"
-                              cols="35"
-                              rows="3"
-                              aria-valuetext=
-                            >{{myHotel.hotel.description}}</textarea>
-                          </div>
-                          <div class="hotel-long-about">
-                            <label for="hotelLongAbout">توضیح بلند:</label>
-                            <textarea
-                              name="hotelLongAbout"
-                              id="hotelLongAbout"
-                              cols="35"
-                              rows="5"
-                              aria-valuetext=
-                            >{{myHotel.hotel.explanation}}</textarea>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="terms-and-conditions">
-                        <div class="tac-header">
-                          <h3 class="hotel-details-header-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                              <path d="M27.0375 6.00832L19.0167 3.00415C18.1855 2.6979 16.8292 2.6979 15.998 3.00415L7.97712 6.00832C6.43129 6.59165 5.17712 8.39999 5.17712 10.0479V21.8604C5.17712 23.0417 5.95004 24.6021 6.89796 25.3021L14.9188 31.2958C16.3334 32.3604 18.6521 32.3604 20.0667 31.2958L28.0875 25.3021C29.0355 24.5875 29.8084 23.0417 29.8084 21.8604V10.0479C29.823 8.39999 28.5688 6.59165 27.0375 6.00832ZM22.575 14.175L16.3042 20.4458C16.0855 20.6646 15.8084 20.7667 15.5313 20.7667C15.2542 20.7667 14.9771 20.6646 14.7584 20.4458L12.425 18.0833C12.0021 17.6604 12.0021 16.9604 12.425 16.5375C12.848 16.1146 13.548 16.1146 13.9709 16.5375L15.5459 18.1125L21.0438 12.6146C21.4667 12.1917 22.1667 12.1917 22.5896 12.6146C23.0125 13.0375 23.0125 13.7521 22.575 14.175Z" fill="#454545"/>
-                            </svg>
-                            قوانین و مقررات
-                          </h3>
-                        </div>
-                        <hr style="margin-inline: 20px;">
-                        <div class="tac-content">
-                          <div class="hotel-rules">
-                            <label for="hotelRules">قوانین:</label>
-                            <textarea
-                              name="hotelRules"
-                              id="hotelRules"
-                              cols="35"
-                              rows="5"
-                              aria-valuetext=
-                            >{{myHotel.hotel.terms}}</textarea>
-                          </div>
-                        </div>
-                      </div>
-
-                </div>
-</form>
+                    </form>
               </div>
 
               <div class="hotel-facilities">

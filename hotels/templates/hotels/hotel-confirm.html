@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% load hotels_tags %}
 
         <!-- Title -->
 {% block title %}برو بیا | چه برو بیا ایه{% endblock %}
@@ -76,7 +77,7 @@
 
                                     <li class="d-flex justify-content-between py-2">
                                         <span class="font-weight-medium">مبلغ کل پرداختی </span>
-                                        <span class="text-secondary text-right">{{ room.format_price }}</span>
+                                        <span class="text-secondary text-right">{{format_price|get_room_price:room }}</span>
                                     </li>
 
                                     <li class="d-flex justify-content-between py-2">

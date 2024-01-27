@@ -21,7 +21,7 @@ from django.urls import path, include
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
-handler404 = 'main.views.custom_404'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
@@ -32,3 +32,5 @@ urlpatterns = [
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'main.views.custom_404'

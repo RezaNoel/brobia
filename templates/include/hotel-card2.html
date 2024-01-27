@@ -19,7 +19,7 @@
                     {% endif %}
                     </div>
                     <div class="d-flex flex-column">
-                        <button type="submit" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ذخیره کردن" data-hotel-id="{{ h.id }}" name="like" value="like">
+                        <button type="submit" class="btn btn-sm btn-icon text-white like like-counter rounded-circle mb-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="پسندیدن" data-hotel-id="{{ h.id }}" name="like" value="like">
                             <span class="font-size-20">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
@@ -44,15 +44,17 @@
             <div class="mb-2">
                 <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-warning letter-spacing-3">
                     <div class="lighter">
-                            {% for _ in "x"|rjust:h.stars %}
-                                <small class="fas fa-star"></small>
-                            {% endfor %}
+                    {% if h.stars != 0 %}
+                        {% for _ in "x"|rjust:h.stars %}
+                            <small class="fas fa-star"></small>
+                        {% endfor %}
+                    {% endif %}
                     </div>
                 </div>
             </div>
             <a href="{% url 'hotel-single' city_slug=h.city.slug hotel_slug=h.slug %}" class="card-title font-size-17 font-weight-medium text-dark hotel-link">هتل {{ h.faname}} {{ h.city }}</a>
             <div class="mt-2 mb-3">
-                <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{{ h.stars }}ستاره </span>
+                <span class="badge badge-pill badge-warning py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{% if h.stars != 0 %} ستاره {{ h.stars }} {% else %} هتل آپارتمان {% endif %}</span>
             </div>
             <div class="mb-0">
                 <span class="mr-1 font-size-14 text-gray-1">از </span>
@@ -61,7 +63,14 @@
             </div>
         </div>
     {% if h.special_offer %}
-        <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">آفر ویژه</span>
+        <span class="badge badge-pill badge-red-light-2 py-1 px-2 font-size-18 border-radius-3 font-weight-normal">
+            <i class="flaticon-star pr-1"></i>
+            آفر ویژه</span>
+    {% endif %}
+    {% if h.boroobia_suggest %}
+        <span class="badge badge-pill badge-warning py-1 px-2 font-size-18 border-radius-3 font-weight-normal">
+            <i class="flaticon-tick pr-1"></i>
+            پیشنهاد بروبیا</span>
     {% endif %}
     </div>
 </div>

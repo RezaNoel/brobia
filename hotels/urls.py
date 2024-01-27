@@ -6,9 +6,11 @@ urlpatterns = [
     path('', views.HotelHomeView, name='home'),
     path('request/', views.send_request, name='request'),
     path('verify/', views.verify, name='verify'),
-    path('voucher', views.HotelVoucherView, name='voucher'),
     path('rL7mikP8JFv66LjYtNq2/<int:pk>',views.HotelLikeEndPoint,name='likepk'),
     path('bankpage/<str:reserve>',views.BankPaymentEndPoint,name='bankpayment'),
+    path('<str:reserve>/paycheck',views.PayCheckView,name='paycheck'),
+    path('<str:reserve>/voucher', views.HotelVoucherView, name='voucher'),
+    path('<str:reserve>/payment/', views.PaymentView, name='payment'),
     path('<str:reserve>/informations', views.HotelBookingView, name='hotel-booking'),
     path('<str:reserve>/confirm', views.RequestCheckView, name='hotel-check'),
     path('<slug:confirm_city_slug>/<slug:hotel_slug>/<slug:room_slug>/<str:reserve_confirm>?v=profile', views.ShowRequestConfirm,
@@ -22,3 +24,4 @@ urlpatterns = [
     path('<slug:city_slug>', views.HotelListView,name='hotel-list'),
     path('<slug:city_slug>/<slug:hotel_slug>', views.HotelSingleView, name='hotel-single'),
 ]
+

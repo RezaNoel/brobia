@@ -22,7 +22,7 @@
                 <div class="container">
                     <nav class="py-3" aria-label="خرده نان">
                         <ol class="breadcrumb breadcrumb-no-gutter mb-0 flex-nowrap flex-xl-wrap  overflow-xl-visble">
-                            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{% url 'home' %}" >صفحه اصلی ></a></li>
                             <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{% url 'hotel-list' city_slug=city.slug %}" class="hotel-link" >هتل های {{ city.faname }}</a></li>
                             <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{% url 'hotel-single' city_slug=city.slug hotel_slug=hotel.slug %}" class="hotel-link">هتل {{ hotel.faname }}</a></li>
                         </ol>
@@ -145,27 +145,40 @@
                             </h5>
                         {% for room in rooms %}
                             {% if not is_reserved|get_room_reserve_status:room %}
-                                {% if room.bed == passengers%}
+                                {% if room.bed >= passengers%}
                                     <div class="card border-color-7 mb-5 overflow-hidden">
                                 <div class="product-item__outer w-100">
                                     <div class="row">
                                         <div class="col-md-5 col-lg-5 col-xl-3dot5">
                                             <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">
+                                                {% if room.image %}
                                                 <div class="product-item__header mt-2 mt-md-0">
                                                     <div class="position-relative">
                                                         <img class="img-fluid rounded-sm" src="{{ room.image.url }}" alt="{{ room.image.url }}">
                                                     </div>
                                                 </div>
+                                                {% else %}
+                                                    <div class="product-item__header mt-2 mt-md-0">
+                                                    <div class="position-relative">
+                                                        <img class="img-fluid rounded-sm" src="{% static 'img/200x154/imagenotfound.jpg' %}" alt="Image Not Found">
+                                                    </div>
+                                                </div>
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">
                                             <div class="w-100 position-relative m-4 m-md-0">
                                                 <a href="{% if not hotel.online_reserve %}
                                                      {% url 'hotel-confirm' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% else %}{% url 'hotel-confirm-online' reserve_confirm=reserve_code confirm_city_slug=city.slug hotel_slug=hotel.slug room_slug=room.slug %}{% endif %}" class="mb-2 d-inline-block hotel-link">
-                                                    <span class="font-weight-bold font-size-17 text-dark text-dark">اتاق {{ room.faname }}</span>
+                                                    <span class="font-weight-bold font-size-17 text-dark text-dark">{% if room.type == 'R' %}اتاق {% elif room.type == 'S' %} سوئیت {% elif room.type == 'SR' %} سوئیت رویال {% elif room.type == 'A1' %} آپارتمان یک خوابه {% elif room.type == 'A2' %}آپارتمان دو خوابه  {% endif %} {{ room.faname }}</span>
                                                 </a>
+
+
+                                            {% if room.facilities.all %}
                                                 <div class="mt-1 pt-2">
+
                                                     <div class="d-flex mb-1">
+
                                                         <div class="ml-0">
                                                             <ul class="list-unstyled mb-0">
                                                                 {% for f in room.facilities.all %}
@@ -178,17 +191,22 @@
                                                                     </div>
                                                                 </li>
                                                                 {% endfor %}
-
                                                             </ul>
                                                         </div>
+
                                                         <div class="ml-7">
                                                             <ul class="list-unstyled mb-0">
                                                                 <li class="media mb-3 text-gray-1">
                                                                     <small class="mr-2">
-                                                                        <small class="flaticon-plans font-size-17 text-warning"></small>
+                                                                        <small class="flaticon-tag font-size-17 text-warning"></small>
                                                                     </small>
                                                                     <div class="media-body font-size-1 ml-1">
-                                                                        15 متر مربع
+                                                                     موجودی
+                                                                        {% if is_reserved|get_room_count_status:room %}
+                                                                         مناسب
+                                                                        {% else %}
+                                                                            محدود
+                                                                        {% endif %}
                                                                     </div>
                                                                 </li>
                                                                 <li class="media mb-3 text-gray-1">
@@ -204,6 +222,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
+
                                                     <button type="button" class="btn text-primary text-underline hotel-details-btn font-size-14">عکس و جزئیات اتاق</button>
                                                     <div class="overlay">
                                                         <div class="hotel-details">
@@ -214,7 +233,7 @@
                                                               <div class="hotel-content-grid">
                                                                   <section>
                                                                       <h3 class="hotel-title">اتاق {{ room.faname }}</h3>
-                                                                      <p>از <span class="hotel-price">{{ room.format_price }} تومن</span> / شب</p>
+                                                                      <p>از <span class="hotel-price">{{ format_price|get_room_price:room }} تومن</span> / شب</p>
                                                                   </section>
                                                                   <div class="hotel-content">
                                                                       <hr>
@@ -256,15 +275,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            {% endif %}
                                             </div>
+
                                         </div>
                                         <div class="col col-xl-3dot5 align-self-center py-4 py-xl-0 border-top border-xl-top-0">
                                             <div class="flex-content-center border-xl-left py-xl-5 ml-4 ml-xl-0 justify-content-start justify-content-xl-center">
                                                 <div class="text-center my-xl-1">
                                                     <div class="mb-2 pb-1">
-                                                        <span class="font-size-14">از </span>
-                                                        <span class="font-weight-bold font-size-22 ml-1">{{ room.format_price }} تومان</span>
-                                                        <span class="font-size-14">/ شب</span>
+{#                                                        <span class="font-size-14">از </span>#}
+                                                        <span class="font-weight-bold font-size-22 ml-1">{{format_price|get_room_price:room }} تومان</span>
+                                                        <span class="font-size-14">/ هر شب</span>
                                                     </div>
                                                 {% if canRequesr %}
                                                     <a href="{% if not hotel.online_reserve %}
@@ -397,6 +418,7 @@
                 <div id="stickyBlockEndPoint1"></div>
                 <!-- Product Cards Ratings With carousel -->
                 <div class="product-card-block product-card-v3">
+                {% if suggest_hotels %}
                     <div class="space-1">
                         <div class="w-md-80 w-lg-50 text-center mx-md-auto pb-4 mt-xl-4 d-flex justify-content-center align-items-center overflow-hidden">
                             <img class="suggestion" src="{% static 'img/home/suggestion.png' %}" alt="Suggestions">
@@ -435,6 +457,7 @@
 
                         </div>
                     </div>
+                {% endif %}
                 </div>
                 <!-- End Product Cards Ratings With carousel -->
             </div>
@@ -894,7 +917,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 var passValue = document.getElementById('passInput').value;
                 var childValue = document.getElementById('childInput').value;
                 var roomValue = document.getElementById('roomInput').value;
-                
+
                 // Create the URL with the search value
                 const url = `${encodeURIComponent(searchValue)}?date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
@@ -915,7 +938,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 var passValue = document.getElementById('passInput').value;
                 var childValue = document.getElementById('childInput').value;
                 var roomValue = document.getElementById('roomInput').value;
-                
+
                 // Create the URL with the search value
                 const url = `${link.getAttribute('href')}?date=${encodeURIComponent(dateValue)}&passengers=${encodeURIComponent(passValue)}&children=${encodeURIComponent(childValue)}&room=${encodeURIComponent(roomValue)}`;
 
@@ -932,11 +955,11 @@ document.addEventListener('DOMContentLoaded', () => {
     //logic for decreasing the number for room & adults amount reservation
     const minusBtns = document.querySelectorAll('.js-minuss')
     minusBtns.forEach((btn) => btn.addEventListener('click', () => btn.nextElementSibling.value = btn.nextElementSibling.value >= 2 ? +btn.nextElementSibling.value - 1 : btn.nextElementSibling.value ))
-    
+
     //logic for increasing the number for room amount reservation
     const plusRoomBtn = document.querySelector('.js-pluss')
     plusRoomBtn.addEventListener('click', () => roomInput.value = roomInput.value < 4 ? +roomInput.value + 1 : roomInput.value )
-    
+
     //logic for increasing the number for adults amount reservation
     const plusGuestBtn = document.querySelector('.guest-plus')
     plusGuestBtn.addEventListener('click', () => guestInput.value = guestInput.value < 6 ? +guestInput.value + 1 : guestInput.value )
