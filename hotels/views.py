@@ -16,12 +16,9 @@ from .serializer import HotelSerializer, HotelViewSet
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-<<<<<<< HEAD
 import random, string, time, requests, json
 from django.conf import settings
-=======
-import random, string, time,json,requests
->>>>>>> dd1d42399e13490884c52fdac2c9f063d91f2d65
+
 
 ZP_API_REQUEST = f"https://zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
 ZP_API_VERIFY = f"https://zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
@@ -34,7 +31,6 @@ phone = ''  # Optional
 CallbackURL = 'http://127.0.0.1:8080/verify'
 
 
-<<<<<<< HEAD
 def PaymentView(request, reserve):
     my_reserve = Request.objects.get(reserve_code=reserve)
     cardnumber = '6104337840187817'
@@ -80,10 +76,6 @@ def PayCheckView(request, reserve):
     return render(request, 'hotels/paycheck.html', context)
 
 
-=======
-
-# Create your views here.
->>>>>>> dd1d42399e13490884c52fdac2c9f063d91f2d65
 def send_request(request):
     data = {
         "MerchantID": settings.MERCHANT,
