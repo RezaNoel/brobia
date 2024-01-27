@@ -16,10 +16,7 @@ from .serializer import HotelSerializer, HotelViewSet
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-<<<<<<< HEAD
 import random, string, time,json,requests
-
-
 
 ZP_API_REQUEST = f"https://zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
 ZP_API_VERIFY = f"https://zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
@@ -31,11 +28,6 @@ phone = ''  # Optional
 # Important: need to edit for realy server.
 CallbackURL = 'http://127.0.0.1:8080/verify'
 
-
-=======
-import random, string, time,requests,json
-from django.conf import settings
->>>>>>> 2ff6ca0154fa154d21c70f62c21ce5abb4b9b4f6
 
 
 # Create your views here.
@@ -52,42 +44,6 @@ def send_request(request):
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
     try:
         response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
-
-<<<<<<< HEAD
-=======
-
-# ? sandbox merchant
-if settings.SANDBOX:
-    sandbox = 'sandbox'
-else:
-    sandbox = 'www'
-
-ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
-ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
-ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
-
-amount = 1000  # Rial / Required
-description = "توضیحات مربوط به تراکنش را در این قسمت وارد کنید"  # Required
-phone = '09129471382'  # Optional
-# Important: need to edit for realy server.
-CallbackURL = 'http://127.0.0.1:8000/verify/'
-
-
-def send_request(request):
-    data = {
-        "MerchantID": settings.MERCHANT,
-        "Amount": amount,
-        "Description": description,
-        "Phone": phone,
-        "CallbackURL": CallbackURL,
-    }
-    data = json.dumps(data)
-    # set content length by data
-    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
-    try:
-        response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
-
->>>>>>> 2ff6ca0154fa154d21c70f62c21ce5abb4b9b4f6
         if response.status_code == 200:
             response = response.json()
             if response['Status'] == 100:
@@ -111,13 +67,9 @@ def verify(authority):
     }
     data = json.dumps(data)
     # set content length by data
-<<<<<<< HEAD
-    headers = {'content-type': 'application/json', 'content-length': str(len(data)) }
-    response = requests.post(ZP_API_VERIFY, data=data,headers=headers)
-=======
+
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
     response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
->>>>>>> 2ff6ca0154fa154d21c70f62c21ce5abb4b9b4f6
 
     if response.status_code == 200:
         response = response.json()
